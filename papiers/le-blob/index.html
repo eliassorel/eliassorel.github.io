@@ -185,35 +185,40 @@ function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h
   for(let k=0;k<420;k++){const u=Math.random(),X=A[0]+(B[0]-A[0])*u+(Math.random()-.5)*60,Y=A[1]+(B[1]-A[1])*u+R*(.75+Math.random()*.5)*(Math.random()<.5?1:-.95);
     dx.globalAlpha=.5+Math.random()*.4;dx.fillStyle=['#3f6a22','#2f5419','#5b8a2c','#24410f'][k%4];dx.beginPath();dx.arc(X,Y,2+Math.random()*7,0,6.283);dx.fill()}
   for(let k=0;k<160;k++){const X=Math.random()*w,Y=h*(.88+Math.random()*.12);dx.globalAlpha=.6;dx.fillStyle=['#2f5419','#3f6a22','#4a3520'][k%3];dx.beginPath();dx.arc(X,Y,3+Math.random()*9,0,6.283);dx.fill()}
-  /* le réseau du blob : il pousse en éventail depuis son cœur, ses fronts se ramifient vers la nourriture */
-  couche=document.createElement('canvas');couche.width=c.width;couche.height=c.height;cc=couche.getContext('2d');cc.setTransform(c.width/w,0,0,c.height/h,0,0);cc.lineCap='round';
-  flocons=[];for(let k=0;k<6;k++){const u=.12+k*.15+Math.random()*.05,X=A[0]+(B[0]-A[0])*u,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*.9;flocons.push([X,Y,Math.random()*6.3])}
-  const u0=.55;coeur=[A[0]+(B[0]-A[0])*u0,A[1]+(B[1]-A[1])*u0];pointes=[];nseg=0;
-  for(let k=0;k<8;k++){const an=k/8*6.283;pointes.push({x:coeur[0],y:coeur[1],a:an,g:0,l:0})}
-  cc.fillStyle='#e9c21c';cc.beginPath();cc.ellipse(coeur[0],coeur[1],R*.28,R*.2,0,0,6.283);cc.fill();
-  for(let k=0;k<6500;k++)pousse();
+  /* le blob : un cœur, des tubes qui partent vers chaque flocon, des branches plus fines, et au bout des éventails de matière */
+  flocons=[];for(let k=0;k<5;k++){const u=.1+k*.2+Math.random()*.05,X=A[0]+(B[0]-A[0])*u,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*.8;flocons.push([X,Y,Math.random()*6.3])}
+  coeur=[A[0]+(B[0]-A[0])*.55,A[1]+(B[1]-A[1])*.55];tubes=[];t0=null;
+  for(const f of flocons)ajouteTube(coeur,f,13,0);
+  for(let k=0;k<4;k++){const an=Math.random()*6.283,L=R*(.5+Math.random()*.4);const f=[coeur[0]+Math.cos(an)*L*1.6,coeur[1]+Math.sin(an)*L*.7];if(surTronc(f[0],f[1]))ajouteTube(coeur,f,9,0)}
   feuilles=Array.from({length:mob?6:12},()=>nouvelleFeuille(true));poussieres=Array.from({length:mob?30:60},()=>({x:Math.random()*w,y:Math.random()*h,p:Math.random()*6.3,r:Math.random()*1.6+.4}))}
 function nouvelleFeuille(partout){return{x:Math.random()*w,y:partout?Math.random()*h:-20,r:6+Math.random()*7,a:Math.random()*6.3,va:(Math.random()-.5)*.03,v:.3+Math.random()*.4,p:Math.random()*6.3,c:['#8a5a1e','#a8742a','#6e4416','#b8862e'][(Math.random()*4)|0]}}
-let couche,cc,coeur,pointes=[],nseg=0;
-function cible(p){let best=null,bd=1e9;const cand=flocons.concat([[mx*w,my*h]]);for(const f of cand){const d=Math.hypot(f[0]-p.x,f[1]-p.y);if(d<bd&&d>6){bd=d;best=f}}return best}
-function pousse(){if(nseg>14000||!pointes.length)return;const k=(Math.random()*pointes.length)|0,p=pointes[k];
-  const cb=cible(p),vers=(va,f)=>{let d=va-p.a;while(d>Math.PI)d-=6.283;while(d<-Math.PI)d+=6.283;p.a+=d*f};
-  vers(Math.atan2(p.y-coeur[1],p.x-coeur[0]),.06);if(cb)vers(Math.atan2(cb[1]-p.y,cb[0]-p.x),.05);
-  p.a+=(Math.random()-.5)*.28;const st=2.2,nx=p.x+Math.cos(p.a)*st,ny=p.y+Math.sin(p.a)*st;
-  if(!surTronc(nx,ny)){p.a+=Math.PI*(.4+Math.random()*.6);return}
-  const larg=Math.max(.7,4.2*Math.pow(.82,p.g));
-  cc.strokeStyle='#b88a0a';cc.lineWidth=larg+1.2;cc.beginPath();cc.moveTo(p.x,p.y);cc.lineTo(nx,ny);cc.stroke();
-  cc.strokeStyle=(nseg%3)?'#e6bd1a':'#f2d23a';cc.lineWidth=larg;cc.beginPath();cc.moveTo(p.x,p.y);cc.lineTo(nx,ny);cc.stroke();
-  p.x=nx;p.y=ny;p.l+=st;nseg++;
-  if(p.l>26+Math.random()*40&&pointes.length<70){p.l=0;p.g++;pointes.push({x:p.x,y:p.y,a:p.a+(Math.random()<.5?-1:1)*(.35+Math.random()*.6),g:p.g,l:0})}
-  /* au front, la matière s'accumule en grumeaux, comme les éventails des photos */
-  if(p.g>3&&Math.random()<.18){cc.fillStyle=Math.random()<.5?'#efc928':'#d9ab12';cc.beginPath();cc.arc(nx+(Math.random()-.5)*4,ny+(Math.random()-.5)*4,1.2+Math.random()*2.4,0,6.283);cc.fill()}}
-function frame(t){if(!calme)for(let k=0;k<8;k++)pousse();
-  while(clics.length){const k=clics.shift();if(surTronc(k[0],k[1]))flocons.push([k[0],k[1],Math.random()*6.3]);if(flocons.length>12)flocons.splice(0,1)}
+let coeur,tubes=[],t0=null;
+function ajouteTube(o,f,larg,gen){const dx=f[0]-o[0],dy=f[1]-o[1],L=Math.hypot(dx,dy),nx=-dy/L,ny=dx/L,b2=(Math.random()-.5)*L*.35;
+  const c1=[o[0]+dx*.35+nx*b2,o[1]+dy*.35+ny*b2],c2=[o[0]+dx*.7-nx*b2*.6,o[1]+dy*.7-ny*b2*.6],pts=[];
+  for(let k=0;k<=40;k++){const s=k/40,u=1-s;pts.push([u*u*u*o[0]+3*u*u*s*c1[0]+3*u*s*s*c2[0]+s*s*s*f[0],u*u*u*o[1]+3*u*u*s*c1[1]+3*u*s*s*c2[1]+s*s*s*f[1]])}
+  const fan=[];const ang=Math.atan2(f[1]-pts[36][1],f[0]-pts[36][0]),rf=(gen?22:42)+Math.random()*18;
+  for(let k=0;k<(gen?110:260);k++){const a2=ang+(Math.random()-.5)*2.6,r=Math.pow(Math.random(),.6)*rf;fan.push([Math.cos(a2)*r,Math.sin(a2)*r*.8,1.6+Math.random()*(gen?3.4:5.2),Math.random()])}
+  for(let k=0;k<(gen?10:26);k++){const s=Math.random()*.9,p=pts[Math.round(s*40)];fan.push([p[0]-f[0]+(Math.random()-.5)*larg*1.4,p[1]-f[1]+(Math.random()-.5)*larg*1.4,larg*(.35+Math.random()*.4)*(1-s*.5),Math.random(),1])}
+  const tb={pts,larg,gen,fan,naissance:Math.random()*.15+gen*.25};tubes.push(tb);
+  if(gen<2)for(let k=0;k<(gen?1:3);k++){const s=.3+Math.random()*.55,p=pts[Math.round(s*40)],a2=ang+(Math.random()<.5?-1:1)*(.7+Math.random()*.8),L2=L*(.25+Math.random()*.25);
+    const g2=[p[0]+Math.cos(a2)*L2,p[1]+Math.sin(a2)*L2*.8];if(surTronc(g2[0],g2[1]))ajouteTube(p,g2,larg*.5,gen+1)}}
+function dessineTube(tb,g,t){const prog=Math.max(0,Math.min(1,(g-tb.naissance)/(1-tb.naissance)));if(prog<=0)return;const n=Math.max(2,Math.round(prog*40));
+  for(let pass=0;pass<2;pass++){x.strokeStyle=pass?'#e9c21c':'#9c7408';x.lineCap='round';
+    for(let k=1;k<n;k++){const s=k/40,lw=Math.max(.8,tb.larg*(1-s*.55))*(pass?1:1.35);x.lineWidth=lw;x.beginPath();x.moveTo(tb.pts[k-1][0],tb.pts[k-1][1]);x.lineTo(tb.pts[k][0],tb.pts[k][1]);x.stroke()}}
+  /* le flux qui va et vient dans le tube : un reflet plus clair qui voyage */
+  const ph=(t*.25+tb.gen*.3)%1,k=Math.min(n-1,Math.max(1,Math.round(ph*n)));x.globalAlpha=.55;x.strokeStyle='#fbe58a';x.lineWidth=Math.max(.6,tb.larg*.4);x.beginPath();x.moveTo(tb.pts[k-1][0],tb.pts[k-1][1]);x.lineTo(tb.pts[k][0],tb.pts[k][1]);x.stroke();x.globalAlpha=1;
+  /* l'éventail au front */
+  const tip=tb.pts[n-1],fin=tb.pts[40],sc=Math.min(1,prog*1.4);
+  for(let pass=0;pass<2;pass++)for(const q of tb.fan){let X,Y,r;if(q[4]){if(prog<.97)continue;X=fin[0]+q[0];Y=fin[1]+q[1];r=q[2]}else{X=tip[0]+q[0]*sc;Y=tip[1]+q[1]*sc;r=q[2]*sc}
+    x.fillStyle=pass?(q[3]<.35?'#d9ab12':(q[3]<.8?'#e9c21c':'#f5d84a')):'#9c7408';x.beginPath();x.arc(X+(pass?0:.9),Y+(pass?0:1.2),r,0,6.283);x.fill()}}
+function frame(t){if(t0===null)t0=t;const g=calme?1:Math.min(1,.55+(t-t0)/90);
+  while(clics.length){const k=clics.shift();if(surTronc(k[0],k[1])){const f=[k[0],k[1],Math.random()*6.3];flocons.push(f);const n0=tubes.length;ajouteTube(coeur,f,5,0);for(let q=n0;q<tubes.length;q++)tubes[q].naissance=Math.min(.95,g+.02)}}
   x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
   for(let k=0;k<4;k++){const X=w*(.2+k*.22)+Math.sin(t*.15+k)*40;const gr=x.createLinearGradient(X,0,X+200,h);gr.addColorStop(0,'rgba(255,236,170,.12)');gr.addColorStop(1,'rgba(255,236,170,0)');x.fillStyle=gr;x.beginPath();x.moveTo(X,0);x.lineTo(X+70,0);x.lineTo(X+300,h);x.lineTo(X+150,h);x.closePath();x.fill()}
   for(const f of flocons){x.save();x.translate(f[0],f[1]);x.rotate(f[2]);x.globalAlpha=.95;x.fillStyle='#e8dcb8';x.beginPath();x.ellipse(0,0,7,4.5,0,0,6.283);x.fill();x.globalAlpha=.4;x.strokeStyle='#a8946a';x.stroke();x.restore()}
-  x.globalAlpha=1;x.drawImage(couche,0,0,w,h);
+  x.globalAlpha=1;const pulse=calme?1:1+Math.sin(t*.7)*.04;x.save();x.translate(coeur[0],coeur[1]);x.scale(pulse,pulse);
+  x.fillStyle='#9c7408';x.beginPath();x.ellipse(1,2,R*.42,R*.3,0,0,6.283);x.fill();x.fillStyle='#e9c21c';x.beginPath();x.ellipse(0,0,R*.42,R*.3,0,0,6.283);x.fill();for(let k=0;k<60;k++){const a3=k*2.39,r3=Math.sqrt(k/60)*R*.38;x.fillStyle=k%3?'#f2d23a':'#d9ab12';x.beginPath();x.arc(Math.cos(a3)*r3,Math.sin(a3)*r3*.7,3+(k%4),0,6.283);x.fill()}x.restore();
+  for(const tb of tubes)dessineTube(tb,g,t);
   /* feuilles qui tombent, poussières dorées dans la lumière */
   for(const p of poussieres){const X=p.x+Math.sin(t*.3+p.p)*20,Y=p.y+Math.cos(t*.25+p.p)*14;x.globalAlpha=.25+.35*Math.abs(Math.sin(t+p.p));x.fillStyle='#ffe9a8';x.beginPath();x.arc(X,Y,p.r,0,6.283);x.fill()}
   for(let k=0;k<feuilles.length;k++){const f=feuilles[k];if(!calme){f.y+=f.v;f.x+=Math.sin(t*.8+f.p)*.6+(mx-.5)*.3;f.a+=f.va;if(f.y>h+20)feuilles[k]=nouvelleFeuille(false)}
