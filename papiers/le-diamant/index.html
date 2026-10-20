@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Diamant : ce qui vibre, se souvient, éclaire · Elias Sorel</title>
+<meta name="description" content="Le Diamant (Elias Sorel, 2026) : le repos, la conservation et la perception sont-ils ce qu'ils paraissent ? Vibration, mémoire, lumière. 13 figures, 166 références.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#0a0e14">
+
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="Le Diamant : ce qui vibre, se souvient, éclaire">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/10/19">
+<meta name="citation_online_date" content="2026/09/12">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.22730664">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="vibration; mémoire; lumière; reconsolidation; sommeil; perception; couleur; diamant; exclusion de Pauli; énergie du point zéro">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/le-diamant/">
+<meta name="citation_pdf_url" content="https://eliassorel.github.io/papiers/le-diamant/Le-Diamant-Elias-Sorel-v2.6.pdf">
+<!-- Dublin Core -->
+<meta name="DC.title" content="Le Diamant : ce qui vibre, se souvient, éclaire">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-10-19">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.22730664">
+<meta name="DC.language" content="fr">
+<meta name="DC.rights" content="CC BY 4.0">
+
+<link rel="canonical" href="https://eliassorel.github.io/papiers/le-diamant/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{
+  --surface:#ffffff; --surface-2:#f7f4ee; --ink:#4a4f54; --ink-strong:#111a27; --ink-muted:#626a73;
+  --nuit:#111a27; --nuit-profonde:#0a0e14; --or:#b78d33; --or-vif:#d4a82f; --or-texte:#8a6a22; --or-chiffre:#ffd966;
+  --creme:#e8dcc0; --creme-2:#f4e3b8; --line:#e7e1d4;
+  --vib:#4a7bb8; --vib-clair:#5da9e9; --mem:#8b5c9e; --mem-clair:#c77dba; --lum:#e8622c; --lum-clair:#f4a94b;
+  --serif:Lora,Georgia,"Times New Roman",serif; --sans:"Source Sans 3","Helvetica Neue",Arial,sans-serif; --mono:"JetBrains Mono","DejaVu Sans Mono",monospace;
+  --etabli:#0f6e56; --etabli-bg:#e1f5ee; --debattu:#854f0b; --debattu-bg:#faeeda; --hypo:#6b3f8f; --hypo-bg:#f1e8f7;
+  --lecture:#185fa5; --lecture-bg:#e6f1fb; --calcul:#4a4f54; --calcul-bg:#eceef0;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --surface:#0d131d; --surface-2:#121a27; --ink:#d3cdbf; --ink-strong:#f4e3b8; --ink-muted:#a3abb2; --line:#243049; --or-texte:#d4a82f; color-scheme:dark;
+  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
+}}
+:root[data-theme="dark"]{
+  --surface:#0d131d; --surface-2:#121a27; --ink:#d3cdbf; --ink-strong:#f4e3b8; --ink-muted:#a3abb2; --line:#243049; --or-texte:#d4a82f; color-scheme:dark;
+  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or-vif);outline-offset:4px;border-radius:4px}
+
+/* bandeau */
+.bandeau{background:radial-gradient(70% 90% at 85% 10%,rgba(139,92,158,.55),transparent 65%),radial-gradient(60% 80% at 10% 100%,rgba(232,98,44,.35),transparent 70%),radial-gradient(50% 60% at 45% 40%,rgba(74,123,184,.35),transparent 70%),var(--nuit-profonde);color:var(--creme)}
+.bandeau .inner{padding-block:28px 72px;display:grid;gap:56px}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--creme);opacity:.8;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--creme)}
+.retour:hover{opacity:1}
+.titre{display:grid;gap:20px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-vif)}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,8vw,84px);line-height:1;margin:0;color:var(--creme-2);text-wrap:balance}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,26px);margin:0;color:var(--creme)}
+.auteur{margin:0;font-size:16px;color:var(--creme)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(232,220,192,.35)}
+.tomes{display:flex;flex-wrap:wrap;gap:8px 18px;font:600 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase}
+.tomes span:nth-child(1){color:var(--vib-clair)} .tomes span:nth-child(2){color:var(--mem-clair)} .tomes span:nth-child(3){color:var(--lum-clair)}
+.devise{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--creme-2);margin:0;padding-left:18px;border-left:1px solid var(--or-vif);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;color:#a3abb2;margin-top:6px}
+
+/* écrins chiffres */
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-40px}
+.ecrin{background:var(--nuit);border-radius:12px;padding:18px 18px 16px;color:var(--creme);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or-vif),transparent)}
+.ecrin b{display:block;font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin span{font-size:13px;line-height:1.3;opacity:.9}
+
+/* actions */
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--nuit);color:var(--creme-2)}
+.btn.plein:hover{background:#1d2c4a}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-size:13px;color:var(--ink-muted)}
+
+/* texte */
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.partie{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding-block:18px;border-top:1px solid var(--line)}
+.partie:first-of-type{border-top:0}
+.partie .num{font-family:var(--serif);font-size:15px;line-height:1.4}
+.partie .num b{display:block;font-size:30px;font-weight:500}
+.partie .num em{font-style:normal;font:600 10px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+.p1 .num{color:var(--vib)} .p2 .num{color:var(--mem)} .p3 .num{color:var(--lum)}
+.partie p{margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px}
+.p-etabli{color:var(--etabli);background:var(--etabli-bg)} .p-debattu{color:var(--debattu);background:var(--debattu-bg)} .p-hypo{color:var(--hypo);background:var(--hypo-bg)} .p-lecture{color:var(--lecture);background:var(--lecture-bg)} .p-calcul{color:var(--calcul);background:var(--calcul-bg)}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px}
+.mots li{list-style:none;font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.mots{padding:0;margin:0}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+
+footer{margin-top:96px;background:var(--nuit-profonde);color:#c9c1ae}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px}
+footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
+@media (max-width:700px){
+  .chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .partie{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<header class="bandeau band">
+  <div class="inner">
+    <a class="retour" href="/">Elias Sorel · les travaux</a>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>Le Diamant</h1>
+      <p class="sous-titre">ce qui vibre, se souvient, éclaire</p>
+      <div class="tomes"><span>Vibration</span><span>Mémoire</span><span>Lumière</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« La lumière est ce qui naît quand la vibration se souvient. »<small>Elias Sorel, Le Diamant, 2026</small></p>
+    </div>
+  </div>
+</header>
+
+<main class="band">
+<div class="inner">
+
+  <div class="chiffres">
+    <div class="ecrin"><b>3</b><span>parties, thèse, antithèse, synthèse</span></div>
+    <div class="ecrin"><b>13</b><span>figures</span></div>
+    <div class="ecrin"><b>166</b><span>références</span></div>
+    <div class="ecrin"><b>58</b><span>pages</span></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn plein" href="Le-Diamant-Elias-Sorel-v2.6.pdf">Lire le PDF</a>
+    <a class="btn trait" href="https://doi.org/10.5281/zenodo.22730664">Zenodo · DOI</a>
+    <span class="taille">PDF, 58 pages, 1,6 Mo · en français</span>
+  </div>
+
+  <section>
+    <h2>Résumé</h2>
+    <p>Le Diamant suit une seule question à travers trois niveaux : le repos, la conservation et la perception sont-ils ce qu'ils paraissent ?</p>
+    <div class="partie p1"><div class="num"><em>Thèse</em><b>I</b>Vibration</div>
+      <p>Rien n'est au repos. La matière tient par un interdit, l'exclusion de Pauli, dont Dyson et Lenard, puis Lieb et Thirring, tirent la stabilité de la matière. L'état fondamental garde son mouvement de point zéro (Heisenberg, Kennard), l'hélium ne gèle pas à pression ordinaire, le vide décale le niveau d'énergie de l'électron (Lamb et Retherford) et rapproche deux plaques (force de Casimir, mesurée par Lamoreaux ; son interprétation reste débattue). De Broglie et Schrödinger donnent à la matière sa fréquence et ses états stationnaires.</p></div>
+    <div class="partie p2"><div class="num"><em>Antithèse</em><b>II</b>Mémoire</div>
+      <p>Rien ne se garde tel quel. Les molécules de la synapse se renouvellent en quelques heures à quelques jours (la question de Crick : comment une chose dure-t-elle quand ses pièces ne durent pas ?) ; la trace tient par ses liens (Hebb ; Bliss et Lømo). Un souvenir rappelé redevient labile (reconsolidation : Nader, Schafe et LeDoux), le rappel peut le déformer (Loftus), et un souvenir devenu inaccessible peut encore être réactivé artificiellement (Ryan et Tonegawa). La nuit, l'hippocampe rejoue la journée (Wilson et McNaughton), des ondes lentes traversent le cortex (Massimini et Tononi), une odeur rejouée pendant le sommeil renforce le souvenir appris avec elle (Rasch et Born), et le sommeil profite surtout aux souvenirs annoncés comme utiles (Wilhelm et Born) ; la dopamine pèse sur ce qui entre en mémoire (Lisman et Grace).</p></div>
+    <div class="partie p3"><div class="num"><em>Synthèse</em><b>III</b>Lumière</div>
+      <p>La couleur n'est pas où l'on croit. La lumière est une onde électromagnétique (Maxwell), elle voyage sans consommer une seconde de temps propre (Einstein), et on peut la ralentir à 17 m/s, puis l'arrêter, dans un nuage d'atomes ultrafroids (Hau) ; quelques photons suffisent à l'œil (Hecht, Shlaer et Pirenne), le bleu du ciel vient de la diffusion (Rayleigh), l'arc-en-ciel de la goutte (Descartes). La perception demande une source, un porteur et un décodeur, et le produit des trois. Le diamant, le même carbone que le graphite, montre que tout tient dans l'agencement.</p></div>
+    <p style="margin-top:1.2em">Cinq marques séparent les registres d'un bout à l'autre du texte :</p>
+    <div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-hypo">HYPOTHÈSE</span><span class="pill p-lecture">LECTURE</span><span class="pill p-calcul">CALCUL</span></div>
+    <p>Le texte se termine sur trois hypothèses réfutables, chacune avec ce qui la réfuterait.</p>
+  </section>
+
+  <section lang="en">
+    <h2>Abstract</h2>
+    <div class="abstract">
+      <p>Le Diamant (The Diamond) follows one question across three levels: are rest, conservation and perception what they appear to be? I · Vibration (thesis): nothing is at rest. Matter holds through a prohibition, Pauli exclusion, from which Dyson and Lenard, then Lieb and Thirring, derive the stability of matter. The ground state keeps its zero-point motion (Heisenberg, Kennard), helium does not freeze at ordinary pressure, the vacuum shifts the electron's energy level (Lamb and Retherford) and draws two plates together (Casimir force, measured by Lamoreaux; its interpretation remains debated). De Broglie and Schrödinger give matter its frequency and its stationary states. II · Memory (antithesis): nothing is kept as it is. Synaptic molecules are renewed within hours to days (Crick's question: how does something last when its parts do not?); the trace holds through its links (Hebb; Bliss and Lømo). A recalled memory becomes labile again (reconsolidation: Nader, Schafe and LeDoux), recall can distort it (Loftus), and a memory that has become inaccessible can still be reactivated artificially (Ryan and Tonegawa). At night, the hippocampus replays the day (Wilson and McNaughton), slow waves travel across the cortex (Massimini and Tononi), an odour replayed during sleep strengthens the memory learned with it (Rasch and Born), and sleep mainly benefits memories announced as useful (Wilhelm and Born); dopamine weighs on what enters memory (Lisman and Grace). III · Light (synthesis): colour is not where we think it is. Light is an electromagnetic wave (Maxwell), it travels without using up a second of proper time (Einstein), and it can be slowed to 17 m/s, then stopped, in a cloud of ultracold atoms (Hau); a few photons are enough for the eye (Hecht, Shlaer and Pirenne), the blue of the sky comes from scattering (Rayleigh), the rainbow from the droplet (Descartes). Perception needs a source, a carrier and a decoder, and the product of the three. Diamond, the same carbon as graphite, shows that everything lies in the arrangement. Five marks separate the registers: ESTABLISHED, DEBATED, HYPOTHESIS, READING, CALCULATION. The text ends with three falsifiable hypotheses, each with what would refute it. 13 figures, 166 references. In French.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mots-clés</h2>
+    <ul class="mots">
+      <li>vibration</li><li>mémoire</li><li>lumière</li><li>exclusion de Pauli</li><li>énergie du point zéro</li><li>reconsolidation</li><li>sommeil</li><li>faux souvenirs</li><li>perception</li><li>couleur</li><li>relativité restreinte</li><li>diamant</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Pour citer</h2>
+    <p class="citer">Sorel, E. (2026). <i>Le Diamant : ce qui vibre, se souvient, éclaire</i> (Version 2.6). Zenodo. https://doi.org/10.5281/zenodo.22730664</p>
+  </section>
+
+  <section>
+    <h2>Fiche</h2>
+    <dl class="meta">
+      <dt>Auteur</dt><dd>Elias Sorel</dd>
+      <dt>Version</dt><dd>2.6, 19 octobre 2026 (première version le 12 septembre 2026)</dd>
+      <dt>Type</dt><dd>Prépublication</dd>
+      <dt>Langue</dt><dd>Français</dd>
+      <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.22730664">10.5281/zenodo.22730664</a></dd>
+      <dt>Aussi sur</dt><dd><a href="https://philpapers.org/rec/SORTDK">PhilPapers</a></dd>
+      <dt>Licence</dt><dd>CC BY 4.0</dd>
+    </dl>
+  </section>
+
+</div>
+</main>
+
+<footer class="band">
+  <div class="inner">
+    <a href="/">Elias Sorel</a>
+    <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+    <a href="https://doi.org/10.5281/zenodo.22730664">Zenodo</a>
+    <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+    <span>Textes sous licence CC BY 4.0</span>
+  </div>
+</footer>
+</body>
+</html>
