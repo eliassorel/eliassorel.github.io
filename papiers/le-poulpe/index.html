@@ -167,11 +167,11 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
 /* Dans l'eau : deux bras de poulpe qui ondulent. Leur peau change, des nuages sombres la traversent, les ventouses suivent. */
-let cau=null,cw,chh,cx2,cimg,neige=[],bras=[],algues=[],banc=[],bulles=[],roches=[],meduses=[];
+const palP=[[224,185,104],[200,150,62],[176,125,43],[127,208,230],[58,166,201],[32,129,168],[226,230,233],[196,202,206]];let peau=[],flash=null,cau=null,cw,chh,cx2,cimg,neige=[],bras=[],algues=[],banc=[],bulles=[],roches=[],meduses=[];
 function taille(){neige=Array.from({length:Math.round(w*h/4000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.3,v:Math.random()*.25+.05,p:Math.random()*6.3}));
   const mob=w<760;bras=[{bx:w*(mob?.95:1.02),by:h*.98,a0:-2.05,L:Math.min(w,h)*(mob?1.2:1.55),W:mob?44:70,ph:0,sens:1},
     {bx:w*(mob?.75:.86),by:h*1.04,a0:-1.65,L:Math.min(w,h)*(mob?1:1.3),W:mob?34:54,ph:2.1,sens:-1}];vie();cau=null}
-function vie(){const mob=w<760;
+function vie(){const mob=w<760;peau=[];const pas=mob?13:15;for(let y=pas/2;y<h+pas;y+=pas*.87){const dec=(Math.round(y/pas)%2)*pas/2;for(let X=dec;X<w+pas;X+=pas)peau.push({x:X+(Math.random()-.5)*4,y:y+(Math.random()-.5)*4,p:Math.random()*6.3,k:(Math.random()*palP.length)|0})}
   algues=Array.from({length:mob?7:14},(_,i)=>({x:w*(i/(mob?7:14))+Math.random()*40,hh:h*(.25+Math.random()*.35),p:Math.random()*6.3,l:6+Math.random()*8,c:Math.random()<.5?'#0f4a3e':'#145a4a'}));
   banc=Array.from({length:mob?26:48},()=>({x:Math.random()*w*.6,y:h*(.25+Math.random()*.2),vx:1.2+Math.random()*.4,vy:0,s:3+Math.random()*2.5}));
   roches=[];let X=-20;while(X<w+40){const r=40+Math.random()*90;roches.push([X,h-10-Math.random()*25,r]);X+=r*1.2}
@@ -231,7 +231,13 @@ function frame(t){
   }
   /* neige marine */
   for(const n of neige){if(!calme){n.y+=n.v;n.x+=Math.sin(t*.4+n.p)*.15;if(n.y>h)n.y=-3}x.globalAlpha=.4;x.fillStyle='#d8eef5';x.beginPath();x.arc(n.x,n.y,n.r,0,6.283);x.fill()}
-  while(clics.length)clics.shift();
+  while(clics.length){const k=clics.shift();flash={x:k[0],y:k[1],t0:t}}
+  /* le poulpe change de peau : la vague de chromatophores part du clic, envahit tout, puis se referme */
+  if(flash){const a2=t-flash.t0,D=3.2;if(a2>D)flash=null;else{const R=a2*900,fin=a2>D-1.2?(D-a2)/1.2:1,pas=w<760?13:15;
+    for(const s of peau){const dd=Math.hypot(s.x-flash.x,s.y-flash.y);if(dd>R)continue;const front=Math.exp(-Math.pow((dd-R)/70,2));
+      let v=Math.sin(s.x*.012+s.y*.008-t*1.6+s.p*.3)*.5+Math.sin(dd*.03-t*3)*.5+front*1.2;const ouvert=Math.max(0,Math.min(1,.5+v*.6));
+      const zone=(Math.sin(s.x*.004-t*.15)+Math.cos(s.y*.005+t*.12)+2)/4,i=Math.floor((zone*.6+ouvert*.4)*palP.length+s.k*.15)%palP.length,col=palP[i];
+      x.globalAlpha=(.3+.65*ouvert)*fin;x.fillStyle=`rgb(${col[0]},${col[1]},${col[2]})`;x.beginPath();x.arc(s.x,s.y,1+ouvert*pas*.42,0,6.283);x.fill()}}}
   const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(4,18,30,.78)');v.addColorStop(.5,'rgba(4,18,30,.35)');v.addColorStop(1,'rgba(4,18,30,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
 }
 return {taille,frame};
