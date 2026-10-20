@@ -166,27 +166,43 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
-/* La peau du poulpe : un champ de chromatophores qui s'ouvrent et se ferment en vagues. */
-const pal=[[224,185,104],[200,150,62],[176,125,43],[127,208,230],[58,166,201],[32,129,168],[226,230,233],[196,202,206]];
-let cells=[],pas=15,vagues=[];
-function taille(){cells=[];pas=w<760?13:15;for(let y=pas/2;y<h+pas;y+=pas*.87){const dec=(Math.round(y/pas)%2)*pas/2;for(let X=dec;X<w+pas;X+=pas)cells.push({x:X+(Math.random()-.5)*4,y:y+(Math.random()-.5)*4,p:Math.random()*6.3,k:(Math.random()*pal.length)|0})}}
+/* Dans l'eau : deux bras de poulpe qui ondulent. Leur peau change, des nuages sombres la traversent, les ventouses suivent. */
+let neige=[],bras=[];
+function taille(){neige=Array.from({length:Math.round(w*h/4000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.4+.3,v:Math.random()*.25+.05,p:Math.random()*6.3}));
+  const mob=w<760;bras=[{bx:w*(mob?.95:1.02),by:h*.98,a0:-2.05,L:Math.min(w,h)*(mob?1.2:1.55),W:mob?44:70,ph:0,sens:1},
+    {bx:w*(mob?.75:.86),by:h*1.04,a0:-1.65,L:Math.min(w,h)*(mob?1:1.3),W:mob?34:54,ph:2.1,sens:-1}]}
+function epine(b,t){const N=70,pts=[];let X=b.bx,Y=b.by,ang=b.a0;const px=mx*w,py=my*h;
+  for(let i=0;i<=N;i++){const s=i/N;pts.push([X,Y,ang,s]);
+    let courbe=Math.sin(t*.55+b.ph+s*3.2)*.045*b.sens+Math.pow(s,2.2)*.09*b.sens;
+    const vers=Math.atan2(py-Y,px-X);let dd=vers-ang;while(dd>Math.PI)dd-=6.283;while(dd<-Math.PI)dd+=6.283;courbe+=dd*.012*s;
+    ang+=courbe;X+=Math.cos(ang)*b.L/N;Y+=Math.sin(ang)*b.L/N}
+  return pts}
 function frame(t){
-  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0b2a3a');g.addColorStop(.6,'#06182a');g.addColorStop(1,'#030c16');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
-  while(clics.length){const k=clics.shift();vagues.push({x:k[0],y:k[1],t0:t})}
-  if(!calme&&Math.random()<.006)vagues.push({x:Math.random()*w,y:Math.random()*h,t0:t});
-  vagues=vagues.filter(v=>t-v.t0<6);
-  const px=mx*w,py=my*h;
-  for(const s of cells){
-    const dp=Math.hypot(s.x-px,s.y-py);
-    let v=Math.sin(s.x*.012+s.y*.008-t*1.1+s.p*.3)*.5+Math.sin(dp*.03-t*2.4)*.5*Math.exp(-dp/420);
-    for(const q of vagues){const dd=Math.hypot(s.x-q.x,s.y-q.y),r=(t-q.t0)*260;v+=Math.exp(-Math.pow((dd-r)/40,2))*1.2*(1-(t-q.t0)/6)}
-    const ouvert=Math.max(0,Math.min(1,.5+v*.6));
-    const zone=(Math.sin(s.x*.004-t*.15)+Math.cos(s.y*.005+t*.12)+2)/4;
-    const i=Math.min(pal.length-1,Math.floor((zone*.6+ouvert*.4)*pal.length+s.k*.15)%pal.length);
-    const col=pal[i];x.globalAlpha=.25+.65*ouvert;x.fillStyle=`rgb(${col[0]},${col[1]},${col[2]})`;
-    x.beginPath();x.arc(s.x,s.y,1+ouvert*pas*.42,0,6.283);x.fill()}
-  /* un voile d'eau par-dessus, pour que le texte reste lisible */
-  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(3,12,22,.72)');v.addColorStop(.55,'rgba(3,12,22,.35)');v.addColorStop(1,'rgba(3,12,22,.05)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0e3a4c');g.addColorStop(.5,'#082436');g.addColorStop(1,'#04121e');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+  /* lumière de surface qui ondule */
+  for(let k=0;k<5;k++){const X=w*(.15+k*.2)+Math.sin(t*.3+k)*60;const gr=x.createLinearGradient(X,0,X+120,h*.8);gr.addColorStop(0,'rgba(127,208,230,.10)');gr.addColorStop(1,'rgba(127,208,230,0)');
+    x.fillStyle=gr;x.beginPath();x.moveTo(X-40,0);x.lineTo(X+80,0);x.lineTo(X+260,h*.85);x.lineTo(X+60,h*.85);x.closePath();x.fill()}
+  for(const b of bras){const P=epine(b,t),gauche=[],droite=[];
+    for(const [X,Y,ang,s] of P){const r=b.W*Math.pow(1-s,.85)+1.5,nx=Math.cos(ang+Math.PI/2),ny=Math.sin(ang+Math.PI/2);gauche.push([X+nx*r,Y+ny*r]);droite.push([X-nx*r,Y-ny*r])}
+    /* le corps du bras */
+    x.beginPath();gauche.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));for(let i=droite.length-1;i>=0;i--)x.lineTo(droite[i][0],droite[i][1]);x.closePath();
+    const cg=x.createLinearGradient(P[0][0],P[0][1],P[P.length-1][0],P[P.length-1][1]);cg.addColorStop(0,'#8a5e1a');cg.addColorStop(.5,'#b07d2b');cg.addColorStop(1,'#c8963e');x.globalAlpha=.95;x.fillStyle=cg;x.fill();
+    /* les chromatophores et les nuages qui passent */
+    for(let i=2;i<P.length-2;i++){const [X,Y,ang,s]=P[i],r=b.W*Math.pow(1-s,.85),nx=Math.cos(ang+Math.PI/2),ny=Math.sin(ang+Math.PI/2);
+      const nuage=Math.max(0,Math.sin(s*14-t*2.2+b.ph))**3;
+      for(let k=-2;k<=2;k++){const off=k/2.6*r,jit=Math.sin(i*12.9+k*7.3)*r*.12,cx=X+nx*(off+jit),cy=Y+ny*(off+jit);
+        const tache=.4+.6*Math.abs(Math.sin(i*3.7+k*5.1+t*.4));x.globalAlpha=.25+.55*nuage+.15*tache;
+        x.fillStyle=nuage>.3?'#3b230c':(tache>.7?'#e0b968':'#6e4512');x.beginPath();x.arc(cx,cy,Math.max(.8,r*.13*(.6+tache*.6+nuage*.6)),0,6.283);x.fill()}}
+    /* les ventouses, sur la face intérieure */
+    for(let i=4;i<P.length-3;i+=2){const [X,Y,ang,s]=P[i],r=b.W*Math.pow(1-s,.85),nx=Math.cos(ang+Math.PI/2)*b.sens,ny=Math.sin(ang+Math.PI/2)*b.sens;
+      const sx=X-nx*r*.92,sy=Y-ny*r*.92,sr=Math.max(1.2,r*.32);
+      x.globalAlpha=.9;x.fillStyle='#f0dcc0';x.beginPath();x.arc(sx,sy,sr,0,6.283);x.fill();
+      x.globalAlpha=.5;x.strokeStyle='#8a5e1a';x.lineWidth=1;x.beginPath();x.arc(sx,sy,sr*.55,0,6.283);x.stroke()}
+  }
+  /* neige marine */
+  for(const n of neige){if(!calme){n.y+=n.v;n.x+=Math.sin(t*.4+n.p)*.15;if(n.y>h)n.y=-3}x.globalAlpha=.4;x.fillStyle='#d8eef5';x.beginPath();x.arc(n.x,n.y,n.r,0,6.283);x.fill()}
+  while(clics.length)clics.shift();
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(4,18,30,.78)');v.addColorStop(.5,'rgba(4,18,30,.35)');v.addColorStop(1,'rgba(4,18,30,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
 }
 return {taille,frame};
  })();
