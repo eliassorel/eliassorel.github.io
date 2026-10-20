@@ -201,6 +201,11 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 .master a.porte::after{content:"";position:absolute;inset:-16px;z-index:1;border-radius:18px}
 .master .actions a,.master .meta a{position:relative;z-index:2}
 .master:has(a.porte):hover{background:linear-gradient(90deg,transparent,rgba(183,141,51,.05),transparent)}
+.carte{position:relative}
+.carte:has(a.porte){cursor:pointer}
+.carte a.porte::after{content:"";position:absolute;inset:-12px;z-index:1;border-radius:18px}
+.carte .meta a{position:relative;z-index:2}
+.lire.zen{opacity:.6;font-size:11px}
 </style>
 </head>
 <body>
@@ -282,27 +287,27 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       <div class="trio">
         <article class="carte">
           <div class="ecrin" style="--a:#c8963e;--b:#2081a8"><span class="mots">Le corps distribué</span><div><div class="chiffre">3</div><div class="leg">cœurs, et un sang bleu à l'hémocyanine</div></div></div>
-          <h3>Le poulpe<span>le corps distribué</span></h3>
+          <h3><a class="porte" href="/papiers/le-poulpe/">Le poulpe</a><span>le corps distribué</span></h3>
           <p>Les bras qui décident, la peau qui voit, le camouflage sans voir les couleurs. Tout ce qu'on sait de la bête, réuni en un texte.</p>
-          <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22676077">Lire</a><span class="doi">22676077</span></div>
+          <div class="meta"><a class="lire" href="/papiers/le-poulpe/">Entrer →</a><a class="lire zen" href="https://doi.org/10.5281/zenodo.22676077">Zenodo</a><span class="doi">22676077</span></div>
         </article>
         <article class="carte">
           <div class="ecrin" style="--a:#c0503a;--b:#5a2a3a"><span class="mots">Deux lignées, une cellule</span><div><div class="chiffre">2</div><div class="leg">génomes dans chacune de nos cellules</div></div></div>
-          <h3>La mitochondrie<span>la complexité comme dette</span></h3>
+          <h3><a class="porte" href="/papiers/la-mitochondrie/">La mitochondrie</a><span>la complexité comme dette</span></h3>
           <p>Une lignée entrée dans une autre, un gradient de protons tenu à travers une membrane, et toute la cellule complexe qui se monte dessus.</p>
-          <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22918398">Lire</a><span class="doi">22918398</span></div>
+          <div class="meta"><a class="lire" href="/papiers/la-mitochondrie/">Entrer →</a><a class="lire zen" href="https://doi.org/10.5281/zenodo.22918398">Zenodo</a><span class="doi">22918398</span></div>
         </article>
         <article class="carte">
           <div class="ecrin" style="--a:#e0bf2a;--b:#6b5a12"><span class="mots">Physarum polycephalum</span><div><div class="chiffre">0</div><div class="leg">neurone, et il trouve quand même son chemin</div></div></div>
-          <h3>Le blob<span>l'accord sans chef</span></h3>
+          <h3><a class="porte" href="/papiers/le-blob/">Le blob</a><span>l'accord sans chef</span></h3>
           <p>Un réseau de veines qui pulse et se réorganise. La coordination sans centre, lue dans un être d'une seule cellule.</p>
-          <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22870114">Lire</a><span class="doi">22870114</span></div>
+          <div class="meta"><a class="lire" href="/papiers/le-blob/">Entrer →</a><a class="lire zen" href="https://doi.org/10.5281/zenodo.22870114">Zenodo</a><span class="doi">22870114</span></div>
         </article>
         <article class="carte">
           <div class="ecrin" style="--a:#7d94a3;--b:#3a4a5a"><span class="mots">Cryptobiose</span><div><div class="chiffre">30</div><div class="leg">ans gelé, puis il est reparti (Tsujimoto, 2016)</div></div></div>
-          <h3>Le tardigrade<span>la survie par le retrait</span></h3>
+          <h3><a class="porte" href="/papiers/le-tardigrade/">Le tardigrade</a><span>la survie par le retrait</span></h3>
           <p>Un corps qui ne change presque plus, un génome qui a beaucoup changé. Et si la stase n'était pas une absence d'évolution, mais son déplacement ?</p>
-          <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22920277">Lire</a><span class="doi">22920277</span></div>
+          <div class="meta"><a class="lire" href="/papiers/le-tardigrade/">Entrer →</a><a class="lire zen" href="https://doi.org/10.5281/zenodo.22920277">Zenodo</a><span class="doi">22920277</span></div>
         </article>
       </div>
     </div>
@@ -320,9 +325,9 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
         </article>
         <article class="carte">
           <div class="ecrin" style="--a:#7d858c;--b:#3a4a5a"><span class="mots">Français · English</span><div><div class="chiffre">54</div><div class="leg">pierres, une phrase chacune</div></div></div>
-          <h3>Metaphysical Stones<span>le versant condensé</span></h3>
+          <h3><a class="porte" href="/papiers/metaphysical-stones/">Metaphysical Stones</a><span>le versant condensé</span></h3>
           <p>Cinquante-quatre aphorismes, chacun en français avec sa traduction anglaise en regard.</p>
-          <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22865099">Lire</a><span class="doi">22865099</span></div>
+          <div class="meta"><a class="lire" href="/papiers/metaphysical-stones/">Entrer →</a><a class="lire zen" href="https://doi.org/10.5281/zenodo.22865099">Zenodo</a><span class="doi">22865099</span></div>
         </article>
       </div>
     </div>

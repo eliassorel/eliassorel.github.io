@@ -1,0 +1,201 @@
+<!doctype html>
+<!--
+  Elias Sorel, c'est deux.
+  L'onde bleue, l'onde dorée, et l'étincelle là où elles se croisent.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La mitochondrie, la complexité comme dette plutôt que comme conquête · Elias Sorel</title>
+<meta name="description" content="La mitochondrie (Elias Sorel, 2026) : l&#x27;origine mitochondriale de la vie eucaryote. 23 pages, 55 références au DOI.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#140509">
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="La mitochondrie, la complexité comme dette plutôt que comme conquête">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/10/01">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.22918398">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="mitochondrie; endosymbiose; bioénergétique; eucaryogenèse; archées Asgard; Lane et Martin; origine des eucaryotes">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/la-mitochondrie/">
+<meta name="DC.title" content="La mitochondrie, la complexité comme dette plutôt que comme conquête">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-10-01">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.22918398">
+<meta name="DC.rights" content="CC BY 4.0">
+<link rel="canonical" href="https://eliassorel.github.io/papiers/la-mitochondrie/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--fond:#140509;--clair:#f6e9e2;--accent:#c56a2a;--accent-clair:#f4a94b;--or:#eaa64a;--or-chiffre:#ffd966;--ecrin:#1c0610;--ecrin-bord:#5a1a24;--pastille-fond:rgba(28,6,16,.75);--pastille-bord:#a8571e;--fond-bandeau:#140509;--brumes:radial-gradient(30% 25% at 70% 40%,rgba(192,52,42,.35),transparent 70%);--titre:Lora,Georgia,serif;--serif:Lora,Georgia,serif;--sans:"Source Sans 3",Arial,sans-serif;--mono:"JetBrains Mono",monospace;
+  --surface:#ffffff;--surface-2:#f5f3ee;--ink:#454b50;--ink-strong:#140509;--ink-muted:#626a71;--line:#e4e0d8;--or-texte:#8a6a22}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
+[hidden]{display:none!important}
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--clair);background:var(--fond-bandeau)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;background:var(--brumes)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:derive 38s ease-in-out infinite alternate}
+@keyframes derive{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}}
+.ciel{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px;pointer-events:none}
+.bandeau .inner a,.bandeau .inner nav{pointer-events:auto}
+.haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--clair);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--clair)}
+.retour:hover{opacity:1}
+.langue{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--clair)}
+.langue span{background:var(--clair);color:var(--fond)}
+.langue a:hover{background:rgba(255,255,255,.14)}
+.titre{display:grid;gap:20px;max-width:660px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+h1{font-family:var(--titre);font-weight:var(--titre-poids,500);font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--clair);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--accent-clair)}
+.parties{display:flex;flex-wrap:wrap;gap:8px}
+.parties span{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:var(--pastille-fond);border:1px solid var(--pastille-bord);color:var(--clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--clair)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--clair);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;opacity:.75;margin-top:6px}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
+.ecrin{background:var(--ecrin);border:1px solid var(--ecrin-bord);border-radius:12px;padding:18px 18px 16px;color:var(--clair);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.ecrin b{display:block;font-family:var(--titre);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin b.long{font-size:28px;line-height:1.15;white-space:nowrap}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;opacity:.92}
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--fond);color:var(--clair)}
+.btn.plein:hover{filter:brightness(1.3)}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.chiffres-texte{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.chiffres-texte div{background:var(--surface-2);border-radius:10px;padding:14px 16px;border-left:2px solid var(--or)}
+.chiffres-texte b{display:block;font-family:var(--titre);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.chiffres-texte span{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--ink-muted)}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+.plan li:first-child{border-top:0}
+.plan li em{font-style:normal;font:600 10px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px;color:var(--ink-strong);background:var(--surface-2);border:1px solid var(--line)}
+.p-etabli{color:#0f6e56;background:#e1f5ee;border-color:#e1f5ee} .p-debattu{color:#854f0b;background:#faeeda;border-color:#faeeda} .p-hypo{color:#6b3f8f;background:#f1e8f7;border-color:#f1e8f7} .p-lecture{color:#185fa5;background:#e6f1fb;border-color:#e6f1fb} .p-calcul{color:#4a4f54;background:#eceef0;border-color:#eceef0}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.mots li{list-style:none;font-family:var(--sans);font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+footer{margin-top:96px;background:var(--fond);color:var(--clair)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
+footer a{text-decoration:none} footer a:hover{color:var(--or)}
+@media (max-width:760px){.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+
+
+</style>
+</head>
+<body>
+<header class="bandeau band">
+  <canvas class="ciel" id="ciel" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-github-io.translate.goog/papiers/la-mitochondrie/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>La mitochondrie</h1>
+      <p class="sous-titre">la complexité comme dette</p>
+      <div class="parties"><span>Endosymbiose</span><span>Bioénergétique</span><span>Eucaryogenèse</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« Il n'y a pas de sommet. Il y a des lignées qui continuent. »<small>Elias Sorel, La mitochondrie, 2026</small></p>
+    </div>
+  </div>
+</header>
+<main class="band">
+<div class="inner">
+  <div class="chiffres"><div class="ecrin"><b>8</b><span>parties</span></div><div class="ecrin"><b>55</b><span>références au DOI</span></div><div class="ecrin"><b>23</b><span>pages</span></div><div class="ecrin"><b class=long>≥ 2,2 Ga</b><span>âge minimum de l&#x27;endosymbiose</span></div></div>
+  <div class="actions"><a class="btn plein" href="https://doi.org/10.5281/zenodo.22918398">Lire sur Zenodo</a><span class="taille">Texte en français, 23 pages</span></div>
+  <section><h2>Résumé</h2><p><em>L'origine mitochondriale de la vie eucaryote.</em></p><p>Ce document ne revendique aucune donnée nouvelle. Il part de travaux publiés, les crédite, et propose une lecture. Un angle. Et si l'on cessait de lire la vie complexe comme un sommet conquis, pour la lire comme une dette contractée lors d'un événement unique ?</p><p>Toute la vie complexe descend d'un événement unique. Une cellule en a internalisé durablement une autre. De cet événement est née la mitochondrie. Si l'on suit l'hypothèse énergétique de Lane et Martin, cette acquisition est ce qui a rendu la complexité possible. Non par mérite, non par une ascension graduelle, mais par héritage d'un moteur. Nous ne serions pas le couronnement d'une montée. Nous serions les héritiers d'une capture, et nous en porterions la dépendance dans chaque cellule.</p><div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-lecture">LECTURE</span></div></section>
+  <section><h2>En chiffres</h2><div class="chiffres-texte"><div><b>1 399</b><span>protéines ancestrales passées au crible pour tester l'unicité de l'endosymbiose</span></div><div><b>97</b><span>protéines d'organites, et le verdict tient</span></div><div><b>≥ 2,2 Ga</b><span>âge minimum de l'endosymbiose, d'après la datation des duplications de gènes</span></div><div><b>1,80 à 1,67 Ga</b><span>la radiation du dernier ancêtre commun des eucaryotes, à ne pas confondre avec la précédente</span></div><div><b>~100 Ma</b><span>l'âge du seul événement connu de perte complète de la mitochondrie</span></div><div><b>× 200 000</b><span>l'expansion du nombre de gènes exprimés que la thèse défendue met au compte de l'endosymbiose</span></div><div><b>120</b><span>ATP par glucose, la quantité sur laquelle le désaccord se joue aujourd'hui</span></div><div><b>&gt; 20</b><span>versions du mode d'entrée présentées dans la littérature, et aucune tranchée</span></div><div><b>−139 mV</b><span>le potentiel de sa membrane interne, au repos, mesuré sur neurones corticaux en culture</span></div></div></section>
+  
+  
+  
+  <section><h2>Mots-clés</h2><ul class="mots"><li>mitochondrie</li><li>endosymbiose</li><li>bioénergétique</li><li>eucaryogenèse</li><li>archées Asgard</li><li>Lane et Martin</li><li>origine des eucaryotes</li></ul></section>
+  <section><h2>Pour citer</h2><p class="citer">Sorel, E. (2026). <i>La mitochondrie, la complexité comme dette plutôt que comme conquête</i> (Version 2). Zenodo. https://doi.org/10.5281/zenodo.22918398</p></section>
+  <section><h2>Fiche</h2><dl class="meta">
+    <dt>Auteur</dt><dd>Elias Sorel</dd>
+    <dt>Version</dt><dd>2, octobre 2026</dd>
+    <dt>Type</dt><dd>Prépublication</dd>
+    <dt>Langue</dt><dd>Français</dd>
+    <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.22918398">10.5281/zenodo.22918398</a></dd>
+    <dt>Licence</dt><dd>CC BY 4.0</dd>
+  </dl></section>
+</div>
+</main>
+<footer class="band"><div class="inner">
+  <a href="/">Elias Sorel</a>
+  <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+  <a href="https://doi.org/10.5281/zenodo.22918398">Zenodo</a>
+  <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+  <span>Textes sous licence CC BY 4.0</span>
+</div></footer>
+<script>
+/* Le ciel de la pièce : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,mx=.5,my=.5;
+  band.addEventListener('pointermove',ev=>{const b=band.getBoundingClientRect();mx=(ev.clientX-b.left)/w;my=(ev.clientY-b.top)/h},{passive:true});
+  const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
+  const art=(function(){ 
+/* Dans la mitochondrie : des crêtes repliées, et des protons qui traversent par les portes de l'ATP synthase. */
+let cretes=[],protons=[],portes=[];
+function taille(){cretes=[];portes=[];const n=w<760?5:7;for(let i=0;i<n;i++){const y=h*(.12+.8*i/(n-1));cretes.push({y,a:18+Math.random()*16,k:.006+Math.random()*.004,p:Math.random()*6.3});
+  for(let j=0;j<6;j++)portes.push({c:i,x:w*(.08+.84*Math.random())})}}
+function yc(cr,X,t){return cr.y+Math.sin(X*cr.k+cr.p+t*.4)*cr.a+Math.sin(X*cr.k*2.7+t*.25)*cr.a*.35}
+function frame(t){
+  const g=x.createRadialGradient(w*.7,h*.4,0,w*.7,h*.4,Math.max(w,h));g.addColorStop(0,'#3a0f1c');g.addColorStop(.6,'#1c0610');g.addColorStop(1,'#0c0307');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+  for(const cr of cretes){for(let L=0;L<2;L++){x.beginPath();for(let X=0;X<=w;X+=8){const Y=yc(cr,X,t)+(L?10:0);X?x.lineTo(X,Y):x.moveTo(X,Y)}
+    x.strokeStyle=L?'rgba(232,98,44,.55)':'rgba(192,52,42,.75)';x.lineWidth=L?1.2:2.2;x.globalAlpha=1;x.stroke()}}
+  for(const p of portes){const cr=cretes[p.c],Y=yc(cr,p.x,t)+5;const pulse=.6+.4*Math.sin(t*3+p.x);
+    x.globalAlpha=.9;x.strokeStyle='#ffd966';x.lineWidth=1.4;x.beginPath();x.arc(p.x,Y,6+pulse*2,0,6.283);x.stroke();
+    x.globalAlpha=.25*pulse;x.fillStyle='#ffd966';x.beginPath();x.arc(p.x,Y,16,0,6.283);x.fill()}
+  if(!calme&&protons.length<260)for(let k=0;k<4;k++)protons.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,vie:1,cible:null});
+  while(clics.length){const k=clics.shift();for(let i=0;i<30;i++)protons.push({x:k[0],y:k[1],vx:(Math.random()-.5)*4,vy:(Math.random()-.5)*4,vie:1,cible:null})}
+  const px=mx*w,py=my*h;
+  for(const q of protons){
+    if(!q.cible){let best=null,bd=1e9;for(const p of portes){const d=Math.hypot(p.x-q.x,yc(cretes[p.c],p.x,t)+5-q.y);if(d<bd){bd=d;best=p}}q.cible=best}
+    const tx=q.cible.x,ty=yc(cretes[q.cible.c],tx,t)+5,dx=tx-q.x,dy=ty-q.y,dd=Math.hypot(dx,dy)+1e-3;
+    q.vx=q.vx*.96+dx/dd*.12+(q.x-px)/(Math.hypot(q.x-px,q.y-py)+60)*.6;q.vy=q.vy*.96+dy/dd*.12+(q.y-py)/(Math.hypot(q.x-px,q.y-py)+60)*.6;
+    q.x+=q.vx;q.y+=q.vy;if(dd<8){q.vie-=.08}
+    x.globalAlpha=Math.max(q.vie,0)*.85;x.fillStyle=dd<40?'#ffd966':'#f4a94b';x.beginPath();x.arc(q.x,q.y,1.5,0,6.283);x.fill()}
+  protons=protons.filter(q=>q.vie>0);
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(12,3,7,.75)');v.addColorStop(.55,'rgba(12,3,7,.35)');v.addColorStop(1,'rgba(12,3,7,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+}
+return {taille,frame};
+ })();
+  addEventListener('resize',taille);taille();
+  function frame(ms){art.frame(calme?0:ms/1000);if(!calme)requestAnimationFrame(frame)}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<!--
+  Elias Sorel, c'est deux.
+  L'onde bleue, l'onde dorée, et l'étincelle là où elles se croisent.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le tardigrade : la survie par le retrait · Elias Sorel</title>
+<meta name="description" content="Le tardigrade, la survie par le retrait (Elias Sorel, 2026) : cryptobiose et stase morphologique, une lecture par le déplacement de la sélection. Une prédiction testable.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#0c0f14">
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="Le tardigrade : la survie par le retrait">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/09/23">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.22920277">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="tardigrade; cryptobiose; anhydrobiose; tun; stase morphologique; sélection déplacée; dormance; effet réservoir; rotifère bdelloïde; dN/dS; biologie évolutive">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/le-tardigrade/">
+<meta name="DC.title" content="Le tardigrade : la survie par le retrait">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-09-23">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.22920277">
+<meta name="DC.rights" content="CC BY 4.0">
+<link rel="canonical" href="https://eliassorel.github.io/papiers/le-tardigrade/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--fond:#0c0f14;--clair:#e4eef2;--accent:#3a4a5a;--accent-clair:#b8cdd6;--or:#B78D33;--or-chiffre:#ffd966;--ecrin:#111a24;--ecrin-bord:#3a4a5a;--pastille-fond:rgba(17,26,36,.75);--pastille-bord:#7d94a3;--fond-bandeau:#0c0f14;--brumes:radial-gradient(30% 25% at 70% 40%,rgba(125,148,163,.25),transparent 70%);--titre:Lora,Georgia,serif;--serif:Lora,Georgia,serif;--sans:"Source Sans 3",Arial,sans-serif;--mono:"JetBrains Mono",monospace;
+  --surface:#ffffff;--surface-2:#f5f3ee;--ink:#454b50;--ink-strong:#0c0f14;--ink-muted:#626a71;--line:#e4e0d8;--or-texte:#8a6a22}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
+[hidden]{display:none!important}
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--clair);background:var(--fond-bandeau)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;background:var(--brumes)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:derive 38s ease-in-out infinite alternate}
+@keyframes derive{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}}
+.ciel{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px;pointer-events:none}
+.bandeau .inner a,.bandeau .inner nav{pointer-events:auto}
+.haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--clair);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--clair)}
+.retour:hover{opacity:1}
+.langue{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--clair)}
+.langue span{background:var(--clair);color:var(--fond)}
+.langue a:hover{background:rgba(255,255,255,.14)}
+.titre{display:grid;gap:20px;max-width:660px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+h1{font-family:var(--titre);font-weight:var(--titre-poids,500);font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--clair);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--accent-clair)}
+.parties{display:flex;flex-wrap:wrap;gap:8px}
+.parties span{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:var(--pastille-fond);border:1px solid var(--pastille-bord);color:var(--clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--clair)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--clair);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;opacity:.75;margin-top:6px}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
+.ecrin{background:var(--ecrin);border:1px solid var(--ecrin-bord);border-radius:12px;padding:18px 18px 16px;color:var(--clair);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.ecrin b{display:block;font-family:var(--titre);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin b.long{font-size:28px;line-height:1.15;white-space:nowrap}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;opacity:.92}
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--fond);color:var(--clair)}
+.btn.plein:hover{filter:brightness(1.3)}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.chiffres-texte{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.chiffres-texte div{background:var(--surface-2);border-radius:10px;padding:14px 16px;border-left:2px solid var(--or)}
+.chiffres-texte b{display:block;font-family:var(--titre);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.chiffres-texte span{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--ink-muted)}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+.plan li:first-child{border-top:0}
+.plan li em{font-style:normal;font:600 10px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px;color:var(--ink-strong);background:var(--surface-2);border:1px solid var(--line)}
+.p-etabli{color:#0f6e56;background:#e1f5ee;border-color:#e1f5ee} .p-debattu{color:#854f0b;background:#faeeda;border-color:#faeeda} .p-hypo{color:#6b3f8f;background:#f1e8f7;border-color:#f1e8f7} .p-lecture{color:#185fa5;background:#e6f1fb;border-color:#e6f1fb} .p-calcul{color:#4a4f54;background:#eceef0;border-color:#eceef0}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.mots li{list-style:none;font-family:var(--sans);font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+footer{margin-top:96px;background:var(--fond);color:var(--clair)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
+footer a{text-decoration:none} footer a:hover{color:var(--or)}
+@media (max-width:760px){.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+
+.prediction{background:#0c0f14;color:#e4eef2;border-radius:12px;padding:22px 24px;position:relative}.prediction::before{content:'';position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,#B78D33,transparent)}.prediction p{margin:12px 0 0}
+</style>
+</head>
+<body>
+<header class="bandeau band">
+  <canvas class="ciel" id="ciel" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-github-io.translate.goog/papiers/le-tardigrade/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>Le tardigrade</h1>
+      <p class="sous-titre">la survie par le retrait</p>
+      <div class="parties"><span>Biologie évolutive</span><span>Cryptobiose</span><span>Sélection déplacée</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« On raconte le tardigrade comme le champion de la survie. Et s'il ne résistait pas, mais se retirait ? »<small>Elias Sorel, Le tardigrade, 2026</small></p>
+    </div>
+  </div>
+</header>
+<main class="band">
+<div class="inner">
+  <div class="chiffres"><div class="ecrin"><b class=long>0,01 %</b><span>de métabolisme dans le tun</span></div><div class="ecrin"><b>8</b><span>sections</span></div><div class="ecrin"><b>16</b><span>références au DOI</span></div><div class="ecrin"><b>1</b><span>prédiction testable</span></div></div>
+  <div class="actions"><a class="btn plein" href="https://doi.org/10.5281/zenodo.22920277">Lire sur Zenodo</a><span class="taille">Texte en français, 12 pages</span></div>
+  <section><h2>Résumé</h2><p><em>Cryptobiose et stase morphologique, une lecture par le déplacement de la sélection.</em></p><p>Ce document ne revendique aucune donnée nouvelle. Il part de faits établis et sourcés, mobilise des concepts existants de la biologie évolutive, et propose une articulation entre eux, rarement formulée explicitement. Un angle. Et si l'immobilité apparente du tardigrade n'était pas l'absence d'évolution, mais son déplacement vers un endroit qu'on ne regarde pas ?</p><p>Le tardigrade est à la fois hyper-adapté, il survit par mise en pause à des conditions qui tuent presque tout le vivant actif, et évolutivement stable en morphologie sur le temps long. Ces deux traits ne seraient pas indépendants. L'adaptation extrême, la cryptobiose, serait précisément ce qui atténue, sur la lignée, les pressions qui ailleurs poussent au changement. Mais en déplaçant cette pression, pas en la supprimant.</p><p>L'immobilité apparente du tardigrade ne serait pas l'absence d'évolution, mais le déplacement de l'évolution, de la forme visible vers un système caché, la capacité à s'absenter et à revenir. La stase de la forme et l'intensité de la sélection sur la cryptobiose seraient les deux faces d'un même processus.</p><div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill ">THÈSE</span><span class="pill ">À SOUMETTRE</span></div></section>
+  <section><h2>En chiffres</h2><div class="chiffres-texte"><div><b>0,01 %</b><span>le métabolisme résiduel dans le tun, quasi indétectable mais non nul</span></div><div><b>environ moins 272 degrés</b><span>des températures testées proches du zéro absolu, environ moins 272 degrés, le zéro kelvin littéral étant inatteignable</span></div><div><b>3</b><span>échelles où la même stratégie, s'absenter pour durer, est réinventée</span></div><div><b>huit à neuf pour cent</b><span>[le rotifère bdelloïde] a intégré par transfert horizontal une proportion de gènes étrangers sans équivalent connu chez les animaux, de l'ordre de huit à neuf pour cent</span></div><div><b>des mois à des années</b><span>Il peut persister ainsi des mois à des années, puis réactiver son métabolisme à la réhydratation.</span></div><div><b>jamais à cent pour cent</b><span>Chaque cycle de dessiccation et réhydratation laisse des micro-dommages [...] que des systèmes de réparation remarquables corrigent, mais jamais à cent pour cent.</span></div></div></section>
+  
+  <section><h2>La prédiction</h2><div class="prediction"><span class="pill p-hypo">LA SEULE QUI PEUT ME DONNER TORT</span><p>Trois, le vrai test, le contraste du contraste, la seule prédiction qui peut me donner tort. Cet écart intra-génome entre gènes de forme et gènes de dormance est-il plus marqué chez les lignées à forte capacité cryptobiotique que chez celles à faible capacité ou sans cryptobiose ? Si la cryptobiose déplace bien la pression, l'écart doit se creuser à mesure que la capacité cryptobiotique augmente. S'il ne se creuse pas, ma thèse tombe. C'est ce test comparatif, et lui seul, qui départage.</p></div></section>
+  
+  <section><h2>Mots-clés</h2><ul class="mots"><li>tardigrade</li><li>cryptobiose</li><li>anhydrobiose</li><li>tun</li><li>stase morphologique</li><li>sélection déplacée</li><li>dormance</li><li>effet réservoir</li><li>rotifère bdelloïde</li><li>dN/dS</li><li>biologie évolutive</li></ul></section>
+  <section><h2>Pour citer</h2><p class="citer">Sorel, E. (2026). <i>Le tardigrade : la survie par le retrait</i>. Zenodo. https://doi.org/10.5281/zenodo.22920277</p></section>
+  <section><h2>Fiche</h2><dl class="meta">
+    <dt>Auteur</dt><dd>Elias Sorel</dd>
+    <dt>Version</dt><dd>1, 23 septembre 2026</dd>
+    <dt>Type</dt><dd>Prépublication</dd>
+    <dt>Langue</dt><dd>Français</dd>
+    <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.22920277">10.5281/zenodo.22920277</a></dd>
+    <dt>Licence</dt><dd>CC BY 4.0</dd>
+  </dl></section>
+</div>
+</main>
+<footer class="band"><div class="inner">
+  <a href="/">Elias Sorel</a>
+  <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+  <a href="https://doi.org/10.5281/zenodo.22920277">Zenodo</a>
+  <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+  <span>Textes sous licence CC BY 4.0</span>
+</div></footer>
+<script>
+/* Le ciel de la pièce : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,mx=.5,my=.5;
+  band.addEventListener('pointermove',ev=>{const b=band.getBoundingClientRect();mx=(ev.clientX-b.left)/w;my=(ev.clientY-b.top)/h},{passive:true});
+  const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
+  const art=(function(){ 
+/* Le Tun : un monde de givre. Des cristaux poussent, la neige tombe, et parfois une étincelle d'or se rallume. */
+let flocons=[],branches=[],reveils=[];
+function pousse(x0,y0,a,l,prof){if(prof>5||l<6)return;const x1=x0+Math.cos(a)*l,y1=y0+Math.sin(a)*l;branches.push({x0,y0,x1,y1,prof,n:branches.length});
+  pousse(x1,y1,a,l*.72,prof+1);pousse(x1,y1,a-.9,l*.5,prof+1);pousse(x1,y1,a+.9,l*.5,prof+1)}
+function taille(){branches=[];flocons=[];const n=w<760?6:10;
+  for(let i=0;i<n;i++){const bord=i%3,X=bord===0?Math.random()*w:(bord===1?w*(.75+Math.random()*.25):w*(.4+Math.random()*.6)),Y=bord===0?h:(bord===1?Math.random()*h:0);
+    const a=bord===0?-Math.PI/2+(Math.random()-.5)*.8:(bord===1?Math.PI+(Math.random()-.5)*.8:Math.PI/2+(Math.random()-.5)*.8);pousse(X,Y,a,40+Math.random()*50,0)}
+  flocons=Array.from({length:Math.round(w*h/5000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.3,v:Math.random()*.4+.15,p:Math.random()*6.3}))}
+function frame(t){
+  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0c0f14');g.addColorStop(.5,'#111a24');g.addColorStop(1,'#0a0d12');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+  const montre=calme?branches.length:Math.min(branches.length,t*60);
+  for(let i=0;i<montre;i++){const b=branches[i];x.globalAlpha=.7-b.prof*.09;x.strokeStyle=b.prof<2?'#b8cdd6':(b.prof<4?'#7d94a3':'#e4eef2');x.lineWidth=Math.max(.5,2.4-b.prof*.4);
+    x.beginPath();x.moveTo(b.x0,b.y0);x.lineTo(b.x1,b.y1);x.stroke()}
+  if(!calme&&Math.random()<.02&&montre>10){const b=branches[(Math.random()*montre)|0];reveils.push({x:b.x1,y:b.y1,t0:t})}
+  while(clics.length){const k=clics.shift();reveils.push({x:k[0],y:k[1],t0:t,grand:1})}
+  for(const r of reveils){const a=t-r.t0,s=a<.6?a/.6:Math.max(0,1-(a-.6)/2.4);const R=(r.grand?40:18)*s;
+    const gg=x.createRadialGradient(r.x,r.y,0,r.x,r.y,R+1);gg.addColorStop(0,'rgba(255,217,102,.95)');gg.addColorStop(.3,'rgba(183,141,51,.6)');gg.addColorStop(1,'rgba(183,141,51,0)');
+    x.globalAlpha=1;x.fillStyle=gg;x.beginPath();x.arc(r.x,r.y,R+1,0,6.283);x.fill()}
+  reveils=reveils.filter(r=>t-r.t0<3);
+  for(const f of flocons){if(!calme){f.y+=f.v;f.x+=Math.sin(t*.5+f.p)*.25+(mx-.5)*.4;if(f.y>h)f.y=-4;if(f.x<0)f.x=w;if(f.x>w)f.x=0}
+    x.globalAlpha=.55;x.fillStyle='#e4eef2';x.beginPath();x.arc(f.x,f.y,f.r,0,6.283);x.fill()}
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(12,15,20,.7)');v.addColorStop(.55,'rgba(12,15,20,.3)');v.addColorStop(1,'rgba(12,15,20,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+}
+return {taille,frame};
+ })();
+  addEventListener('resize',taille);taille();
+  function frame(ms){art.frame(calme?0:ms/1000);if(!calme)requestAnimationFrame(frame)}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
