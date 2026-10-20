@@ -1,0 +1,231 @@
+<!doctype html>
+<!--
+  Elias Sorel, c'est deux.
+  L'onde bleue, l'onde dorée, et l'étincelle là où elles se croisent.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Big Bang, l&#x27;éclat qui aveugle · Elias Sorel</title>
+<meta name="description" content="Le Big Bang, l&#x27;éclat qui aveugle (Elias Sorel, 2026) : les limites d&#x27;observation et l&#x27;inférence de l&#x27;origine cosmologique. Où s&#x27;arrête le regard, et pourquoi ce bord n&#x27;est pas le début du réel.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#05061a">
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="Le Big Bang, l&#x27;éclat qui aveugle">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/09/24">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.22938295">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="cosmologie; Big Bang; fond diffus cosmologique; limites d&#x27;observation; temps de Planck; horizon cosmologique; fond de neutrinos cosmologiques; ondes gravitationnelles primordiales; tension de Hubble; tension S8; énergie noire; matière noire">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/le-big-bang/">
+<meta name="DC.title" content="Le Big Bang, l&#x27;éclat qui aveugle">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-09-24">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.22938295">
+<meta name="DC.rights" content="CC BY 4.0">
+<link rel="canonical" href="https://eliassorel.github.io/papiers/le-big-bang/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--fond:#05061a;--clair:#eef0ff;--accent:#4c6fff;--accent-clair:#a9b8ff;--or:#d4a82f;--or-chiffre:#f0c75a;--ecrin:#0c0f2e;--ecrin-bord:#2c3a8a;--pastille-fond:rgba(12,15,46,.75);--pastille-bord:#4c6fff;--fond-bandeau:#03030b;--brumes:radial-gradient(30% 25% at 72% 50%,rgba(120,110,255,.25),transparent 70%);--titre:Lora,Georgia,serif;--serif:Lora,Georgia,serif;--sans:"Source Sans 3",Arial,sans-serif;--mono:"JetBrains Mono",monospace;
+  --surface:#ffffff;--surface-2:#f5f3ee;--ink:#454b50;--ink-strong:#05061a;--ink-muted:#626a71;--line:#e4e0d8;--or-texte:#8a6a22}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
+[hidden]{display:none!important}
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--clair);background:var(--fond-bandeau)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;background:var(--brumes)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:derive 38s ease-in-out infinite alternate}
+@keyframes derive{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}}
+.ciel{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px;pointer-events:none}
+.bandeau .inner a,.bandeau .inner nav{pointer-events:auto}
+.haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--clair);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--clair)}
+.retour:hover{opacity:1}
+.langue{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--clair)}
+.langue span{background:var(--clair);color:var(--fond)}
+.langue a:hover{background:rgba(255,255,255,.14)}
+.titre{display:grid;gap:20px;max-width:660px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+h1{font-family:var(--titre);font-weight:var(--titre-poids,500);font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--clair);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--accent-clair)}
+.parties{display:flex;flex-wrap:wrap;gap:8px}
+.parties span{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:var(--pastille-fond);border:1px solid var(--pastille-bord);color:var(--clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--clair)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--clair);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;opacity:.75;margin-top:6px}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
+.ecrin{background:var(--ecrin);border:1px solid var(--ecrin-bord);border-radius:12px;padding:18px 18px 16px;color:var(--clair);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.ecrin b{display:block;font-family:var(--titre);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin b.long{font-size:28px;line-height:1.15;white-space:nowrap}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;opacity:.92}
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--fond);color:var(--clair)}
+.btn.plein:hover{filter:brightness(1.3)}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.chiffres-texte{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.chiffres-texte div{background:var(--surface-2);border-radius:10px;padding:14px 16px;border-left:2px solid var(--or)}
+.chiffres-texte b{display:block;font-family:var(--titre);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.chiffres-texte span{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--ink-muted)}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+.plan li:first-child{border-top:0}
+.plan li em{font-style:normal;font:600 10px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px;color:var(--ink-strong);background:var(--surface-2);border:1px solid var(--line)}
+.p-etabli{color:#0f6e56;background:#e1f5ee;border-color:#e1f5ee} .p-debattu{color:#854f0b;background:#faeeda;border-color:#faeeda} .p-hypo{color:#6b3f8f;background:#f1e8f7;border-color:#f1e8f7} .p-lecture{color:#185fa5;background:#e6f1fb;border-color:#e6f1fb} .p-calcul{color:#4a4f54;background:#eceef0;border-color:#eceef0}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.mots li{list-style:none;font-family:var(--sans);font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+footer{margin-top:96px;background:var(--fond);color:var(--clair)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
+footer a{text-decoration:none} footer a:hover{color:var(--or)}
+@media (max-width:760px){.ecrin b.long{font-size:22px;white-space:normal}.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+
+
+</style>
+</head>
+<body>
+<header class="bandeau band">
+  <canvas class="ciel" id="ciel" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-github-io.translate.goog/papiers/le-big-bang/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>Le Big Bang</h1>
+      <p class="sous-titre">l&#x27;éclat qui aveugle</p>
+      <div class="parties"><span>Cosmologie</span><span>Limites d&#x27;observation</span><span>Origine cosmologique</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« On raconte le Big Bang comme le commencement de tout. Et si c'était seulement le bord de ce que nous pouvons voir ? »<small>Elias Sorel, Le Big Bang, 2026</small></p>
+    </div>
+  </div>
+</header>
+<main class="band">
+<div class="inner">
+  <div class="chiffres"><div class="ecrin"><b class=long>380 000 ans</b><span>la plus vieille lumière captable</span></div><div class="ecrin"><b class=long>1 seconde</b><span>là où le mur pourrait un jour reculer</span></div><div class="ecrin"><b>95 %</b><span>des galaxies observables déjà hors d&#x27;atteinte</span></div><div class="ecrin"><b class=long>5,39 × 10⁻⁴⁴ s</b><span>le temps de Planck</span></div></div>
+  <div class="actions"><a class="btn plein" href="https://doi.org/10.5281/zenodo.22938295">Lire sur Zenodo</a><span class="taille">Texte en français</span></div>
+  <section><h2>Résumé</h2><p><em>Les limites d'observation et l'inférence de l'origine cosmologique.</em></p><p>Ce document ne revendique aucune donnée nouvelle. Il part de faits établis, les crédite au DOI, et propose un angle. Et si « rien avant le Big Bang » n'était pas un fait, mais une conclusion tirée d'un angle mort ? Le texte ne discute pas le modèle des cosmologistes, qui n'affirment pas qu'il n'y a rien avant le premier instant. Il discute le récit répandu, l'image du Big Bang comme point de départ absolu, et le confronte à ce que nos limites d'observation permettent réellement de dire.</p><p>Il pose trois murs. Le premier est la lumière : le fond diffus, libéré quelque 380 000 ans après le Big Bang, est la plus ancienne lumière captable (Planck 2018 ; Fixsen 2009). Le second est la théorie : avant le temps de Planck, nos équations ne décrivent plus rien. Le troisième est le futur : à cause de l'expansion accélérée, environ 95 % des galaxies aujourd'hui observables sont déjà hors de notre portée causale (Starobinsky 2000 ; Ord 2021).</p><p>Il montre ensuite les fenêtres fermées et celles qui s'entrouvrent : le fond de neutrinos, dont l'empreinte a été mesurée en 2015 (Follin, Knox, Millea et Pan), porterait notre regard à une seconde du commencement ; les ondes gravitationnelles primordiales restent sous r < 0,032 (BICEP Keck ; Tristram et al.). Puis ce que le modèle laisse ouvert, comme des faits, sans en conclure qu'il tombe : la tension de Hubble (Riess 2022), la tension S8 (DES, KiDS-Legacy), l'énergie noire peut-être non constante (DESI DR2), une matière noire jamais captée (LZ).</p><p>Deux limites de natures inégales : l'une que la technique repousse, l'autre que seule une théorie nouvelle ouvrirait. Rien, dans ce que nous mesurons, n'autorise à prendre ces limites pour le début de ce qui est.</p><div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-lecture">LECTURE</span></div></section>
+  <section><h2>En chiffres</h2><div class="chiffres-texte"><div><b>380 000 ans</b><span>l'âge de la plus vieille lumière captable, le fond diffus cosmologique</span></div><div><b>z ≈ 1090</b><span>le décalage vers le rouge de cette lumière</span></div><div><b>2,7255 K</b><span>la température du fond diffus aujourd'hui</span></div><div><b>5,39 × 10⁻⁴⁴ s</b><span>le temps de Planck, où nos équations cessent de décrire</span></div><div><b>z &gt; 1,8</b><span>au-delà, un signal émis aujourd'hui n'atteindra jamais ces galaxies</span></div><div><b>95 %</b><span>des galaxies observables déjà hors d'atteinte à jamais, une lumière en sursis</span></div><div><b>1 seconde</b><span>l'âge de l'univers dont le fond de neutrinos porte l'information, contre 380 000 ans pour la lumière</span></div><div><b>1,95 K</b><span>la température prédite du fond de neutrinos, jamais mesurée</span></div><div><b>r &lt; 0,032</b><span>la contrainte actuelle sur les ondes gravitationnelles primordiales</span></div><div><b>73,04 contre 67,4</b><span>la tension de Hubble, deux mesures dont les barres ne se recouvrent pas</span></div><div><b>0,776 contre 0,832</b><span>la tension S8, une matière qui se répartit plus lissement que prédit</span></div><div><b>68,5 / 26,5 / 4,9 %</b><span>énergie noire, matière noire, matière ordinaire</span></div><div><b>40 ans</b><span>de recherches directes sans capter une seule particule de matière noire</span></div></div></section>
+  
+  
+  
+  <section><h2>Mots-clés</h2><ul class="mots"><li>cosmologie</li><li>Big Bang</li><li>fond diffus cosmologique</li><li>limites d&#x27;observation</li><li>temps de Planck</li><li>horizon cosmologique</li><li>fond de neutrinos cosmologiques</li><li>ondes gravitationnelles primordiales</li><li>tension de Hubble</li><li>tension S8</li><li>énergie noire</li><li>matière noire</li></ul></section>
+  <section><h2>Pour citer</h2><p class="citer">Sorel, E. (2026). <i>Le Big Bang, l&#x27;éclat qui aveugle</i>. Zenodo. https://doi.org/10.5281/zenodo.22938295</p></section>
+  <section><h2>Fiche</h2><dl class="meta">
+    <dt>Auteur</dt><dd>Elias Sorel</dd>
+    <dt>Version</dt><dd>septembre 2026</dd>
+    <dt>Type</dt><dd>Prépublication</dd>
+    <dt>Langue</dt><dd>Français</dd>
+    <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.22938295">10.5281/zenodo.22938295</a></dd>
+    <dt>Licence</dt><dd>CC BY 4.0</dd>
+  </dl></section>
+</div>
+</main>
+<footer class="band"><div class="inner">
+  <a href="/">Elias Sorel</a>
+  <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+  <a href="https://doi.org/10.5281/zenodo.22938295">Zenodo</a>
+  <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+  <span>Textes sous licence CC BY 4.0</span>
+</div></footer>
+<script>
+/* Le ciel de la pièce : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,mx=.5,my=.5;
+  band.addEventListener('pointermove',ev=>{const b=band.getBoundingClientRect();mx=(ev.clientX-b.left)/w;my=(ev.clientY-b.top)/h},{passive:true});
+  const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
+  const art=(function(){ 
+/* Notre bulle d'univers visible. Au centre, nous. Autour, les galaxies qui s'éloignent et rougissent ; certaines passent l'horizon et deviennent une lumière en sursis. Au bord, le mur : le fond diffus, la plus vieille lumière. Derrière, peut-être, le fond de neutrinos, à une seconde. Un clic : un photon part de nous et frappe le mur. */
+let cx,cy,R,mur,amas=[],etoiles=[],nebs,sprites=[],pulses=[],flash=0,mob;
+function rampe(v){const S=[[0,[20,30,140]],[.25,[40,110,255]],[.45,[120,220,255]],[.6,[255,235,140]],[.78,[255,140,40]],[1,[200,20,50]]];for(let k=1;k<S.length;k++)if(v<=S[k][0]){const a2=S[k-1],b2=S[k],u=(v-a2[0])/(b2[0]-a2[0]);return a2[1].map((q,i)=>q+(b2[1][i]-q)*u)}return S[S.length-1][1]}
+function spirale(teinte){const s=document.createElement('canvas'),T=64;s.width=s.height=T;const g=s.getContext('2d');g.translate(T/2,T/2);
+  const cg=g.createRadialGradient(0,0,0,0,0,10);cg.addColorStop(0,'rgba(255,255,255,1)');cg.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=cg;g.beginPath();g.arc(0,0,10,0,6.283);g.fill();
+  for(let bras=0;bras<2;bras++)for(let q=0;q<140;q++){const u=q/140,an=bras*Math.PI+u*5.5,r=3+u*26;g.globalAlpha=(1-u)*.8;g.fillStyle=teinte;g.beginPath();g.arc(Math.cos(an)*r+(Math.random()-.5)*3,Math.sin(an)*r*.55+(Math.random()-.5)*2,1.2+Math.random()*1.4,0,6.283);g.fill()}return s}
+function taille(){mob=w<760;R=mob?Math.min(w*.46,h*.3):Math.min(h*.43,w*.27);cx=mob?w*.5:w*.73;cy=mob?h*.72:h*.5;
+  /* le mur : une texture tachetée aux couleurs du fond diffus */
+  const T=Math.ceil(R*2.2);mur=document.createElement('canvas');mur.width=mur.height=T;const m=mur.getContext('2d');
+  const pt=document.createElement('canvas');pt.width=pt.height=48;const p2=pt.getContext('2d'),id=p2.createImageData(48,48);for(let k=0;k<48*48;k++){const v=Math.random()*255;id.data[k*4]=id.data[k*4+1]=id.data[k*4+2]=v;id.data[k*4+3]=255}p2.putImageData(id,0,0);
+  m.imageSmoothingEnabled=true;m.drawImage(pt,0,0,T,T);m.globalAlpha=.5;m.drawImage(pt,0,0,24,24,0,0,T,T);m.globalAlpha=1;
+  const im=m.getImageData(0,0,T,T),dd=im.data;for(let k=0;k<T*T;k++){const v=dd[k*4]/255,X=k%T-T/2,Y=((k/T)|0)-T/2,r=Math.hypot(X,Y)/(T/2),c3=rampe(Math.min(1,Math.max(0,(v-.25)*1.7)));
+    const a=r<.86?0:r<.92?(r-.86)/.06:r<.97?1:r<1?(1-r)/.03:0;dd[k*4]=c3[0];dd[k*4+1]=c3[1];dd[k*4+2]=c3[2];dd[k*4+3]=a*255}m.putImageData(im,0,0);
+  /* les nébuleuses à l'intérieur */
+  nebs=document.createElement('canvas');nebs.width=nebs.height=T;const n=nebs.getContext('2d');n.globalCompositeOperation='lighter';
+  for(let k=0;k<14;k++){const an=Math.random()*6.283,r=Math.random()*R*.75,X=T/2+Math.cos(an)*r,Y=T/2+Math.sin(an)*r,rr=R*(.12+Math.random()*.25);const col=['90,60,200','40,120,220','200,60,160','60,200,200','230,150,60'][k%5];const ng=n.createRadialGradient(X,Y,0,X,Y,rr);ng.addColorStop(0,'rgba('+col+',.22)');ng.addColorStop(1,'rgba('+col+',0)');n.fillStyle=ng;n.fillRect(0,0,T,T)}
+  sprites=[spirale('#cfe0ff'),spirale('#ffd27a'),spirale('#ff6a5a')];
+  etoiles=Array.from({length:mob?160:340},()=>{const an=Math.random()*6.283,r=Math.sqrt(Math.random())*R*.86;return{an,r,s:Math.random()*1.3+.2,p:Math.random()*6.3}});
+  amas=Array.from({length:mob?18:30},()=>nouvelAmas(Math.random()));
+}
+function nouvelAmas(u){return{an:Math.random()*6.283,r:R*(.06+u*.8),rot:Math.random()*6.3,sz:.25+Math.random()*.4,v:.04+Math.random()*.05}}
+function frame(t){while(clics.length){clics.shift();pulses.push({t0:t})}
+  x.globalAlpha=1;x.fillStyle='#03030b';x.fillRect(0,0,w,h);
+  /* au-delà du mur : le noir, quelques étoiles lointaines et le halo du fond de neutrinos */
+  const nh=x.createRadialGradient(cx,cy,R*.95,cx,cy,R*1.35);nh.addColorStop(0,'rgba(150,110,255,0)');nh.addColorStop(.3,'rgba(150,110,255,'+(.12+.06*Math.sin(t*.7))+')');nh.addColorStop(1,'rgba(150,110,255,0)');x.fillStyle=nh;x.beginPath();x.arc(cx,cy,R*1.35,0,6.283);x.fill();
+  const par=[(mx-.5)*10,(my-.5)*8];
+  x.save();x.translate(cx+par[0]*.3,cy+par[1]*.3);
+  x.save();x.rotate(t*.02);x.globalAlpha=.9;x.drawImage(nebs,-mur.width/2,-mur.height/2);x.restore();
+  for(const e of etoiles){const X=Math.cos(e.an+t*.004)*e.r,Y=Math.sin(e.an+t*.004)*e.r;x.globalAlpha=.4+.5*Math.abs(Math.sin(t*.8+e.p));x.fillStyle='#e8ecff';x.fillRect(X,Y,e.s,e.s)}
+  /* l'horizon des événements : passé ce cercle, un signal émis aujourd'hui ne les atteindra jamais */
+  const H=R*.55;x.globalAlpha=.35;x.strokeStyle='#d4a82f';x.lineWidth=1;x.setLineDash([3,6]);x.beginPath();x.arc(0,0,H,0,6.283);x.stroke();x.setLineDash([]);
+  /* les galaxies s'éloignent et rougissent */
+  x.globalCompositeOperation='lighter';
+  for(let k=0;k<amas.length;k++){const a2=amas[k];if(!calme)a2.r+=a2.v*(1+a2.r/R);if(a2.r>R*.86)amas[k]=nouvelAmas(0);
+    const u=a2.r/(R*.86),X=Math.cos(a2.an)*a2.r,Y=Math.sin(a2.an)*a2.r,sz=64*a2.sz*(1-u*.55),fade=a2.r>H?.35+.3*Math.sin(t*2+k):1;
+    x.save();x.translate(X,Y);x.rotate(a2.rot+t*.05);const i0=u<.5?0:1,mixu=u<.5?u*2:(u-.5)*2;
+    x.globalAlpha=(1-mixu)*.9*fade;x.drawImage(sprites[i0],-sz/2,-sz/2,sz,sz);x.globalAlpha=mixu*.9*fade;x.drawImage(sprites[i0+1],-sz/2,-sz/2,sz,sz);x.restore()}
+  x.globalCompositeOperation='source-over';
+  /* le mur : la plus vieille lumière, qui tourne lentement */
+  let fl=flash;x.save();x.rotate(-t*.01);x.globalAlpha=.85+.15*fl;x.drawImage(mur,-mur.width/2,-mur.height/2);x.restore();
+  if(fl>0){x.globalAlpha=fl*.6;x.strokeStyle='#fff3c8';x.lineWidth=3+fl*6;x.beginPath();x.arc(0,0,R*.94,0,6.283);x.stroke();flash=Math.max(0,flash-.015)}
+  /* les photons qu'on envoie */
+  for(const p of pulses){const e=t-p.t0,r=e*R*.45;if(r<R*.92){x.globalAlpha=.8*(1-r/R);x.strokeStyle='#fffbe8';x.lineWidth=1.5;x.beginPath();x.arc(0,0,r,0,6.283);x.stroke()}else if(!p.fait){p.fait=1;flash=1}}
+  pulses=pulses.filter(p=>t-p.t0<3);
+  /* nous, au centre */
+  const nn=x.createRadialGradient(0,0,0,0,0,14);nn.addColorStop(0,'rgba(140,200,255,1)');nn.addColorStop(1,'rgba(140,200,255,0)');x.globalAlpha=.8+.2*Math.sin(t*2);x.fillStyle=nn;x.beginPath();x.arc(0,0,14,0,6.283);x.fill();x.globalAlpha=1;x.fillStyle='#fff';x.beginPath();x.arc(0,0,2.4,0,6.283);x.fill();
+  /* les étiquettes */
+  x.globalAlpha=.85;x.font=(mob?10:11)+'px "JetBrains Mono", monospace';x.textAlign='center';x.fillStyle='#bfe0ff';x.fillText('nous',0,24);
+  x.fillStyle='#d4a82f';x.fillText('horizon · z > 1,8',0,-H-8);
+  x.fillStyle='#ffd8a8';x.fillText('le mur · 380 000 ans · z ≈ 1090',0,-R*.8);
+  x.fillStyle='#c9b8ff';x.globalAlpha=.55+.3*Math.sin(t*.7);x.textAlign='left';x.fillText('1 seconde ?',Math.cos(-.75)*R*1.04,Math.sin(-.75)*R*1.04-6);
+  x.restore();
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(3,3,11,.9)');v.addColorStop(.45,'rgba(3,3,11,.4)');v.addColorStop(1,'rgba(3,3,11,0)');x.globalAlpha=1;x.textAlign='start';x.fillStyle=v;x.fillRect(0,0,w,h);
+}
+return {taille,frame};
+ })();
+  addEventListener('resize',taille);taille();
+  function frame(ms){art.frame(calme?0:ms/1000);if(!calme)requestAnimationFrame(frame)}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
