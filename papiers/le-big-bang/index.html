@@ -178,7 +178,8 @@ function taille(){mob=w<760;R=mob?Math.min(w*.46,h*.3):Math.min(h*.43,w*.27);cx=
   const pt=document.createElement('canvas');pt.width=pt.height=48;const p2=pt.getContext('2d'),id=p2.createImageData(48,48);for(let k=0;k<48*48;k++){const v=Math.random()*255;id.data[k*4]=id.data[k*4+1]=id.data[k*4+2]=v;id.data[k*4+3]=255}p2.putImageData(id,0,0);
   m.imageSmoothingEnabled=true;m.drawImage(pt,0,0,T,T);m.globalAlpha=.5;m.drawImage(pt,0,0,24,24,0,0,T,T);m.globalAlpha=1;
   const im=m.getImageData(0,0,T,T),dd=im.data;for(let k=0;k<T*T;k++){const v=dd[k*4]/255,X=k%T-T/2,Y=((k/T)|0)-T/2,r=Math.hypot(X,Y)/(T/2),c3=rampe(Math.min(1,Math.max(0,(v-.25)*1.7)));
-    const a=r<.86?0:r<.92?(r-.86)/.06:r<.97?1:r<1?(1-r)/.03:0;dd[k*4]=c3[0];dd[k*4+1]=c3[1];dd[k*4+2]=c3[2];dd[k*4+3]=a*255}m.putImageData(im,0,0);
+    const a=r<.9?0:r<.955?Math.pow((r-.9)/.055,2):r<.975?1:r<.99?(.99-r)/.015:0;const doux=.55;dd[k*4]=c3[0]*doux+255*(1-doux)*.85;dd[k*4+1]=c3[1]*doux+220*(1-doux)*.85;dd[k*4+2]=c3[2]*doux+200*(1-doux)*.85;dd[k*4+3]=a*150}m.putImageData(im,0,0);
+  {const mb=document.createElement('canvas');mb.width=mb.height=T;const mbx=mb.getContext('2d');mbx.filter='blur(3px)';mbx.drawImage(mur,0,0);mur=mb}
   /* les nébuleuses à l'intérieur */
   nebs=document.createElement('canvas');nebs.width=nebs.height=T;const n=nebs.getContext('2d');n.globalCompositeOperation='lighter';
   for(let k=0;k<14;k++){const an=Math.random()*6.283,r=Math.random()*R*.75,X=T/2+Math.cos(an)*r,Y=T/2+Math.sin(an)*r,rr=R*(.12+Math.random()*.25);const col=['90,60,200','40,120,220','200,60,160','60,200,200','230,150,60'][k%5];const ng=n.createRadialGradient(X,Y,0,X,Y,rr);ng.addColorStop(0,'rgba('+col+',.22)');ng.addColorStop(1,'rgba('+col+',0)');n.fillStyle=ng;n.fillRect(0,0,T,T)}
@@ -209,10 +210,13 @@ function frame(t){while(clics.length){clics.shift();pulses.push({t0:t})}
     x.globalAlpha=(1-mixu)*.9*fade;x.drawImage(sprites[i0],-sz/2,-sz/2,sz,sz);x.globalAlpha=mixu*.9*fade;x.drawImage(sprites[i0+1],-sz/2,-sz/2,sz,sz);x.restore()}
   x.globalCompositeOperation='source-over';
   /* le mur : la plus vieille lumière, qui tourne lentement */
-  let fl=flash;x.save();x.rotate(-t*.01);x.globalAlpha=.85+.15*fl;x.drawImage(mur,-mur.width/2,-mur.height/2);x.restore();
-  if(fl>0){x.globalAlpha=fl*.6;x.strokeStyle='#fff3c8';x.lineWidth=3+fl*6;x.beginPath();x.arc(0,0,R*.94,0,6.283);x.stroke();flash=Math.max(0,flash-.015)}
+  let fl=flash;x.save();x.rotate(-t*.01);x.globalAlpha=.8+.2*fl;x.drawImage(mur,-mur.width/2,-mur.height/2);x.restore();
+  /* le liseré : une paroi fine, irisée */
+  {const rr=R*1.07;const lg=x.createLinearGradient(-rr,-rr,rr,rr);lg.addColorStop(0,'rgba(170,190,255,.55)');lg.addColorStop(.35,'rgba(255,220,170,.5)');lg.addColorStop(.65,'rgba(255,150,170,.45)');lg.addColorStop(1,'rgba(140,230,255,.55)');x.globalAlpha=.6+.15*Math.sin(t*.6);x.strokeStyle=lg;x.lineWidth=1.2;x.beginPath();x.arc(0,0,rr,0,6.283);x.stroke();
+   const gl=x.createRadialGradient(0,0,R*1.0,0,0,R*1.16);gl.addColorStop(0,'rgba(255,230,190,0)');gl.addColorStop(.45,'rgba(255,230,190,.10)');gl.addColorStop(1,'rgba(255,230,190,0)');x.globalAlpha=1;x.fillStyle=gl;x.beginPath();x.arc(0,0,R*1.16,0,6.283);x.fill()}
+  if(fl>0){x.globalAlpha=fl*.6;x.strokeStyle='#fff3c8';x.lineWidth=3+fl*6;x.beginPath();x.arc(0,0,R*1.07,0,6.283);x.stroke();flash=Math.max(0,flash-.015)}
   /* les photons qu'on envoie */
-  for(const p of pulses){const e=t-p.t0,r=e*R*.45;if(r<R*.92){x.globalAlpha=.8*(1-r/R);x.strokeStyle='#fffbe8';x.lineWidth=1.5;x.beginPath();x.arc(0,0,r,0,6.283);x.stroke()}else if(!p.fait){p.fait=1;flash=1}}
+  for(const p of pulses){const e=t-p.t0,r=e*R*.45;if(r<R*1.05){x.globalAlpha=.8*(1-r/R);x.strokeStyle='#fffbe8';x.lineWidth=1.5;x.beginPath();x.arc(0,0,r,0,6.283);x.stroke()}else if(!p.fait){p.fait=1;flash=1}}
   pulses=pulses.filter(p=>t-p.t0<3);
   /* nous, au centre */
   x.globalAlpha=.75;x.fillStyle='#cfe0ff';x.beginPath();x.arc(0,0,1.6,0,6.283);x.fill();
