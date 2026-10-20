@@ -196,6 +196,11 @@ img{max-width:100%}
 .btn.entrer:hover{background:#1d2c4a}
 h3 a.porte{text-decoration:none}
 h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-underline-offset:6px}
+.master{position:relative}
+.master:has(a.porte){cursor:pointer}
+.master a.porte::after{content:"";position:absolute;inset:-16px;z-index:1;border-radius:18px}
+.master .actions a,.master .meta a{position:relative;z-index:2}
+.master:has(a.porte):hover{background:linear-gradient(90deg,transparent,rgba(183,141,51,.05),transparent)}
 </style>
 </head>
 <body>
