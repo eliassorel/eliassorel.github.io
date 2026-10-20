@@ -167,7 +167,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
 /* Le bois mort de la forêt, et dessus le blob : une dentelle jaune qui avance le long du tronc, fine au front, resserrée en veines derrière. */
-let brumes=[],fougeres=[],gouttes=[],bete={u:.2,v:.0006,p:0},A,B,R,decor,feuilles=[],poussieres=[],flocons=[],pts=[],ar=[],ox,oy,portee,vitesse,t0=null;
+let taches=[],bokeh=[],brumes=[],fougeres=[],gouttes=[],bete={u:.2,v:.0006,p:0},A,B,R,decor,feuilles=[],poussieres=[],flocons=[],pts=[],ar=[],ox,oy,portee,vitesse,t0=null;
 function surTronc(X,Y){const ax=A[0],ay=A[1],bx=B[0],by=B[1],dx=bx-ax,dy=by-ay,u=Math.max(0,Math.min(1,((X-ax)*dx+(Y-ay)*dy)/(dx*dx+dy*dy)));return Math.hypot(X-(ax+dx*u),Y-(ay+dy*u))<R*(.92-.1*Math.abs(u-.5))}
 function h1(n){const s=Math.sin(n*127.1+311.7)*43758.5453;return s-Math.floor(s)}
 function tisse(X,Y){ox=X;oy=Y;pts=[{x:X,y:Y,d:0}];ar=[];const mob=w<760,N=mob?700:1500;
@@ -184,8 +184,24 @@ function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h
   /* le décor, peint une fois */
   decor=document.createElement('canvas');decor.width=c.width;decor.height=c.height;const dx=decor.getContext('2d');dx.setTransform(c.width/w,0,0,c.height/h,0,0);
   let g=dx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1c2a14');g.addColorStop(.55,'#121a0c');g.addColorStop(1,'#0a0f07');dx.fillStyle=g;dx.fillRect(0,0,w,h);
-  for(let k=0;k<9;k++){const X=Math.random()*w,lw=20+Math.random()*60;dx.globalAlpha=.25+Math.random()*.2;dx.fillStyle='#0b1208';dx.fillRect(X,0,lw,h)}
-  for(let k=0;k<14;k++){const X=Math.random()*w,lw=6+Math.random()*18;dx.globalAlpha=.18+Math.random()*.12;dx.fillStyle='#2a3a1e';dx.fillRect(X,0,lw,h*.9)}
+  /* une vraie forêt en trois plans : au loin pâle dans la brume, puis de plus en plus sombre et proche */
+  {const ciel=dx.createRadialGradient(w*.7,-h*.1,0,w*.7,-h*.1,h*1.1);ciel.addColorStop(0,'rgba(220,235,160,.35)');ciel.addColorStop(.5,'rgba(120,160,80,.12)');ciel.addColorStop(1,'rgba(0,0,0,0)');dx.fillStyle=ciel;dx.fillRect(0,0,w,h);
+  const plans=[{n:16,c:'#33492a',f:'#3d5a2e',l:[4,10],a:.55},{n:10,c:'#1f2f16',f:'#284019',l:[10,22],a:.8},{n:6,c:'#0f1909',f:'#16260d',l:[22,46],a:1}];
+  for(const P of plans){
+    /* la frondaison de ce plan */
+    for(let k=0;k<P.n*9;k++){const X=Math.random()*w,Y=Math.random()*h*.32-h*.05,r=12+Math.random()*(P.l[1]*1.6);dx.globalAlpha=P.a*(.5+Math.random()*.5);dx.fillStyle=Math.random()<.25?'#4f7a2c':P.f;dx.beginPath();dx.arc(X,Y,r,0,6.283);dx.fill()}
+    for(let k=0;k<P.n;k++){const X=Math.random()*w,lw=P.l[0]+Math.random()*(P.l[1]-P.l[0]),pen=(Math.random()-.5)*lw*.8;dx.globalAlpha=P.a;
+      const tg2=dx.createLinearGradient(X-lw,0,X+lw,0);tg2.addColorStop(0,P.c);tg2.addColorStop(.35,P.f);tg2.addColorStop(1,P.c);dx.fillStyle=tg2;
+      dx.beginPath();dx.moveTo(X-lw*.35+pen,-10);dx.quadraticCurveTo(X-lw*.45,h*.5,X-lw*.75,h*.93);dx.lineTo(X+lw*.75,h*.93);dx.quadraticCurveTo(X+lw*.45,h*.5,X+lw*.35+pen,-10);dx.fill();
+      /* les racines qui s'évasent */
+      dx.beginPath();dx.moveTo(X-lw*.75,h*.93);dx.quadraticCurveTo(X-lw*1.6,h*.97,X-lw*2.2,h);dx.lineTo(X+lw*2.2,h);dx.quadraticCurveTo(X+lw*1.6,h*.97,X+lw*.75,h*.93);dx.fill();
+      /* l'écorce et une branche */
+      dx.strokeStyle=P.c;dx.lineWidth=1;for(let q=0;q<lw/3;q++){const xx=X+(Math.random()-.5)*lw*.9;dx.globalAlpha=P.a*.5;dx.beginPath();dx.moveTo(xx,Math.random()*h*.3);dx.lineTo(xx+(Math.random()-.5)*3,h*(.5+Math.random()*.4));dx.stroke()}
+      if(Math.random()<.7){const by2=h*(.1+Math.random()*.3),sg=Math.random()<.5?-1:1;dx.globalAlpha=P.a;dx.strokeStyle=P.f;dx.lineWidth=lw*.22;dx.lineCap='round';dx.beginPath();dx.moveTo(X,by2);dx.quadraticCurveTo(X+sg*lw*2,by2-lw,X+sg*lw*4,by2-lw*2.5);dx.stroke()}
+      /* la mousse au pied */
+      for(let q=0;q<8;q++){dx.globalAlpha=P.a*.8;dx.fillStyle=['#3f6a22','#2f5419','#5b8a2c'][q%3];dx.beginPath();dx.arc(X+(Math.random()-.5)*lw*2.5,h*(.92+Math.random()*.06),2+Math.random()*lw*.25,0,6.283);dx.fill()}}
+    /* un voile de brume entre chaque plan */
+    const vb=dx.createLinearGradient(0,h*.3,0,h);vb.addColorStop(0,'rgba(150,175,120,0)');vb.addColorStop(1,'rgba(150,175,120,.10)');dx.globalAlpha=1;dx.fillStyle=vb;dx.fillRect(0,0,w,h)}}
   dx.globalAlpha=1;
   /* le tronc */
   const ang=Math.atan2(B[1]-A[1],B[0]-A[0]),L=Math.hypot(B[0]-A[0],B[1]-A[1]);dx.save();dx.translate(A[0],A[1]);dx.rotate(ang);
@@ -198,6 +214,7 @@ function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h
   for(let k=0;k<160;k++){const X=Math.random()*w,Y=h*(.88+Math.random()*.12);dx.globalAlpha=.6;dx.fillStyle=['#2f5419','#3f6a22','#4a3520'][k%3];dx.beginPath();dx.arc(X,Y,3+Math.random()*9,0,6.283);dx.fill()}
   flocons=[];for(let k=0;k<5;k++){const u=.1+k*.2+Math.random()*.05,X=A[0]+(B[0]-A[0])*u,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*.8;flocons.push([X,Y,Math.random()*6.3])}
   tisse(A[0]+(B[0]-A[0])*.55,A[1]+(B[1]-A[1])*.55);
+  taches=Array.from({length:mob?5:9},()=>({x:Math.random()*w,y:h*(.35+Math.random()*.6),r:20+Math.random()*50,p:Math.random()*6.3,v:.2+Math.random()*.3}));bokeh=Array.from({length:mob?10:22},()=>({x:Math.random()*w,y:Math.random()*h*.3,r:4+Math.random()*12,p:Math.random()*6.3}));
   brumes=Array.from({length:5},(_,k)=>({x:Math.random()*w,y:h*(.25+k*.14),r:w*(.25+Math.random()*.2),v:.06+Math.random()*.08}));
   fougeres=[];for(let k=0;k<(mob?3:6);k++){const gauche=k%2===0;fougeres.push({x:gauche?w*(.02+Math.random()*.25):w*(.75+Math.random()*.25),l:h*(.28+Math.random()*.18),a:-1.57+(Math.random()-.5)*.9,p:Math.random()*6.3})}
   gouttes=[];for(let k=0;k<(mob?8:16);k++){const u=Math.random(),X=A[0]+(B[0]-A[0])*u+(Math.random()-.5)*R*1.6,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*1.6;if(surTronc(X,Y))gouttes.push({x:X,y:Y,p:Math.random()*6.3,r:1.5+Math.random()*2})}
@@ -207,6 +224,8 @@ function frame(t){if(t0===null)t0=t;
   while(clics.length){const k=clics.shift();if(surTronc(k[0],k[1])){tisse(k[0],k[1]);t0=t}}
   let front=calme?portee:Math.min((t-t0)*vitesse,portee*1.02);if(!calme&&(t-t0)*vitesse>portee*1.6){t0=t;front=0}
   x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
+  for(const q of bokeh){const s=.5+.5*Math.sin(t*.4+q.p);x.globalAlpha=.08+.22*s;x.fillStyle='#f3f7c8';x.beginPath();x.arc(q.x+Math.sin(t*.2+q.p)*6,q.y,q.r,0,6.283);x.fill()}
+  for(const q of taches){const X=q.x+Math.sin(t*q.v*.3+q.p)*30,Y=q.y+Math.cos(t*q.v*.25+q.p)*12,s=.6+.4*Math.sin(t*q.v+q.p);const gt=x.createRadialGradient(X,Y,0,X,Y,q.r);gt.addColorStop(0,'rgba(255,240,170,'+(.13*s)+')');gt.addColorStop(1,'rgba(255,240,170,0)');x.globalAlpha=1;x.fillStyle=gt;x.beginPath();x.ellipse(X,Y,q.r,q.r*.6,0,0,6.283);x.fill()}
   for(const m of brumes){if(!calme){m.x+=m.v;if(m.x-m.r>w)m.x=-m.r}const gb=x.createRadialGradient(m.x,m.y,0,m.x,m.y,m.r);gb.addColorStop(0,'rgba(200,215,180,.07)');gb.addColorStop(1,'rgba(200,215,180,0)');x.fillStyle=gb;x.fillRect(m.x-m.r,m.y-m.r,m.r*2,m.r*2)}
   for(let k=0;k<4;k++){const X=w*(.2+k*.22)+Math.sin(t*.15+k)*40;const gr=x.createLinearGradient(X,0,X+200,h);gr.addColorStop(0,'rgba(255,236,170,.12)');gr.addColorStop(1,'rgba(255,236,170,0)');x.fillStyle=gr;x.beginPath();x.moveTo(X,0);x.lineTo(X+70,0);x.lineTo(X+300,h);x.lineTo(X+150,h);x.closePath();x.fill()}
   for(const f of flocons){x.save();x.translate(f[0],f[1]);x.rotate(f[2]);x.globalAlpha=.95;x.fillStyle='#e8dcb8';x.beginPath();x.ellipse(0,0,7,4.5,0,0,6.283);x.fill();x.globalAlpha=.4;x.strokeStyle='#a8946a';x.stroke();x.restore()}
