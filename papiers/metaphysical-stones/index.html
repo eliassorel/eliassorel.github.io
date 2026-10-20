@@ -166,21 +166,65 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
-/* Cinquante-quatre pierres en spirale, qui tournent lentement. Chacune s'allume à son tour. */
-let pierres=[];
-function forme(){const n=7+((Math.random()*4)|0),pts=[];for(let i=0;i<n;i++){const a=i/n*6.283,r=.75+Math.random()*.35;pts.push([Math.cos(a)*r,Math.sin(a)*r*.82])}return pts}
-function taille(){pierres=[];const N=54;for(let i=0;i<N;i++)pierres.push({i,f:forme(),s:.5+Math.random()*.6,g:150+((Math.random()*70)|0),rot:Math.random()*6.3})}
+/* Un lit de rivière, la nuit. Cinquante-quatre galets mouillés, veinés d'or. On en survole un : il s'allume, l'eau fait un cercle, sa phrase remonte. Un clic : un ricochet. */
+const PHRASES=["On voit clair sur tout, sauf dans le miroir.", "Le visible fait mal lire l'invisible ; l'invisible est dans le visible.", "Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie.", "Rien n'est unique, tout est multiple. L'unité est la représentation qu'on se fait à son échelle.", "Le un est toujours une multitude regardée de loin. Il n'y a pas de fond simple : c'est du multiple à tous les étages, et l'unité n'est que l'étage où le regard s'arrête.", "L'unité est l'étage où le regard s'arrête.", "Le \"je\" est l'unité qu'un multiple se raconte sur lui-même, faute de pouvoir se voir à l'échelle de ses parts.", "Il n'y a pas de 1. Il y a une unité.", "Le 1 n'est pas dans la substance, il est dans la loi. Une loi commune à deux mondes qui ne se touchent jamais, ce n'est plus une ressemblance : c'est une structure du réel.", "La vibration n'a pas de naissance. Elle est le fond.", "La vibration ne se repose pas, elle se projette.", "On progresse dans le déséquilibre, on se repose dans le résultat.", "La solution parfaite est la fin du chemin.", "Perfectionner une chose, ce n'est pas la dépasser : le cheval le plus rapide ne mène jamais à la voiture.", "Trop bien s'adapter, c'est arrêter d'évoluer.", "La vie ne commence pas par un individu, elle commence par une relation.", "L'intelligence n'est pas un, c'est du multiple qui s'accorde.", "Vivre n'a jamais eu besoin d'un poste de commande, juste d'un réseau qui s'accorde.", "Le changement ne naît pas partout, mais dans les poches où l'accord est possible.", "Ce qui bat sur le même rythme se relie.", "De la flaque à la fleur, tout se tient.", "Nous ne sommes pas la mesure du vivant, juste un rameau qui se prend pour l'arbre.", "Chaque super-pouvoir est aussi une prison.", "La lucidité isole moins par son poids que parce que peu de gens peuvent la partager.", "Le fou, c'est celui dont le tempo a lâché.", "Le fou change de camp selon le monde.", "Tu n'es pas cassé, tu es désaccordé.", "Le fou dit : crois-moi. Le génie dit : regarde toi-même, voici l'instrument.", "Une corde tendue ne rend aucun son. Il en faut deux, distinctes, chacune sa note. Un miroir ne résonne pas. Deux cordes, si.", "C'est l'écart entre elles qui chante.", "On n'entend pas ce qu'on n'a pas le cran d'écouter.", "L'échange ne partage pas des pensées ; il ouvre un champ de possibles que chacun, seul, aurait laissé fermé.", "Le souvenir, ce n'est pas les étoiles, c'est le trait qui les relie.", "La mémoire n'est pas un musée. C'est un atelier.", "La mémoire ne garde pas tes souvenirs. Elle garde de quoi les refaire.", "Tu peux oublier le mot et garder le geste.", "On oublie pour pouvoir penser.", "Le souvenir déformable est le brouillon du futur.", "La garder, c'est la déformer. L'aimer, c'est la recouvrir.", "Le souvenir qu'on remue sans cesse, on finit par le remuer en poussière.", "Tu portes une ville endormie dont la plupart des fenêtres sont juste éteintes.", "On ne demande pas à une résonance de durer ; on lui demande d'avoir eu lieu.", "Ce qui vibre une fois vibre pour toujours, quelque part, même quand on ne l'entend plus.", "Ce n'est pas parti. C'est endormi.", "Rien n'est perdu. Tout est endormi.", "La couleur est un événement, pas une propriété.", "La vision n'est pas un objet, c'est une relation.", "Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.", "La lumière ne dure pas. Elle a lieu.", "Nous levons les yeux sur du passé, et nous l'appelons présent.", "L'étoile morte : du passé qui voyage encore. Mémoire et vibration en une seule chose, au-dessus de ta tête chaque nuit.", "Le plein et le vide sont une seule étoffe, à densités différentes.", "On l'arrête une seconde, pas en la tenant, mais en cessant de s'en défendre.", "La lumière est ce qui naît quand la vibration se souvient."];
+let decor,gal=[],ronds=[],ricos=[],reflets=[],actif=-1,depuis=0,auto=0,dmx=-1,dmy=-1,calmeSouris=0,zone;
+function lisse(pts){x.beginPath();const n=pts.length;for(let k=0;k<n;k++){const p=pts[k],q=pts[(k+1)%n],mxp=(p[0]+q[0])/2,myp=(p[1]+q[1])/2;k?x.quadraticCurveTo(p[0],p[1],mxp,myp):x.moveTo(mxp,myp)}const p=pts[0],q=pts[1];x.quadraticCurveTo(p[0],p[1],(p[0]+q[0])/2,(p[1]+q[1])/2);x.closePath()}
+function contour(r){const n=9,pts=[];const e=.72+Math.random()*.25;for(let k=0;k<n;k++){const an=k/n*6.283,rr=r*(.88+Math.random()*.2);pts.push([Math.cos(an)*rr,Math.sin(an)*rr*e])}return pts}
+function veine(r){const pts=[];let X=-r*(.7+Math.random()*.2),Y=(Math.random()-.5)*r*.6;pts.push([X,Y]);const n=4+((Math.random()*3)|0);for(let k=0;k<n;k++){X+=r*1.5/n;Y+=(Math.random()-.5)*r*.5;pts.push([X,Y])}
+  const br=Math.random()<.6?[pts[2],[pts[2][0]+r*.3,pts[2][1]+(Math.random()<.5?-1:1)*r*.45]]:null;return{pts,br}}
+function taille(){const mob=w<760;zone=mob?[w*.04,h*.5,w*.96,h*.97]:[w*.6,h*.06,w*.99,h*.95];
+  decor=document.createElement('canvas');decor.width=c.width;decor.height=c.height;const dx=decor.getContext('2d');dx.setTransform(c.width/w,0,0,c.height/h,0,0);
+  const g=dx.createLinearGradient(0,0,w,h);g.addColorStop(0,'#071218');g.addColorStop(.5,'#0b1d26');g.addColorStop(1,'#06141b');dx.fillStyle=g;dx.fillRect(0,0,w,h);
+  /* le fond de la rivière : des galets hors foyer */
+  dx.filter='blur(5px)';for(let k=0;k<(mob?60:130);k++){const X=Math.random()*w,Y=Math.random()*h,r=10+Math.random()*34;dx.globalAlpha=.35+Math.random()*.3;dx.fillStyle=['#1a2a32','#22343c','#142228','#2a3a40'][k%4];dx.beginPath();dx.ellipse(X,Y,r,r*.7,Math.random()*3,0,6.283);dx.fill()}dx.filter='none';
+  const lune=dx.createRadialGradient(w*.8,h*.15,0,w*.8,h*.15,h*.9);lune.addColorStop(0,'rgba(150,190,210,.16)');lune.addColorStop(1,'rgba(150,190,210,0)');dx.globalAlpha=1;dx.fillStyle=lune;dx.fillRect(0,0,w,h);
+  /* les 54 galets, posés sans se chevaucher */
+  gal=[];let essais=0;const N=PHRASES.length;const base=Math.sqrt((zone[2]-zone[0])*(zone[3]-zone[1])/N)*.42;
+  while(gal.length<N&&essais<20000){essais++;const r=base*(.6+Math.random()*.6),X=zone[0]+r+Math.random()*(zone[2]-zone[0]-2*r),Y=zone[1]+r+Math.random()*(zone[3]-zone[1]-2*r);
+    if(gal.some(q=>Math.hypot(q.x-X,q.y-Y)<(q.r+r)*.95))continue;
+    const ton=[[58,66,74],[74,70,64],[46,56,62],[86,88,90],[64,58,54],[40,48,54]][gal.length%6];
+    gal.push({x:X,y:Y,r,f:contour(r),v:veine(r),rot:Math.random()*6.3,ton,eclat:0,p:Math.random()*6.3})}
+  reflets=Array.from({length:mob?40:80},()=>({x:Math.random()*w,y:Math.random()*h,l:30+Math.random()*90,v:.2+Math.random()*.4,p:Math.random()*6.3}))}
+function dessineGalet(q,t){if(q.eclat>.02){const hh=x.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r*2.6);hh.addColorStop(0,'rgba(240,199,90,'+(.38*q.eclat)+')');hh.addColorStop(1,'rgba(240,199,90,0)');x.globalAlpha=1;x.fillStyle=hh;x.beginPath();x.arc(q.x,q.y,q.r*2.6,0,6.283);x.fill()}x.save();x.translate(q.x,q.y);x.rotate(q.rot);
+  /* ombre portée */
+  x.globalAlpha=.5;x.fillStyle='#02070a';x.save();x.translate(q.r*.08,q.r*.14);lisse(q.f);x.fill();x.restore();
+  const [R0,G0,B0]=q.ton,e=q.eclat;
+  const gg=x.createRadialGradient(-q.r*.35,-q.r*.4,q.r*.05,0,0,q.r*1.1);gg.addColorStop(0,`rgb(${R0+70+e*40},${G0+70+e*35},${B0+70+e*20})`);gg.addColorStop(.5,`rgb(${R0},${G0},${B0})`);gg.addColorStop(1,`rgb(${R0*.45|0},${G0*.45|0},${B0*.45|0})`);
+  x.globalAlpha=1;x.fillStyle=gg;lisse(q.f);x.fill();
+  /* le mouillé : un reflet net */
+  x.save();lisse(q.f);x.clip();x.globalAlpha=.55;const sp=x.createRadialGradient(-q.r*.35,-q.r*.38,0,-q.r*.35,-q.r*.38,q.r*.35);sp.addColorStop(0,'rgba(255,255,255,.9)');sp.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=sp;x.fillRect(-q.r,-q.r,q.r*2,q.r*2);
+  /* la veine d'or */
+  const lueur=.35+.65*e+.1*Math.sin(t*1.5+q.p);x.lineCap='round';x.lineJoin='round';
+  for(const pass of [0,1]){x.globalAlpha=pass?.95:.35*lueur;x.strokeStyle=pass?'#f0c75a':'#ffd36a';x.lineWidth=pass?Math.max(1.2,q.r*.05):q.r*(.16+.25*e);
+    x.beginPath();q.v.pts.forEach((p,k)=>k?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));if(q.v.br){x.moveTo(q.v.br[0][0],q.v.br[0][1]);x.lineTo(q.v.br[1][0],q.v.br[1][1])}x.stroke()}
+  x.restore();x.restore()}
+function eveille(k,t){if(k<0)return;actif=k;depuis=t;ronds.push({x:gal[k].x,y:gal[k].y,t0:t,r:gal[k].r})}
+function bulle(texte,X,Y,alpha){const mob=w<760,fs=mob?16:19;x.font='italic '+fs+'px Lora, Georgia, serif';const mots=texte.split(' '),lignes=[];let l='';const maxw=Math.min(mob?w*.8:360,w*.8);
+  for(const m of mots){const essai=l?l+' '+m:m;if(x.measureText(essai).width>maxw&&l){lignes.push(l);l=m}else l=essai}if(l)lignes.push(l);
+  const lh=fs*1.4,H=lignes.length*lh,W=Math.max(...lignes.map(s=>x.measureText(s).width));let bx=Math.min(Math.max(X-W/2,w*.55),w-W-20),by=Y-H-28;if(by<14)by=Y+40;
+  x.globalAlpha=alpha*.55;x.fillStyle='#04090c';x.beginPath();x.roundRect(bx-16,by-12,W+32,H+20,10);x.fill();x.globalAlpha=alpha*.8;x.strokeStyle='rgba(240,199,90,.45)';x.lineWidth=1;x.stroke();
+  x.globalAlpha=alpha;x.fillStyle='#f4ead2';x.textBaseline='top';lignes.forEach((s,q)=>x.fillText(s,bx,by+q*lh))}
 function frame(t){
-  const g=x.createRadialGradient(w*.72,h*.5,0,w*.72,h*.5,Math.max(w,h)*.8);g.addColorStop(0,'#2a3038');g.addColorStop(.6,'#15191e');g.addColorStop(1,'#0b0d10');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
-  const mob=w<760,cx=mob?w*.5:w*.72,cy=mob?h*.5:h*.5,R=Math.min(w*(mob?.45:.3),h*.42),actif=Math.floor(t*.8)%54;
-  pierres.forEach(p=>{const u=p.i/54,a=u*6.283*2.6+t*.05,r=R*(.18+.82*u),X=cx+Math.cos(a)*r+(mx-.5)*12*u,Y=cy+Math.sin(a)*r*.72+(my-.5)*10*u;
-    const taille=(5+u*12)*p.s,on=p.i===actif?1:0;
-    x.save();x.translate(X,Y);x.rotate(p.rot+t*.03);x.beginPath();p.f.forEach((q,k)=>k?x.lineTo(q[0]*taille,q[1]*taille):x.moveTo(q[0]*taille,q[1]*taille));x.closePath();
-    const gr=x.createLinearGradient(-taille,-taille,taille,taille);gr.addColorStop(0,`rgb(${p.g+40},${p.g+44},${p.g+50})`);gr.addColorStop(1,`rgb(${p.g-80},${p.g-76},${p.g-70})`);
-    x.globalAlpha=.85;x.fillStyle=gr;x.fill();x.globalAlpha=.35;x.strokeStyle='#e2e6e9';x.lineWidth=.6;x.stroke();
-    if(on){x.globalAlpha=.9;x.strokeStyle='#d4a82f';x.lineWidth=1.4;x.stroke();const hh=x.createRadialGradient(0,0,0,0,0,taille*3);hh.addColorStop(0,'rgba(212,168,47,.35)');hh.addColorStop(1,'rgba(212,168,47,0)');x.fillStyle=hh;x.beginPath();x.arc(0,0,taille*3,0,6.283);x.fill()}
-    x.restore()});
-  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(11,13,16,.75)');v.addColorStop(.5,'rgba(11,13,16,.3)');v.addColorStop(1,'rgba(11,13,16,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+  /* la souris : survoler un galet l'allume */
+  const sx=mx*w,sy=my*h;if(Math.abs(sx-dmx)+Math.abs(sy-dmy)>2){dmx=sx;dmy=sy;calmeSouris=t;let best=-1,bd=1e9;gal.forEach((q,k)=>{const d=Math.hypot(q.x-sx,q.y-sy);if(d<q.r*1.1&&d<bd){bd=d;best=k}});if(best>=0&&best!==actif)eveille(best,t)}
+  /* sinon, la rivière en réveille une toute seule */
+  if(!calme&&t-calmeSouris>4&&t-depuis>6)eveille((Math.random()*gal.length)|0,t);
+  while(clics.length){const k=clics.shift();ricos.push({x:k[0],y:k[1],t0:t,vx:(w<760?3:5)*(k[0]<w*.75?1:-1),n:0,dernier:t})}
+  x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
+  /* l'eau qui coule par-dessus : des reflets qui glissent */
+  x.lineCap='round';for(const r of reflets){if(!calme){r.x-=r.v;if(r.x+r.l<0){r.x=w+20;r.y=Math.random()*h}}const ond=Math.sin(t*1.2+r.p)*3;x.globalAlpha=.07+.06*Math.sin(t+r.p);x.strokeStyle='#bfe3f0';x.lineWidth=1.2;x.beginPath();x.moveTo(r.x,r.y+ond);x.quadraticCurveTo(r.x+r.l/2,r.y-ond,r.x+r.l,r.y+ond);x.stroke()}
+  for(let k=0;k<gal.length;k++){const q=gal[k];const cible=k===actif?1:0;q.eclat+=(cible-q.eclat)*.06;dessineGalet(q,t)}
+  /* les ricochets */
+  for(const rc of ricos){const e=t-rc.dernier;if(rc.n<6&&e>.45){rc.x+=rc.vx*60*.45*Math.pow(.82,rc.n);rc.dernier=t;rc.n++;ronds.push({x:rc.x,y:rc.y,t0:t,r:8});let best=-1,bd=1e9;gal.forEach((q,k)=>{const d=Math.hypot(q.x-rc.x,q.y-rc.y);if(d<bd){bd=d;best=k}});if(bd<120)gal[best].eclat=1,eveille(best,t)}
+    if(rc.n<6){const u=Math.min(1,e/.45),X=rc.x+rc.vx*60*.45*Math.pow(.82,rc.n)*u,Y=rc.y-Math.sin(u*Math.PI)*30*Math.pow(.75,rc.n);x.globalAlpha=.9;x.fillStyle='#cfd6da';x.beginPath();x.ellipse(X,Y,7,3.5,0,0,6.283);x.fill()}}
+  ricos=ricos.filter(rc=>rc.n<6);
+  /* les cercles dans l'eau */
+  for(const o of ronds){const e=t-o.t0;for(let q=0;q<3;q++){const ee=e-q*.35;if(ee<0)continue;const R=o.r+ee*70;x.globalAlpha=Math.max(0,.45-ee*.18);x.strokeStyle='#d9eef5';x.lineWidth=1.2;x.beginPath();x.ellipse(o.x,o.y,R,R*.55,0,0,6.283);x.stroke()}}
+  ronds=ronds.filter(o=>t-o.t0<3.2);
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(5,12,16,.85)');v.addColorStop(.44,'rgba(5,12,16,.35)');v.addColorStop(1,'rgba(5,12,16,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+  /* la phrase de la pierre qui remonte */
+  if(actif>=0&&w>=760){const e=t-depuis,al=Math.min(1,e*2)*Math.max(0,Math.min(1,(7-e)/1));if(al>0){const q=gal[actif];bulle(PHRASES[actif],q.x,q.y-Math.min(1,e)*8,al);x.globalAlpha=al;x.font='12px "JetBrains Mono", monospace';x.fillStyle='#f0c75a';x.fillText('pierre '+(actif+1),Math.min(Math.max(q.x-30,w*.55),w-90),q.y+q.r+10)}}
 }
 return {taille,frame};
  })();
