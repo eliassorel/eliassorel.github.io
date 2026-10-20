@@ -167,7 +167,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
 /* Sous-bois : un tronc mort couché dans la mousse, et le blob qui s'y étale pour relier ses flocons d'avoine. Sans chef. */
-const S=3;let gw,gh,trail,tmp,ag=[],off,ox,img,decor,feuilles=[],poussieres=[],flocons=[],masque,V=1,fn=0;
+const S=2;let gw,gh,trail,tmp,ag=[],off,ox,img,decor,feuilles=[],poussieres=[],flocons=[],masque,V=1,fn=0;
 let A,B,R;
 function surTronc(X,Y){const ax=A[0],ay=A[1],bx=B[0],by=B[1],dx=bx-ax,dy=by-ay,u=Math.max(0,Math.min(1,((X-ax)*dx+(Y-ay)*dy)/(dx*dx+dy*dy)));return Math.hypot(X-(ax+dx*u),Y-(ay+dy*u))<R*(.92-.1*Math.abs(u-.5))}
 function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h*(mob?.62:.5)];R=h*(mob?.13:.17);
@@ -185,38 +185,35 @@ function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h
   for(let k=0;k<420;k++){const u=Math.random(),X=A[0]+(B[0]-A[0])*u+(Math.random()-.5)*60,Y=A[1]+(B[1]-A[1])*u+R*(.75+Math.random()*.5)*(Math.random()<.5?1:-.95);
     dx.globalAlpha=.5+Math.random()*.4;dx.fillStyle=['#3f6a22','#2f5419','#5b8a2c','#24410f'][k%4];dx.beginPath();dx.arc(X,Y,2+Math.random()*7,0,6.283);dx.fill()}
   for(let k=0;k<160;k++){const X=Math.random()*w,Y=h*(.88+Math.random()*.12);dx.globalAlpha=.6;dx.fillStyle=['#2f5419','#3f6a22','#4a3520'][k%3];dx.beginPath();dx.arc(X,Y,3+Math.random()*9,0,6.283);dx.fill()}
-  /* la simulation, sur le tronc seulement */
-  gw=Math.ceil(w/S);gh=Math.ceil(h/S);trail=new Float32Array(gw*gh);tmp=new Float32Array(gw*gh);masque=new Uint8Array(gw*gh);
-  for(let y=0;y<gh;y++)for(let X=0;X<gw;X++)masque[y*gw+X]=surTronc(X*S,y*S)?1:0;
-  off=document.createElement('canvas');off.width=gw;off.height=gh;ox=off.getContext('2d');img=ox.createImageData(gw,gh);
+  /* le réseau du blob : il pousse en éventail depuis son cœur, ses fronts se ramifient vers la nourriture */
+  couche=document.createElement('canvas');couche.width=c.width;couche.height=c.height;cc=couche.getContext('2d');cc.setTransform(c.width/w,0,0,c.height/h,0,0);cc.lineCap='round';
   flocons=[];for(let k=0;k<6;k++){const u=.12+k*.15+Math.random()*.05,X=A[0]+(B[0]-A[0])*u,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*.9;flocons.push([X,Y,Math.random()*6.3])}
-  ag=[];const N=Math.min(9000,Math.round(gw*gh/14)),u0=.55,sx=(A[0]+(B[0]-A[0])*u0)/S,sy=(A[1]+(B[1]-A[1])*u0)/S;
-  for(let k=0;k<N;k++){const a2=Math.random()*6.283,r=Math.random()*R*.4/S;ag.push([sx+Math.cos(a2)*r,sy+Math.sin(a2)*r,a2])}
-  V=1;for(let k=0;k<140;k++)pasSim();V=.4;
+  const u0=.55;coeur=[A[0]+(B[0]-A[0])*u0,A[1]+(B[1]-A[1])*u0];pointes=[];nseg=0;
+  for(let k=0;k<8;k++){const an=k/8*6.283;pointes.push({x:coeur[0],y:coeur[1],a:an,g:0,l:0})}
+  cc.fillStyle='#e9c21c';cc.beginPath();cc.ellipse(coeur[0],coeur[1],R*.28,R*.2,0,0,6.283);cc.fill();
+  for(let k=0;k<6500;k++)pousse();
   feuilles=Array.from({length:mob?6:12},()=>nouvelleFeuille(true));poussieres=Array.from({length:mob?30:60},()=>({x:Math.random()*w,y:Math.random()*h,p:Math.random()*6.3,r:Math.random()*1.6+.4}))}
 function nouvelleFeuille(partout){return{x:Math.random()*w,y:partout?Math.random()*h:-20,r:6+Math.random()*7,a:Math.random()*6.3,va:(Math.random()-.5)*.03,v:.3+Math.random()*.4,p:Math.random()*6.3,c:['#8a5a1e','#a8742a','#6e4416','#b8862e'][(Math.random()*4)|0]}}
-function lit(X,Y){X|=0;Y|=0;if(X<0||Y<0||X>=gw||Y>=gh)return -1;return masque[Y*gw+X]?trail[Y*gw+X]:-1}
-function pasSim(){const SA=.55,SD=6,RA=.42;
-  for(const a2 of ag){const f=lit(a2[0]+Math.cos(a2[2])*SD,a2[1]+Math.sin(a2[2])*SD),l=lit(a2[0]+Math.cos(a2[2]-SA)*SD,a2[1]+Math.sin(a2[2]-SA)*SD),r=lit(a2[0]+Math.cos(a2[2]+SA)*SD,a2[1]+Math.sin(a2[2]+SA)*SD);
-    if(f>l&&f>r){}else if(f<l&&f<r){a2[2]+=(Math.random()<.5?-1:1)*RA}else if(l>r){a2[2]-=RA}else if(r>l){a2[2]+=RA}
-    a2[2]+=(Math.random()-.5)*.1;const nx=a2[0]+Math.cos(a2[2])*V,ny=a2[1]+Math.sin(a2[2])*V;
-    if(lit(nx,ny)<0){a2[2]+=Math.PI*(.6+Math.random()*.8)}else{a2[0]=nx;a2[1]=ny;trail[(ny|0)*gw+(nx|0)]+=.2}}
-  for(const f of flocons){const X=(f[0]/S)|0,Y=(f[1]/S)|0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const k=(Y+dy)*gw+X+dx;if(masque[k])trail[k]+=.9}}
-  const fx=(mx*gw)|0,fy=(my*gh)|0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const k=(fy+dy)*gw+fx+dx;if(k>0&&k<gw*gh&&masque[k])trail[k]+=1}
-  for(let y=1;y<gh-1;y++)for(let X=1;X<gw-1;X++){const i=y*gw+X;tmp[i]=masque[i]?(trail[i]*4+trail[i-1]+trail[i+1]+trail[i-gw]+trail[i+gw])/8*.93:0}
-  const z=trail;trail=tmp;tmp=z}
-function frame(t){fn++;if(!calme&&fn%3===0)pasSim();
+let couche,cc,coeur,pointes=[],nseg=0;
+function cible(p){let best=null,bd=1e9;const cand=flocons.concat([[mx*w,my*h]]);for(const f of cand){const d=Math.hypot(f[0]-p.x,f[1]-p.y);if(d<bd&&d>6){bd=d;best=f}}return best}
+function pousse(){if(nseg>14000||!pointes.length)return;const k=(Math.random()*pointes.length)|0,p=pointes[k];
+  const cb=cible(p),vers=(va,f)=>{let d=va-p.a;while(d>Math.PI)d-=6.283;while(d<-Math.PI)d+=6.283;p.a+=d*f};
+  vers(Math.atan2(p.y-coeur[1],p.x-coeur[0]),.06);if(cb)vers(Math.atan2(cb[1]-p.y,cb[0]-p.x),.05);
+  p.a+=(Math.random()-.5)*.28;const st=2.2,nx=p.x+Math.cos(p.a)*st,ny=p.y+Math.sin(p.a)*st;
+  if(!surTronc(nx,ny)){p.a+=Math.PI*(.4+Math.random()*.6);return}
+  const larg=Math.max(.7,4.2*Math.pow(.82,p.g));
+  cc.strokeStyle='#b88a0a';cc.lineWidth=larg+1.2;cc.beginPath();cc.moveTo(p.x,p.y);cc.lineTo(nx,ny);cc.stroke();
+  cc.strokeStyle=(nseg%3)?'#e6bd1a':'#f2d23a';cc.lineWidth=larg;cc.beginPath();cc.moveTo(p.x,p.y);cc.lineTo(nx,ny);cc.stroke();
+  p.x=nx;p.y=ny;p.l+=st;nseg++;
+  if(p.l>26+Math.random()*40&&pointes.length<70){p.l=0;p.g++;pointes.push({x:p.x,y:p.y,a:p.a+(Math.random()<.5?-1:1)*(.35+Math.random()*.6),g:p.g,l:0})}
+  /* au front, la matière s'accumule en grumeaux, comme les éventails des photos */
+  if(p.g>3&&Math.random()<.18){cc.fillStyle=Math.random()<.5?'#efc928':'#d9ab12';cc.beginPath();cc.arc(nx+(Math.random()-.5)*4,ny+(Math.random()-.5)*4,1.2+Math.random()*2.4,0,6.283);cc.fill()}}
+function frame(t){if(!calme)for(let k=0;k<8;k++)pousse();
   while(clics.length){const k=clics.shift();if(surTronc(k[0],k[1]))flocons.push([k[0],k[1],Math.random()*6.3]);if(flocons.length>12)flocons.splice(0,1)}
   x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
-  /* rais de lumière à travers les feuillages */
-  for(let k=0;k<4;k++){const X=w*(.2+k*.22)+Math.sin(t*.15+k)*40;const gr=x.createLinearGradient(X,0,X+200,h);gr.addColorStop(0,'rgba(255,236,170,.14)');gr.addColorStop(1,'rgba(255,236,170,0)');x.fillStyle=gr;x.beginPath();x.moveTo(X,0);x.lineTo(X+70,0);x.lineTo(X+300,h);x.lineTo(X+150,h);x.closePath();x.fill()}
-  /* les flocons d'avoine */
+  for(let k=0;k<4;k++){const X=w*(.2+k*.22)+Math.sin(t*.15+k)*40;const gr=x.createLinearGradient(X,0,X+200,h);gr.addColorStop(0,'rgba(255,236,170,.12)');gr.addColorStop(1,'rgba(255,236,170,0)');x.fillStyle=gr;x.beginPath();x.moveTo(X,0);x.lineTo(X+70,0);x.lineTo(X+300,h);x.lineTo(X+150,h);x.closePath();x.fill()}
   for(const f of flocons){x.save();x.translate(f[0],f[1]);x.rotate(f[2]);x.globalAlpha=.95;x.fillStyle='#e8dcb8';x.beginPath();x.ellipse(0,0,7,4.5,0,0,6.283);x.fill();x.globalAlpha=.4;x.strokeStyle='#a8946a';x.stroke();x.restore()}
-  /* le blob, jaune vif, avec ses veines qui battent */
-  const D=img.data,ux=(A[0]+(B[0]-A[0])*.55)/S,uy=(A[1]+(B[1]-A[1])*.55)/S;
-  for(let i=0;i<gw*gh;i++){const j=i*4;if(!masque[i]){D[j+3]=0;continue}const X=i%gw,Y=(i/gw)|0,dd=Math.hypot(X-ux,Y-uy);const pouls=calme?1:.8+.2*Math.sin(t*.8-dd*.06);
-    const v=Math.min(1,Math.pow(trail[i]/1.4,.7))*pouls;D[j]=235+v*20;D[j+1]=180+v*45;D[j+2]=20+v*40;D[j+3]=Math.round(Math.min(1,v*1.25)*235)}
-  ox.putImageData(img,0,0);x.imageSmoothingEnabled=true;x.drawImage(off,0,0,w,h);
+  x.globalAlpha=1;x.drawImage(couche,0,0,w,h);
   /* feuilles qui tombent, poussières dorées dans la lumière */
   for(const p of poussieres){const X=p.x+Math.sin(t*.3+p.p)*20,Y=p.y+Math.cos(t*.25+p.p)*14;x.globalAlpha=.25+.35*Math.abs(Math.sin(t+p.p));x.fillStyle='#ffe9a8';x.beginPath();x.arc(X,Y,p.r,0,6.283);x.fill()}
   for(let k=0;k<feuilles.length;k++){const f=feuilles[k];if(!calme){f.y+=f.v;f.x+=Math.sin(t*.8+f.p)*.6+(mx-.5)*.3;f.a+=f.va;if(f.y>h+20)feuilles[k]=nouvelleFeuille(false)}
