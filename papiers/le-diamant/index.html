@@ -153,6 +153,13 @@ dl.meta .doi{font-family:var(--mono);font-size:14px}
   .gemme .croix{animation:luit 4s ease-in-out infinite alternate}
 }
 @media (max-width:760px){.bandeau{min-height:0}.gemme{opacity:.4;height:calc(100% - 190px)!important;right:50%!important}}
+
+.cosmos{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.55;
+  background:radial-gradient(30% 25% at 20% 30%,rgba(93,169,233,.55),transparent 70%),radial-gradient(28% 30% at 75% 25%,rgba(199,125,186,.6),transparent 70%),radial-gradient(35% 28% at 60% 80%,rgba(244,169,75,.45),transparent 70%),radial-gradient(25% 22% at 10% 85%,rgba(126,232,226,.35),transparent 70%),radial-gradient(22% 20% at 90% 70%,rgba(232,98,44,.4),transparent 70%)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:nebuleuse 40s ease-in-out infinite alternate}
+@keyframes nebuleuse{0%{transform:translate(0,0) rotate(0) scale(1);filter:hue-rotate(0)}50%{transform:translate(3%,-2%) rotate(6deg) scale(1.08);filter:hue-rotate(60deg)}100%{transform:translate(-3%,2%) rotate(-5deg) scale(1.02);filter:hue-rotate(-50deg)}}}
+.gemme{z-index:1}
 footer{margin-top:96px;background:var(--nuit-profonde);color:#c9c1ae}
 footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px}
 footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
@@ -165,6 +172,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
 <body>
 
 <header class="bandeau band">
+  <canvas class="cosmos" id="cosmos" aria-hidden="true"></canvas>
   <svg class="gemme" viewBox="0 0 240 470" aria-hidden="true">
     <defs>
       <radialGradient id="halo"><stop offset="0" stop-color="#fff3d0" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe7a8" stop-opacity=".35"/><stop offset="1" stop-color="#fff3d0" stop-opacity="0"/></radialGradient>
@@ -292,5 +300,39 @@ footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
     <span>Textes sous licence CC BY 4.0</span>
   </div>
 </footer>
+<script>
+/* Le ciel du Diamant : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('cosmos');if(!c)return;const x=c.getContext('2d'),band=c.parentElement,gem=band.querySelector('.gemme');
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pal=['#ffffff','#fff3d0','#e8dcc0','#9fc3ec','#5da9e9','#7ee8e2','#c77dba','#e0a3c4','#f4a94b','#ffd966','#e8622c'];
+  let w,h,d,et=[],pous=[],filantes=[],sx=0,sy=0,mx=0,my=0;
+  function astre(){const r=gem.getBoundingClientRect(),b=band.getBoundingClientRect();return[r.left-b.left+r.width*(120/240),r.top-b.top+r.height*(34/470)]}
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    et=Array.from({length:Math.round(w*h/650)},()=>{const z=Math.random();return{x:Math.random()*w,y:Math.random()*h,z,r:z*z*1.8+.25,col:pal[(Math.random()*pal.length)|0],p:Math.random()*6.3,v:Math.random()*2+.5}});
+    [sx,sy]=astre()}
+  addEventListener('resize',taille);taille();
+  band.addEventListener('pointermove',e=>{const b=band.getBoundingClientRect();mx=(e.clientX-b.left)/w-.5;my=(e.clientY-b.top)/h-.5},{passive:true});
+  let ox=0,oy=0;
+  function frame(ms){const t=ms/1000;x.clearRect(0,0,w,h);ox+=(mx-ox)*.04;oy+=(my-oy)*.04;
+    for(const s of et){const a=calme?.8:.35+.65*Math.abs(Math.sin(s.p+t*s.v));const X=(s.x-ox*40*s.z+w)%w,Y=(s.y-oy*30*s.z+h)%h;
+      x.globalAlpha=a;x.fillStyle=s.col;x.beginPath();x.arc(X,Y,s.r,0,6.283);x.fill();
+      if(s.r>1.5&&a>.85){x.globalAlpha=a*.35;x.fillRect(X-s.r*3,Y-.4,s.r*6,.8);x.fillRect(X-.4,Y-s.r*3,.8,s.r*6)}}
+    if(!calme){
+      /* la poussière d'étoiles tombe en spirale vers l'astre du diamant */
+      if(pous.length<160&&Math.random()<.5){const a=Math.random()*6.283,R=Math.max(w,h)*.6;pous.push({a,R,v:.004+Math.random()*.006,col:pal[(Math.random()*pal.length)|0]})}
+      for(const q of pous){q.a+=q.v*3;q.R*=.985;const X=sx+Math.cos(q.a)*q.R,Y=sy+Math.sin(q.a)*q.R*.6;x.globalAlpha=Math.min(1,q.R/60)*.8;x.fillStyle=q.col;x.beginPath();x.arc(X,Y,1.1,0,6.283);x.fill()}
+      pous=pous.filter(q=>q.R>3);
+      /* étoiles filantes */
+      if(Math.random()<.012)filantes.push({x:Math.random()*w,y:Math.random()*h*.5,vx:-(4+Math.random()*5),vy:2+Math.random()*2.5,a:1,col:pal[(Math.random()*pal.length)|0]});
+      for(const f of filantes){f.x+=f.vx;f.y+=f.vy;f.a-=.018;const g=x.createLinearGradient(f.x,f.y,f.x-f.vx*12,f.y-f.vy*12);g.addColorStop(0,f.col);g.addColorStop(1,'rgba(0,0,0,0)');
+        x.globalAlpha=Math.max(f.a,0);x.strokeStyle=g;x.lineWidth=1.6;x.beginPath();x.moveTo(f.x,f.y);x.lineTo(f.x-f.vx*12,f.y-f.vy*12);x.stroke()}
+      filantes=filantes.filter(f=>f.a>0);
+      if(((ms/1000)|0)%2===0)[sx,sy]=astre();
+      requestAnimationFrame(frame)}
+    x.globalAlpha=1}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
