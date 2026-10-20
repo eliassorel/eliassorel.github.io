@@ -110,7 +110,7 @@ nav button[aria-selected="true"]{background:var(--creme);border-color:var(--crem
   background:radial-gradient(90% 80% at 85% 15%,var(--a) 0%,transparent 62%),radial-gradient(80% 80% at 10% 100%,var(--b) 0%,transparent 70%),var(--nuit);
   display:flex;flex-direction:column;justify-content:space-between;padding:28px}
 .ecrin::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,transparent,var(--or-vif),transparent)}
-.ecrin .mots{font:600 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--creme);opacity:.9;position:relative}
+.ecrin .mots{opacity:1!important;font:600 11px/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--creme);opacity:.9;position:relative}
 .ecrin .chiffre{font-family:var(--serif);font-weight:500;line-height:.9;color:var(--or-chiffre);font-variant-numeric:tabular-nums;position:relative}
 .ecrin .leg{font-size:14px;line-height:1.4;color:var(--creme);opacity:.92;margin-top:10px;position:relative;max-width:22ch}
 .ecrin .forme{position:absolute;right:-10%;bottom:-12%;width:70%;opacity:.16;pointer-events:none}
@@ -252,7 +252,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       <article class="master">
         <div class="ecrin" style="--a:#8b5c9e;--b:#e8622c">
           <svg class="forme" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,4 92,50 50,96 8,50" fill="none" stroke="#ffd966" stroke-width="1.2"/><line x1="8" y1="50" x2="92" y2="50" stroke="#ffd966" stroke-width="1"/><line x1="50" y1="4" x2="50" y2="96" stroke="#ffd966" stroke-width=".6"/></svg>
-          <span class="mots">Vibration · Mémoire · Lumière</span>
+          <span class="mots"><span style="color:#5da9e9">Vibration</span> · <span style="color:#c77dba">Mémoire</span> · <span style="color:#f4a94b">Lumière</span></span>
           <div><div class="chiffre">166</div><div class="leg">références et 13 figures, en trois parties</div></div>
         </div>
         <div class="texte">
@@ -267,7 +267,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       <article class="master inverse">
         <div class="ecrin" style="--a:#2aa6b8;--b:#155e7d">
           <svg class="forme" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#ffd966" stroke-width="1.2"/><polygon points="50,24 72,62 28,62" fill="none" stroke="#ffd966" stroke-width="1"/><path d="M50 4 L50 24 M90 27 L72 62 M10 27 L28 62 M90 73 L72 62 M10 73 L28 62 M50 96 L50 62" stroke="#ffd966" stroke-width=".6"/></svg>
-          <span class="mots">Échelle · Perception · Résonance</span>
+          <span class="mots"><span style="color:#A8F0CF">Échelle</span> · <span style="color:#BDF2EA">Perception</span> · <span style="color:#B8D4F5">Résonance</span></span>
           <div><div class="chiffre">250+</div><div class="leg">références et 17 figures, une prédiction testable</div></div>
         </div>
         <div class="texte">
