@@ -211,7 +211,7 @@ img{max-width:100%}
       <svg class="ondes" id="ondes" viewBox="0 0 360 56" aria-hidden="true">
         <path id="onde-b" d="M0 28 L360 28" fill="none" stroke="#4a7bb8" stroke-width="2" stroke-linecap="round"/>
         <path id="onde-o" d="M0 28 L360 28" fill="none" stroke="#d4a82f" stroke-width="2" stroke-linecap="round"/>
-        <circle id="etincelle" cx="180" cy="28" r="3.5" fill="#ffffff"/>
+        <a href="/etincelle/" aria-label="L'étincelle"><circle id="zone" cx="180" cy="28" r="14" fill="transparent"/><circle id="etincelle" cx="180" cy="28" r="3.5" fill="#ffffff" style="cursor:pointer"/></a>
       </svg>
       <p>« Le visible fait mal lire l'invisible ; l'invisible est dans le visible. »<br><em>« Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie. »</em></p>
       <a class="descendre" href="#masters">Les travaux</a>
@@ -398,7 +398,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Les deux ondes : elles respirent seules, et suivent la souris ou le doigt. */
 (function(){
-  const sv=document.getElementById('ondes'),b=document.getElementById('onde-b'),o=document.getElementById('onde-o'),et=document.getElementById('etincelle');
+  const sv=document.getElementById('ondes'),b=document.getElementById('onde-b'),o=document.getElementById('onde-o'),et=document.getElementById('etincelle'),zone=document.getElementById('zone');
   let amp=8,ampC=8,freq=1,freqC=1,cx=180,cxC=180;
   function chemin(sign,ph,t){let d='';for(let X=0;X<=360;X+=4){const env=Math.exp(-Math.pow((X-cx)/120,2))*.75+.25;
     const Y=28+sign*amp*env*Math.sin((X/360)*Math.PI*2*(1.5*freq)+ph+t*.9);d+=(X?'L':'M')+X+' '+Y.toFixed(2)}return d}
@@ -408,7 +408,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
   addEventListener('pointermove',suivre,{passive:true});
   addEventListener('pointerleave',()=>{ampC=8;freqC=1;cxC=180});
   function anim(ms){const t=calme?0:ms/1000;amp+=(ampC-amp)*.06;freq+=(freqC-freq)*.05;cx+=(cxC-cx)*.08;
-    b.setAttribute('d',chemin(1,0,t));o.setAttribute('d',chemin(-1,0,t));et.setAttribute('cx',cx.toFixed(1));
+    b.setAttribute('d',chemin(1,0,t));o.setAttribute('d',chemin(-1,0,t));et.setAttribute('cx',cx.toFixed(1));zone.setAttribute('cx',cx.toFixed(1));
     et.setAttribute('r',(3+amp*.08).toFixed(2));if(!calme)requestAnimationFrame(anim)}
   calme?anim(0):requestAnimationFrame(anim);
 })();

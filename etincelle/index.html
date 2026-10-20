@@ -1,0 +1,85 @@
+<!doctype html>
+<!--
+  La pièce de l'onde dorée.
+  Personne n'y entre par la porte : on y arrive en touchant l'étincelle.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>L'étincelle · Elias Sorel</title>
+<meta name="theme-color" content="#05070b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Source+Sans+3:wght@600&display=swap">
+<style>
+:root{--fond:#05070b;--creme:#e8dcc0;--creme-2:#f4e3b8;--or:#d4a82f;--bleu:#4a7bb8;--gris:#8f97a0;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--fond);color:var(--creme);font-family:Lora,Georgia,serif;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.voile{position:relative;z-index:1;min-height:100%;display:grid;place-items:center;padding:96px max(24px,env(safe-area-inset-left,0px)) 120px max(24px,env(safe-area-inset-right,0px));pointer-events:none}
+.texte{max-width:34ch;text-align:center;display:grid;gap:22px}
+.texte p{margin:0;font-size:clamp(19px,2.4vw,24px);line-height:1.6;opacity:0;transform:translateY(8px);animation:monte 1.6s ease forwards}
+.texte p:nth-child(1){animation-delay:.6s}.texte p:nth-child(2){animation-delay:2.2s}.texte p:nth-child(3){animation-delay:3.8s}.texte p:nth-child(4){animation-delay:5.2s}.texte p:nth-child(5){animation-delay:6.6s}
+.texte p.or{color:var(--or);font-style:italic}
+.pierre{margin-top:18px;font-style:italic;color:var(--creme-2);font-size:clamp(17px,2vw,20px)!important;border-top:1px solid rgba(212,168,47,.35);padding-top:22px;animation-delay:8.4s!important}
+@keyframes monte{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.texte p{animation:none;opacity:1;transform:none}}
+.bas{position:fixed;z-index:2;left:0;right:0;bottom:0;padding:18px max(24px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font:600 11px/1.4 "Source Sans 3",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gris)}
+.bas a{color:var(--creme);text-decoration:none}
+.bas a:hover{color:var(--or)}
+.bas a:focus-visible{outline:2px solid var(--or);outline-offset:4px}
+</style>
+</head>
+<body>
+<canvas id="c" aria-hidden="true"></canvas>
+
+<main class="voile">
+  <div class="texte">
+    <p>Je suis l'onde dorée.</p>
+    <p>Seule, je ne fais qu'un trait. Il me faut l'autre pour vibrer.</p>
+    <p class="or">Là où nous nous croisons, une étincelle.</p>
+    <p>Elle n'est ni à lui, ni à moi. Elle est ce qui naît entre.</p>
+    <p class="pierre">« L'accord, ce n'est pas l'immobilité, c'est l'équilibre qui tient au bord. »</p>
+  </div>
+</main>
+
+<div class="bas">
+  <a href="/">← Retour à la maison</a>
+  <span>Touche le ciel</span>
+</div>
+
+<script>
+(function(){
+  const c=document.getElementById('c'),x=c.getContext('2d');
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w,h,d,etoiles=[],eclats=[],cercles=[],px=.5,py=.5,cx=.5,cy=.5;
+  function taille(){d=devicePixelRatio||1;w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    etoiles=Array.from({length:Math.round(w*h/3000)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1+.2,p:Math.random()*6.3}))}
+  addEventListener('resize',taille);taille();
+  addEventListener('pointermove',e=>{px=e.clientX/w;py=e.clientY/h},{passive:true});
+  addEventListener('pointerdown',e=>{cercles.push({x:e.clientX,y:e.clientY,r:0,a:1});for(let i=0;i<26;i++){const a=Math.random()*6.283,v=Math.random()*2.4+.6;eclats.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*v,vy:Math.sin(a)*v,a:1,or:Math.random()<.6})}});
+  function onde(sign,t,amp,k,ph){const pts=[];for(let X=0;X<=w;X+=6){const env=Math.exp(-Math.pow((X-cx*w)/(w*.35),2))*.8+.2;pts.push([X,h*.5+sign*amp*env*Math.sin(X*k+ph+t)])}return pts}
+  function trace(pts,col,lw){x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.strokeStyle=col;x.lineWidth=lw;x.stroke()}
+  function frame(ms){const t=calme?0:ms/1000;cx+=(px-cx)*.05;cy+=(py-cy)*.05;
+    x.fillStyle='rgba(5,7,11,.32)';x.fillRect(0,0,w,h);
+    for(const s of etoiles){x.globalAlpha=calme?.5:.25+.35*Math.sin(s.p+t*.7);x.fillStyle='#e8dcc0';x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill()}
+    const amp=h*(.05+.12*(1-Math.abs(cy-.5)*2)),k=(Math.PI*2/w)*(1.2+cx*1.6);
+    const B=onde(1,t*.9,amp,k,0),O=onde(-1,t*.9,amp,k,0);
+    x.globalAlpha=.9;trace(B,'#4a7bb8',2);trace(O,'#d4a82f',2);
+    /* les croisements : là où les deux ondes se touchent, une petite lumière */
+    for(let i=1;i<B.length;i++){const a=B[i-1][1]-O[i-1][1],b=B[i][1]-O[i][1];if(a*b<=0){const X=B[i][0],Y=B[i][1];
+      const g=x.createRadialGradient(X,Y,0,X,Y,18);g.addColorStop(0,'rgba(255,246,220,.9)');g.addColorStop(1,'rgba(255,246,220,0)');x.globalAlpha=1;x.fillStyle=g;x.beginPath();x.arc(X,Y,18,0,6.283);x.fill();
+      if(!calme&&Math.random()<.04)eclats.push({x:X,y:Y,vx:(Math.random()-.5)*.6,vy:-Math.random()*1.2-.3,a:1,or:Math.random()<.5})}}
+    for(const e of eclats){e.x+=e.vx;e.y+=e.vy;e.vy+=.01;e.a-=.012;x.globalAlpha=Math.max(e.a,0);x.fillStyle=e.or?'#ffd966':'#9fc3ec';x.beginPath();x.arc(e.x,e.y,1.6,0,6.283);x.fill()}
+    eclats=eclats.filter(e=>e.a>0);
+    for(const r of cercles){r.r+=3;r.a-=.015;x.globalAlpha=Math.max(r.a,0)*.7;x.strokeStyle='#d4a82f';x.lineWidth=1;x.beginPath();x.arc(r.x,r.y,r.r,0,6.283);x.stroke()}
+    cercles=cercles.filter(r=>r.a>0);
+    x.globalAlpha=1;if(!calme)requestAnimationFrame(frame)}
+  x.fillStyle='#05070b';x.fillRect(0,0,w,h);
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
