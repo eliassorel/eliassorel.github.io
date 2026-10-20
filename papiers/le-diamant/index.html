@@ -132,6 +132,27 @@ dl.meta .doi{font-family:var(--mono);font-size:14px}
 .id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
 @media (prefers-reduced-motion:no-preference){.gemme .astre{animation:luit 4s ease-in-out infinite alternate}@keyframes luit{from{opacity:.55}to{opacity:1}}}
 @media (max-width:760px){.gemme{opacity:.35;right:50%;transform:translateX(50%);height:calc(100% - 170px)}}
+
+.bandeau{min-height:clamp(600px,86vh,860px)}
+.bandeau .inner{padding-block:28px 110px}
+.bandeau h1{font-size:clamp(60px,10vw,128px);letter-spacing:-.01em}
+.gemme{top:70px!important;height:calc(100% - 150px)!important;max-height:700px!important;right:max(1vw,calc(50% - 600px))!important;filter:drop-shadow(0 0 40px rgba(199,125,186,.25))}
+.gemme .f1,.gemme .f3{fill-opacity:.85}.gemme .f2{fill-opacity:.92}.gemme .f4{fill-opacity:.7}.gemme .f5{fill-opacity:.78}.gemme .f6{fill-opacity:.78}
+.gemme .photon{stroke-dasharray:10 98;stroke-dashoffset:108}
+.gemme .flux line{stroke-dasharray:4 26}
+@media (prefers-reduced-motion:no-preference){
+  .gemme .photon{animation:tombe 2.6s cubic-bezier(.5,0,.8,.4) infinite}
+  @keyframes tombe{to{stroke-dashoffset:0}}
+  .gemme .flux line{animation:jaillit 1.8s linear infinite}
+  @keyframes jaillit{to{stroke-dashoffset:-30}}
+  .gemme .pointe{animation:bat 2.6s ease-in-out infinite;transform-origin:120px 372px}
+  @keyframes bat{0%,70%{opacity:.35;transform:scale(.8)}85%{opacity:1;transform:scale(1.25)}100%{opacity:.35;transform:scale(.8)}}
+  .gemme .f{animation:miroite 6s ease-in-out infinite}
+  .gemme .f2{animation-delay:-1s}.gemme .f3{animation-delay:-2s}.gemme .f4{animation-delay:-3s}.gemme .f5{animation-delay:-4s}.gemme .f6{animation-delay:-5s}
+  @keyframes miroite{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
+  .gemme .croix{animation:luit 4s ease-in-out infinite alternate}
+}
+@media (max-width:760px){.bandeau{min-height:0}.gemme{opacity:.4;height:calc(100% - 190px)!important;right:50%!important}}
 footer{margin-top:96px;background:var(--nuit-profonde);color:#c9c1ae}
 footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-size:14px}
 footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
@@ -144,29 +165,44 @@ footer a{text-decoration:none} footer a:hover{color:var(--or-vif)}
 <body>
 
 <header class="bandeau band">
-  <svg class="gemme" viewBox="0 0 240 460" aria-hidden="true">
+  <svg class="gemme" viewBox="0 0 240 470" aria-hidden="true">
     <defs>
-      <radialGradient id="halo"><stop offset="0" stop-color="#fff3d0" stop-opacity=".9"/><stop offset="1" stop-color="#fff3d0" stop-opacity="0"/></radialGradient>
-      <linearGradient id="table" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e9dcb4"/><stop offset="1" stop-color="#8a7448"/></linearGradient>
-      <linearGradient id="filet" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#e8dcc0" stop-opacity=".1"/><stop offset="1" stop-color="#e8dcc0" stop-opacity=".7"/></linearGradient>
+      <radialGradient id="halo"><stop offset="0" stop-color="#fff3d0" stop-opacity=".95"/><stop offset=".4" stop-color="#ffe7a8" stop-opacity=".35"/><stop offset="1" stop-color="#fff3d0" stop-opacity="0"/></radialGradient>
+      <radialGradient id="coeur"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+      <radialGradient id="aube" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#f4a94b" stop-opacity=".35"/><stop offset=".5" stop-color="#8b5c9e" stop-opacity=".15"/><stop offset="1" stop-color="#4a7bb8" stop-opacity="0"/></radialGradient>
+      <linearGradient id="table" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#f3e7c2"/><stop offset="1" stop-color="#8a7448"/></linearGradient>
+      <linearGradient id="filet" gradientUnits="userSpaceOnUse" x1="120" x2="120" y1="60" y2="168"><stop offset="0" stop-color="#fff3d0" stop-opacity=".1"/><stop offset="1" stop-color="#fff3d0" stop-opacity=".95"/></linearGradient>
     </defs>
-    <g class="astre"><circle cx="120" cy="34" r="22" fill="url(#halo)"/><circle cx="120" cy="34" r="4.5" fill="#fff6dc"/></g>
-    <path d="M120 6V22M120 46V58M92 34H106M134 34H148" stroke="#e8dcc0" stroke-opacity=".5" stroke-width="1"/>
-    <line x1="120" y1="58" x2="120" y2="168" stroke="url(#filet)" stroke-width="1.2"/>
-    <polygon points="30,206 64,170 92,206" fill="#4a7bb8" fill-opacity=".85"/>
-    <polygon points="64,170 176,170 148,206 92,206" fill="url(#table)" fill-opacity=".9"/>
-    <polygon points="176,170 210,206 148,206" fill="#e8862c" fill-opacity=".85"/>
-    <polygon points="76,174 104,174 98,188 80,188" fill="#fff" fill-opacity=".45"/>
-    <polygon points="30,206 92,206 120,372" fill="#9fb0dc" fill-opacity=".7"/>
-    <polygon points="92,206 148,206 120,372" fill="#c77dba" fill-opacity=".75"/>
-    <polygon points="148,206 210,206 120,372" fill="#f4a94b" fill-opacity=".75"/>
-    <g stroke-width="1.6" stroke-linecap="round">
-      <line x1="120" y1="372" x2="18" y2="436" stroke="#c0342a"/>
-      <line x1="120" y1="372" x2="56" y2="448" stroke="#e8622c"/>
-      <line x1="120" y1="372" x2="102" y2="456" stroke="#f2c230"/>
-      <line x1="120" y1="372" x2="134" y2="456" stroke="#3fae5a"/>
-      <line x1="120" y1="372" x2="176" y2="448" stroke="#4a7bb8"/>
-      <line x1="120" y1="372" x2="226" y2="434" stroke="#8b5c9e"/>
+        <g class="astre"><circle cx="120" cy="34" r="30" fill="url(#halo)"/><circle cx="120" cy="34" r="5" fill="#fff6dc"/></g>
+    <path class="croix" d="M120 2V20M120 48V60M84 34H102M138 34H156" stroke="#e8dcc0" stroke-opacity=".55" stroke-width="1"/>
+    <line x1="120" y1="60" x2="120" y2="168" stroke="url(#filet)" stroke-width="1.4"/>
+    <line class="photon" x1="120" y1="60" x2="120" y2="168" stroke="#fff6dc" stroke-width="2" stroke-linecap="round"/>
+    <g class="facettes">
+      <polygon class="f f1" points="30,206 64,170 92,206" fill="#4a7bb8"/>
+      <polygon class="f f2" points="64,170 176,170 148,206 92,206" fill="url(#table)"/>
+      <polygon class="f f3" points="176,170 210,206 148,206" fill="#e8862c"/>
+      <polygon points="76,174 104,174 98,188 80,188" fill="#fff" fill-opacity=".5"/>
+      <polygon class="f f4" points="30,206 92,206 120,372" fill="#9fb0dc"/>
+      <polygon class="f f5" points="92,206 148,206 120,372" fill="#c77dba"/>
+      <polygon class="f f6" points="148,206 210,206 120,372" fill="#f4a94b"/>
+      <path d="M30 206H210M64 170L92 206L120 372L148 206L176 170" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width=".6"/>
+    </g>
+    <circle class="pointe" cx="120" cy="372" r="14" fill="url(#coeur)"/>
+    <g class="rayons" stroke-width="1.8" stroke-linecap="round">
+      <line x1="120" y1="372" x2="10" y2="440" stroke="#c0342a"/>
+      <line x1="120" y1="372" x2="50" y2="456" stroke="#e8622c"/>
+      <line x1="120" y1="372" x2="100" y2="466" stroke="#f2c230"/>
+      <line x1="120" y1="372" x2="136" y2="466" stroke="#3fae5a"/>
+      <line x1="120" y1="372" x2="182" y2="456" stroke="#4a7bb8"/>
+      <line x1="120" y1="372" x2="232" y2="438" stroke="#8b5c9e"/>
+    </g>
+    <g class="flux" stroke-width="1.2" stroke="#fff6dc" stroke-opacity=".8" stroke-linecap="round">
+      <line x1="120" y1="372" x2="10" y2="440"/>
+      <line x1="120" y1="372" x2="50" y2="456"/>
+      <line x1="120" y1="372" x2="100" y2="466"/>
+      <line x1="120" y1="372" x2="136" y2="466"/>
+      <line x1="120" y1="372" x2="182" y2="456"/>
+      <line x1="120" y1="372" x2="232" y2="438"/>
     </g>
   </svg>
   <div class="inner">
