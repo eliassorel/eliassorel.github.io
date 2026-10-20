@@ -1,0 +1,306 @@
+<!doctype html>
+<!--
+  Elias Sorel, c'est deux.
+  L'onde bleue, l'onde dorée, et l'étincelle là où elles se croisent.
+  « L'accord, ce n'est pas l'immobilité, c'est l'équilibre qui tient au bord. »
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>L'Icosaèdre : ce qui s'étage, se lit, résonne · Elias Sorel</title>
+<meta name="description" content="L'Icosaèdre (Elias Sorel, 2026) : depuis quelle échelle regardons-nous le vivant ? Échelle, perception, résonance. 17 figures, plus de 250 références, une prédiction testable.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#071C22">
+
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="L'Icosaèdre : ce qui s'étage, se lit, résonne">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/10/09">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.23250209">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="échelle; perception; résonance; théorie de la détection du signal; seuil sensoriel; Umwelt; bruit; icosaèdre">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/l-icosaedre/">
+<!-- Dublin Core -->
+<meta name="DC.title" content="L'Icosaèdre : ce qui s'étage, se lit, résonne">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-10-09">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.23250209">
+<meta name="DC.language" content="fr">
+<meta name="DC.rights" content="CC BY 4.0">
+
+<link rel="canonical" href="https://eliassorel.github.io/papiers/l-icosaedre/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Thème Icosaèdre : trois profondeurs d'une même eau, et l'or qui ne change jamais. */
+:root{
+  --surface:#ffffff; --surface-2:#f2f6f4; --ink:#3f4f4d; --ink-strong:#071C22; --ink-muted:#5d6f6c; --line:#dde7e3;
+  --abysse:#071C22; --eau:#0D3039; --lagune:#1F6A6F; --verre:#9FD8CC; --or:#D8B25A; --or-texte:#8a6a22; --ambre:#F1D89C; --ecume:#E4EEE9; --brume:#8FB0AB;
+  --p1:#2F8A78; --p1-clair:#A8F0CF; --p2:#22777F; --p2-clair:#BDF2EA; --p3:#1D4F80; --p3-clair:#B8D4F5;
+  --titre:Marcellus,"Cormorant Garamond",Georgia,serif; --serif:"Source Serif 4",Georgia,serif; --sans:"Source Sans 3","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono","DejaVu Sans Mono",monospace;
+  --etabli:#0f6e56; --etabli-bg:#e1f5ee; --debattu:#854f0b; --debattu-bg:#faeeda; --hypo:#6b3f8f; --hypo-bg:#f1e8f7;
+  --lecture:#185fa5; --lecture-bg:#e6f1fb; --calcul:#4a4f54; --calcul-bg:#eceef0;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --surface:#06161b; --surface-2:#0b2229; --ink:#cfdcd8; --ink-strong:#E4EEE9; --ink-muted:#8FB0AB; --line:#163a42; --or-texte:#D8B25A; color-scheme:dark;
+  --p1:#5fc7ae; --p2:#5bbcc4; --p3:#7fb1e8;
+  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
+}}
+:root[data-theme="dark"]{
+  --surface:#06161b; --surface-2:#0b2229; --ink:#cfdcd8; --ink-strong:#E4EEE9; --ink-muted:#8FB0AB; --line:#163a42; --or-texte:#D8B25A; color-scheme:dark;
+  --p1:#5fc7ae; --p2:#5bbcc4; --p3:#7fb1e8;
+  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
+[hidden]{display:none!important}
+
+/* ── le bandeau : sous l'eau ── */
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--ecume);
+  background:linear-gradient(180deg,#0f4650 0%,#0D3039 28%,#071C22 70%,#04121a 100%)}
+.bandeau::before{content:"";position:absolute;inset:-10% -20% auto;height:70%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.5;
+  background:repeating-linear-gradient(100deg,transparent 0 60px,rgba(168,240,207,.08) 60px 90px,transparent 90px 160px),repeating-linear-gradient(80deg,transparent 0 90px,rgba(189,242,234,.06) 90px 120px,transparent 120px 210px);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;
+  background:radial-gradient(30% 25% at 25% 20%,rgba(47,138,120,.6),transparent 70%),radial-gradient(28% 30% at 78% 35%,rgba(34,119,127,.55),transparent 70%),radial-gradient(35% 28% at 55% 85%,rgba(29,79,128,.6),transparent 70%),radial-gradient(18% 16% at 82% 18%,rgba(216,178,90,.35),transparent 70%)}
+@media (prefers-reduced-motion:no-preference){
+  .bandeau::before{animation:rais 18s ease-in-out infinite alternate}
+  @keyframes rais{from{transform:translateX(-4%) skewX(-4deg)}to{transform:translateX(4%) skewX(4deg)}}
+  .bandeau::after{animation:courant 36s ease-in-out infinite alternate}
+  @keyframes courant{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}
+}
+.mer{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px}
+.haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--ecume);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--ecume)}
+.retour:hover{opacity:1}
+.langue{display:inline-flex;border:1px solid rgba(228,238,233,.3);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--ecume)}
+.langue span{background:var(--ecume);color:var(--abysse)}
+.langue a:hover{background:rgba(228,238,233,.15)}
+.titre{display:grid;gap:20px;max-width:660px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+h1{font-family:var(--titre);font-weight:400;font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--ecume);text-wrap:balance}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--or)}
+.parties{display:flex;flex-wrap:wrap;gap:8px}
+.parties span{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:rgba(13,48,57,.75);border:1px solid rgba(31,106,111,.8)}
+.parties span:nth-child(1){color:var(--p1-clair)} .parties span:nth-child(2){color:var(--p2-clair)} .parties span:nth-child(3){color:var(--p3-clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--ecume)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(228,238,233,.35)}
+.id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ecume);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:40ch}
+.devise .r{color:var(--p3-clair)} .devise .e{color:var(--p1-clair)} .devise .l{color:var(--p2-clair)}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;color:var(--brume);margin-top:6px}
+
+/* écrins */
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
+.ecrin{background:var(--eau);border:1px solid #163f48;border-radius:12px;padding:18px 18px 16px;color:var(--ecume);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.ecrin b{display:block;font-family:var(--titre);font-weight:400;font-size:42px;line-height:1;color:var(--or);font-variant-numeric:tabular-nums}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;color:var(--ambre)}
+
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--abysse);color:var(--ecume)}
+.btn.plein:hover{background:var(--lagune)}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
+
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.partie{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding-block:18px;border-top:1px solid var(--line)}
+.partie:first-of-type{border-top:0}
+.partie .num{font-family:var(--titre);font-size:16px;line-height:1.4}
+.partie .num b{display:block;font-size:32px;font-weight:400}
+.partie .num em{font-style:normal;font:500 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+.p1 .num{color:var(--p1)} .p2 .num{color:var(--p2)} .p3 .num{color:var(--p3)}
+.partie p{margin:0}
+.equation{margin:8px 0 22px;background:var(--abysse);border-radius:12px;padding:22px 22px 18px;color:var(--ecume);overflow-x:auto;position:relative}
+.equation::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.equation code{display:block;font-family:var(--mono);font-size:clamp(14px,1.9vw,18px);color:var(--or);white-space:nowrap}
+.equation small{display:block;margin-top:10px;font-family:var(--mono);font-size:13px;color:var(--verre)}
+.equation .tag{font:600 10px/1 var(--sans);letter-spacing:.12em;color:var(--hypo);background:var(--hypo-bg);padding:5px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px}
+.p-etabli{color:var(--etabli);background:var(--etabli-bg)} .p-debattu{color:var(--debattu);background:var(--debattu-bg)} .p-hypo{color:var(--hypo);background:var(--hypo-bg)} .p-lecture{color:var(--lecture);background:var(--lecture-bg)} .p-calcul{color:var(--calcul);background:var(--calcul-bg)}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.mots li{list-style:none;font-family:var(--sans);font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+
+footer{margin-top:96px;background:var(--abysse);color:var(--brume)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px}
+footer a{text-decoration:none} footer a:hover{color:var(--or)}
+@media (max-width:760px){
+  .bandeau{min-height:0}
+  .mer{opacity:.45}
+  .chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .partie{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<header class="bandeau band">
+  <canvas class="mer" id="mer" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-github-io.translate.goog/papiers/l-icosaedre/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>L'Icosaèdre</h1>
+      <p class="sous-titre">ce qui s'étage, se lit, résonne</p>
+      <div class="parties"><span>Échelle</span><span>Perception</span><span>Résonance</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« La <span class="r">résonance</span> est ce qui naît quand une <span class="e">échelle</span> <span class="l">se lit</span>. »<small>Elias Sorel, L'Icosaèdre, 2026</small></p>
+    </div>
+  </div>
+</header>
+
+<main class="band">
+<div class="inner">
+
+  <div class="chiffres">
+    <div class="ecrin"><b>3</b><span>parties, thèse, antithèse, synthèse</span></div>
+    <div class="ecrin"><b>17</b><span>figures</span></div>
+    <div class="ecrin"><b>250+</b><span>références</span></div>
+    <div class="ecrin"><b>1</b><span>prédiction testable</span></div>
+  </div>
+
+  <div class="actions">
+    <a class="btn plein" href="https://doi.org/10.5281/zenodo.23250209">Lire sur Zenodo</a>
+    <a class="btn trait" href="https://doi.org/10.5281/zenodo.23250209">DOI</a>
+    <span class="taille">Texte en français</span>
+  </div>
+
+  <section>
+    <h2>Résumé</h2>
+    <p>Ce texte part d'une question : depuis quelle échelle regardons-nous le vivant ? Il tient en une phrase, « le vivant est un recommencement à des échelles différentes », et la mesure en trois parties.</p>
+    <div class="partie p1"><div class="num"><em>Thèse</em><b>I</b>Échelle</div>
+      <p>Chaque lecteur, de la bactérie à l'humain, lit dans une fenêtre de tailles, de fréquences et de rythmes, dont le seuil dessine une courbe en U.</p></div>
+    <div class="partie p2"><div class="num"><em>Antithèse</em><b>II</b>Perception</div>
+      <p>Lire une trace demande un émetteur, un porteur, un décrypteur et une échelle commune. Qu'une seule pièce manque, et la trace est là sans que personne la lise.</p></div>
+    <div class="partie p3"><div class="num"><em>Synthèse</em><b>III</b>Résonance</div>
+      <p>Un système répond fort à ce qui tombe sur sa fréquence, et la même forme revient d'un étage à l'autre.</p></div>
+    <p style="margin-top:1.2em">Les pièces s'assemblent en une équation, posée comme hypothèse :</p>
+    <div class="equation">
+      <span class="tag">HYPOTHÈSE</span>
+      <code>P(lire) = Φ( √T · s · G ÷ √( σ²dehors + (σdedans ÷ G)² ) − critère )</code>
+      <small>avec G = porteur × décrypteur × échelle(f)</small>
+    </div>
+    <p>Elle s'appuie sur la théorie de la détection du signal (Tanner et Swets, 1954), le bruit des récepteurs (Friis, 1944) et la limite physique de la détection (Berg et Purcell, 1977). Chaque affirmation porte son registre et sa source :</p>
+    <div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-hypo">HYPOTHÈSE</span><span class="pill p-lecture">LECTURE</span><span class="pill p-calcul">CALCUL</span></div>
+    <p>Le texte se clôt sur une prédiction testable. Il prolonge <a href="/papiers/le-diamant/">Le Diamant</a> (Elias Sorel, 2026).</p>
+  </section>
+
+  <section lang="en">
+    <h2>Abstract</h2>
+    <div class="abstract">
+      <p>This text starts from a question: from which scale do we look at the living world? It holds in one sentence, "life is a recommencement at different scales", and measures it in three parts. Scale: every reader, from the bacterium to the human, reads within a window of sizes, frequencies and rhythms whose threshold draws a U-shaped curve. Perception: reading a trace requires an emitter, a carrier, a decoder and a shared scale; if a single piece is missing, the trace is there and no one reads it. Resonance: a system responds strongly to what falls on its frequency, and the same form returns from one level to the next. The pieces assemble into an equation proposed as a hypothesis: P(read) = Φ( √T · s · G ÷ √( σ²outside + (σinside ÷ G)² ) − criterion ), with G = carrier × decoder × scale(f). It builds on signal detection theory (Tanner and Swets, 1954), receiver noise (Friis, 1944) and the physical limit of detection (Berg and Purcell, 1977). Every claim carries its register (ESTABLISHED, DEBATED, HYPOTHESIS, READING, CALCULATION) and its source. 17 figures, more than 250 references. The text closes on a testable prediction. It continues The Diamond (Elias Sorel, 2026). Full text in French.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mots-clés</h2>
+    <ul class="mots">
+      <li>échelle</li><li>perception</li><li>résonance</li><li>théorie de la détection du signal</li><li>seuil sensoriel</li><li>Umwelt</li><li>bruit</li><li>icosaèdre</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Pour citer</h2>
+    <p class="citer">Sorel, E. (2026). <i>L'Icosaèdre : ce qui s'étage, se lit, résonne</i>. Zenodo. https://doi.org/10.5281/zenodo.23250209</p>
+  </section>
+
+  <section>
+    <h2>Fiche</h2>
+    <dl class="meta">
+      <dt>Auteur</dt><dd>Elias Sorel</dd>
+      <dt>Version</dt><dd>1, 9 octobre 2026</dd>
+      <dt>Type</dt><dd>Prépublication</dd>
+      <dt>Langue</dt><dd>Français</dd>
+      <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.23250209">10.5281/zenodo.23250209</a></dd>
+      <dt>Aussi sur</dt><dd>PhilPapers</dd>
+      <dt>Licence</dt><dd>CC BY 4.0</dd>
+    </dl>
+  </section>
+
+</div>
+</main>
+
+<footer class="band">
+  <div class="inner">
+    <a href="/">Elias Sorel</a>
+    <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+    <a href="https://doi.org/10.5281/zenodo.23250209">Zenodo</a>
+    <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+    <span>Textes sous licence CC BY 4.0</span>
+  </div>
+</footer>
+
+<script>
+/* Sous l'eau : purement décoratif, le texte de la page n'en dépend pas.
+   Un icosaèdre d'or qui tourne, des gouttes d'or qui tombent et font leur couronne, du plancton, des bulles. */
+(function(){
+  const c=document.getElementById('mer');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const PHI=(1+Math.sqrt(5))/2,V=[];for(const a of[-1,1])for(const b of[-1,1]){V.push([0,a,b*PHI],[a,b*PHI,0],[b*PHI,0,a])}
+  const n=Math.hypot(1,PHI);V.forEach(v=>{v[0]/=n;v[1]/=n;v[2]/=n});
+  const E=[];for(let i=0;i<12;i++)for(let j=i+1;j<12;j++){const d=Math.hypot(V[i][0]-V[j][0],V[i][1]-V[j][1],V[i][2]-V[j][2]);if(d<1.06)E.push([i,j])}
+  const F=[];for(let i=0;i<12;i++)for(let j=i+1;j<12;j++)for(let k=j+1;k<12;k++){const ok=(a,b)=>E.some(e=>(e[0]===a&&e[1]===b)||(e[0]===b&&e[1]===a));if(ok(i,j)&&ok(j,k)&&ok(i,k))F.push([i,j,k])}
+  const eaux=['#2F8A78','#22777F','#1D4F80'];
+  let w,h,d,cx,cy,R,plancton=[],bulles=[],gouttes=[],ronds=[],mx=0,my=0,ox=0,oy=0;
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    const mob=w<760;cx=mob?w*.5:Math.min(w*.76,w/2+430);cy=mob?h*.42:h*.48;R=mob?Math.min(w*.34,150):Math.min(h*.27,230);
+    plancton=Array.from({length:Math.round(w*h/1800)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.3,z:Math.random(),p:Math.random()*6.3,col:Math.random()<.12?'#D8B25A':(Math.random()<.5?'#A8F0CF':'#BDF2EA')}))}
+  addEventListener('resize',taille);taille();
+  band.addEventListener('pointermove',e=>{const b=band.getBoundingClientRect();mx=(e.clientX-b.left)/w-.5;my=(e.clientY-b.top)/h-.5},{passive:true});
+  band.addEventListener('pointerdown',e=>{const b=band.getBoundingClientRect();ronds.push({x:e.clientX-b.left,y:e.clientY-b.top,r:2,a:.9,col:'#BDF2EA'})});
+  function proj(v,t){const a=t*.22+ox*.8,b=.42+oy*.5;let X=v[0]*Math.cos(a)+v[2]*Math.sin(a),Z=-v[0]*Math.sin(a)+v[2]*Math.cos(a),Y=v[1];
+    const Y2=Y*Math.cos(b)-Z*Math.sin(b),Z2=Y*Math.sin(b)+Z*Math.cos(b),f=3.2/(3.2+Z2);return[cx+X*R*f,cy+Y2*R*f,Z2]}
+  function frame(ms){const t=calme?0.8:ms/1000;ox+=(mx-ox)*.04;oy+=(my-oy)*.04;x.clearRect(0,0,w,h);
+    /* plancton qui dérive */
+    for(const p of plancton){const X=((p.x+Math.sin(t*.3+p.p)*12-ox*30*p.z)%w+w)%w,Y=((p.y-t*(4+p.z*8)-oy*20*p.z)%h+h)%h;
+      x.globalAlpha=(calme?.5:.25+.45*Math.abs(Math.sin(p.p+t*.8)))*(.5+p.z*.5);x.fillStyle=p.col;x.beginPath();x.arc(X,Y,p.r,0,6.283);x.fill()}
+    /* l'icosaèdre : faces d'eau translucides, arêtes d'or */
+    const P=V.map(v=>proj(v,t));
+    const faces=F.map(f=>({f,z:(P[f[0]][2]+P[f[1]][2]+P[f[2]][2])/3})).sort((a,b)=>b.z-a.z);
+    faces.forEach((o,i)=>{const [a,b,cc]=o.f;x.globalAlpha=.10+.12*(1-(o.z+1)/2);x.fillStyle=eaux[i%3];x.beginPath();x.moveTo(P[a][0],P[a][1]);x.lineTo(P[b][0],P[b][1]);x.lineTo(P[cc][0],P[cc][1]);x.closePath();x.fill()});
+    const halo=x.createRadialGradient(cx,cy,0,cx,cy,R*1.5);halo.addColorStop(0,'rgba(216,178,90,.16)');halo.addColorStop(1,'rgba(216,178,90,0)');x.globalAlpha=1;x.fillStyle=halo;x.beginPath();x.arc(cx,cy,R*1.5,0,6.283);x.fill();
+    for(const [i,j] of E){const A=P[i],B=P[j],prof=(2-(A[2]+B[2])/2)/3;x.globalAlpha=.3+.7*prof;x.strokeStyle='#D8B25A';x.lineWidth=.8+1.4*prof;x.beginPath();x.moveTo(A[0],A[1]);x.lineTo(B[0],B[1]);x.stroke()}
+    for(const p of P){x.globalAlpha=.6+.4*(1-(p[2]+1)/2);x.fillStyle='#F1D89C';x.beginPath();x.arc(p[0],p[1],2.2,0,6.283);x.fill()}
+    if(!calme){
+      /* les gouttes d'or tombent sur l'icosaèdre et font leur couronne */
+      if(Math.random()<.008)gouttes.push({x:cx+(Math.random()-.5)*R*1.2,y:-10,v:2});
+      for(const g of gouttes){g.v+=.06;g.y+=g.v;x.globalAlpha=.9;x.fillStyle='#D8B25A';x.beginPath();x.ellipse(g.x,g.y,2.4,4,0,0,6.283);x.fill();
+        if(g.y>cy-R*.9&&!g.fin){g.fin=1;ronds.push({x:g.x,y:g.y,r:2,a:1,col:'#D8B25A'},{x:g.x,y:g.y,r:2,a:.7,col:'#BDF2EA',lent:1})}}
+      gouttes=gouttes.filter(g=>!g.fin&&g.y<h);
+      for(const r of ronds){r.r+=r.lent?1.2:2;r.a-=.012;x.globalAlpha=Math.max(r.a,0);x.strokeStyle=r.col;x.lineWidth=1.2;x.beginPath();x.ellipse(r.x,r.y,r.r,r.r*.35,0,0,6.283);x.stroke()}
+      ronds=ronds.filter(r=>r.a>0);
+      /* des bulles qui montent */
+      if(bulles.length<40&&Math.random()<.08)bulles.push({x:Math.random()*w,y:h+10,r:Math.random()*3+1,v:Math.random()*.8+.4,p:Math.random()*6.3});
+      for(const b of bulles){b.y-=b.v;const X=b.x+Math.sin(b.y*.03+b.p)*6;x.globalAlpha=.5;x.strokeStyle='#BDF2EA';x.lineWidth=.8;x.beginPath();x.arc(X,b.y,b.r,0,6.283);x.stroke();
+        x.globalAlpha=.6;x.fillStyle='#E4EEE9';x.beginPath();x.arc(X-b.r*.35,b.y-b.r*.35,b.r*.25,0,6.283);x.fill()}
+      bulles=bulles.filter(b=>b.y>-10);
+      requestAnimationFrame(frame)}
+    x.globalAlpha=1}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
