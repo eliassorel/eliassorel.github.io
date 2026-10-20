@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Elias Sorel</title>
-<meta name="description" content="Elias Sorel : prépublications sur le vivant, la matière et le cosmos. Le Diamant, L'Icosaèdre, le poulpe, la mitochondrie, le blob, le Big Bang, Metaphysical Stones.">
+<meta name="description" content="Elias Sorel : prépublications sur le vivant, la matière et le cosmos. Le Diamant, L'Icosaèdre, le poulpe, la mitochondrie, le blob, le tardigrade, le Big Bang, Metaphysical Stones.">
 <meta name="author" content="Elias Sorel">
 <meta name="theme-color" content="#0a0e14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,7 +140,8 @@ nav button[aria-selected="true"]{background:var(--creme);border-color:var(--crem
 .texte .actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:6px}
 
 /* bestiaire : hautes cartes */
-.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.trio{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+@media (max-width:1100px){.trio{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px}}
 .duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
 .carte{display:flex;flex-direction:column;gap:22px;min-width:0}
 .carte .ecrin{aspect-ratio:4/5}
@@ -267,7 +268,7 @@ img{max-width:100%}
 
   <section class="famille band">
     <div class="inner">
-      <div class="famille-tete"><h2>Le bestiaire</h2><span class="n">trois bêtes</span></div>
+      <div class="famille-tete"><h2>Le bestiaire</h2><span class="n">quatre bêtes</span></div>
       <div class="trio">
         <article class="carte">
           <div class="ecrin" style="--a:#c8963e;--b:#2081a8"><span class="mots">Le corps distribué</span><div><div class="chiffre">3</div><div class="leg">cœurs, et un sang bleu à l'hémocyanine</div></div></div>
@@ -286,6 +287,12 @@ img{max-width:100%}
           <h3>Le blob<span>l'accord sans chef</span></h3>
           <p>Un réseau de veines qui pulse et se réorganise. La coordination sans centre, lue dans un être d'une seule cellule.</p>
           <div class="meta"><a class="lire" href="https://doi.org/10.5281/zenodo.22870114">Lire</a><span class="doi">22870114</span></div>
+        </article>
+        <article class="carte">
+          <div class="ecrin" style="--a:#7d94a3;--b:#3a4a5a"><span class="mots">Cryptobiose</span><div><div class="chiffre">30</div><div class="leg">ans gelé, puis il est reparti (Tsujimoto, 2016)</div></div></div>
+          <h3>Le tardigrade<span>la survie par le retrait</span></h3>
+          <p>Un corps qui ne change presque plus, un génome qui a beaucoup changé. Et si la stase n'était pas une absence d'évolution, mais son déplacement ?</p>
+          <div class="meta"><a class="lire" href="https://zenodo.org/search?q=%22Le%20tardigrade%22%20Sorel">Lire</a><span class="doi">Zenodo</span></div>
         </article>
       </div>
     </div>
