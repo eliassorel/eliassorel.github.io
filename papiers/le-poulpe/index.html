@@ -1,0 +1,199 @@
+<!doctype html>
+<!--
+  Elias Sorel, c'est deux.
+  L'onde bleue, l'onde dorée, et l'étincelle là où elles se croisent.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le poulpe : le corps distribué · Elias Sorel</title>
+<meta name="description" content="Le poulpe, le corps distribué (Elias Sorel, 2026) : anatomie et physiologie d&#x27;un corps sans centre, de la peau au gène. 69 pages, 210 références.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#06182a">
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="Le poulpe : le corps distribué">
+<meta name="citation_author" content="Sorel, Elias">
+<meta name="citation_author_orcid" content="0009-0003-7980-9944">
+<meta name="citation_publication_date" content="2026/10/02">
+<meta name="citation_language" content="fr">
+<meta name="citation_doi" content="10.5281/zenodo.22676077">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_technical_report_institution" content="Zenodo">
+<meta name="citation_keywords" content="poulpe; Octopus vulgaris; céphalopodes; neurobiologie; chromatophores; édition de l&#x27;ARN; cognition distribuée; corps sans centre">
+<meta name="citation_abstract_html_url" content="https://eliassorel.github.io/papiers/le-poulpe/">
+<meta name="DC.title" content="Le poulpe : le corps distribué">
+<meta name="DC.creator" content="Sorel, Elias">
+<meta name="DC.date" content="2026-10-02">
+<meta name="DC.identifier" content="doi:10.5281/zenodo.22676077">
+<meta name="DC.rights" content="CC BY 4.0">
+<link rel="canonical" href="https://eliassorel.github.io/papiers/le-poulpe/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--fond:#06182a;--clair:#e9f4f8;--accent:#2081a8;--accent-clair:#7fd0e6;--or:#c8963e;--or-chiffre:#e0b968;--ecrin:#0b2a3a;--ecrin-bord:#155e7d;--pastille-fond:rgba(11,42,58,.75);--pastille-bord:#2081a8;--fond-bandeau:#06182a;--brumes:radial-gradient(30% 25% at 70% 30%,rgba(58,166,201,.35),transparent 70%);--titre:Lora,Georgia,serif;--serif:Lora,Georgia,serif;--sans:"Source Sans 3",Arial,sans-serif;--mono:"JetBrains Mono",monospace;
+  --surface:#ffffff;--surface-2:#f5f3ee;--ink:#454b50;--ink-strong:#06182a;--ink-muted:#626a71;--line:#e4e0d8;--or-texte:#8a6a22}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#0c1116;--surface-2:#141b22;--ink:#d2d0c8;--ink-strong:#f1ede2;--ink-muted:#9aa2a8;--line:#253039;--or-texte:#d4a82f;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
+.band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.inner{max-width:880px;margin:0 auto}
+a{color:inherit}
+a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
+[hidden]{display:none!important}
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--clair);background:var(--fond-bandeau)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;background:var(--brumes)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:derive 38s ease-in-out infinite alternate}
+@keyframes derive{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}}
+.ciel{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px;pointer-events:none}
+.bandeau .inner a,.bandeau .inner nav{pointer-events:auto}
+.haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--clair);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--clair)}
+.retour:hover{opacity:1}
+.langue{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--clair)}
+.langue span{background:var(--clair);color:var(--fond)}
+.langue a:hover{background:rgba(255,255,255,.14)}
+.titre{display:grid;gap:20px;max-width:660px}
+.mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
+h1{font-family:var(--titre);font-weight:var(--titre-poids,500);font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--clair);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--accent-clair)}
+.parties{display:flex;flex-wrap:wrap;gap:8px}
+.parties span{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:var(--pastille-fond);border:1px solid var(--pastille-bord);color:var(--clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--clair)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--clair);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;opacity:.75;margin-top:6px}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
+.ecrin{background:var(--ecrin);border:1px solid var(--ecrin-bord);border-radius:12px;padding:18px 18px 16px;color:var(--clair);position:relative;overflow:hidden}
+.ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.ecrin b{display:block;font-family:var(--titre);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin b.long{font-size:28px;line-height:1.15;white-space:nowrap}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;opacity:.92}
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
+.btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
+.btn.plein{background:var(--fond);color:var(--clair)}
+.btn.plein:hover{filter:brightness(1.3)}
+.btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
+.btn.trait:hover{background:var(--surface-2)}
+.taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
+section{padding-block:40px 0}
+h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
+p{margin:0 0 1em;max-width:68ch}
+.chiffres-texte{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.chiffres-texte div{background:var(--surface-2);border-radius:10px;padding:14px 16px;border-left:2px solid var(--or)}
+.chiffres-texte b{display:block;font-family:var(--titre);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.chiffres-texte span{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--ink-muted)}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+.plan li:first-child{border-top:0}
+.plan li em{font-style:normal;font:600 10px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px;color:var(--ink-strong);background:var(--surface-2);border:1px solid var(--line)}
+.p-etabli{color:#0f6e56;background:#e1f5ee;border-color:#e1f5ee} .p-debattu{color:#854f0b;background:#faeeda;border-color:#faeeda} .p-hypo{color:#6b3f8f;background:#f1e8f7;border-color:#f1e8f7} .p-lecture{color:#185fa5;background:#e6f1fb;border-color:#e6f1fb} .p-calcul{color:#4a4f54;background:#eceef0;border-color:#eceef0}
+.abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
+.abstract p:last-child{margin:0}
+.mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
+.mots li{list-style:none;font-family:var(--sans);font-size:14px;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.citer{font-family:var(--mono);font-size:13.5px;line-height:1.6;background:var(--surface-2);border-left:2px solid var(--or);padding:16px 18px;border-radius:0 8px 8px 0;overflow-wrap:anywhere}
+dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
+dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
+dl.meta .doi{font-family:var(--mono);font-size:14px}
+footer{margin-top:96px;background:var(--fond);color:var(--clair)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
+footer a{text-decoration:none} footer a:hover{color:var(--or)}
+@media (max-width:760px){.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+
+
+</style>
+</head>
+<body>
+<header class="bandeau band">
+  <canvas class="ciel" id="ciel" aria-hidden="true"></canvas>
+  <div class="inner">
+    <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-github-io.translate.goog/papiers/le-poulpe/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
+    <div class="titre">
+      <span class="mention">Document de travail · soumis à discussion</span>
+      <h1>Le poulpe</h1>
+      <p class="sous-titre">le corps distribué</p>
+      <div class="parties"><span>Céphalopodes</span><span>Neurobiologie</span><span>Édition de l&#x27;ARN</span></div>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« Le poulpe est une réponse, autre que la nôtre, à une question que tout corps doit résoudre : où loger l'esprit ? Ni au-dessus ni en dessous, à côté. »<small>Elias Sorel, Le poulpe, 2026</small></p>
+    </div>
+  </div>
+</header>
+<main class="band">
+<div class="inner">
+  <div class="chiffres"><div class="ecrin"><b>12</b><span>sections, de la peau au gène</span></div><div class="ecrin"><b>6</b><span>planches</span></div><div class="ecrin"><b>210</b><span>références</span></div><div class="ecrin"><b>69</b><span>pages</span></div></div>
+  <div class="actions"><a class="btn plein" href="https://doi.org/10.5281/zenodo.22676077">Lire sur Zenodo</a><span class="taille">Texte en français, 69 pages</span></div>
+  <section><h2>Résumé</h2><p><em>Anatomie et physiologie d'un corps sans centre.</em></p><p>Ce texte ne révèle aucune créature rare. Il décrypte la plus banale qui soit : un poulpe, celui des marchés, des documentaires, des assiettes. C'est là tout le pari. Nous croyons connaître cet animal, nous en récitons trois faits, il est intelligent, il a trois cœurs, la femelle meurt sur ses œufs, et nous passons. Or ces trois faits sont l'écume. Sous eux se tient une architecture du vivant dont les pièces existent, chacune dans sa revue, son laboratoire, son silo. Les réunir a demandé de fouiller loin. Ce document est cette réunion.</p><p>Je ne parlerai pas de « l'intelligence du poulpe » au sens où on l'entend d'ordinaire, l'animal malin qui ouvre des bocaux et s'évade des aquariums. Cette histoire-là a été racontée mille fois, et elle pose la mauvaise question : « est-il intelligent comme nous ? » Je prends le problème par l'autre bout. Je décrypte le corps, entier, de la peau au gène, et je montre que l'intelligence, ici, n'est pas une prouesse à admirer : c'est une conséquence de la façon dont ce corps est agencé.</p><p>Une règle tient tout le texte : Chaque chiffre de ce document porte l'espèce sur laquelle il a été mesuré. Quand il n'existe pas, c'est écrit, et il n'est pas remplacé.</p><div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-lecture">LECTURE</span><span class="pill ">À SOUMETTRE</span></div></section>
+  <section><h2>En chiffres</h2><div class="chiffres-texte"><div><b>500 000</b><span>neurones consacrés aux seuls chromatophores, chez Octopus vulgaris (Messenger 2001)</span></div><div><b>480 nm</b><span>la longueur d'onde où la peau isolée réagit le plus vite, sans œil ; chez Octopus bimaculoides (Kingston et al. 2015)</span></div><div><b>1,3 °</b><span>son seuil de discrimination d'angle de polarisation, mesuré chez le poulpe ; 15,2 ° chez l'écrevisse (Temple et al. 2021)</span></div><div><b>× 4</b><span>les cordons nerveux axiaux des bras contiennent quatre fois plus de neurones que le cerveau central (Planche 1 : « les bras, quatre fois les neurones du cerveau central »)</span></div><div><b>1 800 000 → 25 000 000 → 65 000</b><span>entrées, interneurones (amacrines, une seule entrée chacune) et sorties du lobe vertical : l'entonnoir (Fig. 4)</span></div><div><b>54 287 à 86 230</b><span>sites de recodage de l'ARN chez les coléoïdes, contre 3 % des messagers humains portant un site recodé (Liscovitch-Brauer et al. 2017)</span></div><div><b>2,7 Gb</b><span>la taille du génome, pour 33 638 gènes codants ; 168 protocadhérines ; 45 % d'éléments répétés, chez Octopus bimaculoides (Albertin et al. 2015)</span></div><div><b>6 000</b><span>poulpes sur 2,5 hectares, au fond du Pacifique, près d'un volcan éteint : la plus grande agrégation de poulpes connue sur Terre (Barry et al. 2023)</span></div><div><b>6 957 m</b><span>le record de profondeur publié, dans la fosse de Java, pour un Grimpoteuthis (Jamieson &amp; Vecchione 2020)</span></div></div></section>
+  <section><h2>Le plan</h2><ul class="plan"><li><em>Section 1</em><span>La peau, un écran et non une enveloppe</span></li><li><em>Section 2</em><span>L'œil, un décrypteur et non une caméra</span></li><li><em>Section 3</em><span>Les autres entrées, celles dont on ne parle jamais</span></li><li><em>Section 4</em><span>Les bras, le mouvement et le soi</span></li><li><em>Section 5</em><span>Le centre, petit, bricolé, protégé</span></li><li><em>Section 6</em><span>Apprendre et retenir, deux choses différentes</span></li><li><em>Section 7</em><span>La machine interne</span></li><li><em>Section 8</em><span>Le gène, l'hérédité qu'on retouche</span></li><li><em>Section 9</em><span>Naître, grandir, finir</span></li><li><em>Section 10</em><span>Le noyau dur, ce que la souplesse épargne</span></li><li><em>Section 11</em><span>Ce qu'il fait de son corps</span></li><li><em>Section 12</em><span>Le recul, une autre réponse</span></li></ul></section>
+  
+  
+  <section><h2>Mots-clés</h2><ul class="mots"><li>poulpe</li><li>Octopus vulgaris</li><li>céphalopodes</li><li>neurobiologie</li><li>chromatophores</li><li>édition de l&#x27;ARN</li><li>cognition distribuée</li><li>corps sans centre</li></ul></section>
+  <section><h2>Pour citer</h2><p class="citer">Sorel, E. (2026). <i>Le poulpe : le corps distribué</i> (Version 7). Zenodo. https://doi.org/10.5281/zenodo.22676077</p></section>
+  <section><h2>Fiche</h2><dl class="meta">
+    <dt>Auteur</dt><dd>Elias Sorel</dd>
+    <dt>Version</dt><dd>7, octobre 2026</dd>
+    <dt>Type</dt><dd>Prépublication</dd>
+    <dt>Langue</dt><dd>Français</dd>
+    <dt>DOI</dt><dd class="doi"><a href="https://doi.org/10.5281/zenodo.22676077">10.5281/zenodo.22676077</a></dd>
+    <dt>Licence</dt><dd>CC BY 4.0</dd>
+  </dl></section>
+</div>
+</main>
+<footer class="band"><div class="inner">
+  <a href="/">Elias Sorel</a>
+  <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a>
+  <a href="https://doi.org/10.5281/zenodo.22676077">Zenodo</a>
+  <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+  <span>Textes sous licence CC BY 4.0</span>
+</div></footer>
+<script>
+/* Le ciel de la pièce : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,mx=.5,my=.5;
+  band.addEventListener('pointermove',ev=>{const b=band.getBoundingClientRect();mx=(ev.clientX-b.left)/w;my=(ev.clientY-b.top)/h},{passive:true});
+  const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
+  const art=(function(){ 
+/* La peau du poulpe : un champ de chromatophores qui s'ouvrent et se ferment en vagues. */
+const pal=[[224,185,104],[200,150,62],[176,125,43],[127,208,230],[58,166,201],[32,129,168],[226,230,233],[196,202,206]];
+let cells=[],pas=15,vagues=[];
+function taille(){cells=[];pas=w<760?13:15;for(let y=pas/2;y<h+pas;y+=pas*.87){const dec=(Math.round(y/pas)%2)*pas/2;for(let X=dec;X<w+pas;X+=pas)cells.push({x:X+(Math.random()-.5)*4,y:y+(Math.random()-.5)*4,p:Math.random()*6.3,k:(Math.random()*pal.length)|0})}}
+function frame(t){
+  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0b2a3a');g.addColorStop(.6,'#06182a');g.addColorStop(1,'#030c16');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+  while(clics.length){const k=clics.shift();vagues.push({x:k[0],y:k[1],t0:t})}
+  if(!calme&&Math.random()<.006)vagues.push({x:Math.random()*w,y:Math.random()*h,t0:t});
+  vagues=vagues.filter(v=>t-v.t0<6);
+  const px=mx*w,py=my*h;
+  for(const s of cells){
+    const dp=Math.hypot(s.x-px,s.y-py);
+    let v=Math.sin(s.x*.012+s.y*.008-t*1.1+s.p*.3)*.5+Math.sin(dp*.03-t*2.4)*.5*Math.exp(-dp/420);
+    for(const q of vagues){const dd=Math.hypot(s.x-q.x,s.y-q.y),r=(t-q.t0)*260;v+=Math.exp(-Math.pow((dd-r)/40,2))*1.2*(1-(t-q.t0)/6)}
+    const ouvert=Math.max(0,Math.min(1,.5+v*.6));
+    const zone=(Math.sin(s.x*.004-t*.15)+Math.cos(s.y*.005+t*.12)+2)/4;
+    const i=Math.min(pal.length-1,Math.floor((zone*.6+ouvert*.4)*pal.length+s.k*.15)%pal.length);
+    const col=pal[i];x.globalAlpha=.25+.65*ouvert;x.fillStyle=`rgb(${col[0]},${col[1]},${col[2]})`;
+    x.beginPath();x.arc(s.x,s.y,1+ouvert*pas*.42,0,6.283);x.fill()}
+  /* un voile d'eau par-dessus, pour que le texte reste lisible */
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(3,12,22,.72)');v.addColorStop(.55,'rgba(3,12,22,.35)');v.addColorStop(1,'rgba(3,12,22,.05)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+}
+return {taille,frame};
+ })();
+  addEventListener('resize',taille);taille();
+  function frame(ms){art.frame(calme?0:ms/1000);if(!calme)requestAnimationFrame(frame)}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
