@@ -108,7 +108,7 @@ dl.meta .doi{font-family:var(--mono);font-size:14px}
 footer{margin-top:96px;background:var(--fond);color:var(--clair)}
 footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
 footer a{text-decoration:none} footer a:hover{color:var(--or)}
-@media (max-width:760px){.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+@media (max-width:760px){.ecrin b.long{font-size:22px;white-space:normal}.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
 
 
 </style>
@@ -166,31 +166,63 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
   const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
   const art=(function(){ 
-/* Le blob qui pousse : des milliers d'agents qui déposent leur trace et la suivent. Sans chef. La souris est de la nourriture. */
-const S=3;let gw,gh,trail,tmp,ag=[],off,ox,img,bouge=false,lx=-1,ly=-1;
-function taille(){gw=Math.ceil(w/S);gh=Math.ceil(h/S);trail=new Float32Array(gw*gh);tmp=new Float32Array(gw*gh);
+/* Sous-bois : un tronc mort couché dans la mousse, et le blob qui s'y étale pour relier ses flocons d'avoine. Sans chef. */
+const S=3;let gw,gh,trail,tmp,ag=[],off,ox,img,decor,feuilles=[],poussieres=[],flocons=[],masque,V=1,fn=0;
+let A,B,R;
+function surTronc(X,Y){const ax=A[0],ay=A[1],bx=B[0],by=B[1],dx=bx-ax,dy=by-ay,u=Math.max(0,Math.min(1,((X-ax)*dx+(Y-ay)*dy)/(dx*dx+dy*dy)));return Math.hypot(X-(ax+dx*u),Y-(ay+dy*u))<R*(.92-.1*Math.abs(u-.5))}
+function taille(){const mob=w<760;A=[w*(mob?-.1:.32),h*(mob?.86:.82)];B=[w*1.1,h*(mob?.62:.5)];R=h*(mob?.13:.17);
+  /* le décor, peint une fois */
+  decor=document.createElement('canvas');decor.width=c.width;decor.height=c.height;const dx=decor.getContext('2d');dx.setTransform(c.width/w,0,0,c.height/h,0,0);
+  let g=dx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1c2a14');g.addColorStop(.55,'#121a0c');g.addColorStop(1,'#0a0f07');dx.fillStyle=g;dx.fillRect(0,0,w,h);
+  for(let k=0;k<9;k++){const X=Math.random()*w,lw=20+Math.random()*60;dx.globalAlpha=.25+Math.random()*.2;dx.fillStyle='#0b1208';dx.fillRect(X,0,lw,h)}
+  dx.globalAlpha=1;
+  /* le tronc */
+  const ang=Math.atan2(B[1]-A[1],B[0]-A[0]),L=Math.hypot(B[0]-A[0],B[1]-A[1]);dx.save();dx.translate(A[0],A[1]);dx.rotate(ang);
+  const tg=dx.createLinearGradient(0,-R,0,R);tg.addColorStop(0,'#5a4128');tg.addColorStop(.35,'#3e2c1b');tg.addColorStop(1,'#1d140c');dx.fillStyle=tg;dx.beginPath();dx.roundRect(0,-R,L,R*2,R);dx.fill();
+  for(let k=0;k<70;k++){const yy=-R+Math.random()*R*2,x0=Math.random()*L;dx.globalAlpha=.25;dx.strokeStyle=Math.random()<.5?'#241810':'#6b5034';dx.lineWidth=1+Math.random()*2;dx.beginPath();dx.moveTo(x0,yy);dx.bezierCurveTo(x0+40,yy+Math.random()*6-3,x0+90,yy+Math.random()*6-3,x0+140+Math.random()*80,yy);dx.stroke()}
+  dx.restore();
+  /* la mousse */
+  for(let k=0;k<420;k++){const u=Math.random(),X=A[0]+(B[0]-A[0])*u+(Math.random()-.5)*60,Y=A[1]+(B[1]-A[1])*u+R*(.75+Math.random()*.5)*(Math.random()<.5?1:-.95);
+    dx.globalAlpha=.5+Math.random()*.4;dx.fillStyle=['#3f6a22','#2f5419','#5b8a2c','#24410f'][k%4];dx.beginPath();dx.arc(X,Y,2+Math.random()*7,0,6.283);dx.fill()}
+  for(let k=0;k<160;k++){const X=Math.random()*w,Y=h*(.88+Math.random()*.12);dx.globalAlpha=.6;dx.fillStyle=['#2f5419','#3f6a22','#4a3520'][k%3];dx.beginPath();dx.arc(X,Y,3+Math.random()*9,0,6.283);dx.fill()}
+  /* la simulation, sur le tronc seulement */
+  gw=Math.ceil(w/S);gh=Math.ceil(h/S);trail=new Float32Array(gw*gh);tmp=new Float32Array(gw*gh);masque=new Uint8Array(gw*gh);
+  for(let y=0;y<gh;y++)for(let X=0;X<gw;X++)masque[y*gw+X]=surTronc(X*S,y*S)?1:0;
   off=document.createElement('canvas');off.width=gw;off.height=gh;ox=off.getContext('2d');img=ox.createImageData(gw,gh);
-  const N=Math.min(16000,Math.round(gw*gh/6));ag=[];
-  for(let i=0;i<N;i++){ag.push([gw*(.3+.7*Math.random()),gh*Math.random(),Math.random()*6.283])}
-  V=1;for(let k=0;k<170;k++)pasSim();V=.35}
-function lit(X,Y){X|=0;Y|=0;if(X<0||Y<0||X>=gw||Y>=gh)return 0;return trail[Y*gw+X]}
-let V=1,frameN=0;
-function pasSim(){const SA=.55,SD=7,RA=.42;
-  for(const a of ag){const f=lit(a[0]+Math.cos(a[2])*SD,a[1]+Math.sin(a[2])*SD),l=lit(a[0]+Math.cos(a[2]-SA)*SD,a[1]+Math.sin(a[2]-SA)*SD),r=lit(a[0]+Math.cos(a[2]+SA)*SD,a[1]+Math.sin(a[2]+SA)*SD);
-    if(f>l&&f>r){}else if(f<l&&f<r){a[2]+=(Math.random()<.5?-1:1)*RA}else if(l>r){a[2]-=RA}else if(r>l){a[2]+=RA}
-    a[2]+=(Math.random()-.5)*.12;a[0]+=Math.cos(a[2])*V;a[1]+=Math.sin(a[2])*V;
-    if(a[0]<1||a[0]>=gw-1||a[1]<1||a[1]>=gh-1){a[2]+=Math.PI*(.5+Math.random());a[0]=Math.min(gw-2,Math.max(1,a[0]));a[1]=Math.min(gh-2,Math.max(1,a[1]))}
-    trail[(a[1]|0)*gw+(a[0]|0)]+=.18}
-  if(mx*w!==lx||my*h!==ly){bouge=true;lx=mx*w;ly=my*h}
-  if(bouge){const fx=(mx*gw)|0,fy=(my*gh)|0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const X=fx+dx,Y=fy+dy;if(X>0&&Y>0&&X<gw&&Y<gh)trail[Y*gw+X]+=1.5}}
-  while(clics.length){const k=clics.shift(),X=(k[0]/S)|0,Y=(k[1]/S)|0;for(let dy=-5;dy<=5;dy++)for(let dx=-5;dx<=5;dx++){const xx=X+dx,yy=Y+dy;if(xx>0&&yy>0&&xx<gw&&yy<gh)trail[yy*gw+xx]+=25}}
-  for(let y=1;y<gh-1;y++)for(let X=1;X<gw-1;X++){const i=y*gw+X;tmp[i]=(trail[i]*4+trail[i-1]+trail[i+1]+trail[i-gw]+trail[i+gw])/8*.94}
+  flocons=[];for(let k=0;k<6;k++){const u=.12+k*.15+Math.random()*.05,X=A[0]+(B[0]-A[0])*u,Y=A[1]+(B[1]-A[1])*u+(Math.random()-.5)*R*.9;flocons.push([X,Y,Math.random()*6.3])}
+  ag=[];const N=Math.min(9000,Math.round(gw*gh/14)),u0=.55,sx=(A[0]+(B[0]-A[0])*u0)/S,sy=(A[1]+(B[1]-A[1])*u0)/S;
+  for(let k=0;k<N;k++){const a2=Math.random()*6.283,r=Math.random()*R*.4/S;ag.push([sx+Math.cos(a2)*r,sy+Math.sin(a2)*r,a2])}
+  V=1;for(let k=0;k<140;k++)pasSim();V=.4;
+  feuilles=Array.from({length:mob?6:12},()=>nouvelleFeuille(true));poussieres=Array.from({length:mob?30:60},()=>({x:Math.random()*w,y:Math.random()*h,p:Math.random()*6.3,r:Math.random()*1.6+.4}))}
+function nouvelleFeuille(partout){return{x:Math.random()*w,y:partout?Math.random()*h:-20,r:6+Math.random()*7,a:Math.random()*6.3,va:(Math.random()-.5)*.03,v:.3+Math.random()*.4,p:Math.random()*6.3,c:['#8a5a1e','#a8742a','#6e4416','#b8862e'][(Math.random()*4)|0]}}
+function lit(X,Y){X|=0;Y|=0;if(X<0||Y<0||X>=gw||Y>=gh)return -1;return masque[Y*gw+X]?trail[Y*gw+X]:-1}
+function pasSim(){const SA=.55,SD=6,RA=.42;
+  for(const a2 of ag){const f=lit(a2[0]+Math.cos(a2[2])*SD,a2[1]+Math.sin(a2[2])*SD),l=lit(a2[0]+Math.cos(a2[2]-SA)*SD,a2[1]+Math.sin(a2[2]-SA)*SD),r=lit(a2[0]+Math.cos(a2[2]+SA)*SD,a2[1]+Math.sin(a2[2]+SA)*SD);
+    if(f>l&&f>r){}else if(f<l&&f<r){a2[2]+=(Math.random()<.5?-1:1)*RA}else if(l>r){a2[2]-=RA}else if(r>l){a2[2]+=RA}
+    a2[2]+=(Math.random()-.5)*.1;const nx=a2[0]+Math.cos(a2[2])*V,ny=a2[1]+Math.sin(a2[2])*V;
+    if(lit(nx,ny)<0){a2[2]+=Math.PI*(.6+Math.random()*.8)}else{a2[0]=nx;a2[1]=ny;trail[(ny|0)*gw+(nx|0)]+=.2}}
+  for(const f of flocons){const X=(f[0]/S)|0,Y=(f[1]/S)|0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const k=(Y+dy)*gw+X+dx;if(masque[k])trail[k]+=.9}}
+  const fx=(mx*gw)|0,fy=(my*gh)|0;for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const k=(fy+dy)*gw+fx+dx;if(k>0&&k<gw*gh&&masque[k])trail[k]+=1}
+  for(let y=1;y<gh-1;y++)for(let X=1;X<gw-1;X++){const i=y*gw+X;tmp[i]=masque[i]?(trail[i]*4+trail[i-1]+trail[i+1]+trail[i-gw]+trail[i+gw])/8*.93:0}
   const z=trail;trail=tmp;tmp=z}
-function frame(t){frameN++;if(!calme&&frameN%3===0)pasSim();
-  const D=img.data,cx=gw*.7,cy=gh*.5;for(let i=0;i<gw*gh;i++){const X=i%gw,Y=(i/gw)|0,dd=Math.hypot(X-cx,Y-cy);const pouls=calme?1:.78+.22*Math.sin(t*.9-dd*.05);const v=Math.min(1,Math.pow(trail[i]/1.6,.75))*pouls;const j=i*4;
-    D[j]=12+v*243;D[j+1]=10+v*207;D[j+2]=6+v*v*70;D[j+3]=255}
-  ox.putImageData(img,0,0);x.imageSmoothingEnabled=true;x.globalAlpha=1;x.drawImage(off,0,0,w,h);
-  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(10,8,4,.8)');v.addColorStop(.5,'rgba(10,8,4,.35)');v.addColorStop(1,'rgba(10,8,4,0)');x.fillStyle=v;x.fillRect(0,0,w,h);
+function frame(t){fn++;if(!calme&&fn%3===0)pasSim();
+  while(clics.length){const k=clics.shift();if(surTronc(k[0],k[1]))flocons.push([k[0],k[1],Math.random()*6.3]);if(flocons.length>12)flocons.splice(0,1)}
+  x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
+  /* rais de lumière à travers les feuillages */
+  for(let k=0;k<4;k++){const X=w*(.2+k*.22)+Math.sin(t*.15+k)*40;const gr=x.createLinearGradient(X,0,X+200,h);gr.addColorStop(0,'rgba(255,236,170,.14)');gr.addColorStop(1,'rgba(255,236,170,0)');x.fillStyle=gr;x.beginPath();x.moveTo(X,0);x.lineTo(X+70,0);x.lineTo(X+300,h);x.lineTo(X+150,h);x.closePath();x.fill()}
+  /* les flocons d'avoine */
+  for(const f of flocons){x.save();x.translate(f[0],f[1]);x.rotate(f[2]);x.globalAlpha=.95;x.fillStyle='#e8dcb8';x.beginPath();x.ellipse(0,0,7,4.5,0,0,6.283);x.fill();x.globalAlpha=.4;x.strokeStyle='#a8946a';x.stroke();x.restore()}
+  /* le blob, jaune vif, avec ses veines qui battent */
+  const D=img.data,ux=(A[0]+(B[0]-A[0])*.55)/S,uy=(A[1]+(B[1]-A[1])*.55)/S;
+  for(let i=0;i<gw*gh;i++){const j=i*4;if(!masque[i]){D[j+3]=0;continue}const X=i%gw,Y=(i/gw)|0,dd=Math.hypot(X-ux,Y-uy);const pouls=calme?1:.8+.2*Math.sin(t*.8-dd*.06);
+    const v=Math.min(1,Math.pow(trail[i]/1.4,.7))*pouls;D[j]=235+v*20;D[j+1]=180+v*45;D[j+2]=20+v*40;D[j+3]=Math.round(Math.min(1,v*1.25)*235)}
+  ox.putImageData(img,0,0);x.imageSmoothingEnabled=true;x.drawImage(off,0,0,w,h);
+  /* feuilles qui tombent, poussières dorées dans la lumière */
+  for(const p of poussieres){const X=p.x+Math.sin(t*.3+p.p)*20,Y=p.y+Math.cos(t*.25+p.p)*14;x.globalAlpha=.25+.35*Math.abs(Math.sin(t+p.p));x.fillStyle='#ffe9a8';x.beginPath();x.arc(X,Y,p.r,0,6.283);x.fill()}
+  for(let k=0;k<feuilles.length;k++){const f=feuilles[k];if(!calme){f.y+=f.v;f.x+=Math.sin(t*.8+f.p)*.6+(mx-.5)*.3;f.a+=f.va;if(f.y>h+20)feuilles[k]=nouvelleFeuille(false)}
+    x.save();x.translate(f.x,f.y);x.rotate(f.a);x.globalAlpha=.85;x.fillStyle=f.c;x.beginPath();x.moveTo(0,-f.r);x.quadraticCurveTo(f.r*.8,0,0,f.r);x.quadraticCurveTo(-f.r*.8,0,0,-f.r);x.fill();
+    x.globalAlpha=.5;x.strokeStyle='#4a2e0e';x.lineWidth=.7;x.beginPath();x.moveTo(0,-f.r);x.lineTo(0,f.r);x.stroke();x.restore()}
+  const v2=x.createLinearGradient(0,0,w,0);v2.addColorStop(0,'rgba(8,12,5,.78)');v2.addColorStop(.5,'rgba(8,12,5,.3)');v2.addColorStop(1,'rgba(8,12,5,0)');x.globalAlpha=1;x.fillStyle=v2;x.fillRect(0,0,w,h);
 }
 return {taille,frame};
  })();
