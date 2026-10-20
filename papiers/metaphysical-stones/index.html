@@ -184,9 +184,9 @@ function taille(){const mob=w<760;zone=mob?[w*.04,h*.5,w*.96,h*.97]:[w*.6,h*.06,
   while(gal.length<N&&essais<20000){essais++;const r=base*(.6+Math.random()*.6),X=zone[0]+r+Math.random()*(zone[2]-zone[0]-2*r),Y=zone[1]+r+Math.random()*(zone[3]-zone[1]-2*r);
     if(gal.some(q=>Math.hypot(q.x-X,q.y-Y)<(q.r+r)*.95))continue;
     const ton=[[58,66,74],[74,70,64],[46,56,62],[86,88,90],[64,58,54],[40,48,54]][gal.length%6];
-    gal.push({x:X,y:Y,r,f:contour(r),v:veine(r),rot:Math.random()*6.3,ton,eclat:0,p:Math.random()*6.3})}
+    gal.push({x:X,y:Y,ox:0,oy:0,vx:0,vy:0,r,f:contour(r),v:veine(r),rot:Math.random()*6.3,ton,eclat:0,p:Math.random()*6.3})}
   reflets=Array.from({length:mob?40:80},()=>({x:Math.random()*w,y:Math.random()*h,l:30+Math.random()*90,v:.2+Math.random()*.4,p:Math.random()*6.3}))}
-function dessineGalet(q,t){if(q.eclat>.02){const hh=x.createRadialGradient(q.x,q.y,0,q.x,q.y,q.r*2.6);hh.addColorStop(0,'rgba(240,199,90,'+(.38*q.eclat)+')');hh.addColorStop(1,'rgba(240,199,90,0)');x.globalAlpha=1;x.fillStyle=hh;x.beginPath();x.arc(q.x,q.y,q.r*2.6,0,6.283);x.fill()}x.save();x.translate(q.x,q.y);x.rotate(q.rot);
+function dessineGalet(q,t){if(q.eclat>.02){const hh=x.createRadialGradient(q.x+q.ox,q.y+q.oy,0,q.x+q.ox,q.y+q.oy,q.r*2.6);hh.addColorStop(0,'rgba(240,199,90,'+(.38*q.eclat)+')');hh.addColorStop(1,'rgba(240,199,90,0)');x.globalAlpha=1;x.fillStyle=hh;x.beginPath();x.arc(q.x+q.ox,q.y+q.oy,q.r*2.6,0,6.283);x.fill()}x.save();x.translate(q.x+q.ox,q.y+q.oy);x.rotate(q.rot);
   /* ombre portée */
   x.globalAlpha=.5;x.fillStyle='#02070a';x.save();x.translate(q.r*.08,q.r*.14);lisse(q.f);x.fill();x.restore();
   const [R0,G0,B0]=q.ton,e=q.eclat;
@@ -208,13 +208,16 @@ function bulle(texte,X,Y,alpha){const mob=w<760,fs=mob?16:19;x.font='italic '+fs
 function frame(t){
   /* la souris : survoler un galet l'allume */
   const sx=mx*w,sy=my*h;if(Math.abs(sx-dmx)+Math.abs(sy-dmy)>2){dmx=sx;dmy=sy;calmeSouris=t;let best=-1,bd=1e9;gal.forEach((q,k)=>{const d=Math.hypot(q.x-sx,q.y-sy);if(d<q.r*1.1&&d<bd){bd=d;best=k}});if(best>=0&&best!==actif)eveille(best,t)}
+  /* une pierre qu'on garde trop longtemps sous la main s'échappe : elle glisse, et une autre s'allume ailleurs */
+  const dessous=actif>=0&&Math.hypot(gal[actif].x+gal[actif].ox-sx,gal[actif].y+gal[actif].oy-sy)<gal[actif].r*1.3;
+  if(!calme&&dessous&&t-depuis>2.2){const q=gal[actif],an=Math.atan2(q.y-sy,q.x-sx)+(Math.random()-.5)*.8;q.vx+=Math.cos(an)*9;q.vy+=Math.sin(an)*9;ronds.push({x:q.x+q.ox,y:q.y+q.oy,t0:t,r:q.r*.6});let k;do{k=(Math.random()*gal.length)|0}while(k===actif);eveille(k,t)}
   /* sinon, la rivière en réveille une toute seule */
-  if(!calme&&t-calmeSouris>4&&t-depuis>6)eveille((Math.random()*gal.length)|0,t);
+  else if(!calme&&!dessous&&t-calmeSouris>4&&t-depuis>6)eveille((Math.random()*gal.length)|0,t);
   while(clics.length){const k=clics.shift();ricos.push({x:k[0],y:k[1],t0:t,vx:(w<760?3:5)*(k[0]<w*.75?1:-1),n:0,dernier:t})}
   x.globalAlpha=1;x.drawImage(decor,0,0,w,h);
   /* l'eau qui coule par-dessus : des reflets qui glissent */
   x.lineCap='round';for(const r of reflets){if(!calme){r.x-=r.v;if(r.x+r.l<0){r.x=w+20;r.y=Math.random()*h}}const ond=Math.sin(t*1.2+r.p)*3;x.globalAlpha=.07+.06*Math.sin(t+r.p);x.strokeStyle='#bfe3f0';x.lineWidth=1.2;x.beginPath();x.moveTo(r.x,r.y+ond);x.quadraticCurveTo(r.x+r.l/2,r.y-ond,r.x+r.l,r.y+ond);x.stroke()}
-  for(let k=0;k<gal.length;k++){const q=gal[k];const cible=k===actif?1:0;q.eclat+=(cible-q.eclat)*.06;dessineGalet(q,t)}
+  for(let k=0;k<gal.length;k++){const q=gal[k];q.vx+=-q.ox*.015;q.vy+=-q.oy*.015;q.vx*=.9;q.vy*=.9;q.ox+=q.vx;q.oy+=q.vy;const cible=k===actif?1:0;q.eclat+=(cible-q.eclat)*.06;dessineGalet(q,t)}
   /* les ricochets */
   for(const rc of ricos){const e=t-rc.dernier;if(rc.n<6&&e>.45){rc.x+=rc.vx*60*.45*Math.pow(.82,rc.n);rc.dernier=t;rc.n++;ronds.push({x:rc.x,y:rc.y,t0:t,r:8});let best=-1,bd=1e9;gal.forEach((q,k)=>{const d=Math.hypot(q.x-rc.x,q.y-rc.y);if(d<bd){bd=d;best=k}});if(bd<120)gal[best].eclat=1,eveille(best,t)}
     if(rc.n<6){const u=Math.min(1,e/.45),X=rc.x+rc.vx*60*.45*Math.pow(.82,rc.n)*u,Y=rc.y-Math.sin(u*Math.PI)*30*Math.pow(.75,rc.n);x.globalAlpha=.9;x.fillStyle='#cfd6da';x.beginPath();x.ellipse(X,Y,7,3.5,0,0,6.283);x.fill()}}
