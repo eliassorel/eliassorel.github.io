@@ -72,7 +72,15 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.musique #etoiles{opacity:0}
 .ciel.musique #musicien{opacity:1}
 .ciel:not(.musique) .seul-musique{display:none!important}
-.ciel.musique .seul-science{display:none!important}
+.ciel:not(.fils) .seul-fils{display:none!important}
+.ciel.musique .seul-science,.ciel.fils .seul-science{display:none!important}
+.ciel.fils .seul-fils{display:revert}
+.ciel.fils .descendre.seul-fils{display:inline-flex}
+.ciel #nuages{opacity:0;transition:opacity .9s}
+.ciel.fils #nuages{opacity:1}
+.ciel.fils #etoiles{opacity:0}
+.ciel.fils{background:linear-gradient(180deg,#1d2438 0%,#3a3958 55%,#5a4a63 100%)}
+.ciel.fils .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 .ciel.musique .seul-musique{display:revert}
 .ciel.musique .descendre.seul-musique{display:inline-flex}
 .orgue-btn{display:none;align-items:center;gap:12px;margin-top:22px;width:fit-content;padding:0;background:none;border:0;cursor:pointer;font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--creme);opacity:.85}
@@ -244,6 +252,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <header class="ciel band">
   <canvas id="etoiles" aria-hidden="true"></canvas>
   <canvas id="musicien" aria-hidden="true"></canvas>
+  <canvas id="nuages" aria-hidden="true"></canvas>
   <div class="inner">
     <div class="barre">
       <svg class="mono" viewBox="0 0 60 60" role="img" aria-label="Elias Sorel"><g class="losange"><polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#e8dcc0" stroke-opacity=".35" stroke-width=".8"/><polygon points="30,9 51,30 30,51 9,30" fill="none" stroke="#d4a82f" stroke-opacity=".5" stroke-width=".6"/></g><text x="17" y="37" font-family="Lora,Georgia,serif" font-size="24" fill="#f4e3b8">E</text><text x="28" y="42" font-family="Lora,Georgia,serif" font-style="italic" font-size="24" fill="#d4a82f">S</text></svg>
@@ -254,7 +263,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       </nav>
     </div>
     <div class="titre">
-      <span class="sceau seul-science">✦ Prépublications · depuis 2026</span><span class="sceau seul-musique">♪ Musique · faite maison</span>
+      <span class="sceau seul-science">✦ Prépublications · depuis 2026</span><span class="sceau seul-musique">♪ Musique · faite maison</span><span class="sceau seul-fils">☁ Fils de pensée · les pierres</span>
       <h1><span>ELIAS</span><span>SOREL</span></h1>
       <svg class="ondes" id="ondes" viewBox="0 0 360 56" aria-hidden="true">
         <path id="onde-b" d="M0 28 L360 28" fill="none" stroke="#4a7bb8" stroke-width="2" stroke-linecap="round"/>
@@ -262,9 +271,11 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
         <a href="/etincelle/" aria-label="L'étincelle"><circle id="zone" cx="180" cy="28" r="14" fill="transparent"/><circle id="etincelle" cx="180" cy="28" r="3.5" fill="#ffffff" style="cursor:pointer"/></a>
       </svg>
       <p class="seul-science">« Le visible fait mal lire l'invisible ; l'invisible est dans le visible. »<br><em>« Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie. »</em></p>
+      <p class="seul-fils">« Ce qui bat sur le même rythme se relie. »<small>Elias Sorel</small></p>
       <p class="seul-musique">« Chacun sur son rythme et son tempo, mais des rythmes et des tempos, ça s'accorde. »<small>Elias Sorel</small></p>
       <a class="descendre seul-science" href="#masters">Les travaux</a>
       <a class="descendre seul-musique" href="#still" id="vers-still">Écouter</a>
+      <a class="descendre seul-fils" href="#v-fils">Les pierres</a>
       <button type="button" class="orgue-btn seul-musique" id="orgue-btn" aria-pressed="false"><span class="tirant"></span>Tirer le jeu d'orgue</button>
     </div>
   </div>
@@ -410,6 +421,7 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
   document.getElementById('v-science').hidden=b.dataset.v!=='science';
   document.querySelector('header.ciel').classList.toggle('musique',b.dataset.v==='musique');
+  document.querySelector('header.ciel').classList.toggle('fils',b.dataset.v==='fils');
   ['musique','fils'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
 }));
 {const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
@@ -559,6 +571,41 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
     {const Y=h-10,A=4+boom*10;x.globalAlpha=.7;x.strokeStyle='#e9c46a';x.lineWidth=1.6;x.beginPath();for(let X=0;X<=w;X+=6){const yy=Y+Math.sin(X/w*Math.PI)*Math.sin(t*14)*A;X?x.lineTo(X,yy):x.moveTo(X,yy)}x.stroke()}
     /* le texte reste lisible : voile à gauche */
     const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(13,6,8,.85)');v.addColorStop(w<760?.9:.45,'rgba(13,6,8,.25)');v.addColorStop(1,'rgba(13,6,8,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+/* Les nuages : un ciel du soir, des nuées qui dérivent sur trois plans, et des fils d'or qui flottent entre elles, où glissent de petites pierres de lumière. */
+(function(){
+  const c=document.getElementById('nuages'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,nuees=[],fils=[],mxn=.5,myn=.5,lune;
+  function nuee(R){const s=document.createElement('canvas'),W=Math.ceil(R*4),H=Math.ceil(R*2);s.width=W;s.height=H;const g=s.getContext('2d');
+    for(let k=0;k<40;k++){const X=W*(.2+Math.random()*.6),Y=H*(.45+Math.random()*.3)-Math.sin((X/W)*Math.PI)*H*.22,r=R*(.25+Math.random()*.45);
+      const gr=g.createRadialGradient(X,Y-r*.2,0,X,Y,r);gr.addColorStop(0,'rgba(255,240,245,.55)');gr.addColorStop(.6,'rgba(220,205,225,.22)');gr.addColorStop(1,'rgba(200,190,215,0)');g.fillStyle=gr;g.beginPath();g.arc(X,Y,r,0,6.283);g.fill()}
+    return s}
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);
+    const mob=w<760;nuees=[];
+    [[.35,mob?5:8,.06,.35],[.6,mob?4:6,.12,.5],[1,mob?3:5,.22,.7]].forEach(([prof,n,v,al])=>{for(let k=0;k<n;k++){const R=(mob?60:110)*prof*(0.7+Math.random()*.7);nuees.push({img:nuee(R),x:Math.random()*(w+R*4)-R*2,y:h*(.08+Math.random()*.85),v:v*(.6+Math.random()*.8),prof,al})}});
+    fils=Array.from({length:mob?3:5},(_,k)=>({y:h*(.2+k*.15),a:20+Math.random()*30,f:.002+Math.random()*.002,p:Math.random()*6.3,v:.2+Math.random()*.3,perles:Array.from({length:3},()=>({u:Math.random(),v:.0006+Math.random()*.0008}))}))}
+  addEventListener('resize',taille);taille();
+  band.addEventListener('pointermove',e=>{const r=band.getBoundingClientRect();mxn=(e.clientX-r.left)/w;myn=(e.clientY-r.top)/h},{passive:true});
+  function frame(ms){const t=ms/1000;
+    if(!band.classList.contains('fils')){requestAnimationFrame(frame);return}
+    x.clearRect(0,0,w,h);
+    /* la lune derrière les nuées */
+    {const X=w*.78,Y=h*.24,R=Math.min(w,h)*.055;const g=x.createRadialGradient(X,Y,0,X,Y,R*6);g.addColorStop(0,'rgba(255,244,220,.35)');g.addColorStop(1,'rgba(255,244,220,0)');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);const gm=x.createRadialGradient(X-R*.3,Y-R*.3,R*.1,X,Y,R);gm.addColorStop(0,'rgba(255,250,236,.8)');gm.addColorStop(.8,'rgba(236,226,210,.6)');gm.addColorStop(1,'rgba(220,210,200,0)');x.fillStyle=gm;x.beginPath();x.arc(X,Y,R,0,6.283);x.fill()}
+    /* les nuées, du plus loin au plus près */
+    for(const n of nuees){if(!calme){n.x+=n.v;if(n.x>w+n.img.width*.5)n.x=-n.img.width}
+      const px=(mxn-.5)*30*n.prof,py=(myn-.5)*16*n.prof;x.globalAlpha=n.al;x.drawImage(n.img,n.x+px,n.y-n.img.height/2+py)
+      if(n.prof===.6){ /* les fils passent entre le plan du milieu et le plan proche */ }}
+    /* les fils de pensée */
+    x.lineCap='round';
+    for(const f of fils){const pts=[];for(let X=-20;X<=w+20;X+=16){pts.push([X,f.y+Math.sin(X*f.f+t*f.v+f.p)*f.a+Math.sin(X*f.f*2.3+t*f.v*.7)*f.a*.3])}
+      x.globalAlpha=.5;x.strokeStyle='rgba(240,199,90,.8)';x.lineWidth=1;x.beginPath();pts.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();
+      for(const pe of f.perles){if(!calme){pe.u+=pe.v;if(pe.u>1)pe.u=0}const q=pts[Math.floor(pe.u*(pts.length-1))];const g=x.createRadialGradient(q[0],q[1],0,q[0],q[1],10);g.addColorStop(0,'rgba(255,236,170,.95)');g.addColorStop(1,'rgba(255,236,170,0)');x.globalAlpha=1;x.fillStyle=g;x.fillRect(q[0]-10,q[1]-10,20,20);x.fillStyle='#fff4d0';x.beginPath();x.arc(q[0],q[1],2,0,6.283);x.fill()}}
+    /* une dernière nuée devant, très légère */
+    const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(22,26,42,.72)');v.addColorStop(w<760?.9:.45,'rgba(22,26,42,.2)');v.addColorStop(1,'rgba(22,26,42,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
 })();
