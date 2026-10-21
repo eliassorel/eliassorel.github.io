@@ -1,0 +1,114 @@
+<!doctype html>
+<!--
+  Le niveau. Ce qu'on appelle stable, c'est un mouvement qui se tient.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Le niveau · Elias Sorel</title>
+<meta name="description" content="Un niveau à bulle à trois fioles. Penche ton téléphone.">
+<meta name="theme-color" content="#0b1018">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Source+Sans+3:wght@600&family=JetBrains+Mono&display=swap">
+<style>
+:root{--fond:#0b1018;--creme:#e8dcc0;--creme-2:#f4e3b8;--or:#d4a82f;--gris:#8f97a0;--liquide:#c8e86a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:radial-gradient(70% 55% at 50% 40%,#18233a 0%,transparent 70%),var(--fond);color:var(--creme);font-family:Lora,Georgia,serif;display:grid;place-items:center;padding:28px max(16px,env(safe-area-inset-left,0px));overflow-x:hidden}
+.tout{display:grid;gap:22px;justify-items:center;text-align:center;width:min(440px,100%)}
+.sceau{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--or)}
+h1{margin:0;font-weight:400;font-size:40px;color:var(--creme-2)}
+/* le bloc de verre */
+.bloc{position:relative;width:100%;aspect-ratio:1/1;max-width:340px;border-radius:22px;
+background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 45%,rgba(255,255,255,.08));
+box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),inset 0 2px 18px rgba(255,255,255,.12),0 30px 60px rgba(0,0,0,.55);backdrop-filter:blur(2px)}
+.bloc::after{content:"";position:absolute;inset:8% 60% 55% 8%;border-radius:40%;background:linear-gradient(135deg,rgba(255,255,255,.22),transparent);pointer-events:none}
+.fiole{position:absolute;border-radius:999px;background:linear-gradient(180deg,rgba(214,240,120,.85),rgba(150,190,40,.85));box-shadow:inset 0 0 0 2px rgba(255,255,255,.45),inset 0 -6px 10px rgba(60,80,10,.45),0 4px 10px rgba(0,0,0,.35);overflow:hidden}
+.fiole .trait{position:absolute;background:rgba(20,30,10,.75)}
+.fiole .bulle{position:absolute;border-radius:999px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(255,255,255,.55) 45%,rgba(240,255,200,.25));box-shadow:0 0 6px rgba(255,255,255,.6)}
+.h{left:12%;right:12%;top:12%;height:13%}
+.v{top:30%;bottom:12%;left:12%;width:13%}
+.r{width:44%;aspect-ratio:1/1;right:12%;bottom:12%;border-radius:50%}
+.h .bulle{top:18%;bottom:18%;width:22%}
+.v .bulle{left:18%;right:18%;height:22%}
+.r .bulle{width:22%;height:22%}
+.h .trait.a,.h .trait.b{top:0;bottom:0;width:2px}
+.v .trait.a,.v .trait.b{left:0;right:0;height:2px}
+.r .anneau{position:absolute;inset:34%;border-radius:50%;border:2px solid rgba(20,30,10,.75)}
+.lecture{font:400 14px "JetBrains Mono",monospace;color:var(--creme);letter-spacing:.06em;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.lecture b{color:var(--or);font-weight:400}
+.phrase{font-style:italic;font-size:18px;line-height:1.5;margin:0;max-width:30ch;text-wrap:balance}
+.phrase small{display:block;font:600 11px/1 "Source Sans 3",Arial,sans-serif;font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);margin-top:10px}
+button{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#1a1408;background:var(--or);border:0;border-radius:999px;padding:13px 18px;cursor:pointer}
+.aide{font:600 11px/1.6 "Source Sans 3",Arial,sans-serif;letter-spacing:.12em;color:var(--gris);margin:0;max-width:36ch}
+a.retour{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gris);text-decoration:none}
+a.retour:hover{color:var(--creme-2)}
+.cale .fiole{box-shadow:inset 0 0 0 2px rgba(255,255,255,.7),0 0 18px rgba(212,168,47,.6)}
+</style>
+
+<!-- finitions -->
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le niveau · Elias Sorel">
+<meta property="og:description" content="Un niveau à bulle à trois fioles. Penche ton téléphone.">
+<meta property="og:url" content="https://eliassorel.github.io/niveau/">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<!-- /finitions -->
+</head>
+<body>
+<div class="tout">
+  <span class="sceau">✦ Un instrument</span>
+  <h1>Le niveau</h1>
+  <div class="bloc" id="bloc" aria-label="Niveau à bulle à trois fioles">
+    <div class="fiole h"><i class="trait a" style="left:38%"></i><i class="trait b" style="right:38%"></i><i class="bulle" id="bh"></i></div>
+    <div class="fiole v"><i class="trait a" style="top:38%"></i><i class="trait b" style="bottom:38%"></i><i class="bulle" id="bv"></i></div>
+    <div class="fiole r"><i class="anneau"></i><i class="bulle" id="br"></i></div>
+  </div>
+  <div class="lecture"><span>↔ <b id="lx">0,0°</b></span><span>↕ <b id="ly">0,0°</b></span></div>
+  <button type="button" id="go" hidden>Réveiller le niveau</button>
+  <p class="aide" id="aide">Penche ton téléphone. Sur un ordinateur, promène la souris sur le bloc.</p>
+  <p class="phrase">« Ce qu'on appelle stable, c'est un mouvement qui se tient, pas une immobilité. »<small>Elias Sorel</small></p>
+  <p class="aide" style="font-style:normal">Sur la première page, une étincelle attend qu'on la touche.</p>
+  <a class="retour" href="/">← Elias Sorel</a>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id),bloc=$('bloc');
+let cx=0,cy=0,tx=0,ty=0,vx=0,vy=0;            // angles cibles et affichés (degrés)
+const L=12;                                      // plage utile de chaque fiole, en degrés
+const clamp=(v,a)=>Math.max(-a,Math.min(a,v));
+function cible(beta,gamma){tx=clamp(gamma,45);ty=clamp(beta,45)}
+function oriente(e){if(e.beta==null)return;let b=e.beta,g=e.gamma;const o=(screen.orientation&&screen.orientation.angle)||window.orientation||0;
+ if(o===90){[b,g]=[-g,b]}else if(o===-90||o===270){[b,g]=[g,-b]}else if(o===180){b=-b;g=-g}cible(b,g);$('aide').textContent='Pose-le à plat, ou contre un mur.'}
+async function demande(){try{if(DeviceOrientationEvent.requestPermission){const r=await DeviceOrientationEvent.requestPermission();if(r!=='granted')return}window.addEventListener('deviceorientation',oriente);$('go').hidden=true}catch(e){}}
+if(window.DeviceOrientationEvent){if(typeof DeviceOrientationEvent.requestPermission==='function'){$('go').hidden=false;$('go').addEventListener('click',demande)}else window.addEventListener('deviceorientation',oriente)}
+bloc.addEventListener('pointermove',e=>{const r=bloc.getBoundingClientRect();cible(((e.clientY-r.top)/r.height-.5)*2*L*1.4,((e.clientX-r.left)/r.width-.5)*2*L*1.4)});
+bloc.addEventListener('pointerleave',()=>{if(!window._ori){tx=0;ty=0}});
+window.addEventListener('deviceorientation',()=>{window._ori=1},{once:true});
+const fmt=v=>(Math.abs(v)<.05?0:v).toFixed(1).replace('.',',')+'°';
+function pose(el,parent,axe,v){const p=parent.getBoundingClientRect(),b=el.getBoundingClientRect();
+ const t=clamp(-v/L,1);                         // la bulle monte : elle fuit le côté qui descend
+ if(axe==='x'){const span=(p.width-b.width)/2;el.style.left=(p.width/2-b.width/2+t*span)+'px'}
+ else{const span=(p.height-b.height)/2;el.style.top=(p.height/2-b.height/2+t*span)+'px'}}
+function poseR(el,parent,x,y){const p=parent.getBoundingClientRect(),b=el.getBoundingClientRect();let ux=clamp(-x/L,1),uy=clamp(-y/L,1);const n=Math.hypot(ux,uy);if(n>1){ux/=n;uy/=n}
+ const span=(p.width-b.width)/2*.92;el.style.left=(p.width/2-b.width/2+ux*span)+'px';el.style.top=(p.height/2-b.height/2+uy*span)+'px'}
+function frame(){ // un liquide : la bulle suit avec un peu de retard et d'élan
+ vx=(vx+(tx-cx)*.08)*.82;vy=(vy+(ty-cy)*.08)*.82;cx+=vx;cy+=vy;
+ pose($('bh'),$('bh').parentElement,'x',cx);pose($('bv'),$('bv').parentElement,'y',cy);poseR($('br'),$('br').parentElement,cx,cy);
+ $('lx').textContent=fmt(cx);$('ly').textContent=fmt(cy);bloc.classList.toggle('cale',Math.abs(cx)<.4&&Math.abs(cy)<.4&&!!window._ori);
+ requestAnimationFrame(frame)}
+frame();
+})();
+</script>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
