@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  Une page qui n'existe pas. Ou qui dort.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Endormi · Elias Sorel</title>
+<meta name="description" content="Cette page n'est pas là. Ce n'est pas parti, c'est endormi.">
+<meta name="theme-color" content="#0a0e14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Source+Sans+3:wght@600&display=swap">
+<style>
+:root{--fond:#0a0e14;--creme:#e8dcc0;--creme-2:#f4e3b8;--or:#d4a82f;--gris:#8f97a0;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:radial-gradient(70% 60% at 50% 35%,#16213a 0%,transparent 70%),var(--fond);color:var(--creme);font-family:Lora,Georgia,serif;display:grid;place-items:center;padding:40px max(24px,env(safe-area-inset-left,0px));text-align:center;overflow:hidden}
+.ville{position:fixed;inset:auto 0 0 0;height:38vh;pointer-events:none;opacity:.9}
+.bloc{position:relative;z-index:1;display:grid;gap:22px;justify-items:center;max-width:34ch}
+.chiffre{font:600 12px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.4em;color:var(--gris)}
+h1{margin:0;font-weight:400;font-style:italic;font-size:clamp(30px,6vw,46px);line-height:1.25;color:var(--creme-2);text-wrap:balance}
+p{margin:0;font-size:18px;line-height:1.6;color:var(--creme)}
+small{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+a{font:600 12px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-decoration:none;display:inline-flex;gap:10px;align-items:center;margin-top:10px}
+a::before{content:"";width:34px;height:1px;background:currentColor}
+a:hover{color:var(--creme-2)}
+@media (prefers-reduced-motion:reduce){.ville rect{animation:none!important}}
+</style>
+
+<!-- finitions -->
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Endormi · Elias Sorel">
+<meta property="og:description" content="Cette page n&#x27;est pas là. Ce n&#x27;est pas parti, c&#x27;est endormi.">
+<meta property="og:url" content="https://eliassorel.github.io/404.html">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<!-- /finitions -->
+</head>
+<body>
+<svg class="ville" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true" id="ville"></svg>
+<div class="bloc">
+  <span class="chiffre">404</span>
+  <h1>« Ce n'est pas parti. C'est endormi. »</h1>
+  <small>Elias Sorel</small>
+  <p>La page que tu cherches n'est pas là. Peut-être qu'elle a changé de pièce, peut-être qu'elle dort.</p>
+  <a href="/">Retour à la maison</a>
+</div>
+<script>
+/* une ville endormie : la plupart des fenêtres sont éteintes, quelques-unes se rallument */
+(function(){const s=document.getElementById('ville'),NS='http://www.w3.org/2000/svg';let x=0,i=0;const fen=[];
+ while(x<400){const w=18+((i*37)%22),h=34+((i*53)%70);const b=document.createElementNS(NS,'rect');b.setAttribute('x',x);b.setAttribute('y',120-h);b.setAttribute('width',w);b.setAttribute('height',h);b.setAttribute('fill','#0e1420');s.appendChild(b);
+  for(let fy=120-h+6;fy<114;fy+=9)for(let fx=x+4;fx<x+w-5;fx+=7){const f=document.createElementNS(NS,'rect');f.setAttribute('x',fx);f.setAttribute('y',fy);f.setAttribute('width',3);f.setAttribute('height',4);f.setAttribute('fill','#f4e3b8');f.setAttribute('opacity',Math.random()<.08?'.85':'0');s.appendChild(f);fen.push(f)}
+  x+=w+2;i++}
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ setInterval(()=>{const f=fen[Math.floor(Math.random()*fen.length)];f.style.transition='opacity 1.6s';f.setAttribute('opacity',f.getAttribute('opacity')==='0'?'.85':'0')},500)})();
+</script>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
