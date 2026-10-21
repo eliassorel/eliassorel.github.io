@@ -79,7 +79,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel #nuages{opacity:0;transition:opacity .9s}
 .ciel.fils #nuages{opacity:1}
 .ciel.fils #etoiles{opacity:0}
-.ciel.fils{background:linear-gradient(180deg,#1d2438 0%,#3a3958 55%,#5a4a63 100%)}
+.ciel.fils{background:linear-gradient(180deg,#1c2550 0%,#5b5fa3 50%,#f6c79a 100%)}
 .ciel.fils .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 .ciel.musique .seul-musique{display:revert}
 .ciel.musique .descendre.seul-musique{display:inline-flex}
@@ -576,36 +576,50 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 })();
 </script>
 <script>
-/* Les nuages : un ciel du soir, des nuées qui dérivent sur trois plans, et des fils d'or qui flottent entre elles, où glissent de petites pierres de lumière. */
+/* Au-dessus des nuages, à l'aube : une mer de cumulus dont le haut prend la lumière, des îles de nuées qui flottent, et des fils d'or où glissent de petites pierres de lumière. */
 (function(){
   const c=document.getElementById('nuages'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w=0,h=0,d=1,nuees=[],fils=[],mxn=.5,myn=.5,lune;
-  function nuee(R){const s=document.createElement('canvas'),W=Math.ceil(R*4),H=Math.ceil(R*2);s.width=W;s.height=H;const g=s.getContext('2d');
-    for(let k=0;k<40;k++){const X=W*(.2+Math.random()*.6),Y=H*(.45+Math.random()*.3)-Math.sin((X/W)*Math.PI)*H*.22,r=R*(.25+Math.random()*.45);
-      const gr=g.createRadialGradient(X,Y-r*.2,0,X,Y,r);gr.addColorStop(0,'rgba(255,240,245,.55)');gr.addColorStop(.6,'rgba(220,205,225,.22)');gr.addColorStop(1,'rgba(200,190,215,0)');g.fillStyle=gr;g.beginPath();g.arc(X,Y,r,0,6.283);g.fill()}
-    return s}
+  let w=0,h=0,d=1,iles=[],mer=null,fils=[],mxn=.5,myn=.5,merX=0;
+  /* un cumulus : des boules qui s'empilent, le haut éclairé, la base plate et plus sombre */
+  function cumulus(L,H,lum){const s=document.createElement('canvas');s.width=Math.ceil(L);s.height=Math.ceil(H*1.3);const g=s.getContext('2d'),base=H;
+    const boules=[];const n=Math.round(L/(H*.5));for(let k=0;k<n;k++){const u=(k+.5)/n,r=H*(.22+.5*Math.sin(Math.PI*u))*(0.6+Math.random()*.8);boules.push([L*u+(Math.random()-.5)*H*.2,base-r*.75-Math.random()*H*.15,r])}
+    for(let k=0;k<n*.4;k++){const u=.25+Math.random()*.5,r=H*(.15+Math.random()*.3);boules.push([L*u,base-H*(.55+Math.random()*.35),r])}
+    g.save();g.beginPath();g.rect(0,0,L,base);g.clip();
+    /* l'ombre d'abord, puis la lumière décalée vers le haut */
+    for(const [X,Y,r] of boules){const gr=g.createRadialGradient(X,Y+r*.3,r*.2,X,Y,r);gr.addColorStop(0,'rgba(150,140,190,'+(.9*lum)+')');gr.addColorStop(1,'rgba(150,140,190,0)');g.fillStyle=gr;g.beginPath();g.arc(X,Y,r,0,6.283);g.fill()}
+    for(const [X,Y,r] of boules){const gr=g.createRadialGradient(X-r*.25,Y-r*.45,r*.05,X,Y-r*.1,r*.95);gr.addColorStop(0,'rgba(255,246,236,'+(.85*lum)+')');gr.addColorStop(.5,'rgba(255,214,196,'+(.6*lum)+')');gr.addColorStop(1,'rgba(230,190,200,0)');g.fillStyle=gr;g.beginPath();g.arc(X,Y,r*.95,0,6.283);g.fill()}
+    g.restore();
+    const bg=g.createLinearGradient(0,base-H*.25,0,base);bg.addColorStop(0,'rgba(120,110,160,0)');bg.addColorStop(1,'rgba(120,110,160,'+(.35*lum)+')');g.globalCompositeOperation='source-atop';g.fillStyle=bg;g.fillRect(0,0,L,base);
+    /* adoucir : un léger flou efface les bords nets des boules */
+    const f2=document.createElement('canvas');f2.width=s.width+40;f2.height=s.height+40;const fg=f2.getContext('2d');fg.filter='blur('+Math.max(2,H*.05)+'px)';fg.drawImage(s,20,20);return f2}
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);
-    const mob=w<760;nuees=[];
-    [[.35,mob?5:8,.06,.35],[.6,mob?4:6,.12,.5],[1,mob?3:5,.22,.7]].forEach(([prof,n,v,al])=>{for(let k=0;k<n;k++){const R=(mob?60:110)*prof*(0.7+Math.random()*.7);nuees.push({img:nuee(R),x:Math.random()*(w+R*4)-R*2,y:h*(.08+Math.random()*.85),v:v*(.6+Math.random()*.8),prof,al})}});
-    fils=Array.from({length:mob?3:5},(_,k)=>({y:h*(.2+k*.15),a:20+Math.random()*30,f:.002+Math.random()*.002,p:Math.random()*6.3,v:.2+Math.random()*.3,perles:Array.from({length:3},()=>({u:Math.random(),v:.0006+Math.random()*.0008}))}))}
+    const mob=w<760;
+    /* la mer de nuages : une bande de cumulus, deux fois la largeur pour défiler sans couture */
+    mer=document.createElement('canvas');mer.width=Math.ceil(w*2);mer.height=Math.ceil(h*.4);const m=mer.getContext('2d');
+    for(let rang=0;rang<3;rang++){const H=(mob?70:120)*(1-rang*.18),y=mer.height*(.35+rang*.22);for(let X=-H;X<mer.width+H;X+=H*(1.2+Math.random()*.8)){const cu=cumulus(H*2.6,H,.75+rang*.12);m.drawImage(cu,X+(Math.random()-.5)*H*.6,y-H+(Math.random()-.5)*H*.2)}}
+    iles=[];for(let k=0;k<(mob?3:5);k++){const H=(mob?40:70)*(.6+Math.random()*.6);iles.push({img:cumulus(H*3,H,.9),x:Math.random()*w,y:h*(.18+Math.random()*.35),v:.08+Math.random()*.12,prof:.4+Math.random()*.6})}
+    fils=Array.from({length:mob?3:4},(_,k)=>({y:h*(.22+k*.13),a:18+Math.random()*24,f:.002+Math.random()*.002,p:Math.random()*6.3,v:.2+Math.random()*.3,perles:Array.from({length:3},()=>({u:Math.random(),v:.0006+Math.random()*.0008}))}))}
   addEventListener('resize',taille);taille();
   band.addEventListener('pointermove',e=>{const r=band.getBoundingClientRect();mxn=(e.clientX-r.left)/w;myn=(e.clientY-r.top)/h},{passive:true});
   function frame(ms){const t=ms/1000;
     if(!band.classList.contains('fils')){requestAnimationFrame(frame);return}
-    x.clearRect(0,0,w,h);
-    /* la lune derrière les nuées */
-    {const X=w*.78,Y=h*.24,R=Math.min(w,h)*.055;const g=x.createRadialGradient(X,Y,0,X,Y,R*6);g.addColorStop(0,'rgba(255,244,220,.35)');g.addColorStop(1,'rgba(255,244,220,0)');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);const gm=x.createRadialGradient(X-R*.3,Y-R*.3,R*.1,X,Y,R);gm.addColorStop(0,'rgba(255,250,236,.8)');gm.addColorStop(.8,'rgba(236,226,210,.6)');gm.addColorStop(1,'rgba(220,210,200,0)');x.fillStyle=gm;x.beginPath();x.arc(X,Y,R,0,6.283);x.fill()}
-    /* les nuées, du plus loin au plus près */
-    for(const n of nuees){if(!calme){n.x+=n.v;if(n.x>w+n.img.width*.5)n.x=-n.img.width}
-      const px=(mxn-.5)*30*n.prof,py=(myn-.5)*16*n.prof;x.globalAlpha=n.al;x.drawImage(n.img,n.x+px,n.y-n.img.height/2+py)
-      if(n.prof===.6){ /* les fils passent entre le plan du milieu et le plan proche */ }}
+    /* le ciel de l'aube */
+    const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1c2550');g.addColorStop(.45,'#5b5fa3');g.addColorStop(.72,'#d99aa0');g.addColorStop(.85,'#f6c79a');g.addColorStop(1,'#f9dcb8');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+    /* le soleil qui affleure */
+    {const X=w*.74,Y=h*.7,R=Math.min(w,h)*.5;const gs=x.createRadialGradient(X,Y,0,X,Y,R);gs.addColorStop(0,'rgba(255,236,190,.75)');gs.addColorStop(.25,'rgba(255,210,160,.35)');gs.addColorStop(1,'rgba(255,200,160,0)');x.fillStyle=gs;x.fillRect(0,0,w,h)}
+    /* les dernières étoiles en haut */
+    x.fillStyle='#fff';for(let k=0;k<40;k++){const X=(k*137.5)%w,Y=((k*71.3)%(h*.3));x.globalAlpha=(.15+.25*Math.abs(Math.sin(t*.7+k)))*(1-Y/(h*.3));x.fillRect(X,Y,1.3,1.3)}
+    /* les îles de nuages */
+    for(const n of iles){if(!calme){n.x+=n.v;if(n.x>w+20)n.x=-n.img.width}x.globalAlpha=.95;x.drawImage(n.img,n.x+(mxn-.5)*24*n.prof,n.y+(myn-.5)*10*n.prof)}
     /* les fils de pensée */
     x.lineCap='round';
     for(const f of fils){const pts=[];for(let X=-20;X<=w+20;X+=16){pts.push([X,f.y+Math.sin(X*f.f+t*f.v+f.p)*f.a+Math.sin(X*f.f*2.3+t*f.v*.7)*f.a*.3])}
-      x.globalAlpha=.5;x.strokeStyle='rgba(240,199,90,.8)';x.lineWidth=1;x.beginPath();pts.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();
-      for(const pe of f.perles){if(!calme){pe.u+=pe.v;if(pe.u>1)pe.u=0}const q=pts[Math.floor(pe.u*(pts.length-1))];const g=x.createRadialGradient(q[0],q[1],0,q[0],q[1],10);g.addColorStop(0,'rgba(255,236,170,.95)');g.addColorStop(1,'rgba(255,236,170,0)');x.globalAlpha=1;x.fillStyle=g;x.fillRect(q[0]-10,q[1]-10,20,20);x.fillStyle='#fff4d0';x.beginPath();x.arc(q[0],q[1],2,0,6.283);x.fill()}}
-    /* une dernière nuée devant, très légère */
-    const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(22,26,42,.72)');v.addColorStop(w<760?.9:.45,'rgba(22,26,42,.2)');v.addColorStop(1,'rgba(22,26,42,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+      x.globalAlpha=.6;x.strokeStyle='rgba(255,226,150,.9)';x.lineWidth=1;x.beginPath();pts.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();
+      for(const pe of f.perles){if(!calme){pe.u+=pe.v;if(pe.u>1)pe.u=0}const q=pts[Math.floor(pe.u*(pts.length-1))];const gp=x.createRadialGradient(q[0],q[1],0,q[0],q[1],10);gp.addColorStop(0,'rgba(255,240,190,.95)');gp.addColorStop(1,'rgba(255,240,190,0)');x.globalAlpha=1;x.fillStyle=gp;x.fillRect(q[0]-10,q[1]-10,20,20);x.fillStyle='#fffaf0';x.beginPath();x.arc(q[0],q[1],2,0,6.283);x.fill()}}
+    /* la mer de nuages, qui défile doucement */
+    if(!calme)merX=(merX+.15)%w;x.globalAlpha=1;const my=h-mer.height+(myn-.5)*8;x.drawImage(mer,-merX+(mxn-.5)*12,my);
+    /* le texte reste lisible : voile bleu à gauche */
+    const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(20,26,58,.75)');v.addColorStop(w<760?.9:.42,'rgba(20,26,58,.18)');v.addColorStop(1,'rgba(20,26,58,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);
 })();
