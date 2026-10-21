@@ -507,7 +507,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let ac=null,maitre=null,eglise=null,dernierSon=0;
   const GAMME=[0,2,3,5,7,8,10];/* la mineur naturel */
   function note(p){const n=tuyaux.length,c=(n-1)/2,rang=Math.round(Math.abs(p.i-c)),deg=GAMME[rang%7]+12*Math.floor(rang/7);return 220*Math.pow(2,deg/12)}
-  function allume(){if(ac)return;ac=new (window.AudioContext||window.webkitAudioContext)();maitre=ac.createGain();maitre.gain.value=.32;
+  function allume(){if(ac)return;ac=new (window.AudioContext||window.webkitAudioContext)();maitre=ac.createGain();maitre.gain.value=.1;
     const L=Math.round(ac.sampleRate*3.5),ir=ac.createBuffer(2,L,ac.sampleRate);for(let k=0;k<2;k++){const dd=ir.getChannelData(k);for(let i=0;i<L;i++)dd[i]=(Math.random()*2-1)*Math.pow(1-i/L,3)}
     eglise=ac.createConvolver();eglise.buffer=ir;const sec=ac.createGain(),mouille=ac.createGain();sec.gain.value=.6;mouille.gain.value=.55;
     const comp=ac.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=4;comp.connect(ac.destination);maitre.connect(sec).connect(comp);maitre.connect(eglise).connect(mouille).connect(comp)}
