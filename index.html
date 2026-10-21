@@ -87,14 +87,24 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.poemes{background:radial-gradient(75% 75% at 70% 20%,#2c2140 0%,transparent 62%),radial-gradient(60% 60% at 15% 95%,#3a2418 0%,transparent 70%),#0b0812}
 .ciel.jeux .titre p small,.ciel.poemes .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 /* casse-tête */
-.enigmes{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
-.enigme{border:1px solid color-mix(in srgb,var(--or-vif) 45%,transparent);border-radius:14px;padding:26px 24px;display:grid;gap:10px;align-content:start;min-width:0}
-.enigme .ico{font-size:28px;line-height:1}
-.enigme h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:0;color:var(--ink-strong)}
-.enigme p{font-size:16px!important;opacity:.85}
-.enigme a.entrer{justify-self:start;margin-top:6px;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--or-vif);padding-bottom:2px}
-.enigme.scellee{border-style:dashed;opacity:.8}
-.enigme.scellee .entrer{border:0;opacity:.6;cursor:default}
+main:has(#v-jeux:not([hidden]))+footer{margin-top:0}
+.jeux-salle{padding-block:120px;background:radial-gradient(60% 50% at 80% 10%,#2a2410 0%,transparent 70%),radial-gradient(60% 60% at 10% 100%,#10202a 0%,transparent 70%),var(--nuit-profonde);color:var(--creme)}
+.jeux-salle .sur{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or-vif);margin:0 0 10px}
+.jeux-salle h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5vw,60px);color:var(--creme-2);margin:0 0 14px}
+.jeux-salle .chapo{font-size:19px;max-width:56ch;margin:0;opacity:.85}
+.jeux-salle .pied{margin:40px 0 0;font-family:var(--serif);font-style:italic;opacity:.6;text-align:center}
+.enigmes{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:22px}
+.enigme{position:relative;background:linear-gradient(180deg,rgba(212,168,47,.07),rgba(212,168,47,.015));border:1px solid rgba(212,168,47,.45);border-radius:16px;padding:26px 22px 22px;display:grid;gap:10px;align-content:start;min-width:0;transition:transform .3s,box-shadow .3s,border-color .3s}
+.enigme:not(.scellee):hover{transform:translateY(-4px);border-color:var(--or-vif);box-shadow:0 14px 40px -12px rgba(212,168,47,.45)}
+.enigme .num{position:absolute;top:14px;right:16px;font-family:var(--serif);font-size:13px;color:var(--or-vif);opacity:.7;letter-spacing:.1em}
+.enigme .obj{width:96px;height:96px;margin:4px 0 6px}
+.enigme .obj svg{width:100%;height:100%;filter:drop-shadow(0 0 10px rgba(212,168,47,.25))}
+.enigme h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:0;color:var(--creme-2)}
+.enigme p{font-size:15.5px;line-height:1.55;margin:0;opacity:.82}
+.enigme .entrer{justify-self:start;margin-top:8px;font-family:var(--sans);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--nuit-profonde);background:var(--or-vif);border-radius:999px;padding:8px 16px}
+.enigme.scellee{border-style:dashed;background:transparent}
+.enigme.scellee .obj{opacity:.45}
+.enigme.scellee .entrer{background:none;color:var(--creme);border:1px solid rgba(232,220,192,.3)}
 /* poèmes */
 .sous-onglets{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
 .sous-onglets button{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:none;color:inherit;border:1px solid color-mix(in srgb,var(--or-vif) 55%,transparent);border-radius:999px;padding:9px 18px;cursor:pointer}
@@ -289,6 +299,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 .carte .meta a{position:relative;z-index:2}
 .lire.zen{opacity:.6;font-size:11px}
 </style>
+
 
 
 
@@ -506,14 +517,10 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
     </div>
   </div>
 </section>
-<section id="v-jeux" class="travaux band" hidden>
-  <div class="inner large"><h2>Casse-tête</h2><p>Des objets à ouvrir. Chacun cache une pierre, et parfois la clé du suivant.</p>
-    <ul class="enigmes">
-      <li class="enigme"><span class="ico" aria-hidden="true">⚙</span><h3>La boîte</h3><p>Une boîte fermée. Trouve comment elle s'ouvre.</p><a class="entrer" href="/la-boite/">Ouvrir →</a></li>
-      <li class="enigme"><span class="ico" aria-hidden="true">✦</span><h3>L'étincelle</h3><p>Deux ondes qui se croisent. Touche le ciel, et lis bien la dernière phrase.</p><a class="entrer" href="/etincelle/">Approcher →</a></li>
-      <li class="enigme scellee"><span class="ico" aria-hidden="true">🔒</span><h3>Le coffre</h3><p>Un coffre à six faces. Sa clé est dans la boîte.</p><span class="entrer">Scellé</span></li>
-      <li class="enigme scellee"><span class="ico" aria-hidden="true">🔒</span><h3>Le niveau</h3><p>Trois fioles et une bulle. Deux chemins y mènent, aucun d'ici.</p><span class="entrer">Scellé</span></li>
-    </ul>
+<section id="v-jeux" class="jeux-salle band" hidden>
+  <div class="inner large"><p class="sur">⚙ L'atelier des objets</p><h2>Casse-tête</h2><p class="chapo">Des objets à ouvrir. Chacun cache une pierre, et parfois la clé du suivant.</p>
+    <ul class="enigmes"><li class="enigme"><span class="num">01</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2" stroke-linejoin="round"><path d="M22 46 L60 28 L98 46 L60 64 Z"/><path d="M22 46 V84 L60 102 V64"/><path d="M98 46 V84 L60 102"/><circle cx="60" cy="46" r="9"/><g stroke-width="1.6"><line x1="69.0" y1="46.0" x2="74.0" y2="46.0"/><line x1="66.4" y1="49.2" x2="69.9" y2="50.9"/><line x1="60.0" y1="50.5" x2="60.0" y2="53.0"/><line x1="53.6" y1="49.2" x2="50.1" y2="51.0"/><line x1="51.0" y1="46.0" x2="46.0" y2="46.0"/><line x1="53.6" y1="42.8" x2="50.1" y2="41.1"/><line x1="60.0" y1="41.5" x2="60.0" y2="39.0"/><line x1="66.3" y1="42.8" x2="69.9" y2="41.0"/></g><circle cx="41" cy="78" r="2.4" fill="#d4a82f"/><circle cx="79" cy="78" r="2.4" fill="#d4a82f"/></g></svg></div><h3>La boîte</h3><p>Une boîte fermée. Trouve comment elle s’ouvre.</p><a class="entrer" href="/la-boite/">Ouvrir →</a></li><li class="enigme"><span class="num">02</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M10 60 C25 35 40 35 60 60 S95 85 110 60" stroke="#d4a82f"/><path d="M10 60 C25 85 40 85 60 60 S95 35 110 60" stroke="#7fa6d9"/></g><polygon points="60,44 63,57 76,60 63,63 60,76 57,63 44,60 57,57" fill="#f4e3b8"/></svg></div><h3>L’étincelle</h3><p>Deux ondes qui se croisent. Touche le ciel, et lis bien la dernière phrase.</p><a class="entrer" href="/etincelle/">Approcher →</a></li><li class="enigme scellee"><span class="num">03</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2" stroke-linejoin="round"><path d="M20 52 Q20 30 60 30 Q100 30 100 52"/><rect x="20" y="52" width="80" height="44" rx="3"/><line x1="20" y1="64" x2="100" y2="64" stroke-width="1.4"/><rect x="51" y="58" width="18" height="20" rx="3"/><circle cx="60" cy="66" r="3" fill="#d4a82f"/><line x1="60" y1="69" x2="60" y2="74"/></g></svg></div><h3>Le coffre</h3><p>Un coffre à six faces. Sa clé est dans la boîte.</p><span class="entrer">🔒 Scellé</span></li><li class="enigme scellee"><span class="num">04</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2"><rect x="10" y="48" width="100" height="26" rx="6"/><rect x="44" y="53" width="32" height="16" rx="8" stroke-width="1.5"/><line x1="56" y1="53" x2="56" y2="69" stroke-width="1"/><line x1="64" y1="53" x2="64" y2="69" stroke-width="1"/><rect x="18" y="53" width="16" height="16" rx="8" stroke-width="1.5"/><rect x="86" y="53" width="16" height="16" rx="8" stroke-width="1.5"/></g><ellipse cx="60" cy="61" rx="4.5" ry="4" fill="#9fd3c7"/></svg></div><h3>Le niveau</h3><p>Trois fioles et une bulle. Deux chemins y mènent, aucun d’ici.</p><span class="entrer">🔒 Scellé</span></li></ul>
+    <p class="pied">Deux objets attendent à la vue de tous. Les deux autres se méritent.</p>
   </div>
 </section>
 </main>
