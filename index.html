@@ -65,6 +65,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 /* ── Ciel d'ouverture ── */
 .ciel{position:relative;background:radial-gradient(80% 70% at 75% 20%,#1d2c4a 0%,transparent 60%),radial-gradient(60% 60% at 10% 90%,#2a1d38 0%,transparent 70%),var(--nuit-profonde);color:var(--creme);overflow:hidden}
 .ciel canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ciel{transition:background .8s}
+.ciel #musicien{opacity:0;transition:opacity .8s}
+.ciel #etoiles{transition:opacity .8s}
+.ciel.musique{background:radial-gradient(70% 80% at 78% 30%,#3a1420 0%,transparent 65%),radial-gradient(60% 60% at 8% 95%,#2b1a0c 0%,transparent 70%),#0d0608}
+.ciel.musique #etoiles{opacity:0}
+.ciel.musique #musicien{opacity:1}
+.seul-musique{display:none}
+.ciel.musique .seul-musique{display:revert}
+.ciel.musique .seul-science{display:none}
+.ciel.musique .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-top:10px;font-style:normal}
 .ciel .inner{position:relative;padding-block:28px 112px;display:flex;flex-direction:column;gap:96px}
 .barre{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .mini{font-family:var(--serif);letter-spacing:.3em;font-size:14px;color:var(--creme-2)}
@@ -225,6 +235,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <body>
 <header class="ciel band">
   <canvas id="etoiles" aria-hidden="true"></canvas>
+  <canvas id="musicien" aria-hidden="true"></canvas>
   <div class="inner">
     <div class="barre">
       <svg class="mono" viewBox="0 0 60 60" role="img" aria-label="Elias Sorel"><g class="losange"><polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#e8dcc0" stroke-opacity=".35" stroke-width=".8"/><polygon points="30,9 51,30 30,51 9,30" fill="none" stroke="#d4a82f" stroke-opacity=".5" stroke-width=".6"/></g><text x="17" y="37" font-family="Lora,Georgia,serif" font-size="24" fill="#f4e3b8">E</text><text x="28" y="42" font-family="Lora,Georgia,serif" font-style="italic" font-size="24" fill="#d4a82f">S</text></svg>
@@ -235,15 +246,17 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       </nav>
     </div>
     <div class="titre">
-      <span class="sceau">✦ Prépublications · depuis 2026</span>
+      <span class="sceau seul-science">✦ Prépublications · depuis 2026</span><span class="sceau seul-musique">♪ Musique · faite maison</span>
       <h1><span>ELIAS</span><span>SOREL</span></h1>
       <svg class="ondes" id="ondes" viewBox="0 0 360 56" aria-hidden="true">
         <path id="onde-b" d="M0 28 L360 28" fill="none" stroke="#4a7bb8" stroke-width="2" stroke-linecap="round"/>
         <path id="onde-o" d="M0 28 L360 28" fill="none" stroke="#d4a82f" stroke-width="2" stroke-linecap="round"/>
         <a href="/etincelle/" aria-label="L'étincelle"><circle id="zone" cx="180" cy="28" r="14" fill="transparent"/><circle id="etincelle" cx="180" cy="28" r="3.5" fill="#ffffff" style="cursor:pointer"/></a>
       </svg>
-      <p>« Le visible fait mal lire l'invisible ; l'invisible est dans le visible. »<br><em>« Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie. »</em></p>
-      <a class="descendre" href="#masters">Les travaux</a>
+      <p class="seul-science">« Le visible fait mal lire l'invisible ; l'invisible est dans le visible. »<br><em>« Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie. »</em></p>
+      <p class="seul-musique">« Chacun sur son rythme et son tempo, mais des rythmes et des tempos, ça s'accorde. »<small>Elias Sorel</small></p>
+      <a class="descendre seul-science" href="#masters">Les travaux</a>
+      <a class="descendre seul-musique" href="#v-musique">Écouter</a>
     </div>
   </div>
 </header>
@@ -387,6 +400,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
   document.getElementById('v-science').hidden=b.dataset.v!=='science';
+  document.querySelector('header.ciel').classList.toggle('musique',b.dataset.v==='musique');
   ['poemes','musique'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
 }));
 {const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
@@ -465,6 +479,61 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
     (function pas(now){const u=Math.min(1,(now-t0)/D),v=1-Math.pow(1-u,3);el.textContent=Math.round(n*v)+s;if(u<1)requestAnimationFrame(pas);else el._run=0})(t0)}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){compte(e.target);io.unobserve(e.target)}}),{threshold:.6});
   all.forEach(el=>{io.observe(el);el.closest('article').addEventListener('mouseenter',()=>compte(el))});
+})();
+</script>
+<script>
+/* L'orgue : des tuyaux d'or qui s'allument au rythme de Still Whistling (134 BPM, tac tac BOOM), une rosace, une portée où passe le sifflement, et la corde de contrebasse en bas. Survoler un tuyau le fait sonner. */
+(function(){
+  const c=document.getElementById('musicien'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,tuyaux=[],notes=[],anneaux=[],mxp=-1,myp=-1,t0=performance.now();
+  const BEAT=60/134;
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);
+    const mob=w<760,N=mob?13:23,x0=mob?w*.04:w*.62,x1=mob?w*.96:w*.97,base=mob?h*.98:h*.92,pas=(x1-x0)/N;tuyaux=[];
+    for(let i=0;i<N;i++){const u=Math.abs(i-(N-1)/2)/((N-1)/2),haut=(mob?h*.42:h*.72)*(1-.62*Math.pow(u,1.3))*(.92+.08*Math.cos(i*1.7));tuyaux.push({x:x0+pas*(i+.5),l:pas*.62,h:haut,base,eclat:0,i})}}
+  addEventListener('resize',taille);taille();
+  band.addEventListener('pointermove',e=>{const r=band.getBoundingClientRect();mxp=e.clientX-r.left;myp=e.clientY-r.top},{passive:true});
+  band.addEventListener('pointerleave',()=>{mxp=-1});
+  function joue(p,f){p.eclat=Math.min(1,p.eclat+f);anneaux.push({x:p.x,y:p.base-p.h-6,t:0,r:p.l})}
+  let dernierTemps=-1;
+  function frame(ms){const t=(ms-t0)/1000;
+    if(!band.classList.contains('musique')){requestAnimationFrame(frame);return}
+    x.clearRect(0,0,w,h);
+    /* le temps du morceau : tac (1), tac (2), BOOM (3), silence (4) */
+    const temps=Math.floor(t/BEAT),phase=(t%BEAT)/BEAT;
+    if(temps!==dernierTemps&&!calme){dernierTemps=temps;const k=temps%4;
+      if(k===2){tuyaux.forEach(p=>{if(Math.abs(p.i-(tuyaux.length-1)/2)<3)joue(p,.9)});anneaux.push({x:w*.74,y:h*.98,t:0,r:30,boom:1})}
+      else if(k<2){joue(tuyaux[(temps*7)%tuyaux.length],.6)}
+      notes.push({u:0,y:Math.sin(temps*1.9)*3+Math.cos(temps*.7)*2,v:.10+((temps*13)%5)*.006})}
+    const boom=calme?0:Math.max(0,1-((t%(BEAT*4))-BEAT*2)/(BEAT*1.2))*(((t%(BEAT*4))>BEAT*2)?1:0);
+    /* la rosace, derrière l'orgue */
+    {const rx=w<760?w*.5:w*.8,ry=w<760?h*.42:h*.3,R=w<760?w*.34:Math.min(h*.24,w*.13);x.save();x.translate(rx,ry);x.rotate(t*.02);
+      for(let k=0;k<16;k++){const a0=k/16*6.283,a1=(k+1)/16*6.283;x.beginPath();x.moveTo(0,0);x.arc(0,0,R,a0,a1);x.closePath();x.globalAlpha=.10+.05*Math.sin(t*.8+k);x.fillStyle=['#7a2236','#c78a2a','#2b4a7a','#5a2a6a'][k%4];x.fill()}
+      x.globalAlpha=.35;x.strokeStyle='#d4a82f';x.lineWidth=1;for(let k=0;k<3;k++){x.beginPath();x.arc(0,0,R*(.35+k*.32),0,6.283);x.stroke()}
+      for(let k=0;k<16;k++){const a2=k/16*6.283;x.beginPath();x.moveTo(Math.cos(a2)*R*.35,Math.sin(a2)*R*.35);x.lineTo(Math.cos(a2)*R,Math.sin(a2)*R);x.stroke()}x.restore()}
+    /* la portée, où passe le sifflement en triolets */
+    {const y0=w<760?h*.17:h*.1,ec=7;x.globalAlpha=.22;x.strokeStyle='#f4e3b8';x.lineWidth=1;
+      for(let k=0;k<5;k++){x.beginPath();for(let X=0;X<=w;X+=20){const Y=y0+k*ec+Math.sin(X*.006+t*.6)*10;X?x.lineTo(X,Y):x.moveTo(X,Y)}x.stroke()}
+      x.globalAlpha=1;x.font='20px Georgia,serif';x.fillStyle='#f0c75a';
+      for(const n of notes){if(!calme)n.u+=n.v/60;const X=n.u*w,Y=y0+14+n.y*ec*.5+Math.sin(X*.006+t*.6)*10;x.globalAlpha=Math.min(1,n.u*8)*Math.max(0,1-(n.u-.8)*5)*.85;x.fillText(n.y>0?'♪':'♫',X,Y)}
+      notes=notes.filter(n=>n.u<1)}
+    /* les tuyaux */
+    for(const p of tuyaux){if(mxp>=0&&Math.abs(mxp-p.x)<p.l*.8&&myp>p.base-p.h&&p.eclat<.5)joue(p,.7);p.eclat*=.95;
+      const X=p.x-p.l/2,Y=p.base-p.h,e=p.eclat+boom*.15;
+      const g=x.createLinearGradient(X,0,X+p.l,0);g.addColorStop(0,'#5a3e12');g.addColorStop(.35,'#e9c46a');g.addColorStop(.5,'#fff1c4');g.addColorStop(.7,'#c99a3a');g.addColorStop(1,'#3e2a0a');
+      if(e>.05){x.globalAlpha=e*.6;const gl=x.createRadialGradient(p.x,Y+p.h*.3,0,p.x,Y+p.h*.3,p.h*.7);gl.addColorStop(0,'rgba(255,214,120,.5)');gl.addColorStop(1,'rgba(255,214,120,0)');x.fillStyle=gl;x.fillRect(p.x-p.h*.7,Y-p.h*.4,p.h*1.4,p.h*1.4)}
+      x.globalAlpha=.55+.45*e;x.fillStyle=g;x.beginPath();x.roundRect(X,Y,p.l,p.h,[p.l/2,p.l/2,2,2]);x.fill();
+      /* la bouche du tuyau */
+      const by=p.base-p.h*.18;x.globalAlpha=.9;x.fillStyle='#1a0c06';x.beginPath();x.moveTo(X+p.l*.2,by);x.lineTo(X+p.l*.8,by);x.lineTo(p.x,by-p.l*.55);x.closePath();x.fill();
+      x.fillStyle='#120804';x.fillRect(X-1,p.base,p.l+2,h-p.base)}
+    /* le son qui monte */
+    for(const r of anneaux){r.t+=1/60;const R=r.r+r.t*(r.boom?260:60);x.globalAlpha=Math.max(0,(r.boom?.35:.5)-r.t*(r.boom?.3:.6));x.strokeStyle=r.boom?'#ff9a6a':'#ffe3a0';x.lineWidth=r.boom?2:1.2;x.beginPath();x.ellipse(r.x,r.y,R,R*(r.boom?.35:.6),0,Math.PI,6.283);x.stroke()}
+    anneaux=anneaux.filter(r=>r.t<(r.boom?1.3:.9));
+    /* la corde de contrebasse */
+    {const Y=h-10,A=4+boom*10;x.globalAlpha=.7;x.strokeStyle='#e9c46a';x.lineWidth=1.6;x.beginPath();for(let X=0;X<=w;X+=6){const yy=Y+Math.sin(X/w*Math.PI)*Math.sin(t*14)*A;X?x.lineTo(X,yy):x.moveTo(X,yy)}x.stroke()}
+    /* le texte reste lisible : voile à gauche */
+    const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(13,6,8,.85)');v.addColorStop(w<760?.9:.45,'rgba(13,6,8,.25)');v.addColorStop(1,'rgba(13,6,8,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame);
 })();
 </script>
 <script>
