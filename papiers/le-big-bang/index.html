@@ -121,6 +121,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--or)}
 
 
 
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -269,6 +270,7 @@ document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');
   else if(/translate\.goog/.test(h))nom='version anglaise : '+location.pathname;
   if(nom){a.dataset.goatcounterClick=nom;a.dataset.goatcounterTitle=(a.textContent||'').trim().slice(0,60)}});
 </script>
+<script>if(navigator.webdriver||/bot|crawl|spider|archive|heritrix|brozzler|headless/i.test(navigator.userAgent)){window.goatcounter={no_onload:true}}</script>
 <script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
