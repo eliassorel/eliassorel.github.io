@@ -183,6 +183,17 @@ nav button[aria-selected="true"]{background:var(--creme);border-color:var(--crem
 .travaux .inner{max-width:720px}
 .travaux h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5vw,60px);color:var(--ink-strong);margin:0 0 20px}
 .travaux p{margin:0;font-size:19px}
+/* fils de pensée : un fil d'or vertical, une perle par pensée */
+.pensees{list-style:none;margin:72px 0 0;padding:0 0 0 34px;position:relative;display:grid;gap:64px}
+.pensees::before{content:"";position:absolute;left:6px;top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,transparent,var(--or-vif) 12%,var(--or-vif) 88%,transparent);opacity:.55}
+.pensee{position:relative}
+.pensee::before{content:"";position:absolute;left:-33px;top:.62em;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3cf,var(--or-vif) 60%,var(--or) 100%);box-shadow:0 0 0 4px var(--surface),0 0 14px rgba(212,168,47,.45)}
+.pensee blockquote{margin:0}
+.pensee blockquote p{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3.2vw,34px);line-height:1.38;color:var(--ink-strong);text-wrap:balance;max-width:26ch}
+.pensee .source{margin-top:18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;font:600 11px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-muted)}
+.pensee .source a{color:var(--or-texte);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+.pensee .source a::before{content:"";display:inline-block;width:22px;height:1px;background:currentColor;vertical-align:middle;margin-right:10px;opacity:.6}
+.pensee .source a:hover,.pensee .source a:focus-visible{border-bottom-color:currentColor}
 .musique .inner.large{max-width:1100px}
 .morceau{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:36px;align-items:start}
 @media (max-width:860px){.morceau{grid-template-columns:minmax(0,1fr)}}
@@ -397,7 +408,15 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   </div>
 </section>
 <section id="v-fils" class="travaux band" hidden>
-  <div class="inner"><h2>Fils de pensée</h2><p>Les pierres qui tombent entre deux papiers. Une phrase, une seule, qui tient debout toute seule. Les premières arrivent.</p></div>
+  <div class="inner"><h2>Fils de pensée</h2><p>Les pierres qui tombent entre deux papiers. Une phrase, une seule, qui tient debout toute seule. Certaines ont déjà une maison : le fil mène à la pièce où elles vivent.</p>
+    <ol class="pensees">
+      <li class="pensee" id="p-immuable">
+        <blockquote cite="https://eliassorel.github.io/papiers/le-diamant/"><p>Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.</p></blockquote>
+        <p class="source"><span>Elias Sorel</span><a href="/papiers/le-diamant/">logée dans Le Diamant</a></p>
+      </li>
+    </ol>
+  </div>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Quotation","text":"Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.","inLanguage":"fr","creator":{"@type":"Person","name":"Elias Sorel","sameAs":"https://orcid.org/0009-0003-7980-9944"},"isPartOf":{"@type":"CreativeWork","name":"Le Diamant","url":"https://eliassorel.github.io/papiers/le-diamant/"}}</script>
 </section>
 </main>
 
