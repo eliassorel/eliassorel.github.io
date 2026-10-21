@@ -1,0 +1,164 @@
+<!doctype html>
+<!--
+  La constellation. Les papiers sont les étoiles ; ce qui compte, c'est le trait qui les relie.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La constellation · Elias Sorel</title>
+<meta name="description" content="La carte du corpus d'Elias Sorel : chaque papier est une étoile, et chaque trait dit ce qui relie deux papiers. Le Diamant, L'Icosaèdre, le bestiaire, le cosmos, les pierres.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#070a10">
+<link rel="canonical" href="https://eliassorel.github.io/constellation/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--fond:#070a10;--fond-2:#0d131d;--creme:#e8dcc0;--creme-2:#f4e3b8;--or:#d4a82f;--or-pale:rgba(212,168,47,.45);--gris:#8f97a0;--ligne:#243049;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--creme);font-family:"Source Sans 3",Arial,sans-serif;font-size:17px;line-height:1.6}
+a{color:inherit}
+.haut{padding:28px max(24px,env(safe-area-inset-left,0px)) 0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.haut a{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--gris)}
+.haut a:hover{color:var(--creme-2)}
+header{padding:56px max(24px,env(safe-area-inset-left,0px)) 10px;max-width:880px;margin:0 auto;text-align:center;display:grid;gap:16px}
+.sceau{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--or)}
+h1{margin:0;font:400 clamp(42px,8vw,82px)/1 Lora,Georgia,serif;color:var(--creme-2);letter-spacing:.02em}
+header p{margin:0 auto;max-width:46ch;font:italic 400 19px/1.55 Lora,Georgia,serif;color:var(--creme);text-wrap:balance}
+.ciel{position:relative;max-width:1100px;margin:10px auto 0;padding:0 12px}
+.ciel svg{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}
+.trait{stroke:var(--or-pale);stroke-width:1;fill:none;transition:stroke .3s,stroke-width .3s}
+.trait.venir{stroke-dasharray:3 5;stroke:rgba(143,151,160,.45)}
+.trait.on{stroke:var(--or);stroke-width:1.8}
+.etoile{cursor:pointer;outline:none}
+.etoile .halo{fill:url(#halo);opacity:.55;transition:opacity .3s}
+.etoile .coeur{fill:var(--creme-2)}
+.etoile.venir .coeur{fill:none;stroke:var(--gris);stroke-width:1.2}
+.etoile.venir .halo{opacity:.15}
+.etoile text{font:600 12.5px "Source Sans 3",Arial,sans-serif;letter-spacing:.06em;fill:var(--creme);paint-order:stroke;stroke:var(--fond);stroke-width:4px}
+.etoile.venir text{fill:var(--gris)}
+.etoile:hover .halo,.etoile:focus .halo,.etoile.on .halo{opacity:1}
+.mot{font:italic 400 12px Lora,Georgia,serif;fill:var(--or);opacity:0;transition:opacity .3s;pointer-events:none;paint-order:stroke;stroke:var(--fond);stroke-width:4px}
+.mot.on{opacity:1}
+.fiche{max-width:560px;margin:8px auto 0;padding:22px 24px;border:1px solid var(--ligne);border-radius:14px;background:var(--fond-2);min-height:150px;display:grid;gap:10px}
+.fiche .t{font:400 26px/1.2 Lora,Georgia,serif;color:var(--creme-2);margin:0}
+.fiche .s{font:italic 400 16px/1.5 Lora,Georgia,serif;color:var(--creme);margin:0}
+.fiche .liens{font:600 11px/1.8 "Source Sans 3",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);display:flex;flex-wrap:wrap;gap:6px 18px}
+.fiche .liens a{color:var(--or);text-decoration:none}
+.fiche .liens a:hover{color:var(--creme-2)}
+.aide{text-align:center;font-size:14px;color:var(--gris);margin:14px auto 0;max-width:46ch}
+.liste{max-width:760px;margin:90px auto 0;padding:0 max(24px,env(safe-area-inset-left,0px)) 80px;display:grid;gap:34px}
+.liste h2{font:400 32px/1.2 Lora,Georgia,serif;color:var(--creme-2);margin:0}
+.liste h3{font:400 22px/1.3 Lora,Georgia,serif;color:var(--creme-2);margin:0 0 4px}
+.liste p{margin:0}
+.liste .relie{font-size:15px;color:var(--gris)}
+.liste .relie b{color:var(--creme);font-weight:600}
+@media (max-width:640px){.ciel{padding:0}.etoile text{font-size:30px;stroke-width:9px}.mot{display:none}}
+footer{text-align:center;padding:30px 24px 50px;font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+footer a{text-decoration:none}
+</style>
+
+
+<!-- finitions -->
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="La constellation · Elias Sorel">
+<meta property="og:description" content="La carte du corpus d&#x27;Elias Sorel : chaque papier est une étoile, et chaque trait dit ce qui relie deux papiers. Le Diamant, L&#x27;Icosaèdre, le bestiaire, le cosmos, les pierres.">
+<meta property="og:url" content="https://eliassorel.github.io/constellation/">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/constellation.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/constellation.jpg">
+<!-- /finitions -->
+</head>
+<body>
+<nav class="haut"><a href="/">← Elias Sorel</a><a href="/lexique/">Le lexique →</a></nav>
+<header>
+  <span class="sceau">✦ La carte du corpus</span>
+  <h1>La constellation</h1>
+  <p>« Le souvenir, ce n'est pas les étoiles, c'est le trait qui les relie. » Chaque papier est une étoile. Chaque trait dit ce qui en relie deux.</p>
+</header>
+
+<div class="ciel">
+<svg id="ciel" viewBox="0 0 1000 620" role="img" aria-label="Carte des papiers d'Elias Sorel et des liens entre eux">
+  <defs><radialGradient id="halo"><stop offset="0" stop-color="#f4e3b8" stop-opacity=".9"/><stop offset=".35" stop-color="#d4a82f" stop-opacity=".35"/><stop offset="1" stop-color="#d4a82f" stop-opacity="0"/></radialGradient></defs>
+  <g id="fond"></g><g id="traits"></g><g id="mots"></g><g id="etoiles"></g>
+</svg>
+</div>
+<div class="fiche" id="fiche" aria-live="polite">
+  <p class="t">Touche une étoile</p>
+  <p class="s">ou un trait, pour lire ce qui relie deux papiers.</p>
+</div>
+<p class="aide">Les étoiles en pointillés sont des papiers en préparation.</p>
+
+<section class="liste" aria-labelledby="t-liste">
+  <h2 id="t-liste">Les étoiles et leurs traits</h2>
+  <div id="liste"></div>
+</section>
+
+<footer><a href="/">eliassorel.github.io</a></footer>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg',$=id=>document.getElementById(id);
+const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+/* les étoiles : position, taille, et une phrase du papier */
+const E={
+ diamant:{x:500,y:150,r:15,t:"Le Diamant",s:"ce qui vibre, se souvient, éclaire",p:"« La lumière est ce qui naît quand la vibration se souvient. »",u:"/papiers/le-diamant/"},
+ ico:{x:300,y:250,r:12,t:"L'Icosaèdre",s:"ce qui s'étage, se lit, résonne",p:"« La résonance est ce qui naît quand une échelle se lit. »",u:"/papiers/l-icosaedre/"},
+ cube:{x:170,y:400,r:10,t:"Le Cube",s:"dimension, écart, accord",p:"En préparation.",v:1},
+ bigbang:{x:760,y:110,r:11,t:"Le Big Bang",s:"l'éclat qui aveugle",p:"« Rien avant » n'est pas un fait mesuré, c'est une conclusion tirée d'un angle mort.",u:"/papiers/le-big-bang/"},
+ stones:{x:680,y:300,r:11,t:"Metaphysical Stones",s:"les pierres",p:"« Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie. »",u:"/papiers/metaphysical-stones/"},
+ poulpe:{x:520,y:440,r:12,t:"Le poulpe",s:"le corps distribué",p:"« Le poulpe est une réponse, autre que la nôtre, à une question que tout corps doit résoudre : où loger l'esprit ? Ni au-dessus ni en dessous, à côté. »",u:"/papiers/le-poulpe/"},
+ blob:{x:360,y:520,r:10,t:"Le blob",s:"l'accord sans chef",p:"« Il ne cherche pas le chemin. Il le devient. »",u:"/papiers/le-blob/"},
+ tardi:{x:610,y:560,r:10,t:"Le tardigrade",s:"la survie par le retrait",p:"« Ce n'est pas parti. C'est endormi. »",u:"/papiers/le-tardigrade/"},
+ mito:{x:800,y:470,r:11,t:"La mitochondrie",s:"à l'origine de la cellule complexe",p:"« Il n'y a pas de sommet. Il y a des lignées qui continuent. »",u:"/papiers/la-mitochondrie/"},
+ sens:{x:150,y:560,r:9,t:"Les cubes des sens",s:"chaque bête entre dans le réel par ses lignes",p:"En préparation.",v:1}
+};
+/* les traits : ce qui relie deux papiers */
+const T=[
+ ["diamant","ico","Le un est dans la loi ; l'Icosaèdre en cherche le process."],
+ ["ico","cube","Après la loi et le process, l'écart."],
+ ["diamant","bigbang","La lumière, et le mur de l'outil qui la lit."],
+ ["diamant","stones","Les pierres logées dans le Diamant."],
+ ["ico","stones","Les pierres logées dans l'Icosaèdre."],
+ ["poulpe","blob","Penser sans centre de commande."],
+ ["blob","tardi","Sécher pour durer : le sclérote et le tun."],
+ ["tardi","mito","Le retrait ralentit la respiration de la cellule."],
+ ["mito","poulpe","Pas de sommet : des réponses posées ailleurs sur la gamme."],
+ ["cube","sens","Le point au milieu du cube : chaque bête est un décrypteur."],
+ ["sens","blob","Une bête sans œil ni neurone, qui lit quand même son monde."]
+];
+const svg=$("ciel");
+/* un fond d'étoiles fines, fixe */
+let seed=9;const rnd=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646};
+for(let i=0;i<160;i++)mk('circle',{cx:(rnd()*1000).toFixed(1),cy:(rnd()*620).toFixed(1),r:(rnd()*1+.2).toFixed(2),fill:'#e8dcc0',opacity:(rnd()*.45+.08).toFixed(2)},$("fond"));
+const traits=[],mots=[];
+T.forEach(([a,b,m],i)=>{const A=E[a],B=E[b];const venir=A.v||B.v;
+ const l=mk('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,class:'trait'+(venir?' venir':'')},$("traits"));traits.push(l);
+ const hit=mk('line',{x1:A.x,y1:A.y,x2:B.x,y2:B.y,stroke:'transparent','stroke-width':18,style:'cursor:pointer'},$("traits"));
+ const tx=mk('text',{x:(A.x+B.x)/2,y:(A.y+B.y)/2-8,'text-anchor':'middle',class:'mot'},$("mots"));tx.textContent=m.length>34?m.slice(0,32)+'…':m;mots.push(tx);
+ hit.addEventListener('click',()=>montreTrait(i));});
+function eteint(){traits.forEach(t=>t.classList.remove('on'));mots.forEach(t=>t.classList.remove('on'));document.querySelectorAll('.etoile').forEach(e=>e.classList.remove('on'))}
+function montreTrait(i){eteint();traits[i].classList.add('on');mots[i].classList.add('on');const [a,b,m]=T[i];
+ fiche(`<p class="t">${E[a].t} · ${E[b].t}</p><p class="s">${m}</p><div class="liens">${[a,b].filter(k=>E[k].u).map(k=>`<a href="${E[k].u}">Entrer · ${E[k].t}</a>`).join('')}</div>`)}
+function montreEtoile(k){eteint();const e=E[k];document.querySelector(`[data-k="${k}"]`).classList.add('on');
+ T.forEach(([a,b],i)=>{if(a===k||b===k){traits[i].classList.add('on');mots[i].classList.add('on')}});
+ fiche(`<p class="t">${e.t}</p><p class="s">${e.s}</p><p class="s" style="color:var(--creme-2)">${e.p}</p><div class="liens">${e.u?`<a href="${e.u}">Entrer dans la pièce</a>`:'<span>En préparation</span>'}</div>`)}
+function fiche(h){$("fiche").innerHTML=h}
+for(const k in E){const e=E[k];const g=mk('g',{class:'etoile'+(e.v?' venir':''),'data-k':k,tabindex:0,role:'button','aria-label':e.t},$("etoiles"));
+ mk('circle',{cx:e.x,cy:e.y,r:e.r*3.2,class:'halo'},g);mk('circle',{cx:e.x,cy:e.y,r:e.r/2.4,class:'coeur'},g);
+ const below=e.y<300?1:-1;const t=mk('text',{x:e.x,y:e.y+(below>0?e.r*2.6+14:-e.r*2.6-6),'text-anchor':'middle'},g);t.textContent=e.t;
+ g.addEventListener('click',()=>montreEtoile(k));g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();montreEtoile(k)}})}
+/* la même carte en texte, pour qui lit sans voir, et pour les moteurs */
+const L=$("liste");for(const k in E){const e=E[k];const lie=T.filter(([a,b])=>a===k||b===k).map(([a,b,m])=>`<b>${E[a===k?b:a].t}</b> : ${m}`);
+ const d=document.createElement('article');d.innerHTML=`<h3>${e.u?`<a href="${e.u}">${e.t}</a>`:e.t}</h3><p>${e.s}. ${e.v?'En préparation.':''}</p><p class="relie">${lie.join('<br>')}</p>`;L.appendChild(d)}
+})();
+</script>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<!--
+  Les mots du corpus. Chacun avec sa phrase, et le fil vers la pièce où il travaille.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le lexique · Elias Sorel</title>
+<meta name="description" content="Les mots d'Elias Sorel : entre-deux, vibration, accord, résonance, décrypter, gabarit, échelle, tracé, endormi, retrait. Une définition, une phrase, et le papier où le mot travaille.">
+<meta name="author" content="Elias Sorel">
+<meta name="theme-color" content="#f7f4ee">
+<link rel="canonical" href="https://eliassorel.github.io/lexique/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--fond:#f7f4ee;--carte:#ffffff;--ink:#4a4f54;--fort:#111a27;--doux:#626a73;--or:#8a6a22;--filet:#e7e1d4;
+--etabli:#0f6e56;--etabli-bg:#e1f5ee;--debattu:#854f0b;--debattu-bg:#faeeda;--hypo:#6b3f8f;--hypo-bg:#f1e8f7;--lecture:#185fa5;--lecture-bg:#e6f1fb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--fond:#0d131d;--carte:#121a27;--ink:#d3cdbf;--fort:#f4e3b8;--doux:#a3abb2;--or:#d4a82f;--filet:#243049;color-scheme:dark;
+--etabli:#7fd6b5;--etabli-bg:#12302a;--debattu:#f0c27a;--debattu-bg:#33260f;--hypo:#d3a8ef;--hypo-bg:#2a1d38;--lecture:#9cc8f2;--lecture-bg:#13283f}}
+:root[data-theme="dark"]{--fond:#0d131d;--carte:#121a27;--ink:#d3cdbf;--fort:#f4e3b8;--doux:#a3abb2;--or:#d4a82f;--filet:#243049;color-scheme:dark;
+--etabli:#7fd6b5;--etabli-bg:#12302a;--debattu:#f0c27a;--debattu-bg:#33260f;--hypo:#d3a8ef;--hypo-bg:#2a1d38;--lecture:#9cc8f2;--lecture-bg:#13283f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--ink);font:400 17px/1.65 "Source Sans 3",Arial,sans-serif}
+.haut{padding:28px max(24px,env(safe-area-inset-left,0px)) 0;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.haut a{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--doux)}
+.haut a:hover{color:var(--or)}
+main{max-width:760px;margin:0 auto;padding:60px max(24px,env(safe-area-inset-left,0px)) 80px}
+.sceau{font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--or)}
+h1{margin:14px 0 18px;font:400 clamp(44px,8vw,78px)/1 Lora,Georgia,serif;color:var(--fort)}
+.chapeau{font:italic 400 19px/1.6 Lora,Georgia,serif;margin:0;max-width:44ch}
+.index{margin:34px 0 0;padding:18px 0;border-top:1px solid var(--filet);border-bottom:1px solid var(--filet);font:600 12px/2 "Source Sans 3",Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--doux)}
+.index a{color:var(--fort);text-decoration:none}
+.index a:hover{color:var(--or)}
+.mots{display:grid;gap:56px;margin-top:56px}
+.mot{scroll-margin-top:24px}
+.mot h2{margin:0 0 8px;font:400 34px/1.15 Lora,Georgia,serif;color:var(--fort)}
+.mot h2 a{color:inherit;text-decoration:none}
+.mot .def{margin:0;font-size:18px}
+.mot blockquote{margin:16px 0 0;padding-left:18px;border-left:2px solid var(--or)}
+.mot blockquote p{margin:0;font:italic 400 21px/1.45 Lora,Georgia,serif;color:var(--fort);text-wrap:balance}
+.src{margin:10px 0 0 20px;display:flex;flex-wrap:wrap;gap:4px 16px;font:600 11px/1.7 "Source Sans 3",Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--doux)}
+.src a{color:var(--or);text-decoration:none;border-bottom:1px solid transparent}
+.src a::before{content:"";display:inline-block;width:20px;height:1px;background:currentColor;vertical-align:middle;margin-right:9px;opacity:.6}
+.src a:hover{border-bottom-color:currentColor}
+.registres{margin-top:80px;padding:28px;border-radius:14px;background:var(--carte);border:1px solid var(--filet)}
+.registres h2{margin:0 0 6px;font:400 28px/1.2 Lora,Georgia,serif;color:var(--fort)}
+.registres ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+.registres li{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.pill{font:600 10.5px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.14em;padding:6px 9px;border-radius:4px;flex:none}
+.etabli{color:var(--etabli);background:var(--etabli-bg)}.debattu{color:var(--debattu);background:var(--debattu-bg)}.lecture{color:var(--lecture);background:var(--lecture-bg)}.hypo{color:var(--hypo);background:var(--hypo-bg)}
+footer{text-align:center;padding:0 24px 50px;font:600 11px/1 "Source Sans 3",Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--doux)}
+footer a{color:inherit;text-decoration:none}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "Le lexique d'Elias Sorel", "url": "https://eliassorel.github.io/lexique/", "hasDefinedTerm": [{"@type": "DefinedTerm", "name": "Accord", "description": "Deux choses distinctes qui battent sur le même rythme et, le temps que ça dure, se lient.", "url": "https://eliassorel.github.io/lexique/#accord"}, {"@type": "DefinedTerm", "name": "Décrypter", "description": "Lire une trace sans avoir encore la clé : forger, par essais, la forme qui la rend lisible. Une fois trouvée, le décryptage devient lecture.", "url": "https://eliassorel.github.io/lexique/#decrypter"}, {"@type": "DefinedTerm", "name": "Échelle", "description": "Le niveau où l'on regarde. Ce qui paraît un, de loin, est toujours un multiple vu à une certaine distance.", "url": "https://eliassorel.github.io/lexique/#echelle"}, {"@type": "DefinedTerm", "name": "Endormi", "description": "Ce qui n'est pas perdu mais en veille : un souvenir qu'on ne retrouve plus seul, une bête qui attend dans son tonneau.", "url": "https://eliassorel.github.io/lexique/#endormi"}, {"@type": "DefinedTerm", "name": "Entre-deux", "description": "Ce qui relie deux choses. Ni l'une ni l'autre : le lien lui-même, et c'est là que se tient le tout.", "url": "https://eliassorel.github.io/lexique/#entre-deux"}, {"@type": "DefinedTerm", "name": "Gabarit", "description": "La forme qu'il faut déjà posséder pour lire un signal. Lire, c'est appliquer un gabarit qu'on a ; décrypter, c'est le forger.", "url": "https://eliassorel.github.io/lexique/#gabarit"}, {"@type": "DefinedTerm", "name": "Mesure du vivant", "description": "La règle qu'on applique au vivant depuis sa propre échelle. Aucune bête n'est en retard sur nous : chacune est une réponse entière.", "url": "https://eliassorel.github.io/lexique/#mesure"}, {"@type": "DefinedTerm", "name": "Résonance", "description": "Ce qui naît quand deux vibrations distinctes s'accordent. Une corde seule ne rend aucun son : il en faut deux, et c'est l'écart entre elles qui chante.", "url": "https://eliassorel.github.io/lexique/#resonance"}, {"@type": "DefinedTerm", "name": "Retrait", "description": "La manière dont le tardigrade traverse le sec, le froid et la chaleur : il ne résiste pas, il se retire, et revient.", "url": "https://eliassorel.github.io/lexique/#retrait"}, {"@type": "DefinedTerm", "name": "Tracé", "description": "La forme d'un souvenir : pas un objet rangé dans une case, un lien entre des points dispersés, qui se refait à chaque rappel.", "url": "https://eliassorel.github.io/lexique/#trace"}, {"@type": "DefinedTerm", "name": "Vibration", "description": "Le mouvement qui ne s'arrête jamais, sous la matière et jusque dans le vide. Le fond, pas un état parmi d'autres.", "url": "https://eliassorel.github.io/lexique/#vibration"}]}</script>
+
+
+<!-- finitions -->
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le lexique · Elias Sorel">
+<meta property="og:description" content="Les mots d&#x27;Elias Sorel : entre-deux, vibration, accord, résonance, décrypter, gabarit, échelle, tracé, endormi, retrait. Une définition, une phrase, et le papier où le mot travaille.">
+<meta property="og:url" content="https://eliassorel.github.io/lexique/">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/lexique.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/lexique.jpg">
+<!-- /finitions -->
+</head>
+<body>
+<nav class="haut"><a href="/">← Elias Sorel</a><a href="/constellation/">La constellation →</a></nav>
+<main>
+  <span class="sceau">✦ Les mots du corpus</span>
+  <h1>Le lexique</h1>
+  <p class="chapeau">Les mots qui reviennent d'un papier à l'autre. Pour chacun, ce qu'il veut dire ici, une phrase, et le fil vers la pièce où il travaille.</p>
+  <nav class="index" aria-label="Les mots"><a href="#accord">Accord</a> · <a href="#decrypter">Décrypter</a> · <a href="#echelle">Échelle</a> · <a href="#endormi">Endormi</a> · <a href="#entre-deux">Entre-deux</a> · <a href="#gabarit">Gabarit</a> · <a href="#mesure">Mesure du vivant</a> · <a href="#resonance">Résonance</a> · <a href="#retrait">Retrait</a> · <a href="#trace">Tracé</a> · <a href="#vibration">Vibration</a></nav>
+  <div class="mots"><article class="mot" id="accord"><h2><a href="#accord">Accord</a></h2><p class="def">Deux choses distinctes qui battent sur le même rythme et, le temps que ça dure, se lient.</p><blockquote><p>« Ce qui bat sur le même rythme se relie. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-diamant/">Le Diamant</a></p></article><article class="mot" id="decrypter"><h2><a href="#decrypter">Décrypter</a></h2><p class="def">Lire une trace sans avoir encore la clé : forger, par essais, la forme qui la rend lisible. Une fois trouvée, le décryptage devient lecture.</p><blockquote><p>« Décrypter, c&#x27;est forger le gabarit qui permettra de lire. Et même pour forger, il faut un gabarit plus petit. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/l-icosaedre/">L&#x27;Icosaèdre</a></p></article><article class="mot" id="echelle"><h2><a href="#echelle">Échelle</a></h2><p class="def">Le niveau où l&#x27;on regarde. Ce qui paraît un, de loin, est toujours un multiple vu à une certaine distance.</p><blockquote><p>« L&#x27;unité est l&#x27;étage où le regard s&#x27;arrête. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/l-icosaedre/">L&#x27;Icosaèdre</a></p></article><article class="mot" id="endormi"><h2><a href="#endormi">Endormi</a></h2><p class="def">Ce qui n&#x27;est pas perdu mais en veille : un souvenir qu&#x27;on ne retrouve plus seul, une bête qui attend dans son tonneau.</p><blockquote><p>« Ce n&#x27;est pas parti. C&#x27;est endormi. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-tardigrade/">Le tardigrade</a></p></article><article class="mot" id="entre-deux"><h2><a href="#entre-deux">Entre-deux</a></h2><p class="def">Ce qui relie deux choses. Ni l&#x27;une ni l&#x27;autre : le lien lui-même, et c&#x27;est là que se tient le tout.</p><blockquote><p>« Le tout n&#x27;est pas dans le visible, il est dans l&#x27;entre-deux qui les relie. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/metaphysical-stones/">Metaphysical Stones</a></p></article><article class="mot" id="gabarit"><h2><a href="#gabarit">Gabarit</a></h2><p class="def">La forme qu&#x27;il faut déjà posséder pour lire un signal. Lire, c&#x27;est appliquer un gabarit qu&#x27;on a ; décrypter, c&#x27;est le forger.</p><blockquote><p>« Lire, c&#x27;est appliquer un gabarit qu&#x27;on a déjà. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/l-icosaedre/">L&#x27;Icosaèdre</a></p></article><article class="mot" id="mesure"><h2><a href="#mesure">Mesure du vivant</a></h2><p class="def">La règle qu&#x27;on applique au vivant depuis sa propre échelle. Aucune bête n&#x27;est en retard sur nous : chacune est une réponse entière.</p><blockquote><p>« Nous ne sommes pas la mesure du vivant, juste un rameau qui se prend pour l&#x27;arbre. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/l-icosaedre/">L&#x27;Icosaèdre</a></p></article><article class="mot" id="resonance"><h2><a href="#resonance">Résonance</a></h2><p class="def">Ce qui naît quand deux vibrations distinctes s&#x27;accordent. Une corde seule ne rend aucun son : il en faut deux, et c&#x27;est l&#x27;écart entre elles qui chante.</p><blockquote><p>« On ne demande pas à une résonance de durer ; on lui demande d&#x27;avoir eu lieu. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-diamant/">Le Diamant</a></p></article><article class="mot" id="retrait"><h2><a href="#retrait">Retrait</a></h2><p class="def">La manière dont le tardigrade traverse le sec, le froid et la chaleur : il ne résiste pas, il se retire, et revient.</p><blockquote><p>« La cryptobiose ne supprime pas la pression de la sélection, elle la déplace. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-tardigrade/">Le tardigrade</a></p></article><article class="mot" id="trace"><h2><a href="#trace">Tracé</a></h2><p class="def">La forme d&#x27;un souvenir : pas un objet rangé dans une case, un lien entre des points dispersés, qui se refait à chaque rappel.</p><blockquote><p>« Le souvenir, ce n&#x27;est pas les étoiles, c&#x27;est le trait qui les relie. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-diamant/">Le Diamant</a></p></article><article class="mot" id="vibration"><h2><a href="#vibration">Vibration</a></h2><p class="def">Le mouvement qui ne s&#x27;arrête jamais, sous la matière et jusque dans le vide. Le fond, pas un état parmi d&#x27;autres.</p><blockquote><p>« La vibration n&#x27;a pas de naissance. Elle est le fond. »</p></blockquote><p class="src"><span>Elias Sorel</span><a href="/papiers/le-diamant/">Le Diamant</a></p></article></div>
+  <section class="registres" aria-labelledby="t-reg">
+    <h2 id="t-reg">Les quatre registres</h2>
+    <p>Dans chaque papier, chaque affirmation porte une marque, pour qu'on sache toujours ce qu'on lit.</p>
+    <ul><li><span class="pill etabli">ÉTABLI</span>Ce que dit la littérature revue par les pairs, avec sa source.</li><li><span class="pill debattu">DÉBATTU</span>Ce qui est discuté dans la littérature, ou publié en préprint.</li><li><span class="pill lecture">LECTURE</span>Mon interprétation, assumée comme non démontrée.</li><li><span class="pill hypo">À SOUMETTRE</span>Les questions que je porterais à un spécialiste.</li></ul>
+  </section>
+</main>
+<footer><a href="/">eliassorel.github.io</a></footer>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
