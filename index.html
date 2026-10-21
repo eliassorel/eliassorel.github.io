@@ -579,7 +579,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Au-dessus des nuages, à l'aube : une mer de cumulus dont le haut prend la lumière, des îles de nuées qui flottent, et des fils d'or où glissent de petites pierres de lumière. */
 (function(){
   const c=document.getElementById('nuages'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w=0,h=0,d=1,iles=[],mer=null,fils=[],mxn=.5,myn=.5,merX=0;
+  let w=0,h=0,d=1,iles=[],mer=null,fils=[],mxn=.5,myn=.5,merX=0,oiseau=null;
   /* un cumulus : des boules qui s'empilent, le haut éclairé, la base plate et plus sombre */
   function cumulus(L,H,lum){const s=document.createElement('canvas');s.width=Math.ceil(L);s.height=Math.ceil(H*1.3);const g=s.getContext('2d'),base=H;
     const boules=[];const n=Math.round(L/(H*.5));for(let k=0;k<n;k++){const u=(k+.5)/n,r=H*(.22+.5*Math.sin(Math.PI*u))*(0.6+Math.random()*.8);boules.push([L*u+(Math.random()-.5)*H*.2,base-r*.75-Math.random()*H*.15,r])}
@@ -616,6 +616,17 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
     for(const f of fils){const pts=[];for(let X=-20;X<=w+20;X+=16){pts.push([X,f.y+Math.sin(X*f.f+t*f.v+f.p)*f.a+Math.sin(X*f.f*2.3+t*f.v*.7)*f.a*.3])}
       x.globalAlpha=.6;x.strokeStyle='rgba(255,226,150,.9)';x.lineWidth=1;x.beginPath();pts.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();
       for(const pe of f.perles){if(!calme){pe.u+=pe.v;if(pe.u>1)pe.u=0}const q=pts[Math.floor(pe.u*(pts.length-1))];const gp=x.createRadialGradient(q[0],q[1],0,q[0],q[1],10);gp.addColorStop(0,'rgba(255,240,190,.95)');gp.addColorStop(1,'rgba(255,240,190,0)');x.globalAlpha=1;x.fillStyle=gp;x.fillRect(q[0]-10,q[1]-10,20,20);x.fillStyle='#fffaf0';x.beginPath();x.arc(q[0],q[1],2,0,6.283);x.fill()}}
+    /* un oiseau qui passe : battements, puis il plane, et il revient de temps en temps */
+    if(!calme){
+      if(!oiseau||oiseau.fini){if(!oiseau||t>oiseau.prochain){const dir=Math.random()<.5?1:-1;oiseau={dir,x:dir>0?-40:w+40,y:h*(.2+Math.random()*.3),v:(w<760?1.1:1.6)*(.8+Math.random()*.4),ph:0,s:(w<760?13:20)*(.85+Math.random()*.3),t0:t,fini:false}}}
+      if(oiseau&&!oiseau.fini){const o=oiseau,dt=t-o.t0,cycle=dt%3.2,bat=cycle<1.9;
+        o.ph+=bat?.32:0;const aile=bat?Math.sin(o.ph):.18+Math.sin(t*1.5)*.05;
+        o.x+=o.v*o.dir;const Y=o.y+Math.sin(dt*1.3)*h*.03+(bat?0:Math.sin(cycle)*2);
+        const S=o.s,ay=-aile*S*.7;
+        x.globalAlpha=.85;x.strokeStyle='rgba(44,40,74,.9)';x.fillStyle='rgba(44,40,74,.9)';x.lineWidth=Math.max(1.4,S*.14);x.lineJoin='round';
+        x.beginPath();x.moveTo(o.x-S,Y+ay);x.quadraticCurveTo(o.x-S*.45,Y+ay*.35-S*.15,o.x,Y);x.quadraticCurveTo(o.x+S*.45,Y+ay*.35-S*.15,o.x+S,Y+ay);x.stroke();
+        x.beginPath();x.ellipse(o.x+o.dir*S*.08,Y+S*.05,S*.22,S*.1,0,0,6.283);x.fill();
+        if(o.x<-60||o.x>w+60){o.fini=true;o.prochain=t+10+Math.random()*14}}}
     /* la mer de nuages, qui défile doucement */
     if(!calme)merX=(merX+.15)%w;x.globalAlpha=1;const my=h-mer.height+(myn-.5)*8;x.drawImage(mer,-merX+(mxn-.5)*12,my);
     /* le texte reste lisible : voile bleu à gauche */
