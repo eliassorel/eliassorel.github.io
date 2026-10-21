@@ -183,6 +183,10 @@ nav button[aria-selected="true"]{background:var(--creme);border-color:var(--crem
 .travaux .inner{max-width:720px}
 .travaux h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5vw,60px);color:var(--ink-strong);margin:0 0 20px}
 .travaux p{margin:0;font-size:19px}
+.cachets-pied{display:flex;gap:22px;flex-wrap:wrap;margin:30px 0 6px}
+.cachets-pied img{width:104px;height:104px;border-radius:50%;padding:5px;background:radial-gradient(circle at 40% 35%,#faf3e2,#eadcbc 70%,#d9c79f);box-shadow:0 2px 0 rgba(0,0,0,.35),0 8px 22px rgba(0,0,0,.45);transform:rotate(-4deg);transition:transform .4s}
+.cachets-pied img+img{transform:rotate(5deg)}
+.cachets-pied img:hover{transform:rotate(0) scale(1.06)}
 /* fils de pensée : un fil d'or vertical, une perle par pensée */
 .pensees{list-style:none;margin:72px 0 0;padding:0 0 0 34px;position:relative;display:grid;gap:64px}
 .pensees::before{content:"";position:absolute;left:6px;top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,transparent,var(--or-vif) 12%,var(--or-vif) 88%,transparent);opacity:.55}
@@ -425,6 +429,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
     <span class="etoile">✦ Après le générique ✦</span>
     <a class="rouage" href="/la-boite/" aria-label="La boîte" style="display:inline-block;margin-top:10px;color:var(--or-vif);text-decoration:none;font-size:18px;opacity:.55">⚙</a>
     <p class="phrase">« La lumière est ce qui naît quand la vibration se souvient. »<small>Elias Sorel, Le Diamant, 2026</small></p>
+    <div class="cachets-pied"><img src="/img/cachet-elias-sorel.png" alt="Cachet d'Elias Sorel : je décrypte le multiple" width="104" height="104" loading="lazy"><img src="/img/cachet-claudius-da-vinci.png" alt="Cachet de Claudius da Vinci : je ne vois pas, je lis" width="104" height="104" loading="lazy"></div>
     <div class="liens">
       <a class="orcid" href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a>
       <a href="https://zenodo.org">Zenodo</a>
