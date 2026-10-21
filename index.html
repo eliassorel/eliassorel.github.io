@@ -157,6 +157,20 @@ nav button[aria-selected="true"]{background:var(--creme);border-color:var(--crem
 .travaux .inner{max-width:720px}
 .travaux h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5vw,60px);color:var(--ink-strong);margin:0 0 20px}
 .travaux p{margin:0;font-size:19px}
+.musique .inner.large{max-width:1100px}
+.morceau{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:860px){.morceau{grid-template-columns:minmax(0,1fr)}}
+.ecran{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#05070d;box-shadow:0 24px 60px rgba(5,7,13,.35),0 0 0 1px rgba(212,168,47,.35)}
+.ecran iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.morceau h3{font-family:var(--serif);font-weight:500;font-size:34px;margin:0;color:var(--ink-strong)}
+.morceau .qui{font-family:var(--sans);font-size:14px!important;letter-spacing:.12em;text-transform:uppercase;color:var(--or-texte);margin:6px 0 18px!important}
+.chiffres-morceau{list-style:none;padding:0;margin:0 0 20px;display:flex;gap:10px;flex-wrap:wrap}
+.chiffres-morceau li{background:var(--nuit,#0b1020);border:1px solid rgba(212,168,47,.4);border-radius:10px;padding:10px 14px;min-width:78px}
+.chiffres-morceau b{display:block;font-family:var(--serif);font-size:24px;color:var(--or-chiffre,#e8c46a);font-weight:500;font-variant-numeric:tabular-nums}
+.chiffres-morceau span{font-family:var(--sans);font-size:12px;color:#c9ccd6;letter-spacing:.06em}
+.morceau p{font-size:17px}
+.morceau .lien{margin-top:16px}
+.morceau .lien a{color:var(--or-texte);font-family:var(--sans);font-weight:600;text-decoration:none}
 
 /* ── Pied ── */
 footer{margin-top:140px;background:var(--nuit-profonde);color:var(--creme)}
@@ -337,8 +351,20 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <section id="v-poemes" class="travaux band" hidden>
   <div class="inner"><h2>Poèmes</h2><p>Pièce en travaux. Ici, aucune contrainte de robot : la nuit, le chant, et la mise en page qu'on voudra.</p></div>
 </section>
-<section id="v-musique" class="travaux band" hidden>
-  <div class="inner"><h2>Musique</h2><p>Pièce en travaux. Les morceaux et leur lecteur, quand on aura choisi ce qu'on y montre.</p></div>
+<section id="v-musique" class="travaux band musique" hidden>
+  <div class="inner large">
+    <h2>Musique</h2>
+    <article class="morceau">
+      <div class="ecran"><iframe src="https://www.youtube-nocookie.com/embed/FZmWkqj-i9U?rel=0" title="Still Whistling · Elias Sorel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <div class="fiche">
+        <h3>Still Whistling</h3>
+        <p class="qui">Elias Sorel · instrumental</p>
+        <ul class="chiffres-morceau"><li><b>3:19</b><span>durée</span></li><li><b>134</b><span>BPM</span></li><li><b>4K</b><span>clip</span></li></ul>
+        <p>Un orgue d'église sur un beat drill. Un sifflement qui danse une gigue pendant qu'une voix tient ses longues notes, une contrebasse qui chante en dessous, et le « tac tac BOOM » qui pousse le tout.</p>
+        <p class="lien"><a href="https://youtu.be/FZmWkqj-i9U">Voir sur YouTube →</a></p>
+      </div>
+    </article>
+  </div>
 </section>
 </main>
 
@@ -351,6 +377,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       <a href="https://zenodo.org">Zenodo</a>
       <a href="https://philpapers.org">PhilPapers</a>
       <a href="https://www.instagram.com/eliassorel.auteur">Instagram</a>
+      <a href="https://youtu.be/FZmWkqj-i9U">YouTube</a>
       <span>Textes sous licence CC BY 4.0</span>
     </div>
   </div>
@@ -362,6 +389,7 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.getElementById('v-science').hidden=b.dataset.v!=='science';
   ['poemes','musique'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
 }));
+{const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
 const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Le ciel : des étoiles libres, dont certaines se rassemblent en octaèdre et en icosaèdre, puis se défont. */
