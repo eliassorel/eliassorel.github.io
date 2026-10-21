@@ -1,0 +1,244 @@
+<!doctype html>
+<!--
+  La boîte. Elle ne s'ouvre pas en forçant.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>La boîte · Elias Sorel</title>
+<meta name="theme-color" content="#0b1018">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--nuit:#0b1018;--bois:#3a2416;--bois2:#5a3820;--bois3:#7a4c2a;--laiton:#c9a24a;--laiton2:#f0d27a;--ivoire:#efe6cf;--muet:#9a8f7a;--fil:rgba(240,210,122,.18);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--nuit)}
+body{color:var(--ivoire);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.5;padding-inline:16px;padding-block:28px 60px;
+background-image:radial-gradient(900px 600px at 50% -10%,rgba(201,162,74,.12),transparent 60%)}
+.wrap{max-width:620px;margin:0 auto;display:grid;gap:18px}
+.kick{font:500 .62rem "IBM Plex Mono",monospace;letter-spacing:4px;text-transform:uppercase;color:var(--laiton);text-align:center}
+h1{margin:0;text-align:center;font-weight:500;font-size:2.3rem;letter-spacing:.5px}
+.intro{text-align:center;color:var(--muet);font-style:italic;margin:0 auto;max-width:44ch;text-wrap:balance}
+.boite{position:relative;border-radius:18px;padding:18px 14px 20px;
+background:linear-gradient(160deg,var(--bois3),var(--bois) 55%,#24160d);box-shadow:inset 0 0 0 2px #1a0f08,inset 0 0 0 6px var(--bois2),0 20px 50px rgba(0,0,0,.55)}
+.vis{position:absolute;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--laiton2),#7a5a1c);box-shadow:0 1px 2px #000}
+.vis::after{content:"";position:absolute;left:2px;right:2px;top:5px;height:2px;background:#4a3510;transform:rotate(35deg)}
+.v1{top:10px;left:10px}.v2{top:10px;right:10px}.v3{bottom:10px;left:10px}.v4{bottom:10px;right:10px}
+.etage{display:grid;gap:12px;justify-items:center}
+.plaque{font:500 .64rem "IBM Plex Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:#2a1a0a;background:linear-gradient(180deg,var(--laiton2),var(--laiton));padding:4px 12px;border-radius:4px;box-shadow:0 1px 0 #000}
+svg{display:block;width:100%;height:auto;max-width:520px;touch-action:manipulation;user-select:none}
+.ctrl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+button{font:500 .8rem "IBM Plex Mono",monospace;color:#2a1a0a;background:linear-gradient(180deg,var(--laiton2),var(--laiton));border:0;border-radius:999px;padding:10px 16px;min-height:44px;min-width:44px;cursor:pointer;box-shadow:0 2px 0 #5a4010,0 4px 10px rgba(0,0,0,.4)}
+button:active{transform:translateY(2px);box-shadow:0 0 0 #5a4010}
+button.discret{background:transparent;color:var(--muet);box-shadow:none;border:1px solid var(--fil)}
+.aide{font-size:.95rem;color:#d9caa6;text-align:center;margin:0;max-width:46ch;text-wrap:balance}
+.papier{background:#efe3c4;color:#2b1f12;border-radius:3px;padding:16px 18px;max-width:440px;box-shadow:0 6px 18px rgba(0,0,0,.45);transform:rotate(-1.2deg);font-size:1.02rem}
+.papier p{margin:.2em 0}
+.papier .t{font-weight:600;text-align:center;letter-spacing:1px}
+.cadrans{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cadran{display:grid;gap:6px;justify-items:center}
+.cadran .val{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;font:600 1.9rem "Cormorant Garamond",serif;color:var(--laiton2);
+background:radial-gradient(circle at 40% 35%,#2b2b2b,#0c0c0c);box-shadow:inset 0 0 0 4px var(--laiton),inset 0 0 0 7px #2a1a0a,0 3px 8px rgba(0,0,0,.6);font-variant-numeric:tabular-nums}
+.cadran .num{font:500 .62rem "IBM Plex Mono",monospace;color:var(--laiton);letter-spacing:2px}
+.cadran button{padding:6px 12px;min-height:36px}
+.etat{font:500 .72rem "IBM Plex Mono",monospace;color:var(--muet);text-align:center;min-height:1.2em;margin:0}
+.secret{display:grid;gap:10px;justify-items:center;text-align:center;padding:26px 18px;border-radius:12px;background:radial-gradient(circle at 50% 30%,#1c2433,#0b1018);box-shadow:inset 0 0 0 1px rgba(240,210,122,.35)}
+.secret q{font-size:1.6rem;font-style:italic;quotes:"« " " »";text-wrap:balance;color:var(--laiton2)}
+.secret .sig{font:500 .7rem "IBM Plex Mono",monospace;letter-spacing:3px;text-transform:uppercase;color:var(--laiton)}
+.pied{text-align:center;font:.7rem "IBM Plex Mono",monospace;color:#6a6252}
+[hidden]{display:none!important}
+.ok{animation:lueur 1.2s ease}
+@keyframes lueur{0%{filter:brightness(1)}40%{filter:brightness(1.6)}100%{filter:brightness(1)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kick">un casse-tête · trois serrures</div>
+<h1>La boîte</h1>
+<p class="intro">Elle ne s'ouvre pas en forçant. Elle s'ouvre quand on a compris son rythme.</p>
+
+<div class="boite"><span class="vis v1"></span><span class="vis v2"></span><span class="vis v3"></span><span class="vis v4"></span>
+
+<section class="etage" id="e1">
+<span class="plaque">I · les deux roues</span>
+<svg id="roues" viewBox="0 0 420 260" aria-label="Deux roues dentées emboîtées portant des pions de couleur"></svg>
+<div class="ctrl">
+<button type="button" data-r="A" data-d="1" aria-label="roue gauche, sens inverse">⟲ gauche</button>
+<button type="button" data-r="A" data-d="-1" aria-label="roue gauche, sens horaire">gauche ⟳</button>
+<button type="button" data-r="B" data-d="1" aria-label="roue droite, sens inverse">⟲ droite</button>
+<button type="button" data-r="B" data-d="-1" aria-label="roue droite, sens horaire">droite ⟳</button>
+</div>
+<p class="aide">Les pions ne changent de roue qu'aux deux points où les roues se touchent. Mets les couleurs chaudes à gauche, les froides à droite, et l'or sur les deux points de passage.</p>
+<p class="etat" id="s1"></p>
+</section>
+
+<section class="etage" id="e2" hidden>
+<span class="plaque">II · les trois cadrans</span>
+<div class="papier" id="papier">
+<p class="t">Trois questions, trois cadrans.</p>
+<p>I. Combien de cordes faut-il pour qu'il y ait un chant ?</p>
+<p>II. Jusqu'à combien de récepteurs de couleur chez la crevette-mante ?</p>
+<p>III. Combien de « un », vraiment ?</p>
+</div>
+<div class="cadrans" id="cadrans"></div>
+<div class="ctrl"><button type="button" id="tourner">tourner la clé</button></div>
+<p class="etat" id="s2"></p>
+</section>
+
+<section class="etage" id="e3" hidden>
+<span class="plaque">III · le couvercle</span>
+<svg id="laby" viewBox="-3 -3 276 276" aria-label="Un labyrinthe gravé sur le couvercle, une bille à mener au centre"></svg>
+<div class="ctrl">
+<button type="button" data-m="0,-1" aria-label="haut">▲</button>
+<button type="button" data-m="-1,0" aria-label="gauche">◀</button>
+<button type="button" data-m="1,0" aria-label="droite">▶</button>
+<button type="button" data-m="0,1" aria-label="bas">▼</button>
+</div>
+<p class="aide">Mène la bille jusqu'au point d'or, au milieu. Flèches du clavier, boutons, ou glisse le doigt sur le couvercle.</p>
+<p class="etat" id="s3"></p>
+</section>
+
+<section class="etage" id="e4" hidden>
+<span class="plaque">la boîte est ouverte</span>
+<div class="secret"><q id="sq"></q><span class="sig" id="ss"></span></div>
+</section>
+</div>
+
+<div class="ctrl"><button type="button" class="discret" id="reset">tout remélanger</button></div>
+<p class="pied"><a href="/" style="color:inherit">eliassorel.github.io</a></p>
+</div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+const store={get(k){try{return JSON.parse(localStorage.getItem("boite:"+k))}catch(e){return null}},set(k,v){try{localStorage.setItem("boite:"+k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- I · les deux roues ---------- */
+const R=82,N=10,STEP=2*Math.PI/N,TH=STEP,D=2*R*Math.cos(TH);
+const CA={x:210-D/2,y:130},CB={x:210+D/2,y:130};
+const slots=[];const ringA=[],ringB=[];
+function find(x,y){for(let i=0;i<slots.length;i++)if(Math.hypot(slots[i].x-x,slots[i].y-y)<1)return i;slots.push({x,y});return slots.length-1}
+for(let k=0;k<N;k++){const a=k*STEP;ringA.push(find(CA.x+R*Math.cos(a),CA.y-R*Math.sin(a)))}
+for(let k=0;k<N;k++){const a=Math.PI+k*STEP;ringB.push(find(CB.x+R*Math.cos(a),CB.y-R*Math.sin(a)))}
+const shared=ringA.filter(i=>ringB.includes(i));
+const CH=["#d8443a","#e2603a","#e8802f","#eda22c","#f1c235","#e8d24a","#d65a5a","#f08a3a"];
+const FR=["#3fa36b","#2f9c95","#2f86b8","#3b6fc4","#5a5ad0","#7a4fc8","#9a52c0","#2a7f86"];
+const OR="#f0d27a";
+const want={};
+for(const i of ringA)if(!shared.includes(i))want[i]="c";
+for(const i of ringB)if(!shared.includes(i))want[i]="f";
+for(const i of shared)want[i]="o";
+function solved(st){return slots.every((_,i)=>st[i].k===want[i])}
+function base(){const st=[];let c=0,f=0;for(let i=0;i<slots.length;i++){const w=want[i];st[i]=w==="c"?{k:"c",col:CH[c++]}:w==="f"?{k:"f",col:FR[f++]}:{k:"o",col:OR}}return st}
+function turn(st,ring,d){const r=ring==="A"?ringA:ringB;const old=r.map(i=>st[i]);const n=st.slice();
+ r.forEach((idx,j)=>{n[idx]=old[(j-d+N)%N]});return n}
+function melange(){let st=base();let last="";for(let m=0;m<60;m++){const ring=Math.random()<.5?"A":"B";const d=Math.random()<.5?1:-1;st=turn(st,ring,d)}
+ if(solved(st))st=turn(st,"A",3);return st}
+let st=store.get("roues");if(!st||st.length!==slots.length)st=melange();
+const svg=document.getElementById("roues");
+function engrenage(c,col,p){const g=mk("g",{},p);const teeth=22,ro=R+20,ri=R+12;let d="";
+ for(let t=0;t<teeth*2;t++){const a=t*Math.PI/teeth;const r=t%2?ri:ro;const a1=a-Math.PI/teeth*.35,a2=a+Math.PI/teeth*.35;
+  d+=(t?"L":"M")+(c.x+r*Math.cos(a1)).toFixed(1)+","+(c.y+r*Math.sin(a1)).toFixed(1)+"L"+(c.x+r*Math.cos(a2)).toFixed(1)+","+(c.y+r*Math.sin(a2)).toFixed(1)}
+ mk("path",{d:d+"Z",fill:col,stroke:"#1a0f08","stroke-width":2},g);
+ mk("circle",{cx:c.x,cy:c.y,r:R-14,fill:"#4a2c18",stroke:"#1a0f08","stroke-width":1.5},g);
+ mk("circle",{cx:c.x,cy:c.y,r:9,fill:"#c9a24a",stroke:"#5a4010","stroke-width":2},g);return g}
+let anim=false;
+function draw(){svg.replaceChildren();
+ const gA=engrenage(CA,"#6a4022",svg),gB=engrenage(CB,"#7a4c2a",svg);gA.id="gA";gB.id="gB";
+ for(const [c,id] of [[CA,"tA"],[CB,"tB"]]){mk("circle",{cx:c.x,cy:c.y,r:R,fill:"none",stroke:"#1a0f08","stroke-width":26,opacity:.55},svg);
+  mk("circle",{cx:c.x,cy:c.y,r:R,fill:"none",stroke:"#c9a24a","stroke-width":1.4,opacity:.7,id},svg)}
+ for(let i=0;i<slots.length;i++){const s=slots[i];const w=want[i];
+  mk("circle",{cx:s.x,cy:s.y,r:14,fill:"none",stroke:w==="o"?OR:w==="c"?"#e8802f":"#3b6fc4","stroke-width":2,opacity:.55,"stroke-dasharray":w==="o"?"0":"3 3"},svg)}
+ const pg=mk("g",{id:"pions"},svg);
+ for(let i=0;i<slots.length;i++){const s=slots[i];const p=st[i];
+  const c=mk("g",{"data-i":i},pg);
+  mk("circle",{cx:s.x,cy:s.y+2,r:11,fill:"rgba(0,0,0,.45)"},c);
+  mk("circle",{cx:s.x,cy:s.y,r:11,fill:p.col,stroke:"#1a0f08","stroke-width":1.5},c);
+  mk("circle",{cx:s.x-3.5,cy:s.y-3.5,r:3.2,fill:"rgba(255,255,255,.5)"},c)}
+ mk("circle",{cx:CA.x,cy:CA.y,r:R+22,fill:"transparent",class:"zone","data-r":"A",style:"cursor:pointer"},svg);
+ mk("circle",{cx:CB.x,cy:CB.y,r:R+22,fill:"transparent",class:"zone","data-r":"B",style:"cursor:pointer"},svg);
+ document.getElementById("s1").textContent=compte()}
+function compte(){let ok=0;slots.forEach((_,i)=>{if(st[i].k===want[i])ok++});return ok+" pions sur "+slots.length+" à leur place"}
+function jouer(ring,d){if(anim||fait.e1)return;anim=true;
+ const c=ring==="A"?CA:CB,r=ring==="A"?ringA:ringB;
+ const g=document.getElementById(ring==="A"?"gA":"gB");const pions=[...svg.querySelectorAll("#pions > g")].filter(e=>r.includes(+e.dataset.i));
+ const deg=-d*360/N;const t0=performance.now(),T=260;
+ function f(t){const k=Math.min(1,(t-t0)/T),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;const a=deg*e;
+  const tr=`rotate(${a} ${c.x} ${c.y})`;g.setAttribute("transform",tr);pions.forEach(p=>p.setAttribute("transform",tr));
+  if(k<1)requestAnimationFrame(f);else{st=turn(st,ring,d);store.set("roues",st);draw();anim=false;verif1()}}
+ requestAnimationFrame(f)}
+svg.addEventListener("click",e=>{const z=e.target.closest(".zone");if(!z)return;
+ const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+ const dA=Math.abs(Math.hypot(p.x-CA.x,p.y-CA.y)-R),dB=Math.abs(Math.hypot(p.x-CB.x,p.y-CB.y)-R);const r=dA<=dB?"A":"B";const c=r==="A"?CA:CB;jouer(r,p.y<c.y?1:-1)});
+document.querySelectorAll("#e1 [data-r]").forEach(b=>b.addEventListener("click",()=>jouer(b.dataset.r,+b.dataset.d)));
+
+/* ---------- II · les trois cadrans ---------- */
+const fait=store.get("fait")||{};
+const vals=store.get("cadrans")||[0,0,0];
+const cad=document.getElementById("cadrans");
+["I","II","III"].forEach((n,i)=>{const w=document.createElement("div");w.className="cadran";
+ w.innerHTML=`<button type="button" aria-label="cadran ${n}, plus">▲</button><div class="val" aria-live="polite">${vals[i]}</div><button type="button" aria-label="cadran ${n}, moins">▼</button><span class="num">${n}</span>`;
+ const [up,,dn]=w.children;const v=w.querySelector(".val");
+ up.addEventListener("click",()=>{vals[i]=(vals[i]+1)%21;v.textContent=vals[i];store.set("cadrans",vals)});
+ dn.addEventListener("click",()=>{vals[i]=(vals[i]+20)%21;v.textContent=vals[i];store.set("cadrans",vals)});
+ cad.appendChild(w)});
+const CHK="9f6b48d35fd4c73bd2e55b4171897a1bbe347c3d83198e600049d1f04c61f5b4";
+const ENC="6ed14f8b515766c91d6869a971b081505ab89c36a5b5591a7f166b4fee50cd3b44d1018e04fde69f157f78b93ff58b415bfdd83dbfb80446545d635eed11ec205fd103";
+async function sha(s){if(!(window.crypto&&crypto.subtle))return null;const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return new Uint8Array(b)}
+const hex=u=>[...u].map(x=>x.toString(16).padStart(2,"0")).join("");
+document.getElementById("tourner").addEventListener("click",async()=>{const code=vals.join("-");const h=await sha("verrou:"+code);const s2=document.getElementById("s2");
+ if(!h){s2.textContent="ce navigateur ne sait pas lire la serrure";return}
+ if(hex(h)===CHK){fait.e2=code;store.set("fait",fait);s2.textContent="clac.";ouvrir()}else{s2.textContent="la clé ne tourne pas.";cad.classList.remove("ok");void cad.offsetWidth}});
+
+/* ---------- III · le labyrinthe ---------- */
+const G=9,C=30,O=0;let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646};
+const murs=[];for(let y=0;y<G;y++){murs.push([]);for(let x=0;x<G;x++)murs[y].push({n:1,s:1,e:1,w:1})}
+(function creuse(){const vu=new Set(["0,0"]);const pile=[[0,0]];
+ while(pile.length){const [x,y]=pile[pile.length-1];const v=[[0,-1,"n","s"],[0,1,"s","n"],[1,0,"e","w"],[-1,0,"w","e"]].filter(([dx,dy])=>{const nx=x+dx,ny=y+dy;return nx>=0&&ny>=0&&nx<G&&ny<G&&!vu.has(nx+","+ny)});
+  if(!v.length){pile.pop();continue}const [dx,dy,a,b]=v[Math.floor(rnd()*v.length)];murs[y][x][a]=0;murs[y+dy][x+dx][b]=0;vu.add((x+dx)+","+(y+dy));pile.push([x+dx,y+dy])}})();
+let bille=store.get("bille")||[0,0];const but=[4,4];
+const lab=document.getElementById("laby");
+function drawL(){lab.replaceChildren();
+ mk("rect",{x:2,y:2,width:266,height:266,rx:10,fill:"#2a1a0e",stroke:"#c9a24a","stroke-width":2},lab);
+ mk("circle",{cx:but[0]*C+15+O,cy:but[1]*C+15+O,r:8,fill:"#f0d27a",opacity:.9},lab);
+ mk("circle",{cx:but[0]*C+15+O,cy:but[1]*C+15+O,r:13,fill:"none",stroke:"#f0d27a",opacity:.35},lab);
+ let d="";for(let y=0;y<G;y++)for(let x=0;x<G;x++){const m=murs[y][x],X=x*C+O,Y=y*C+O;
+  if(m.n)d+=`M${X},${Y}h${C}`;if(m.w)d+=`M${X},${Y}v${C}`;if(y===G-1&&m.s)d+=`M${X},${Y+C}h${C}`;if(x===G-1&&m.e)d+=`M${X+C},${Y}v${C}`}
+ mk("path",{d,stroke:"#c9a24a","stroke-width":3,"stroke-linecap":"round",fill:"none",transform:"translate(0,0)"},lab);
+ mk("circle",{cx:bille[0]*C+15+O,cy:bille[1]*C+16+O,r:9,fill:"rgba(0,0,0,.5)"},lab);
+ mk("circle",{cx:bille[0]*C+15+O,cy:bille[1]*C+15+O,r:9,fill:"#d9dde3",stroke:"#555","stroke-width":1},lab);
+ mk("circle",{cx:bille[0]*C+12+O,cy:bille[1]*C+12+O,r:3,fill:"#fff",opacity:.8},lab)}
+lab.setAttribute("viewBox","-3 -3 276 276");
+function bouge(dx,dy){if(fait.e3||document.getElementById("e3").hidden)return;const [x,y]=bille;const m=murs[y][x];
+ if((dy<0&&m.n)||(dy>0&&m.s)||(dx>0&&m.e)||(dx<0&&m.w))return;bille=[x+dx,y+dy];store.set("bille",bille);drawL();
+ if(bille[0]===but[0]&&bille[1]===but[1]){fait.e3=1;store.set("fait",fait);document.getElementById("s3").textContent="le point d'or s'enfonce.";setTimeout(revele,500)}}
+document.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{const [dx,dy]=b.dataset.m.split(",").map(Number);bouge(dx,dy)}));
+document.addEventListener("keydown",e=>{const k={ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]}[e.key];if(k&&!document.getElementById("e3").hidden){e.preventDefault();bouge(...k)}});
+let t0=null;lab.addEventListener("touchstart",e=>{t0=[e.touches[0].clientX,e.touches[0].clientY]},{passive:true});
+lab.addEventListener("touchend",e=>{if(!t0)return;const dx=e.changedTouches[0].clientX-t0[0],dy=e.changedTouches[0].clientY-t0[1];t0=null;
+ if(Math.max(Math.abs(dx),Math.abs(dy))<20)return;Math.abs(dx)>Math.abs(dy)?bouge(Math.sign(dx),0):bouge(0,Math.sign(dy))});
+
+/* ---------- l'enchaînement ---------- */
+function verif1(){if(!fait.e1&&solved(st)){fait.e1=1;store.set("fait",fait);document.getElementById("s1").textContent="un tiroir glisse.";
+ svg.classList.add("ok");setTimeout(()=>{const e2=document.getElementById("e2");e2.hidden=false;e2.scrollIntoView({behavior:"smooth",block:"start"})},700)}}
+function ouvrir(){const e3=document.getElementById("e3");e3.hidden=false;drawL();e3.scrollIntoView({behavior:"smooth",block:"start"})}
+async function revele(){const code=fait.e2;const k=await sha("coulee:"+code);if(!k)return;const b=ENC.match(/../g).map(h=>parseInt(h,16));
+ const out=new Uint8Array(b.map((x,i)=>x^k[i%32]));const [q,s]=new TextDecoder().decode(out).split("|");
+ document.getElementById("sq").textContent=q;document.getElementById("ss").textContent=s;const e4=document.getElementById("e4");e4.hidden=false;e4.scrollIntoView({behavior:"smooth",block:"center"})}
+document.getElementById("reset").addEventListener("click",()=>{st=melange();for(const k in fait)delete fait[k];store.set("fait",fait);store.set("roues",st);bille=[0,0];store.set("bille",bille);
+ ["e2","e3","e4"].forEach(id=>document.getElementById(id).hidden=true);document.getElementById("s2").textContent="";document.getElementById("s3").textContent="";draw();window.scrollTo({top:0,behavior:"smooth"})});
+
+draw();
+if(fait.e1)document.getElementById("e2").hidden=false;
+if(fait.e2){document.getElementById("e3").hidden=false;drawL()}
+if(fait.e3)revele();
+})();
+</script>
+
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
