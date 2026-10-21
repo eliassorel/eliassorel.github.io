@@ -96,6 +96,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .enigme.scellee{border-style:dashed;opacity:.8}
 .enigme.scellee .entrer{border:0;opacity:.6;cursor:default}
 /* poèmes */
+.sous-onglets{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 40px}
+.sous-onglets button{font-family:var(--sans);font-size:13px;letter-spacing:.1em;text-transform:uppercase;background:none;color:inherit;border:1px solid color-mix(in srgb,var(--or-vif) 55%,transparent);border-radius:999px;padding:9px 18px;cursor:pointer}
+.sous-onglets button[aria-selected="true"]{background:var(--or-vif);color:#0b0812;border-color:var(--or-vif)}
+.bientot{margin-top:40px!important;font-family:var(--serif);font-style:italic;opacity:.7}
 .poemes-liste{margin:64px 0 0;display:grid;gap:88px}
 .poeme h3{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--or-vif);margin:0 0 26px}
 .poeme .vers{font-family:var(--serif);font-size:clamp(19px,2.2vw,22px);line-height:1.65;color:var(--ink-strong)}
@@ -295,6 +299,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 
 
 
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -478,11 +483,22 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Quotation","text":"Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.","inLanguage":"fr","creator":{"@type":"Person","name":"Elias Sorel","sameAs":"https://orcid.org/0009-0003-7980-9944"},"isPartOf":{"@type":"CreativeWork","name":"Le Diamant","url":"https://eliassorel.github.io/papiers/le-diamant/"}}</script>
 </section>
 <section id="v-poemes" class="travaux band" hidden>
-  <div class="inner"><h2>Poèmes</h2><p>Chaque papier se termine après le générique. Quand la science a fini de parler, il reste un chant, pour qui veut rester un peu.</p>
-    <div class="poemes-liste">
+  <div class="inner"><h2>Poèmes</h2>
+    <div class="sous-onglets" role="tablist" aria-label="Poèmes">
+      <button role="tab" aria-selected="true" data-p="chants">✦ Chants scientifiques</button>
+      <button role="tab" aria-selected="false" data-p="dedans">☾ Poèmes du dedans</button>
+    </div>
+    <div id="p-chants">
+      <p>Chaque papier se termine après le générique. Quand la science a fini de parler, il reste un chant, pour qui veut rester un peu.</p>
+      <div class="poemes-liste">
       <article class="poeme" id="po-retrait"><h3>LE RETRAIT</h3><div class="vers"><p>On l&#x27;appelle l&#x27;increvable. On dit qu&#x27;il résiste à tout.<br>Mais il ne résiste pas.<br>Il se retire.</p><p>Quand l&#x27;eau s&#x27;en va, il ne lutte pas contre le sec.<br>Il sent le manque, il donne le signal,<br>il serre ses muscles, il rend son eau, il se ferme.<br>Et le temps passe sur lui,<br>des jours, des années, des dizaines d&#x27;hivers.</p><p>Ce n&#x27;est pas la mort, et ce n&#x27;est pas la vie.<br>C&#x27;est une pause, tenue par des fibres au-dedans,<br>un verre vivant, en suspens.</p><p>Et pendant qu&#x27;il dort, le monde le croit immobile.<br>Sa forme ne change plus, ou presque.<br>Alors on dit, il n&#x27;évolue pas, il a traversé les âges sans bouger.</p><p>Mais rien, jamais, ne se tient tranquille.<br>Sous la forme figée, quelque chose travaille encore,<br>là où l&#x27;œil ne va pas, dans l&#x27;art de s&#x27;absenter et de revenir.<br>L&#x27;immobilité n&#x27;était pas un repos.<br>C&#x27;était le mouvement, ailleurs.</p></div><p class="source">Elias Sorel · après le générique de <a href="/papiers/le-tardigrade/">Le Tardigrade</a></p></article>
       <article class="poeme" id="po-accord"><h3>L&#x27;ACCORD SANS CHEF</h3><div class="vers"><p>Un plasmode, ce sont des millions de noyaux dans un seul cytoplasme, sans une cloison.<br>Et pourtant, tous entrent en division au même instant.<br>Toutes les dix heures, une vague traverse la masse entière,<br>en moins de cinq minutes.</p><p>Des millions d&#x27;horloges, sans chef d&#x27;orchestre, qui sonnent ensemble.</p><p>Nous avons cherché le siège de ce qui répond, et nous n&#x27;avons rien trouvé.<br>Parce qu&#x27;il n&#x27;y a pas de siège.<br>Il n&#x27;y a que des multitudes qui s&#x27;accordent.<br>Dans ses ondes, dans ses tubes, dans sa trace, dans ses noyaux qui roulent et se passent le mot.<br>Le même geste, du plus grand au plus petit.</p><p>Nous croyions qu&#x27;il fallait un lieu pour que quelque chose ait lieu.<br>Un centre, un chef, un « je » aux commandes.<br>Une flaque jaune, sans cœur ni tête, prouve le contraire.</p><p>Elle ne cherche pas le chemin. Elle le devient.</p></div><p class="source">Elias Sorel · après le générique de <a href="/papiers/le-blob/">Le Blob</a></p></article>
       <article class="poeme" id="po-heritage"><h3>L&#x27;HÉRITAGE</h3><div class="vers"><p>Il y a, dans chacune de nos cellules, une autre.<br>Entrée il y a plus de deux milliards d&#x27;années, et jamais repartie.<br>Elle a gardé son ADN, son rythme, sa mémoire de bactérie.<br>Nous ne sommes jamais tout à fait seuls, même au plus intime de nous.</p><p>Nous n&#x27;avons pas gravi la complexité.<br>Nous en avons hérité.<br>Un feu ancien, allumé une seule fois, que nous portons sans l&#x27;avoir allumé.<br>Notre force est une alliance, et notre grandeur, une dépendance qui a tenu.</p><p>Elle ne sait rien de nous, ni nous d&#x27;elle vraiment.<br>Elle fait ce qu&#x27;elle a toujours fait, et de ce geste sans intention<br>naît notre énergie.</p><p>Il n&#x27;y a pas de sommet.<br>Il y a des lignées qui continuent, chacune portant en elle un peu d&#x27;une autre.</p></div><p class="source">Elias Sorel · après le générique de <a href="/papiers/la-mitochondrie/">La Mitochondrie</a></p></article>
+    </div>
+    </div>
+    <div id="p-dedans" hidden>
+      <p>Ceux-là ne sortent d'aucun papier. Ils arrivent quand ils veulent.</p>
+      <p class="bientot">✦ Bientôt.</p>
     </div>
   </div>
 </section>
@@ -528,6 +544,10 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.querySelector('header.ciel').classList.toggle('musique',b.dataset.v==='musique');
   ['fils','jeux','poemes'].forEach(v=>document.querySelector('header.ciel').classList.toggle(v,b.dataset.v===v));
   ['musique','fils','jeux','poemes'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
+}));
+document.querySelectorAll('.sous-onglets button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.sous-onglets button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+  ['chants','dedans'].forEach(v=>{document.getElementById('p-'+v).hidden=(v!==b.dataset.p)});
 }));
 {const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
 {const h=location.hash.slice(1);if(/^p-/.test(h)&&document.getElementById(h)){document.getElementById('t-fils').click();setTimeout(()=>document.getElementById(h).scrollIntoView({behavior:'smooth',block:'center'}),400)}}
