@@ -247,5 +247,15 @@ return {taille,frame};
   calme?frame(0):requestAnimationFrame(frame);
 })();
 </script>
+<script>
+/* statistiques : on marque les liens de lecture pour compter les clics (PDF, Zenodo, DOI, ORCID, anglais) */
+document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');let nom=null;
+  if(/\.pdf(\?|#|$)/i.test(h))nom='pdf : '+h.split('/').pop();
+  else if(/doi\.org|zenodo\.org/.test(h))nom='zenodo : '+h.replace(/^https?:\/\/(doi\.org\/)?/,'');
+  else if(/orcid\.org/.test(h))nom='orcid';
+  else if(/translate\.goog/.test(h))nom='version anglaise : '+location.pathname;
+  if(nom){a.dataset.goatcounterClick=nom;a.dataset.goatcounterTitle=(a.textContent||'').trim().slice(0,60)}});
+</script>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
