@@ -249,8 +249,8 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       <svg class="mono" viewBox="0 0 60 60" role="img" aria-label="Elias Sorel"><g class="losange"><polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#e8dcc0" stroke-opacity=".35" stroke-width=".8"/><polygon points="30,9 51,30 30,51 9,30" fill="none" stroke="#d4a82f" stroke-opacity=".5" stroke-width=".6"/></g><text x="17" y="37" font-family="Lora,Georgia,serif" font-size="24" fill="#f4e3b8">E</text><text x="28" y="42" font-family="Lora,Georgia,serif" font-style="italic" font-size="24" fill="#d4a82f">S</text></svg>
       <nav role="tablist" aria-label="Sections">
         <button role="tab" id="t-science" aria-selected="true" data-v="science">Science</button>
-        <button role="tab" id="t-poemes" aria-selected="false" data-v="poemes">Poèmes</button>
         <button role="tab" id="t-musique" aria-selected="false" data-v="musique">Musique</button>
+        <button role="tab" id="t-fils" aria-selected="false" data-v="fils">Fils de pensée</button>
       </nav>
     </div>
     <div class="titre">
@@ -370,9 +370,6 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   </section>
 </div>
 
-<section id="v-poemes" class="travaux band" hidden>
-  <div class="inner"><h2>Poèmes</h2><p>Pièce en travaux. Ici, aucune contrainte de robot : la nuit, le chant, et la mise en page qu'on voudra.</p></div>
-</section>
 <section id="v-musique" class="travaux band musique" hidden>
   <div class="inner large">
     <h2>Musique</h2>
@@ -387,6 +384,9 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
       </div>
     </article>
   </div>
+</section>
+<section id="v-fils" class="travaux band" hidden>
+  <div class="inner"><h2>Fils de pensée</h2><p>Les pierres qui tombent entre deux papiers. Une phrase, une seule, qui tient debout toute seule. Les premières arrivent.</p></div>
 </section>
 </main>
 
@@ -410,7 +410,7 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
   document.getElementById('v-science').hidden=b.dataset.v!=='science';
   document.querySelector('header.ciel').classList.toggle('musique',b.dataset.v==='musique');
-  ['poemes','musique'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
+  ['musique','fils'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
 }));
 {const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
 document.getElementById('vers-still').addEventListener('click',e=>{e.preventDefault();document.getElementById('still').scrollIntoView({behavior:'smooth',block:'center'})});
