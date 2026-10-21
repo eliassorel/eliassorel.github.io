@@ -71,8 +71,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.musique{background:radial-gradient(70% 80% at 78% 30%,#3a1420 0%,transparent 65%),radial-gradient(60% 60% at 8% 95%,#2b1a0c 0%,transparent 70%),#0d0608}
 .ciel.musique #etoiles{opacity:0}
 .ciel.musique #musicien{opacity:1}
-.seul-musique{display:none}
+.ciel:not(.musique) .seul-musique{display:none!important}
+.ciel.musique .seul-science{display:none!important}
 .ciel.musique .seul-musique{display:revert}
+.ciel.musique .descendre.seul-musique{display:inline-flex}
 .ciel.musique .seul-science{display:none}
 .ciel.musique .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.65;margin-top:10px;font-style:normal}
 .ciel .inner{position:relative;padding-block:28px 112px;display:flex;flex-direction:column;gap:96px}
@@ -431,7 +433,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function place(){const mob=w<860,m=Math.min(w,h);
     solides.forEach(S=>{if(mob){S.cx=w*S.mx;S.cy=h+S.my;S.r=Math.min(w*.055,24)}else{S.cx=w*S.px;S.cy=h*S.py;S.r=m*S.k*1.05}})}
   function taille(){const r=c.getBoundingClientRect(),d=devicePixelRatio||1;w=r.width;h=r.height;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
-    s=Array.from({length:Math.round(w*h/2400)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+.2,p:Math.random()*6.28,v:Math.random()*.6+.2,o:Math.random()<.05}));
+    s=Array.from({length:Math.max(80,Math.round(w*h/2400))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+.2,p:Math.random()*6.28,v:Math.random()*.6+.2,o:Math.random()<.05}));
     danseurs=[];let k=0;solides.forEach((S,si)=>S.V.forEach((v,vi)=>{const e=s[k++];e.d=true;e.si=si;e.vi=vi;e.r=1.4;danseurs.push(e)}));place()}
   const ease=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
   function rassemble(t){if(calme)return 1;const T=16,u=t%T;
