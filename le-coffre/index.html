@@ -1,0 +1,293 @@
+<!doctype html>
+<!--
+  Le coffre. Six faces, et quelque part une serrure.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Le coffre · Elias Sorel</title>
+<meta name="description" content="Un coffre à six faces. Tourne-le, regarde bien, et rien n'est là par hasard.">
+<meta name="theme-color" content="#0b1018">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--nuit:#0b1018;--bois:#3a2416;--bois2:#5a3820;--bois3:#7a4c2a;--laiton:#c9a24a;--laiton2:#f0d27a;--cuivre:#b0603a;--ivoire:#efe6cf;--muet:#9a8f7a;--fil:rgba(240,210,122,.2);--s:min(78vw,330px);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--nuit)}
+body{color:var(--ivoire);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.45;padding-inline:16px;padding-block:24px 60px;overflow-x:hidden;
+background-image:radial-gradient(900px 640px at 50% 30%,rgba(201,162,74,.10),transparent 62%)}
+.wrap{max-width:640px;margin:0 auto;display:grid;gap:14px;justify-items:center}
+.kick{font:500 .62rem "IBM Plex Mono",monospace;letter-spacing:4px;text-transform:uppercase;color:var(--laiton);text-align:center}
+h1{margin:0;text-align:center;font-weight:500;font-size:2.2rem}
+.intro{text-align:center;color:var(--muet);font-style:italic;margin:0;max-width:42ch;text-wrap:balance}
+.scene{width:var(--s);height:var(--s);perspective:1100px;margin:34px auto 30px;touch-action:pan-y}
+.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.1,.2,1)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;
+background:linear-gradient(150deg,var(--bois3),var(--bois) 60%,#24160d);box-shadow:inset 0 0 0 3px #1a0f08,inset 0 0 0 8px var(--bois2),inset 0 0 40px rgba(0,0,0,.55);display:grid;place-items:center;padding:16px}
+.face::before{content:"";position:absolute;inset:14px;border:1px solid var(--fil);border-radius:3px;pointer-events:none}
+.f-av{transform:translateZ(calc(var(--s)/2))}
+.f-ar{transform:rotateY(180deg) translateZ(calc(var(--s)/2))}
+.f-dr{transform:rotateY(90deg) translateZ(calc(var(--s)/2))}
+.f-ga{transform:rotateY(-90deg) translateZ(calc(var(--s)/2))}
+.f-ha{transform:rotateX(90deg) translateZ(calc(var(--s)/2))}
+.f-ba{transform:rotateX(-90deg) translateZ(calc(var(--s)/2))}
+.vis{position:absolute;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--laiton2),#7a5a1c);box-shadow:0 1px 2px #000}
+.vis.a{top:9px;left:9px}.vis.b{top:9px;right:9px}.vis.c{bottom:9px;left:9px}.vis.d{bottom:9px;right:9px}
+.nom{position:absolute;top:18px;left:0;right:0;text-align:center;font:500 .55rem "IBM Plex Mono",monospace;letter-spacing:3px;color:var(--laiton);text-transform:uppercase;opacity:.8}
+svg{display:block;width:100%;height:auto;user-select:none}
+button{font:500 .78rem "IBM Plex Mono",monospace;color:#2a1a0a;background:linear-gradient(180deg,var(--laiton2),var(--laiton));border:0;border-radius:999px;padding:9px 14px;min-height:42px;min-width:42px;cursor:pointer;box-shadow:0 2px 0 #5a4010,0 4px 10px rgba(0,0,0,.4)}
+button:active{transform:translateY(2px);box-shadow:none}
+button:disabled{opacity:.35;cursor:default}
+.mini{padding:5px 10px;min-height:34px;font-size:.7rem}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.tour{display:grid;grid-template-columns:repeat(3,48px);gap:6px;justify-content:center}
+.tour button{padding:0}
+.tour .vide{visibility:hidden}
+.etat{font:500 .74rem "IBM Plex Mono",monospace;color:#d9caa6;text-align:center;min-height:2.6em;margin:0;max-width:44ch}
+.sac{font:500 .7rem "IBM Plex Mono",monospace;color:var(--muet);text-align:center}
+.grave{font-style:italic;color:#e9d9ae;text-align:center;font-size:1.02rem;line-height:1.35;text-shadow:0 1px 0 #000;max-width:24ch}
+.cache{position:absolute;inset:16px;border-radius:4px;background:repeating-linear-gradient(90deg,#4a2c18 0 12px,#3e2414 12px 24px);box-shadow:inset 0 0 0 2px #1a0f08,inset 0 0 20px rgba(0,0,0,.6);display:grid;place-items:center;text-align:center;padding:20px;transition:transform .9s ease,opacity .9s ease;z-index:3}
+.cache.ouvert{transform:translateY(-105%);opacity:0;pointer-events:none}
+.cache p{margin:0;font:500 .66rem "IBM Plex Mono",monospace;color:var(--laiton);letter-spacing:1px}
+.secret{display:grid;gap:8px;justify-items:center;text-align:center}
+.secret q{font-size:1.25rem;font-style:italic;quotes:"« " " »";color:var(--laiton2);text-wrap:balance}
+.secret span{font:500 .6rem "IBM Plex Mono",monospace;letter-spacing:3px;color:var(--laiton);text-transform:uppercase}
+.pied{text-align:center;font:.7rem "IBM Plex Mono",monospace;color:#6a6252}
+.pied a{color:inherit}
+.lueur{animation:lueur 1.4s ease}
+@keyframes lueur{0%,100%{filter:brightness(1)}40%{filter:brightness(1.7)}}
+[hidden]{display:none!important}
+.vis.libre{cursor:pointer;background:radial-gradient(circle at 35% 35%,#e6c56a,#6a4c16)}
+.vis.libre::after{transform:rotate(80deg)}
+.vis.libre.tombe{animation:tombe .9s ease forwards;pointer-events:none}
+@keyframes tombe{0%{transform:none}40%{transform:rotate(540deg) scale(1.3)}100%{transform:translateY(60px) rotate(900deg);opacity:0}}
+.serrure{position:absolute;bottom:22px;right:22px;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,#0b1018 30%,#c9a24a 32%,#7a5a1c 70%);box-shadow:0 1px 3px #000;cursor:pointer;z-index:4;display:grid;place-items:center}
+.serrure::after{content:"";width:4px;height:9px;background:#0b1018;border-radius:2px;margin-top:9px}
+.plaque{position:absolute;inset:16px;border-radius:4px;background:radial-gradient(circle at 50% 30%,#1c2433,#0b1018);box-shadow:inset 0 0 0 1px rgba(240,210,122,.35);display:grid;place-items:center;padding:18px;z-index:5}
+.tiroir{display:grid;gap:10px;justify-items:center;text-align:center}
+.tiroir p{margin:0;font:500 .66rem "IBM Plex Mono",monospace;color:var(--laiton);letter-spacing:1px}
+.son{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:10px;background:transparent;color:var(--muet);box-shadow:none;border:1px solid var(--fil);padding:6px 10px;min-height:34px;z-index:20}
+.scene.saisi .cube{transition:none}
+.scene{cursor:grab}.scene.saisi{cursor:grabbing}
+</style>
+
+
+<!-- finitions -->
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Le coffre · Elias Sorel">
+<meta property="og:description" content="Un coffre à six faces. Tourne-le, regarde bien, et rien n&#x27;est là par hasard.">
+<meta property="og:url" content="https://eliassorel.github.io/le-coffre/">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<!-- /finitions -->
+</head>
+<body>
+<button type="button" class="son" id="son" aria-label="le son">🔈</button>
+<div class="wrap">
+<div class="kick">le grand casse-tête · six faces</div>
+<h1>Le coffre</h1>
+<p class="intro">Six faces, et quelque part une serrure. Tourne-le, regarde bien, et rien n'est là par hasard.</p>
+
+<div class="scene" id="scene"><div class="cube" id="cube">
+
+<!-- DESSUS : les trois glissières -->
+<div class="face f-ha"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d"></i><span class="nom">le dessus</span>
+<svg id="gliss" viewBox="0 0 240 240"></svg>
+<div class="cache" id="c-ha-msg" style="background:none;box-shadow:none;transform:none;opacity:1;pointer-events:none" hidden><p class="grave" id="grave-ha"></p></div>
+</div>
+
+<!-- DEVANT : l'horloge -->
+<div class="face f-av"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d"></i><span class="nom">le devant</span>
+<div style="display:grid;gap:8px;justify-items:center;width:100%">
+<svg id="horloge" viewBox="0 0 240 240" style="max-width:82%"></svg>
+<div class="ctrl"><button type="button" class="mini" id="h-h">petite ⟳</button><button type="button" class="mini" id="h-m">grande ⟳</button></div>
+</div></div>
+
+<!-- DROITE : les trois molettes -->
+<div class="face f-dr"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d"></i><span class="nom">la droite</span>
+<div style="display:grid;gap:10px;justify-items:center;width:100%">
+<svg id="molettes" viewBox="0 0 240 150"></svg>
+<div class="ctrl" id="m-btn"><button type="button" class="mini" data-k="0">I</button><button type="button" class="mini" data-k="1">II</button><button type="button" class="mini" data-k="2">III</button></div>
+</div>
+<div class="cache" id="c-dr"><p>il manque un rouage<br>pour faire tourner ces molettes</p></div>
+</div>
+
+<!-- DERRIÈRE : la gravure -->
+<div class="face f-ar"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d libre" id="vis-libre" role="button" aria-label="une vis un peu desserrée"></i><span class="nom">le derrière</span>
+<div class="serrure" id="serrure" role="button" aria-label="un trou de serrure" hidden></div>
+<div class="plaque" id="plaque" hidden><div class="secret"><q id="sq"></q><span id="ss"></span><a href="/niveau/" style="margin-top:14px;font:500 .62rem 'IBM Plex Mono',monospace;letter-spacing:2px;color:#c9a24a;text-decoration:none">un instrument t'attend →</a></div></div>
+<div style="display:grid;gap:12px;justify-items:center">
+<svg viewBox="0 0 240 90" style="width:86%"><g fill="none" stroke="#f0d27a" stroke-width="3" stroke-linecap="round" opacity=".9">
+<path d="M18,48 q12,-14 24,0 t24,0"/><path d="M18,60 q12,-14 24,0 t24,0" opacity=".6"/>
+<path d="M120,22 l6,18 18,0 -14,11 5,18 -15,-11 -15,11 5,-18 -14,-11 18,0z"/>
+<path d="M186,66 l24,-42 24,42 z"/></g>
+<g font-family="IBM Plex Mono,monospace" font-size="9" fill="#c9a24a" text-anchor="middle"><text x="42" y="86">I</text><text x="120" y="86">II</text><text x="210" y="86">III</text></g></svg>
+<p class="grave">ce que l'eau porte,<br>ce que la nuit allume,<br>ce que la terre dresse</p>
+</div></div>
+
+<!-- GAUCHE : le labyrinthe -->
+<div class="face f-ga"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d"></i><span class="nom">la gauche</span>
+<div style="display:grid;gap:8px;justify-items:center;width:100%">
+<svg id="laby" viewBox="-4 -4 218 218" style="max-width:74%"></svg>
+<div class="ctrl"><button type="button" class="mini" data-m="0,-1">▲</button><button type="button" class="mini" data-m="-1,0">◀</button><button type="button" class="mini" data-m="1,0">▶</button><button type="button" class="mini" data-m="0,1">▼</button></div>
+</div>
+<div class="cache" id="c-ga"><p>un volet de bois,<br>verrouillé de l'intérieur</p></div>
+</div>
+
+<!-- DESSOUS : le tiroir -->
+<div class="face f-ba"><i class="vis a"></i><i class="vis b"></i><i class="vis c"></i><i class="vis d"></i><span class="nom">le dessous</span>
+<div class="tiroir" id="tiroir"><svg id="cle" viewBox="0 0 120 50" style="width:46%;cursor:pointer" role="button" aria-label="une petite clé de laiton"><g fill="none" stroke="#f0d27a" stroke-width="5" stroke-linecap="round"><circle cx="22" cy="25" r="13"/><path d="M35,25 H104 M86,25 V38 M98,25 V35"/></g><circle cx="22" cy="25" r="5" fill="#0b1018"/></svg><p id="cle-txt">une petite clé de laiton,<br>et la bille, au fond du tiroir</p></div>
+<div class="cache" id="c-ba"><p>un tiroir scellé,<br>sans serrure visible</p></div>
+</div>
+
+</div></div>
+
+<div class="tour" aria-label="Tourner le coffre">
+<span class="vide"></span><button type="button" data-t="1,0" aria-label="basculer vers le haut">▲</button><span class="vide"></span>
+<button type="button" data-t="0,-1" aria-label="tourner à gauche">◀</button><button type="button" data-t="0,0" aria-label="revenir face au devant">◉</button><button type="button" data-t="0,1" aria-label="tourner à droite">▶</button>
+<span class="vide"></span><button type="button" data-t="-1,0" aria-label="basculer vers le bas">▼</button><span class="vide"></span>
+</div>
+<p class="sac" id="sac">dans tes mains : rien</p>
+<p class="etat" id="etat" aria-live="polite">Tourne le coffre avec les flèches, ou en glissant le doigt dessus.</p>
+<button type="button" class="mini" id="reset" style="background:transparent;color:var(--muet);box-shadow:none;border:1px solid var(--fil)">tout refermer</button>
+<p class="pied"><a href="/">eliassorel.github.io</a></p>
+</div>
+
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg",$=id=>document.getElementById(id);
+const mk=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e};
+const S={get(k,d){try{const v=JSON.parse(localStorage.getItem("coffre:"+k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem("coffre:"+k,JSON.stringify(v))}catch(e){}}};
+const etat=t=>{$("etat").textContent=t};
+let F=S.get("f",{});const save=()=>S.set("f",F);
+async function sha(s){if(!(window.crypto&&crypto.subtle))return null;return new Uint8Array(await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s)))}
+const hex=u=>[...u].map(x=>x.toString(16).padStart(2,"0")).join("");
+let AC=null,son=S.get("son",true);$("son").textContent=son?"🔈":"🔇";
+$("son").addEventListener("click",()=>{son=!son;S.set("son",son);$("son").textContent=son?"🔈":"🔇"});
+function bruit(t){if(!son)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const now=AC.currentTime;
+ const P={clic:[2600,.025,.25],rot:[700,.12,.12],cran:[1800,.02,.18],lourd:[300,.25,.35],ok:[0,0,0]}[t]||[1500,.03,.2];
+ if(t==="ok"){[523,659,784].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type="triangle";o.frequency.value=f;g.gain.setValueAtTime(0,now+i*.09);g.gain.linearRampToValueAtTime(.12,now+i*.09+.01);g.gain.exponentialRampToValueAtTime(.001,now+i*.09+.6);o.connect(g).connect(AC.destination);o.start(now+i*.09);o.stop(now+i*.09+.7)});return}
+ const n=Math.floor(AC.sampleRate*P[1]),b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,3);
+ const src=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();src.buffer=b;f.type="bandpass";f.frequency.value=P[0];f.Q.value=3;g.gain.value=P[2];src.connect(f).connect(g).connect(AC.destination);src.start()}catch(e){}}
+
+/* ---- rotation ---- */
+let rx=0,ry=0;const cube=$("cube");
+function pose(){cube.style.transform=`rotateX(${rx*90}deg) rotateY(${ry*90}deg)`}
+function tourne(dx,dy){if(dx===0&&dy===0){rx=0;ry=0}else{rx=Math.max(-1,Math.min(1,rx+dx));ry+=dy}pose();bruit("rot")}
+document.querySelectorAll("[data-t]").forEach(b=>b.addEventListener("click",()=>{const [x,y]=b.dataset.t.split(",").map(Number);tourne(-x,y)}));
+let p0=null,glisse=false;const sc=$("scene");const K=.45;
+const touchable=t=>t.closest("button,[data-i],#horloge g,.cache,#cle,.serrure,.vis.libre");
+sc.addEventListener("pointerdown",e=>{if(touchable(e.target))return;p0=[e.clientX,e.clientY];glisse=false});
+window.addEventListener("pointermove",e=>{if(!p0)return;const dx=e.clientX-p0[0],dy=e.clientY-p0[1];
+ if(!glisse&&Math.hypot(dx,dy)>8){glisse=true;sc.classList.add("saisi")}
+ if(glisse){const ax=Math.max(-100,Math.min(100,rx*90-dy*K));cube.style.transform=`rotateX(${ax}deg) rotateY(${ry*90+dx*K}deg)`}});
+window.addEventListener("pointerup",e=>{if(!p0)return;const dx=e.clientX-p0[0],dy=e.clientY-p0[1];p0=null;sc.classList.remove("saisi");
+ if(!glisse)return;glisse=false;rx=Math.max(-1,Math.min(1,Math.round((rx*90-dy*K)/90)));ry=Math.round((ry*90+dx*K)/90);pose();bruit("rot")});
+window.addEventListener("pointercancel",()=>{p0=null;glisse=false;sc.classList.remove("saisi");pose()});
+document.addEventListener("keydown",e=>{if(e.target.closest&&e.target.closest("input,textarea"))return;
+ const k={a:[0,-1],d:[0,1],w:[-1,0],s:[1,0]}[e.key.toLowerCase()];if(k){tourne(k[0],k[1])}});
+
+/* ---- 1 · dessus : les glissières ---- */
+const G=$("gliss");let pos=S.get("pos",[0,3,1]);const CIBLE=2;
+function dGliss(){G.replaceChildren();
+ mk("rect",{x:28,y:30,width:184,height:180,rx:6,fill:"#24160d",stroke:"#1a0f08","stroke-width":2},G);
+ [0,1,2].forEach(i=>{const y=48+i*52;
+  mk("rect",{x:36,y:y,width:168,height:38,rx:4,fill:"#2e1c10"},G);
+  const x=46+pos[i]*36;const g=mk("g",{style:"cursor:pointer","data-i":i},G);
+  mk("rect",{x:x-10,y:y+3,width:56,height:32,rx:5,fill:"url(#lt)",stroke:"#5a4010","stroke-width":1.5},g);
+  mk("rect",{x:x+16,y:y+3,width:4,height:32,fill:"#2a1a0a"},g);
+  mk("circle",{cx:x-2,cy:y+19,r:3,fill:"#7a5a1c"},g);mk("circle",{cx:x+38,cy:y+19,r:3,fill:"#7a5a1c"},g);
+  g.addEventListener("click",()=>{if(F.g)return;bruit("cran");pos[i]=(pos[i]+1)%5;S.set("pos",pos);dGliss();verifG()})});
+ const ok=pos.every(p=>p===CIBLE);
+ mk("line",{x1:46+CIBLE*36+18,y1:34,x2:46+CIBLE*36+18,y2:44,stroke:"#f0d27a","stroke-width":2},G);
+ mk("line",{x1:46+CIBLE*36+18,y1:196,x2:46+CIBLE*36+18,y2:206,stroke:"#f0d27a","stroke-width":2},G);
+ const d=mk("defs",{},G);const lg=mk("linearGradient",{id:"lt",x1:0,y1:0,x2:0,y2:1},d);mk("stop",{offset:0,"stop-color":"#f0d27a"},lg);mk("stop",{offset:1,"stop-color":"#a8822a"},lg);
+ if(F.g){mk("rect",{x:28,y:30,width:184,height:180,rx:6,fill:"rgba(11,16,24,.82)"},G)}}
+function verifG(){if(!F.g&&pos.every(p=>p===CIBLE)){F.g=1;save();bruit("ok");G.classList.add("lueur");setTimeout(()=>{dGliss();montreHa()},500);etat("Les trois fentes s'alignent. Le dessus se soulève : quelque chose y est gravé.")}}
+function montreHa(){$("c-ha-msg").hidden=false;$("grave-ha").innerHTML="Mets les aiguilles<br>sur le temps que met<br>la lumière du Soleil<br>pour venir jusqu'à toi.";}
+
+/* ---- 2 · devant : l'horloge ---- */
+const H=$("horloge");let hh=S.get("hh",12),mm=S.get("mm",0);
+const HCHK="69756cf6f699e5815ce0f7febd7634a8782e5b37617da0ae4dcb9486479bdd1f";
+function dHorloge(){H.replaceChildren();
+ mk("circle",{cx:120,cy:120,r:110,fill:"#1d140c",stroke:"#c9a24a","stroke-width":4},H);
+ mk("circle",{cx:120,cy:120,r:98,fill:"#efe3c4"},H);
+ const R=["XII","I","II","III","IIII","V","VI","VII","VIII","IX","X","XI"];
+ R.forEach((t,i)=>{const a=i*Math.PI/6;const x=120+80*Math.sin(a),y=120-80*Math.cos(a);
+  const tx=mk("text",{x,y:y+5,"text-anchor":"middle","font-family":"Cormorant Garamond,serif","font-size":17,"font-weight":600,fill:"#2b1f12"},H);tx.textContent=t});
+ for(let i=0;i<60;i++){const a=i*Math.PI/30,r1=i%5?93:89;mk("line",{x1:120+r1*Math.sin(a),y1:120-r1*Math.cos(a),x2:120+97*Math.sin(a),y2:120-97*Math.cos(a),stroke:"#2b1f12","stroke-width":i%5?1:2},H)}
+ const ah=((hh%12)+mm/60)*Math.PI/6,am=mm*Math.PI/30;
+ mk("line",{x1:120,y1:120,x2:120+50*Math.sin(ah),y2:120-50*Math.cos(ah),stroke:"#1a0f08","stroke-width":7,"stroke-linecap":"round"},H);
+ mk("line",{x1:120,y1:120,x2:120+78*Math.sin(am),y2:120-78*Math.cos(am),stroke:"#1a0f08","stroke-width":4,"stroke-linecap":"round"},H);
+ if(F.h){mk("circle",{cx:120,cy:120,r:30,fill:"#0b1018",stroke:"#c9a24a","stroke-width":2},H);
+  if(!F.r){const g=mk("g",{style:"cursor:pointer"},H);rouage(g,120,120,20);g.addEventListener("click",prendRouage)}}
+ else mk("circle",{cx:120,cy:120,r:8,fill:"#c9a24a",stroke:"#5a4010","stroke-width":2},H)}
+function rouage(p,cx,cy,r){let d="";const n=10;for(let t=0;t<n*2;t++){const a=t*Math.PI/n,rr=t%2?r*.72:r;const a1=a-Math.PI/n*.4,a2=a+Math.PI/n*.4;
+ d+=(t?"L":"M")+(cx+rr*Math.cos(a1)).toFixed(1)+","+(cy+rr*Math.sin(a1)).toFixed(1)+"L"+(cx+rr*Math.cos(a2)).toFixed(1)+","+(cy+rr*Math.sin(a2)).toFixed(1)}
+ mk("path",{d:d+"Z",fill:"#d4a82f",stroke:"#5a4010","stroke-width":1.5},p);mk("circle",{cx,cy,r:r*.28,fill:"#0b1018"},p)}
+async function verifH(){if(F.h)return;const h=await sha("horloge:"+(hh%12)+":"+mm);if(h&&hex(h)===HCHK){F.h=1;save();bruit("ok");H.classList.add("lueur");dHorloge();etat("Clic. Le centre du cadran s'ouvre. Il y a un rouage dedans.")}}
+$("h-h").addEventListener("click",()=>{if(F.h)return;bruit("clic");hh=(hh%12)+1;S.set("hh",hh);dHorloge();verifH()});
+$("h-m").addEventListener("click",()=>{if(F.h)return;bruit("clic");mm=(mm+5)%60;S.set("mm",mm);dHorloge();verifH()});
+function prendRouage(){F.r=1;save();bruit("lourd");dHorloge();sac();etat("Tu prends le rouage. Il doit bien s'emboîter quelque part.")}
+
+/* ---- 3 · droite : les molettes ---- */
+const SYM=["◯","≈","✦","△","☾","✕"];let mol=S.get("mol",[0,0,0]);const MCHK="99df6463f3aa10c93e93bb06c461a24d39a9ae7d14b75099ec6f5798bf0378b7";
+const M=$("molettes");
+function dMol(){M.replaceChildren();[0,1,2].forEach(i=>{const cx=44+i*76,cy=70;
+ mk("circle",{cx,cy,r:32,fill:"#1d140c",stroke:"#c9a24a","stroke-width":3},M);
+ mk("circle",{cx,cy,r:25,fill:"#2e1c10"},M);
+ for(let k=0;k<12;k++){const a=k*Math.PI/6;mk("line",{x1:cx+32*Math.cos(a),y1:cy+32*Math.sin(a),x2:cx+37*Math.cos(a),y2:cy+37*Math.sin(a),stroke:"#c9a24a","stroke-width":3},M)}
+ const t=mk("text",{x:cx,y:cy+9,"text-anchor":"middle","font-size":26,fill:"#f0d27a"},M);t.textContent=SYM[mol[i]];
+ const n=mk("text",{x:cx,y:cy+56,"text-anchor":"middle","font-family":"IBM Plex Mono,monospace","font-size":10,fill:"#c9a24a"},M);n.textContent=["I","II","III"][i]})}
+document.querySelectorAll("#m-btn button").forEach(b=>b.addEventListener("click",async()=>{if(!F.r2||F.m)return;bruit("cran");const k=+b.dataset.k;mol[k]=(mol[k]+1)%SYM.length;S.set("mol",mol);dMol();
+ const h=await sha("molettes:"+mol.join(","));if(h&&hex(h)===MCHK){F.m=mol.join(",");save();bruit("ok");M.classList.add("lueur");setTimeout(()=>{$("c-ga").classList.add("ouvert")},600);etat("Les trois molettes se bloquent ensemble. Sur un autre côté, un volet vient de claquer.")}}));
+$("c-dr").addEventListener("click",()=>{if(F.r&&!F.r2){F.r2=1;save();bruit("lourd");$("c-dr").classList.add("ouvert");sac();etat("Le rouage s'emboîte. Les molettes tournent, maintenant.")}else if(!F.r)etat("Il manque un rouage. Il est forcément quelque part sur le coffre.")});
+
+/* ---- 4 · gauche : le labyrinthe ---- */
+const N=7,C=30;let seed=11;const rnd=()=>{seed=(seed*16807)%2147483647;return(seed-1)/2147483646};
+const W=[];for(let y=0;y<N;y++){W.push([]);for(let x=0;x<N;x++)W[y].push({n:1,s:1,e:1,w:1})}
+(function(){const vu=new Set(["0,0"]),pile=[[0,0]];while(pile.length){const [x,y]=pile[pile.length-1];
+ const v=[[0,-1,"n","s"],[0,1,"s","n"],[1,0,"e","w"],[-1,0,"w","e"]].filter(([dx,dy])=>{const a=x+dx,b=y+dy;return a>=0&&b>=0&&a<N&&b<N&&!vu.has(a+","+b)});
+ if(!v.length){pile.pop();continue}const [dx,dy,a,b]=v[Math.floor(rnd()*v.length)];W[y][x][a]=0;W[y+dy][x+dx][b]=0;vu.add((x+dx)+","+(y+dy));pile.push([x+dx,y+dy])}})();
+W[N-1][N-1].s=0;
+let bil=S.get("bil",[0,0]);const L=$("laby");
+function dLab(){L.replaceChildren();mk("rect",{x:-2,y:-2,width:214,height:214,rx:6,fill:"#24160d"},L);
+ let d="";for(let y=0;y<N;y++)for(let x=0;x<N;x++){const m=W[y][x],X=x*C,Y=y*C;if(m.n)d+=`M${X},${Y}h${C}`;if(m.w)d+=`M${X},${Y}v${C}`;if(y===N-1&&m.s)d+=`M${X},${Y+C}h${C}`;if(x===N-1&&m.e)d+=`M${X+C},${Y}v${C}`}
+ mk("path",{d,stroke:"#c9a24a","stroke-width":3,"stroke-linecap":"round",fill:"none"},L);
+ mk("path",{d:`M${(N-1)*C+8},${N*C+2}h14`,stroke:"#f0d27a","stroke-width":3,opacity:.5},L);
+ mk("circle",{cx:bil[0]*C+15,cy:bil[1]*C+15,r:9,fill:"#d9dde3",stroke:"#555"},L);mk("circle",{cx:bil[0]*C+12,cy:bil[1]*C+12,r:3,fill:"#fff",opacity:.8},L)}
+document.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{if(!F.m||F.l)return;const [dx,dy]=b.dataset.m.split(",").map(Number);const [x,y]=bil;const m=W[y][x];
+ if(x===N-1&&y===N-1&&dy>0){F.l=1;save();bil=[x,y+1];dLab();$("c-ba").classList.add("ouvert");bruit("lourd");etat("La bille tombe dans le coffre. On l'entend rouler, tout en bas.");return}
+ if((dy<0&&m.n)||(dy>0&&m.s)||(dx>0&&m.e)||(dx<0&&m.w))return;bil=[x+dx,y+dy];S.set("bil",bil);bruit("clic");dLab()}));
+
+/* ---- 5 · dessous : le secret ---- */
+const ENC="b3be0d8568ca7ed9491fdc8bd104afb7136d62ce364c1aceaeb9d5f07921f84b99f551ae23c66cde493cd28a9418";
+async function revele(){const k=await sha("coffre:"+F.m+"|8:20");if(!k)return;const b=ENC.match(/../g).map(h=>parseInt(h,16));
+ const [q,s]=new TextDecoder().decode(new Uint8Array(b.map((x,i)=>x^k[i%32]))).split("|");$("sq").textContent=q;$("ss").textContent=s;$("plaque").hidden=false}
+
+$("cle").addEventListener("click",()=>{if(F.k)return;F.k=1;save();bruit("clic");$("cle").style.visibility="hidden";$("cle-txt").innerHTML="la bille, seule,<br>au fond du tiroir";sac();etat("Tu prends la clé. Une si petite clé, pour une si grosse boîte.")});
+$("vis-libre").addEventListener("click",()=>{if(F.v)return;F.v=1;save();bruit("cran");const v=$("vis-libre");v.classList.add("tombe");setTimeout(()=>{$("serrure").hidden=false},700);etat("La vis n'était pas serrée. Elle tombe, et dessous il y a un trou de serrure.")});
+$("serrure").addEventListener("click",()=>{if(F.fin)return;if(!F.k){etat("Un trou de serrure, tout petit. Il faudrait une clé.");bruit("clic");return}
+ F.fin=1;save();bruit("lourd");setTimeout(()=>bruit("ok"),400);sac();$("serrure").hidden=true;revele();etat("La clé tourne. Toute la plaque de derrière se soulève.")});
+function sac(){const m=[];if(F.r&&!F.r2)m.push("⚙ un rouage");if(F.k&&!F.fin)m.push("🗝 une petite clé");$("sac").textContent="dans tes mains : "+(m.join(", ")||"rien")}
+$("reset").addEventListener("click",()=>{F={};save();pos=[0,3,1];S.set("pos",pos);hh=12;mm=0;S.set("hh",12);S.set("mm",0);mol=[0,0,0];S.set("mol",mol);bil=[0,0];S.set("bil",bil);
+ ["c-dr","c-ga","c-ba"].forEach(id=>$(id).classList.remove("ouvert"));$("c-ha-msg").hidden=true;$("plaque").hidden=true;$("serrure").hidden=true;$("vis-libre").classList.remove("tombe");$("cle").style.visibility="";$("cle-txt").innerHTML="une petite clé de laiton,<br>et la bille, au fond du tiroir";init();tourne(0,0);etat("Le coffre est refermé.")});
+function init(){dGliss();dHorloge();dMol();dLab();sac();
+ if(F.g)montreHa();if(F.r2)$("c-dr").classList.add("ouvert");if(F.m)$("c-ga").classList.add("ouvert");if(F.l)$("c-ba").classList.add("ouvert");if(F.k){$("cle").style.visibility="hidden";$("cle-txt").innerHTML="la bille, seule,<br>au fond du tiroir"}if(F.v){$("vis-libre").classList.add("tombe");if(!F.fin)$("serrure").hidden=false}if(F.fin)revele()}
+init();pose();
+})();
+</script>
+
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
