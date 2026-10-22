@@ -101,12 +101,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 /* titre musique : egaliseur fou */
 .titre h1 .l{display:inline-block;font-style:normal}
 .titre{position:relative}
-.ciel.musique .titre h1 .l{cursor:pointer;transform-origin:50% 100%;background:linear-gradient(180deg,#ff8fc0 0%,#fff 18%,#e6b84a 40%,#b14dff 65%,#ff8fc0 100%);background-size:100% 400%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px rgba(255,90,160,.55)) drop-shadow(0 0 28px rgba(180,77,255,.35));animation:eq var(--d,1s) ease-in-out infinite alternate,teinte 6s linear infinite;animation-delay:calc(var(--i)*-.17s),calc(var(--i)*-.4s)}
-.ciel.musique .titre h1 .l.frappe{animation:frappe .45s ease-out,teinte 6s linear infinite}
-@keyframes eq{0%{transform:scaleY(.82) translateY(.02em)}35%{transform:scaleY(1.12)}70%{transform:scaleY(.92)}100%{transform:scaleY(1.2) translateY(-.04em)}}
-@keyframes teinte{to{background-position:0 400%}}
-@keyframes frappe{0%{transform:scale(1.35,.7);filter:drop-shadow(0 0 30px #fff) drop-shadow(0 0 60px #ff8fc0)}100%{transform:none}}
-.note-vol{position:absolute;pointer-events:none;font-size:clamp(18px,2.6vw,34px);color:#ffd27a;text-shadow:0 0 10px #ff8fc0;animation:envol 2.6s ease-out forwards;font-style:normal}
+@font-face{font-family:"IM Fell";src:url(/fonts/im-fell.woff2) format('woff2');font-display:swap}
+@font-face{font-family:"Noto Music";src:url(/fonts/noto-music.woff2) format('woff2');font-display:swap}
+/* titre musique : partition sur vieux parchemin */
+.ciel.musique .titre h1{gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
+.ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
+.ciel.musique .titre h1 span:last-child{padding-left:0;margin-left:.9em}
+.ciel.musique .titre h1 span:last-child::after{content:"";position:absolute;right:0;top:.16em;height:.64em;width:.12em;border-left:2px solid #3a2210;border-right:.05em solid #3a2210}
+.ciel.musique .titre h1 .l{cursor:pointer;font-family:"IM Fell",var(--serif);color:#3a2210;text-shadow:0 1px 0 rgba(255,240,210,.5),0 0 1px rgba(58,34,16,.6);transform:translateY(var(--m,0));opacity:0;animation:encre .9s ease-out forwards;animation-delay:calc(var(--i)*.12s + .15s)}
+.ciel.musique .titre h1 .l.cle{color:transparent;text-shadow:none}
+.ciel.musique .titre h1 .l.cle::before{content:"\1D11E";position:absolute;left:50%;bottom:-.26em;transform:translateX(-55%);font-family:"Noto Music";font-size:1.22em;line-height:1;color:#3a2210;text-shadow:0 1px 0 rgba(255,240,210,.5)}
+.ciel.musique .titre h1 .l.frappe{animation:plume .5s ease-out}
+@keyframes encre{0%{opacity:0;filter:blur(6px);transform:translateY(var(--m,0)) scale(1.08)}100%{opacity:1;filter:none;transform:translateY(var(--m,0))}}
+@keyframes plume{0%{transform:translateY(calc(var(--m,0) - .12em)) rotate(-4deg);color:#7a3a14}100%{transform:translateY(var(--m,0))}}
+.note-vol{position:absolute;pointer-events:none;font-size:clamp(18px,2.6vw,34px);color:#e9cf98;text-shadow:0 0 8px rgba(233,207,152,.6);animation:envol 3s ease-out forwards;font-style:normal}
 @keyframes envol{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-1.8em) rotate(var(--r)) scale(1.2)}}
 /* titre fils : cailloux et fil lumineux */
 .ciel.fils .titre h1 .l{position:relative;opacity:0;color:#fbf1ff;text-shadow:0 0 14px rgba(200,180,255,.8);animation:caillou .8s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:calc(var(--i)*.14s + .2s);transition:transform .3s}
@@ -953,15 +961,15 @@ trace(0);if(!calme)requestAnimationFrame(boucle);})();
 <script>(function(){const p=document.getElementById('poster');if(!p)return;const t=()=>p.classList.toggle('vu');p.addEventListener('click',t);p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});})();</script>
 <script>(function(){
 var n=0,h1=document.querySelector('.titre h1'),ti=document.querySelector('.titre'),hd=document.querySelector('header.ciel');
-h1.querySelectorAll('span').forEach(function(sp){var t=sp.textContent;sp.textContent='';for(var c of t){var i=document.createElement('i');i.className='l';i.style.setProperty('--i',n);i.style.setProperty('--d',(.55+((n*37)%9)/10)+'s');n++;i.textContent=c;sp.appendChild(i)}});
+h1.querySelectorAll('span').forEach(function(sp){var t=sp.textContent;sp.textContent='';for(var c of t){var i=document.createElement('i');i.className='l';i.style.setProperty('--i',n);i.style.setProperty('--m',[0,-.07,.04,-.11,.02,0,-.09,.05,-.04,.07][n%10]+'em');if(n===5)i.classList.add('cle');n++;i.textContent=c;sp.appendChild(i)}});
 var L=[].slice.call(h1.querySelectorAll('.l'));
 /* musique : notes qui s'envolent + lettres qui jouent */
 var gammes=[261.6,293.7,329.6,392,440,523.3,587.3,659.3,784,880],ac;
-function joue(k){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type='triangle';o.frequency.value=gammes[k%gammes.length];g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.2);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+1.3)}catch(e){}}
+function joue(k){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type='sine';o.frequency.value=gammes[k%gammes.length];g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.2);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+1.3)}catch(e){}}
 function note(el){var r=el.getBoundingClientRect(),q=ti.getBoundingClientRect(),s=document.createElement('i');s.className='note-vol';s.textContent=['♪','♫','♬','♩'][Math.floor(Math.random()*4)];s.style.left=(r.left-q.left+r.width*.4)+'px';s.style.top=(r.top-q.top)+'px';s.style.setProperty('--dx',(Math.random()*80-40)+'px');s.style.setProperty('--r',(Math.random()*60-30)+'deg');ti.appendChild(s);setTimeout(function(){s.remove()},2700)}
-L.forEach(function(el,k){el.addEventListener('click',function(){if(!hd.classList.contains('musique'))return;joue(k);note(el);note(el);el.classList.remove('frappe');void el.offsetWidth;el.classList.add('frappe');setTimeout(function(){el.classList.remove('frappe')},460)})});
+L.forEach(function(el,k){el.addEventListener('click',function(){if(!hd.classList.contains('musique'))return;joue(k);note(el);el.classList.remove('frappe');void el.offsetWidth;el.classList.add('frappe');setTimeout(function(){el.classList.remove('frappe')},460)})});
 var red=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!red)setInterval(function(){if(hd.classList.contains('musique')&&!document.hidden)note(L[Math.floor(Math.random()*L.length)])},700);
+if(!red)setInterval(function(){if(hd.classList.contains('musique')&&!document.hidden)note(L[Math.floor(Math.random()*L.length)])},1600);
 /* fils : un fil qui tisse de caillou en caillou */
 var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','fil-svg');svg.setAttribute('aria-hidden','true');ti.appendChild(svg);
 function trace(){var q=ti.getBoundingClientRect();if(!q.width)return;var pts=L.map(function(el,k){var r=el.getBoundingClientRect(),fs=parseFloat(getComputedStyle(el).fontSize);return[r.left-q.left+r.width/2,r.bottom-q.top+fs*.02]});
