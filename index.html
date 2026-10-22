@@ -192,17 +192,23 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 
 /* la chouette posée sur le L, et les bras du poulpe qui sortent du lac */
 .ciel.poemes .titre h1 span:last-child .l:last-child{position:relative}
-.ciel.poemes .titre h1 span:last-child .l:last-child::after{content:"";position:absolute;left:.1em;top:-.13em;width:.34em;height:.41em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M20 30 L28 8 L38 24 Q50 20 62 24 L72 8 L80 30 Q92 52 86 80 Q80 108 50 112 Q20 108 14 80 Q8 52 20 30 Z' fill='%230b0b24'/%3E%3Cpath d='M30 70 Q50 60 70 70 Q66 98 50 104 Q34 98 30 70 Z' fill='%2316163a'/%3E%3Cg fill='%230b0b24'%3E%3Cpath d='M38 110 l-4 8 h6z'/%3E%3Cpath d='M62 110 l4 8 h-6z'/%3E%3C/g%3E%3Cpath d='M46 52 L50 60 L54 52 Z' fill='%23e9cf98'/%3E%3Cg fill='%23ffd36b'%3E%3Cellipse cx='37' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3Cellipse cx='63' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C/g%3E%3Cg fill='%230b0b24'%3E%3Ccircle cx='38' cy='45' r='3.6'/%3E%3Ccircle cx='64' cy='45' r='3.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 0 .05em rgba(200,200,255,.35));transform-origin:50% 100%;animation:chouette 11s ease-in-out infinite;opacity:0;animation-delay:2.2s}
+.ciel.poemes .titre h1 span:last-child .l:last-child::after{content:"";position:absolute;left:.33em;top:-.315em;width:.34em;height:.41em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M20 30 L28 8 L38 24 Q50 20 62 24 L72 8 L80 30 Q92 52 86 80 Q80 108 50 112 Q20 108 14 80 Q8 52 20 30 Z' fill='%230b0b24'/%3E%3Cpath d='M30 70 Q50 60 70 70 Q66 98 50 104 Q34 98 30 70 Z' fill='%2316163a'/%3E%3Cg fill='%230b0b24'%3E%3Cpath d='M38 110 l-4 8 h6z'/%3E%3Cpath d='M62 110 l4 8 h-6z'/%3E%3C/g%3E%3Cpath d='M46 52 L50 60 L54 52 Z' fill='%23e9cf98'/%3E%3Cg fill='%23ffd36b'%3E%3Cellipse cx='37' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3Cellipse cx='63' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C/g%3E%3Cg fill='%230b0b24'%3E%3Ccircle cx='38' cy='45' r='3.6'/%3E%3Ccircle cx='64' cy='45' r='3.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 0 .05em rgba(200,200,255,.35));transform-origin:50% 100%;animation:chouette 11s ease-in-out infinite;opacity:0;animation-delay:2.8s}
 @keyframes chouette{0%{opacity:0;transform:translateY(-.3em)}4%{opacity:1;transform:none}40%,46%{transform:rotate(0)}48%,56%{transform:rotate(-7deg)}58%,100%{opacity:1;transform:rotate(0)}}
-#v-poemes .poulpe{position:absolute;top:0;right:9%;width:210px;height:150px;overflow:hidden;pointer-events:none;z-index:1}
-#v-poemes .poulpe i{position:absolute;bottom:0;width:52px;height:130px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 200'%3E%3Cpath d='M30 200 C 26 150 20 120 24 84 C 28 48 46 36 48 20 C 49 10 42 4 36 8 C 30 12 34 20 40 16 C 38 30 12 44 8 82 C 4 122 4 160 2 200 Z' fill='%231c1650'/%3E%3Cg fill='%234a4290'%3E%3Ccircle cx='9' cy='175' r='4.4'/%3E%3Ccircle cx='9' cy='152' r='4.1'/%3E%3Ccircle cx='9' cy='129' r='3.8'/%3E%3Ccircle cx='10' cy='107' r='3.4'/%3E%3Ccircle cx='13' cy='86' r='3'/%3E%3Ccircle cx='19' cy='66' r='2.6'/%3E%3Ccircle cx='27' cy='49' r='2.2'/%3E%3Ccircle cx='35' cy='36' r='1.8'/%3E%3C/g%3E%3C/svg%3E") no-repeat bottom/contain;transform-origin:50% 100%;transform:translateY(105%);filter:drop-shadow(0 0 6px rgba(160,140,255,.35));animation:bras 38s ease-in-out infinite}
-#v-poemes .poulpe i:nth-child(1){left:30px;animation-delay:9s}
-#v-poemes .poulpe i:nth-child(2){left:82px;height:150px;animation-delay:9.6s;scale:-1 1}
-#v-poemes .poulpe i:nth-child(3){left:136px;height:105px;animation-delay:10.3s}
-#v-poemes .poulpe b{position:absolute;bottom:2px;left:50%;width:150px;height:14px;margin-left:-75px;border-radius:50%;border:1px solid rgba(200,200,255,.5);opacity:0;animation:rond 38s ease-out infinite 9s}
-@keyframes bras{0%,3%{transform:translateY(105%) rotate(0)}6%{transform:translateY(8%) rotate(-6deg)}8%{transform:translateY(0) rotate(8deg)}10%{transform:translateY(4%) rotate(-4deg)}13%,100%{transform:translateY(105%) rotate(0)}}
-@keyframes rond{0%,4%{opacity:0;transform:scale(.3)}6%{opacity:.7}14%{opacity:0;transform:scale(1.4)}100%{opacity:0}}
+#v-poemes .poulpe{position:absolute;top:0;right:8%;width:260px;height:180px;pointer-events:none;z-index:1}
+#v-poemes .poulpe canvas{width:100%;height:100%;display:block}
 @media (prefers-reduced-motion:reduce){#v-poemes .poulpe{display:none}}
+
+/* SOREL en bois doré qui bourgeonne, la chouette sur sa branche */
+.ciel.poemes .titre h1 span:last-child .l{background:linear-gradient(180deg,rgba(255,250,232,.6),rgba(255,250,232,0) 42%,rgba(90,55,15,.18) 100%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28 0.011' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.27  0 0 0 0 0.08  0 0 0 1.6 -0.55'/%3E%3C/filter%3E%3Crect width='400' height='400' fill='%23eccb86'/%3E%3Crect width='400' height='400' filter='url%28%23f%29' opacity='.7'/%3E%3C/svg%3E");background-size:100% 100%,3em 3em;-webkit-background-clip:text;background-clip:text}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(1)::after,.ciel.poemes .titre h1 span:last-child .l:nth-child(3)::after,.ciel.poemes .titre h1 span:last-child .l:nth-child(4)::after{content:"";position:absolute;width:.24em;height:.24em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cpath d='M8 56 C 14 40 22 30 34 22' stroke='%23b9934a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M34 22 C 36 10 48 6 54 4 C 52 14 44 22 34 22 Z' fill='%23cfe39a'/%3E%3Cpath d='M22 34 C 14 30 10 22 12 14 C 20 18 24 26 22 34 Z' fill='%23a8cf7a'/%3E%3Ccircle cx='35' cy='21' r='3' fill='%23f3e3a0'/%3E%3C/svg%3E") no-repeat center/contain;transform-origin:10% 90%;animation:bourgeon 6s ease-in-out infinite;opacity:0;animation-fill-mode:both}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(1){position:relative}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(1)::after{left:.42em;top:.02em;animation-delay:2.4s}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(3){position:relative}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(3)::after{left:.5em;top:.06em;animation-delay:2.9s;scale:-1 1}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(4){position:relative}
+.ciel.poemes .titre h1 span:last-child .l:nth-child(4)::after{left:.38em;top:.56em;width:.2em;height:.2em;animation-delay:3.3s}
+@keyframes bourgeon{0%{opacity:0;transform:scale(0) rotate(-20deg)}12%{opacity:1;transform:scale(1) rotate(0)}50%{transform:rotate(5deg)}100%{opacity:1;transform:rotate(0)}}
+.ciel.poemes .titre h1 span:last-child .l:last-child::before{content:"";position:absolute;left:.17em;top:-.02em;width:.56em;height:.16em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 40'%3E%3Cpath d='M4 34 C 30 30 60 26 96 22 C 112 20 126 16 136 10' stroke='%23c9a35a' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M96 22 C 104 30 112 34 120 36' stroke='%23c9a35a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M120 36 C 128 30 136 30 138 34 C 132 40 124 40 120 36 Z' fill='%23bfdc8a'/%3E%3Cpath d='M136 10 C 132 2 138 -2 140 2 C 140 6 138 9 136 10 Z' fill='%23cfe39a'/%3E%3Ccircle cx='60' cy='27' r='3' fill='%23e9d38a'/%3E%3C/svg%3E") no-repeat left center/contain;opacity:0;animation:bourgeon 1.4s ease-out 2s forwards;transform-origin:0 80%}
 /* titre musique : partition sur vieux parchemin */
 .ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
@@ -808,7 +814,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 </section>
 <section id="v-poemes" class="travaux band" hidden>
   <div class="ciel-bas" aria-hidden="true"><i></i><i></i><b></b><b></b></div>
-  <div class="poulpe" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+  <div class="poulpe" aria-hidden="true"><canvas id="poulpe"></canvas></div>
   <div class="inner"><h2>Poèmes</h2>
     <div class="sous-onglets" role="tablist" aria-label="Poèmes">
       <button role="tab" aria-selected="true" data-p="chants">✦ Chants scientifiques</button>
@@ -1234,6 +1240,32 @@ function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],vo
   requestAnimationFrame(frame);return taille}
 const t1=monde(c1,{}),t2=c2?monde(c2,{bas:1}):null;
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{t1();t2&&t2()},60)));
+})();</script>
+<script>(function(){
+/* Le poulpe du lac : 3 bras souples qui sortent, ondulent, enroulent leur pointe et replongent. Une onde voyage le long de chaque bras. */
+const cv=document.getElementById('poulpe');if(!cv)return;const x=cv.getContext('2d'),sec=document.getElementById('v-poemes');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+let w=0,h=0;function taille(){const d=Math.min(devicePixelRatio||1,2);w=cv.clientWidth;h=cv.clientHeight;if(!w)return;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0)}
+const bras=[{bx:.24,L:118,ph:0,sens:1,del:0},{bx:.5,L:146,ph:1.7,sens:-1,del:.35},{bx:.76,L:100,ph:3.1,sens:1,del:.7}];
+const CYCLE=40,DEBUT=9;let t0=performance.now();
+function sortie(u){/* 0..1 : sort, reste, replonge */if(u<0||u>1)return 0;if(u<.25)return Math.sin(u/.25*Math.PI/2);if(u<.75)return 1;return Math.cos((u-.75)/.25*Math.PI/2)}
+function frame(ms){requestAnimationFrame(frame);if(sec.hidden)return;if(!w){taille();if(!w)return}
+  const t=(ms-t0)/1000,c=((t-DEBUT)%CYCLE+CYCLE)%CYCLE;x.clearRect(0,0,w,h);if(t<DEBUT||c>7.5)return;
+  const surf=h-6;
+  for(const b of bras){const u=(c-b.del)/5.2,e=sortie(u);if(e<=0)continue;const N=26,L=b.L*e,seg=L/N;let px=w*b.bx,py=surf+4,ang=-Math.PI/2;const G=[],D=[],P=[];
+    for(let i=0;i<=N;i++){const f=i/N;const onde=Math.sin(t*2.6+b.ph-f*4.2)*(.05+.22*f)*b.sens;const enroule=f>.6?Math.pow((f-.6)/.4,2)*2.4*b.sens*(.6+.4*Math.sin(t*1.7+b.ph)):0;
+      if(i>0){ang+=onde*.35+enroule*.18+ (i===1?b.sens*.08:0);px+=Math.cos(ang)*seg;py+=Math.sin(ang)*seg}
+      const r=(1-f*.9)*9+.6,nx=-Math.sin(ang),ny=Math.cos(ang);G.push([px+nx*r,py+ny*r]);D.push([px-nx*r,py-ny*r]);P.push([px,py,r,nx,ny])}
+    x.save();x.beginPath();x.rect(0,0,w,surf);x.clip();
+    const g=x.createLinearGradient(0,surf,0,surf-b.L);g.addColorStop(0,'#120f38');g.addColorStop(1,'#2a2266');
+    x.fillStyle=g;x.shadowColor='rgba(170,150,255,.45)';x.shadowBlur=10;x.beginPath();x.moveTo(G[0][0],G[0][1]);for(const q of G)x.lineTo(q[0],q[1]);for(let i=D.length-1;i>=0;i--)x.lineTo(D[i][0],D[i][1]);x.closePath();x.fill();x.shadowBlur=0;
+    x.fillStyle='rgba(150,135,230,.75)';for(let i=2;i<P.length-3;i+=2){const [qx,qy,r,nx,ny]=P[i];x.beginPath();x.arc(qx-nx*r*.55*b.sens,qy-ny*r*.55*b.sens,Math.max(.8,r*.32),0,6.283);x.fill()}
+    x.restore();
+    /* le rond dans l'eau, au pied du bras */
+    const rr=6+u*40;x.globalAlpha=Math.max(0,.55-u*.5);x.strokeStyle='#cfcaff';x.lineWidth=1;x.beginPath();x.ellipse(w*b.bx,surf,rr,rr*.18,0,0,6.283);x.stroke();x.globalAlpha=1}
+}
+addEventListener('resize',taille);requestAnimationFrame(frame);
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{taille();t0=performance.now()},60)));
 })();</script>
 </body>
 </html>
