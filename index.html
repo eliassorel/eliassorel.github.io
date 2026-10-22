@@ -84,7 +84,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.jeux .seul-science,.ciel.poemes .seul-science{display:none!important}
 .ciel.jeux .descendre.seul-jeux,.ciel.poemes .descendre.seul-poemes{display:inline-flex}
 .ciel.jeux{background:radial-gradient(70% 70% at 80% 25%,#2a2410 0%,transparent 62%),radial-gradient(60% 60% at 10% 90%,#10202a 0%,transparent 70%),#07090d}
-.ciel.poemes{background:radial-gradient(75% 75% at 70% 20%,#2c2140 0%,transparent 62%),radial-gradient(60% 60% at 15% 95%,#3a2418 0%,transparent 70%),#0b0812}
+.ciel.poemes{background:radial-gradient(45% 50% at 80% 22%,rgba(150,160,255,.18) 0%,transparent 65%),radial-gradient(60% 60% at 12% 95%,#2a1f55 0%,transparent 70%),linear-gradient(180deg,#0a0b1f 0%,#11123a 60%,#1a1647 100%)}
 .ciel.jeux .titre p small,.ciel.poemes .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 
 /* néon de chambre sur l'onglet casse-tête : un vrai tube, une écriture continue */
@@ -128,6 +128,50 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .post-pied a:hover,.post-pied a:focus-visible{border-bottom-color:currentColor}
 .post-pied .tag{color:#c9bdf5;letter-spacing:.04em}
 @media (max-width:560px){.post blockquote,.post-pied{margin-left:0}.post .badge{margin-left:0}}
+
+/* poèmes : le carnet de nuit, sous la lune */
+@font-face{font-family:Cormorant;src:url(/fonts/cormorant-400-normal.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Cormorant;src:url(/fonts/cormorant-500-normal.woff2) format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Cormorant;src:url(/fonts/cormorant-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:Cormorant;src:url(/fonts/cormorant-600-italic.woff2) format('woff2');font-weight:600;font-style:italic;font-display:swap}
+.lune{position:absolute;right:12%;top:15%;width:clamp(110px,14vw,200px);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:0;background:transparent;box-shadow:calc(clamp(110px,14vw,200px)*.2) calc(clamp(110px,14vw,200px)*-.05) 0 0 #ecebff;filter:drop-shadow(0 0 22px rgba(200,200,255,.55)) drop-shadow(0 0 70px rgba(150,150,255,.3));animation:luneb 9s ease-in-out infinite}
+.lune i{display:none}
+@keyframes luneb{50%{filter:drop-shadow(0 0 30px rgba(210,210,255,.7)) drop-shadow(0 0 90px rgba(150,150,255,.38))}}
+.ciel.poemes #etoiles{opacity:.45}
+@media (max-width:700px){.lune{right:6%;top:9%;width:90px}}
+.ciel.poemes .titre{position:relative;z-index:1}
+.ciel.poemes .titre h1{letter-spacing:.01em;gap:0}
+.ciel.poemes .titre h1 .l{font-family:Cormorant,var(--serif);font-style:italic;font-weight:600;font-size:1.12em;background:linear-gradient(180deg,#ffffff 0%,#d9d6ff 55%,#9d97e6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(170,165,255,.35));opacity:0;animation:plumee 1.1s ease-out forwards;animation-delay:calc(var(--i)*.11s + .1s)}
+.ciel.poemes .titre h1 span:last-child{padding-left:1.4em}
+.ciel.poemes .titre h1 span:last-child .l{background:linear-gradient(180deg,#fff6e0 0%,#e9cf98 60%,#b9934a 100%);-webkit-background-clip:text;background-clip:text}
+@keyframes plumee{0%{opacity:0;filter:blur(8px);transform:translateY(.08em)}100%{opacity:1;filter:drop-shadow(0 0 14px rgba(170,165,255,.35));transform:none}}
+#v-poemes{position:relative;overflow:hidden;color:#e7e4fb;background:radial-gradient(40% 30% at 90% 0%,rgba(150,160,255,.14),transparent 70%),radial-gradient(50% 40% at 0% 60%,rgba(120,90,220,.16),transparent 70%),linear-gradient(180deg,#1a1647 0%,#121236 45%,#0c0d26 100%)}
+#v-poemes::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.6),transparent 60%),radial-gradient(1px 1px at 78% 9%,rgba(255,255,255,.5),transparent 60%),radial-gradient(1.5px 1.5px at 64% 42%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1px 1px at 30% 70%,rgba(255,255,255,.45),transparent 60%),radial-gradient(1px 1px at 88% 82%,rgba(255,255,255,.5),transparent 60%);background-size:600px 600px}
+#v-poemes .inner{position:relative;max-width:760px}
+#v-poemes h2{font-family:Cormorant,var(--serif);font-style:normal;font-weight:500;letter-spacing:.02em;font-size:clamp(52px,7vw,88px);color:#f4f1ff;margin:0 0 8px;line-height:1}
+#v-poemes h2::after{content:"";display:block;width:120px;height:14px;margin-top:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cpath d='M2 7 H48 M72 7 H118' stroke='%23e9cf98' stroke-width='1.2'/%3E%3Cpath d='M60 1 L66 7 L60 13 L54 7 Z' fill='%23e9cf98'/%3E%3C/svg%3E") no-repeat}
+#v-poemes > .inner > div > p,#v-poemes #p-chants > p,#v-poemes #p-dedans > p{font-family:Cormorant,var(--serif);font-style:italic;font-size:22px;line-height:1.5;color:#c9c4ef;max-width:44ch}
+#v-poemes .sous-onglets{gap:0;margin:34px 0 46px;border-bottom:1px solid rgba(217,214,255,.2)}
+#v-poemes .sous-onglets button{border:0;border-radius:0;background:none;color:#a9a3dc;font:500 13px/1 var(--sans);letter-spacing:.16em;padding:14px 20px 16px;position:relative}
+#v-poemes .sous-onglets button[aria-selected="true"]{background:none;color:#fff6e0}
+#v-poemes .sous-onglets button[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,#e9cf98,transparent)}
+#v-poemes .poemes-liste{gap:56px;margin-top:48px}
+#v-poemes .poeme{position:relative;padding:48px clamp(22px,5vw,60px) 36px;border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid rgba(217,214,255,.16);box-shadow:0 30px 60px -30px rgba(0,0,10,.8),inset 0 1px 0 rgba(255,255,255,.08)}
+#v-poemes .poeme::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:42%;height:2px;background:linear-gradient(90deg,transparent,var(--acc,#e9cf98),transparent)}
+#v-poemes .poeme h3{font-family:Cormorant,var(--serif);font-weight:500;font-size:clamp(22px,2.6vw,28px);letter-spacing:.24em;color:var(--acc,#e9cf98);text-align:center;margin:0 0 34px;display:flex;align-items:center;justify-content:center;gap:16px}
+#v-poemes .poeme h3::before,#v-poemes .poeme h3::after{content:"";flex:0 0 36px;height:1px;background:currentColor;opacity:.6}
+#v-poemes .poeme .vers{font-family:Cormorant,var(--serif);font-size:clamp(21px,2.4vw,25px);line-height:1.6;color:#efecff;max-width:34em;margin:0 auto}
+#v-poemes .poeme .vers > p:first-child::first-letter{float:left;font-family:Cormorant,var(--serif);font-style:italic;font-weight:600;font-size:3.6em;line-height:.82;padding:.05em .1em 0 0;color:var(--acc,#e9cf98);text-shadow:0 0 18px rgba(233,207,152,.35)}
+#v-poemes .poeme .source{text-align:center;margin-top:30px!important;font:500 12px/1.6 var(--sans)!important;letter-spacing:.14em;text-transform:uppercase;color:#a9a3dc;opacity:1}
+#v-poemes .poeme .source a{color:var(--acc,#e9cf98);border-bottom:1px solid transparent;transition:border-color .3s}
+#v-poemes .poeme .source a:hover{border-bottom-color:currentColor}
+#v-poemes .poeme + .poeme::after{content:"❦";position:absolute;top:-46px;left:50%;transform:translateX(-50%);color:#8f88d6;font-size:22px}
+#po-retrait{--acc:#9fd6e8}
+#po-accord{--acc:#f2d36b}
+#po-heritage{--acc:#f0a3a3}
+#po-doigts{--acc:#e9cf98}
+#p-dedans .poeme{background:radial-gradient(80% 60% at 50% 0%,rgba(190,190,255,.12),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025))}
+#p-dedans .poeme .vers{font-style:italic}
 /* titre musique : partition sur vieux parchemin */
 .ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
@@ -474,6 +518,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 </head>
 <body>
 <header class="ciel band">
+  <div class="lune seul-poemes" aria-hidden="true"><i></i></div>
   <canvas id="etoiles" aria-hidden="true"></canvas>
   <canvas id="musicien" aria-hidden="true"></canvas>
   <canvas id="nuages" aria-hidden="true"></canvas>
