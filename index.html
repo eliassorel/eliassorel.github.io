@@ -100,6 +100,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span::before{animation:none!important}}
 /* titre musique : egaliseur fou */
 .titre h1 .l{display:inline-block;font-style:normal}
+.titre h1 span{white-space:nowrap}
 .titre{position:relative}
 @font-face{font-family:"IM Fell";src:url(/fonts/im-fell.woff2) format('woff2');font-display:swap}
 @font-face{font-family:"Noto Music";src:url(/fonts/noto-music.woff2) format('woff2');font-display:swap}
@@ -144,6 +145,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #v-poemes{position:relative;overflow:hidden;color:#e7e4fb;background:radial-gradient(40% 30% at 90% 0%,rgba(150,160,255,.14),transparent 70%),radial-gradient(50% 40% at 0% 60%,rgba(120,90,220,.16),transparent 70%),linear-gradient(180deg,#1a1647 0%,#121236 45%,#0c0d26 100%)}
 #v-poemes::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.6),transparent 60%),radial-gradient(1px 1px at 78% 9%,rgba(255,255,255,.5),transparent 60%),radial-gradient(1.5px 1.5px at 64% 42%,rgba(255,255,255,.4),transparent 60%),radial-gradient(1px 1px at 30% 70%,rgba(255,255,255,.45),transparent 60%),radial-gradient(1px 1px at 88% 82%,rgba(255,255,255,.5),transparent 60%);background-size:600px 600px}
 #v-poemes .inner{position:relative;max-width:760px}
+@media (min-width:1380px){#v-poemes .inner{max-width:1460px}#v-poemes .poemes-liste{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;align-items:start}#v-poemes .poeme{padding:44px 40px 32px}#v-poemes .poeme h3{letter-spacing:.14em;font-size:24px}#v-poemes .poeme .vers{font-size:20px;line-height:1.55}#v-poemes .poeme + .poeme::after{display:none}}
 #v-poemes h2{font-family:Cormorant,var(--serif);font-style:normal;font-weight:500;letter-spacing:.02em;font-size:clamp(52px,7vw,88px);color:#f4f1ff;margin:0 0 8px;line-height:1}
 #v-poemes h2::after{content:"";display:block;width:120px;height:14px;margin-top:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cpath d='M2 7 H48 M72 7 H118' stroke='%23e9cf98' stroke-width='1.2'/%3E%3Cpath d='M60 1 L66 7 L60 13 L54 7 Z' fill='%23e9cf98'/%3E%3C/svg%3E") no-repeat}
 #v-poemes > .inner > div > p,#v-poemes #p-chants > p,#v-poemes #p-dedans > p{font-family:Cormorant,var(--serif);font-style:italic;font-size:22px;line-height:1.5;color:#c9c4ef;max-width:44ch}
@@ -183,10 +185,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @media (prefers-reduced-motion:reduce){#v-poemes .ciel-bas i,#v-poemes .ciel-bas b{animation:none}}
 #v-poemes .inner{z-index:1}
 .ciel.poemes .titre h1 span{white-space:nowrap}
-@media (max-width:600px){.ciel.poemes .titre h1 span:last-child{padding-left:.7em}}
-.ciel.poemes .titre h1 .l.lune-e{position:relative;color:transparent;background:none;-webkit-background-clip:border-box;background-clip:border-box;filter:none}
-.ciel.poemes .titre h1 .l.lune-e::before{content:"";position:absolute;left:.2em;top:.12em;width:.62em;height:.62em;border-radius:50%;box-shadow:-.15em 0 0 0 #f6f3ff;filter:drop-shadow(0 0 .06em #fff) drop-shadow(0 0 .25em rgba(200,200,255,.75)) drop-shadow(0 0 .6em rgba(150,150,255,.45))}
-.ciel.poemes .titre h1 .l.lune-e::after{content:"";position:absolute;left:.18em;top:.42em;width:.36em;height:.035em;border-radius:1em;background:linear-gradient(90deg,#f6f3ff,rgba(246,243,255,0));box-shadow:0 0 .12em rgba(220,220,255,.9)}
+.ciel.poemes .titre h1 .l.lune-e{position:relative;width:1.3em;color:transparent;background:none;-webkit-background-clip:border-box;background-clip:border-box;filter:none}
+.ciel.poemes .titre h1 .l.lune-e::before{content:"";position:absolute;left:-.12em;top:-.02em;width:1.62em;height:1.76em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 260'%3E%3Cdefs%3E%3CradialGradient id='g' cx='.35' cy='.4' r='.75'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='.55' stop-color='%23ecebff'/%3E%3Cstop offset='1' stop-color='%23b7b3ea'/%3E%3C/radialGradient%3E%3ClinearGradient id='t' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23f6f3ff'/%3E%3Cstop offset='1' stop-color='%23f6f3ff' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect width='240' height='260' fill='white'/%3E%3Ccircle cx='150' cy='118' r='92' fill='black'/%3E%3C/mask%3E%3C/defs%3E%3Cg fill='none' stroke='%23e9cf98' stroke-width='1.6' stroke-linecap='round' opacity='.9'%3E%3Cpath d='M118 14 C 60 10 18 60 22 120 C 25 175 70 230 128 238'/%3E%3Cpath d='M118 14 C 140 4 160 10 158 26 C 156 38 140 38 140 28 C 140 21 150 20 151 26'/%3E%3Cpath d='M128 238 C 150 248 170 240 168 226 C 166 214 150 216 151 225 C 152 231 160 231 160 226'/%3E%3Cpath d='M30 80 C 8 76 4 96 16 100 C 26 103 30 92 22 90'/%3E%3Cpath d='M28 168 C 6 174 8 194 20 194 C 30 194 30 182 22 182'/%3E%3C/g%3E%3Ccircle cx='112' cy='126' r='104' fill='url%28%23g%29' mask='url%28%23m%29'/%3E%3Cg fill='%23a9a4dc' opacity='.35' mask='url%28%23m%29'%3E%3Ccircle cx='40' cy='150' r='9'/%3E%3Ccircle cx='55' cy='88' r='6'/%3E%3Ccircle cx='70' cy='200' r='7'/%3E%3Ccircle cx='34' cy='112' r='4'/%3E%3C/g%3E%3Crect x='58' y='121' width='120' height='9' rx='4.5' fill='url%28%23t%29'/%3E%3Cg fill='%23fff8e6'%3E%3Cpath d='M150 34 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z'/%3E%3Cpath d='M168 210 l2.4 7 7 2.4 -7 2.4 -2.4 7 -2.4 -7 -7 -2.4 7 -2.4z'/%3E%3Cpath d='M190 125 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z'/%3E%3Ccircle cx='205' cy='90' r='2'/%3E%3Ccircle cx='196' cy='170' r='1.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 0 .05em rgba(255,255,255,.8)) drop-shadow(0 0 .3em rgba(200,200,255,.6)) drop-shadow(0 0 .8em rgba(150,150,255,.35))}
+.ciel.poemes .titre h1 span:last-child{padding-left:1.32em}
+@media (max-width:600px){.ciel.poemes .titre h1 span:last-child{padding-left:1.32em}}
 /* titre musique : partition sur vieux parchemin */
 .ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
@@ -1193,16 +1195,26 @@ function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],vo
     for(const e of etoiles){const a=calme?.8:.55+.45*Math.sin(t*e.sp+e.ph);x.globalAlpha=a;x.fillStyle=e.col;x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fill();
       if(e.big){x.globalAlpha=a*.5;x.strokeStyle=e.col;x.lineWidth=.6;const s=e.r*5*(.7+.3*a);x.beginPath();x.moveTo(e.x-s,e.y);x.lineTo(e.x+s,e.y);x.moveTo(e.x,e.y-s);x.lineTo(e.x,e.y+s);x.stroke();const g=x.createRadialGradient(e.x,e.y,0,e.x,e.y,e.r*4);g.addColorStop(0,e.col);g.addColorStop(1,'rgba(0,0,0,0)');x.globalAlpha=a*.35;x.fillStyle=g;x.fillRect(e.x-e.r*4,e.y-e.r*4,e.r*8,e.r*8)}}
     /* le halo de la lune-E */
-    if(!opt.bas&&E){const r=E.getBoundingClientRect(),q=cv.getBoundingClientRect(),mx=r.left-q.left+r.width*.5,my=r.top-q.top+r.height*.45,R=r.height*1.4;const g=x.createRadialGradient(mx,my,R*.1,mx,my,R);g.addColorStop(0,'rgba(210,210,255,.28)');g.addColorStop(1,'rgba(160,160,255,0)');x.globalAlpha=1;x.fillStyle=g;x.beginPath();x.arc(mx,my,R,0,6.283);x.fill();
+    if(!opt.bas&&E){const r=E.getBoundingClientRect(),q=cv.getBoundingClientRect(),fs=parseFloat(getComputedStyle(E).fontSize),mx=r.left-q.left+fs*.32,my=r.top-q.top+fs*.86,R=fs*1.25;const g=x.createRadialGradient(mx,my,R*.1,mx,my,R);g.addColorStop(0,'rgba(210,210,255,.28)');g.addColorStop(1,'rgba(160,160,255,0)');x.globalAlpha=1;x.fillStyle=g;x.beginPath();x.arc(mx,my,R,0,6.283);x.fill();
       x.globalAlpha=.12+.04*Math.sin(t*.7);x.strokeStyle='#d8d6ff';x.lineWidth=2;x.beginPath();x.arc(mx,my,R*1.25,0,6.283);x.stroke()}
     /* étoiles filantes */
     if(!calme&&t>tFil){tFil=t+3+rnd(t)*6;const sx=w*(.2+.7*rnd(t+1)),sy=h*(.05+.3*rnd(t+2)),ang=2.4+rnd(t+3)*.5;filantes.push({x:sx,y:sy,vx:Math.cos(ang)*w*.6,vy:Math.sin(ang)*w*.6,v:0})}
     for(const f of filantes){f.v+=1/60;const px=f.x+f.vx*f.v,py=f.y+f.vy*f.v,len=.12;const g=x.createLinearGradient(px,py,px-f.vx*len,py-f.vy*len);g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(1,'rgba(200,200,255,0)');x.globalAlpha=Math.max(0,1-f.v*1.4);x.strokeStyle=g;x.lineWidth=1.6;x.beginPath();x.moveTo(px,py);x.lineTo(px-f.vx*len,py-f.vy*len);x.stroke()}
     filantes=filantes.filter(f=>f.v<.75);
     /* la colline et ses sapins, au bas du ciel */
-    if(!opt.bas){x.globalAlpha=1;x.fillStyle='#07081c';x.beginPath();x.moveTo(0,h);for(let X=0;X<=w;X+=8){const Y=h-26-18*Math.sin(X/w*5.2+1)-10*Math.sin(X/w*13);x.lineTo(X,Y)}x.lineTo(w,h);x.closePath();x.fill();
-      for(let i=0;i<Math.round(w/60);i++){const X=rnd(i+40)*w,base=h-26-18*Math.sin(X/w*5.2+1)-10*Math.sin(X/w*13)+2,H=10+rnd(i+41)*22;x.beginPath();x.moveTo(X,base-H);x.lineTo(X+H*.32,base);x.lineTo(X-H*.32,base);x.closePath();x.fill()}
-      const fx=w*.3,fy=h-30-18*Math.sin(.3*5.2+1)-10*Math.sin(.3*13);x.fillStyle='#ffd99a';x.globalAlpha=.75+.25*Math.sin(t*1.3);x.fillRect(fx,fy-6,3,3)}
+    if(!opt.bas){x.globalAlpha=1;
+      const sol=(X,k)=>h-30-22*Math.sin(X/w*5.2+1+k)-12*Math.sin(X/w*13+k*2);
+      const sapin=(X,base,H,col)=>{x.fillStyle=col;x.fillRect(X-H*.025,base-H*.18,H*.05,H*.2);const n=6;for(let j=0;j<n;j++){const yb=base-H*.12-j*H*.14,lw=H*(.36-j*.05);x.beginPath();x.moveTo(X-lw,yb);x.lineTo(X-lw*.55,yb-H*.05);x.lineTo(X-lw*.7,yb-H*.06);x.lineTo(X,yb-H*.24);x.lineTo(X+lw*.7,yb-H*.06);x.lineTo(X+lw*.55,yb-H*.05);x.lineTo(X+lw,yb);x.closePath();x.fill()}x.beginPath();x.moveTo(X,base-H);x.lineTo(X+H*.03,base-H*.86);x.lineTo(X-H*.03,base-H*.86);x.fill()};
+      const feuillu=(X,base,H,col)=>{x.fillStyle=col;x.fillRect(X-H*.03,base-H*.45,H*.06,H*.47);for(let j=0;j<7;j++){const a=j/7*6.283,rx=X+Math.cos(a)*H*.2,ry=base-H*.68+Math.sin(a)*H*.17;x.beginPath();x.arc(rx,ry,H*.2,0,6.283);x.fill()}x.beginPath();x.arc(X,base-H*.72,H*.24,0,6.283);x.fill()};
+      /* colline lointaine, brumeuse */
+      x.fillStyle='#141546';x.beginPath();x.moveTo(0,h);for(let X=0;X<=w;X+=8)x.lineTo(X,sol(X,1.7)-16);x.lineTo(w,h);x.closePath();x.fill();
+      for(let i=0;i<Math.round(w/14);i++){const X=rnd(i+60)*w,H=14+rnd(i+61)*18;rnd(i+62)>.3?sapin(X,sol(X,1.7)-14,H,'#141546'):feuillu(X,sol(X,1.7)-14,H*.8,'#141546')}
+      /* brume entre les deux plans */
+      const gb=x.createLinearGradient(0,h-80,0,h);gb.addColorStop(0,'rgba(120,120,200,0)');gb.addColorStop(1,'rgba(120,120,200,.12)');x.fillStyle=gb;x.fillRect(0,h-80,w,80);
+      /* colline proche, ses sapins et ses grands arbres */
+      x.fillStyle='#06071a';x.beginPath();x.moveTo(0,h);for(let X=0;X<=w;X+=8)x.lineTo(X,sol(X,0));x.lineTo(w,h);x.closePath();x.fill();
+      for(let i=0;i<Math.round(w/34);i++){const X=rnd(i+40)*w,H=26+rnd(i+41)*46;rnd(i+42)>.25?sapin(X,sol(X,0)+3,H,'#06071a'):feuillu(X,sol(X,0)+3,H*.85,'#06071a')}
+      const fx=w*.3,fy=sol(fx,0);x.fillStyle='#ffd99a';x.globalAlpha=.75+.25*Math.sin(t*1.3);x.fillRect(fx,fy-7,3,3);x.globalAlpha=1}
     requestAnimationFrame(frame)}
   requestAnimationFrame(frame);return taille}
 const t1=monde(c1,{}),t2=c2?monde(c2,{bas:1}):null;
