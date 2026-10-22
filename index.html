@@ -98,6 +98,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @keyframes neonA{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.3}}
 @keyframes neonB{0%,70%,72%,74%,100%{opacity:1}71%,73%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span::before{animation:none!important}}
+/* titre musique : onde sonore */
+.titre h1 .l{display:inline-block;font-style:normal}
+.ciel.musique .titre h1 .l{animation:vague 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*-.2s);transition:color .3s,text-shadow .3s}
+.ciel.musique .titre h1 span:first-child .l{color:#f6e3e8;text-shadow:0 0 18px rgba(226,80,120,.55)}
+.ciel.musique .titre h1 span:last-child .l{color:#e6b84a;text-shadow:0 0 22px rgba(230,150,60,.5)}
+.ciel.musique .titre h1 .l:hover{color:#fff;text-shadow:0 0 8px #fff,0 0 26px #ff7aa8}
+@keyframes vague{0%,100%{transform:translateY(.05em) scaleY(.94)}50%{transform:translateY(-.1em) scaleY(1.06)}}
+/* titre fils : cailloux du petit poucet relies par un fil */
+.ciel.fils .titre h1 span{position:relative;width:max-content}
+.ciel.fils .titre h1 .l{opacity:0;color:#fbf1ff;text-shadow:0 0 16px rgba(190,170,255,.6);animation:caillou .7s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:calc(var(--i)*.13s + .2s)}
+.ciel.fils .titre h1 span:last-child .l{color:#ffd9b8;text-shadow:0 0 16px rgba(255,190,150,.6)}
+.ciel.fils .titre h1 span::after{content:"";position:absolute;left:0;bottom:-.02em;height:3px;width:100%;border-radius:2px;background:repeating-linear-gradient(90deg,#d9c8ff 0 10px,transparent 10px 18px);box-shadow:0 0 10px #b9a3ff;transform:scaleX(0);transform-origin:left;animation:fil 1.6s ease-out forwards;animation-delay:1.5s}
+.ciel.fils .titre h1 span:last-child::after{background:repeating-linear-gradient(90deg,#ffcfa8 0 10px,transparent 10px 18px);box-shadow:0 0 10px #ffb48a;animation-delay:2.1s}
+@keyframes caillou{0%{opacity:0;transform:translateY(-.35em) scale(.6)}100%{opacity:1;transform:none}}
+@keyframes fil{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.titre h1 .l,.ciel.fils .titre h1 span::after{animation:none!important;opacity:1!important;transform:none!important}}
 /* chambre des casse-tête */
 #chambre{position:absolute;right:2%;bottom:0;height:92%;width:min(52%,760px);opacity:0;transition:opacity .9s;pointer-events:none}
 .ciel.jeux #chambre{opacity:1}
@@ -927,5 +943,6 @@ let last=0;function boucle(ms){const t=ms/1000,dt=Math.min(.05,t-last);last=t;if
 trace(0);if(!calme)requestAnimationFrame(boucle);})();
 </script>
 <script>(function(){const p=document.getElementById('poster');if(!p)return;const t=()=>p.classList.toggle('vu');p.addEventListener('click',t);p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});})();</script>
+<script>(function(){var n=0;document.querySelectorAll('.titre h1 span').forEach(function(sp){var t=sp.textContent;sp.textContent='';for(var c of t){var i=document.createElement('i');i.className='l';i.style.setProperty('--i',n++);i.textContent=c;sp.appendChild(i)}})})();</script>
 </body>
 </html>
