@@ -134,11 +134,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @font-face{font-family:Cormorant;src:url(/fonts/cormorant-500-normal.woff2) format('woff2');font-weight:500;font-display:swap}
 @font-face{font-family:Cormorant;src:url(/fonts/cormorant-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
 @font-face{font-family:Cormorant;src:url(/fonts/cormorant-600-italic.woff2) format('woff2');font-weight:600;font-style:italic;font-display:swap}
-.lune{position:absolute;right:12%;top:15%;width:clamp(110px,14vw,200px);aspect-ratio:1;border-radius:50%;pointer-events:none;z-index:0;background:transparent;box-shadow:calc(clamp(110px,14vw,200px)*.2) calc(clamp(110px,14vw,200px)*-.05) 0 0 #ecebff;filter:drop-shadow(0 0 22px rgba(200,200,255,.55)) drop-shadow(0 0 70px rgba(150,150,255,.3));animation:luneb 9s ease-in-out infinite}
-.lune i{display:none}
-@keyframes luneb{50%{filter:drop-shadow(0 0 30px rgba(210,210,255,.7)) drop-shadow(0 0 90px rgba(150,150,255,.38))}}
 .ciel.poemes #etoiles{opacity:.45}
-@media (max-width:700px){.lune{right:6%;top:9%;width:90px}}
 .ciel.poemes .titre{position:relative;z-index:1}
 .ciel.poemes .titre h1{letter-spacing:.01em;gap:0}
 .ciel.poemes .titre h1 .l{font-family:Cormorant,var(--serif);font-style:italic;font-weight:600;font-size:1.12em;background:linear-gradient(180deg,#ffffff 0%,#d9d6ff 55%,#9d97e6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(170,165,255,.35));opacity:0;animation:plumee 1.1s ease-out forwards;animation-delay:calc(var(--i)*.11s + .1s)}
@@ -156,7 +152,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #v-poemes .sous-onglets button[aria-selected="true"]{background:none;color:#fff6e0}
 #v-poemes .sous-onglets button[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,#e9cf98,transparent)}
 #v-poemes .poemes-liste{gap:56px;margin-top:48px}
-#v-poemes .poeme{position:relative;padding:48px clamp(22px,5vw,60px) 36px;border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid rgba(217,214,255,.16);box-shadow:0 30px 60px -30px rgba(0,0,10,.8),inset 0 1px 0 rgba(255,255,255,.08)}
+#v-poemes .poeme{position:relative;padding:48px clamp(22px,5vw,60px) 36px;border-radius:6px;background:linear-gradient(180deg,rgba(38,36,92,.94),rgba(24,23,64,.94));backdrop-filter:blur(4px);border:1px solid rgba(217,214,255,.16);box-shadow:0 30px 60px -30px rgba(0,0,10,.8),inset 0 1px 0 rgba(255,255,255,.08)}
 #v-poemes .poeme::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:42%;height:2px;background:linear-gradient(90deg,transparent,var(--acc,#e9cf98),transparent)}
 #v-poemes .poeme h3{font-family:Cormorant,var(--serif);font-weight:500;font-size:clamp(22px,2.6vw,28px);letter-spacing:.24em;color:var(--acc,#e9cf98);text-align:center;margin:0 0 34px;display:flex;align-items:center;justify-content:center;gap:16px}
 #v-poemes .poeme h3::before,#v-poemes .poeme h3::after{content:"";flex:0 0 36px;height:1px;background:currentColor;opacity:.6}
@@ -170,8 +166,27 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #po-accord{--acc:#f2d36b}
 #po-heritage{--acc:#f0a3a3}
 #po-doigts{--acc:#e9cf98}
-#p-dedans .poeme{background:radial-gradient(80% 60% at 50% 0%,rgba(190,190,255,.12),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025))}
+#p-dedans .poeme{background:radial-gradient(80% 60% at 50% 0%,rgba(190,190,255,.16),transparent 70%),linear-gradient(180deg,rgba(34,32,86,.95),rgba(20,19,56,.95))}
 #p-dedans .poeme .vers{font-style:italic}
+
+/* la nuit des poèmes : ciel profond, voie lactée, Andromède, et le E devenu lune */
+.ciel #nuit{opacity:0;transition:opacity 1s}
+.ciel.poemes #nuit{opacity:1}
+.ciel.poemes #etoiles{opacity:0!important}
+#v-poemes .ciel-bas{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+#v-poemes .ciel-bas i{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 10% 20%,#fff,transparent 70%),radial-gradient(1.6px 1.6px at 35% 65%,#dcd6ff,transparent 70%),radial-gradient(2.4px 2.4px at 72% 30%,#cfe0ff,transparent 70%),radial-gradient(1.5px 1.5px at 88% 75%,#fff,transparent 70%),radial-gradient(2px 2px at 55% 90%,#ffe6b8,transparent 70%),radial-gradient(1.5px 1.5px at 22% 45%,#fff,transparent 70%),radial-gradient(1.2px 1.2px at 62% 8%,#fff,transparent 70%),radial-gradient(1.2px 1.2px at 4% 82%,#e6d8ff,transparent 70%);background-size:420px 420px;animation:scintille 4s ease-in-out infinite alternate}
+#v-poemes .ciel-bas i+i{background-size:780px 780px;background-position:130px 260px;animation-duration:6.5s;animation-delay:-2s}
+@keyframes scintille{from{opacity:.35}to{opacity:1}}
+#v-poemes .ciel-bas b{position:absolute;top:8%;left:70%;width:160px;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(255,255,255,.95),rgba(200,200,255,0));transform:rotate(155deg);opacity:0;animation:filante 9s ease-out infinite 2s}
+#v-poemes .ciel-bas b+b{top:46%;left:22%;animation-delay:6.5s;animation-duration:13s}
+@keyframes filante{0%{opacity:0;translate:0 0}2%{opacity:1}9%{opacity:0;translate:-340px 160px}100%{opacity:0;translate:-340px 160px}}
+@media (prefers-reduced-motion:reduce){#v-poemes .ciel-bas i,#v-poemes .ciel-bas b{animation:none}}
+#v-poemes .inner{z-index:1}
+.ciel.poemes .titre h1 span{white-space:nowrap}
+@media (max-width:600px){.ciel.poemes .titre h1 span:last-child{padding-left:.7em}}
+.ciel.poemes .titre h1 .l.lune-e{position:relative;color:transparent;background:none;-webkit-background-clip:border-box;background-clip:border-box;filter:none}
+.ciel.poemes .titre h1 .l.lune-e::before{content:"";position:absolute;left:.2em;top:.12em;width:.62em;height:.62em;border-radius:50%;box-shadow:-.15em 0 0 0 #f6f3ff;filter:drop-shadow(0 0 .06em #fff) drop-shadow(0 0 .25em rgba(200,200,255,.75)) drop-shadow(0 0 .6em rgba(150,150,255,.45))}
+.ciel.poemes .titre h1 .l.lune-e::after{content:"";position:absolute;left:.18em;top:.42em;width:.36em;height:.035em;border-radius:1em;background:linear-gradient(90deg,#f6f3ff,rgba(246,243,255,0));box-shadow:0 0 .12em rgba(220,220,255,.9)}
 /* titre musique : partition sur vieux parchemin */
 .ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
@@ -518,7 +533,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 </head>
 <body>
 <header class="ciel band">
-  <div class="lune seul-poemes" aria-hidden="true"><i></i></div>
+  <canvas id="nuit" aria-hidden="true"></canvas>
   <canvas id="etoiles" aria-hidden="true"></canvas>
   <canvas id="musicien" aria-hidden="true"></canvas>
   <canvas id="nuages" aria-hidden="true"></canvas>
@@ -776,6 +791,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Quotation","text":"Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.","inLanguage":"fr","creator":{"@type":"Person","name":"Elias Sorel","sameAs":"https://orcid.org/0009-0003-7980-9944"},"isPartOf":{"@type":"CreativeWork","name":"Le Diamant","url":"https://eliassorel.github.io/papiers/le-diamant/"}}</script>
 </section>
 <section id="v-poemes" class="travaux band" hidden>
+  <div class="ciel-bas" aria-hidden="true"><i></i><i></i><b></b><b></b></div>
   <div class="inner"><h2>Poèmes</h2>
     <div class="sous-onglets" role="tablist" aria-label="Poèmes">
       <button role="tab" aria-selected="true" data-p="chants">✦ Chants scientifiques</button>
@@ -1147,5 +1163,50 @@ window.addEventListener('resize',function(){if(hd.classList.contains('fils'))tra
 if(document.fonts)document.fonts.ready.then(trace);trace();
 })();</script>
 <script>(function(){var d=document.querySelector('#v-musique .portee-deco');if(!d)return;var g=['\u{1D15F}','\u{1D160}','\u{1D15E}','\u{1D161}','\u{1D15F}','\u{1D160}','\u{1D15F}','\u{1D15E}','\u{1D160}','\u{1D161}','\u{1D15F}','\u{1D160}'],y=[2,-6,6,-12,-2,4,-10,0,-4,8,-8,-2];g.forEach(function(c,k){var i=document.createElement('i');i.textContent=c;i.style.left=(4+k*7.6)+'%';i.style.top=(y[k]+6)+'px';i.style.animationDelay=(.3+k*.12)+'s';d.appendChild(i)})})();</script>
+<script>(function(){
+/* La nuit des poèmes : voie lactée, Andromède, les Pléiades, étoiles colorées qui scintillent, étoiles filantes, halo de la lune-E, et la colline au loin. */
+const hd=document.querySelector('header.ciel'),c1=document.getElementById('nuit'),c2=null,sec=document.getElementById('v-poemes');
+if(!c1)return;const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const E=document.querySelector('.titre h1 span:first-child .l');if(E)E.classList.add('lune-e');
+function rnd(a){let x=Math.sin(a*12.9898)*43758.5453;return x-Math.floor(x)}
+function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],voie=null,filantes=[],tFil=0;
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=cv.clientWidth;h=cv.clientHeight;if(!w||!h)return;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);
+    const n=Math.round(w*h/(opt.bas?2600:1900));etoiles=[];for(let i=0;i<n;i++){const r=rnd(i+1),g=rnd(i+7.3),b=rnd(i+3.1);const big=b>.985;etoiles.push({x:r*w,y:g*h*(opt.bas?1:.86),r:big?1.6+b*1.2:.35+b*b*1.1,col:b>.97?['#bcd3ff','#ffe6b8','#ffc2c2','#d9c8ff'][i%4]:'#ffffff',ph:rnd(i+9)*6.28,sp:.6+rnd(i+5)*2.2,big})}
+    /* la voie lactée, peinte une fois hors champ */
+    voie=document.createElement('canvas');voie.width=w*d;voie.height=h*d;const v=voie.getContext('2d');v.setTransform(d,0,0,d,0,0);
+    const ax=-w*.1,ay=h*(opt.bas?.95:1.05),bx=w*1.1,by=-h*.15,L=Math.hypot(bx-ax,by-ay),ux=(bx-ax)/L,uy=(by-ay)/L,nx=-uy,ny=ux,larg=Math.min(w,h)*(opt.bas?.22:.3);
+    for(let k=0;k<26;k++){const t=k/25,cx=ax+(bx-ax)*t,cy=ay+(by-ay)*t,rr=larg*(1.1+.5*Math.sin(t*7));const g=v.createRadialGradient(cx,cy,0,cx,cy,rr);const tint=k%3===0?'rgba(190,160,255,':k%3===1?'rgba(150,180,255,':'rgba(255,200,230,';g.addColorStop(0,tint+(opt.bas?.05:.085)+')');g.addColorStop(1,tint+'0)');v.fillStyle=g;v.fillRect(cx-rr,cy-rr,rr*2,rr*2)}
+    const nd=Math.round(L*(opt.bas?6:11));for(let i=0;i<nd;i++){const t=rnd(i*3.7+1),o=(rnd(i*1.3+2)+rnd(i*2.9+4)+rnd(i*5.1+6)-1.5)*larg*.9,px=ax+(bx-ax)*t+nx*o,py=ay+(by-ay)*t+ny*o;v.globalAlpha=.25+rnd(i+8)*.55;v.fillStyle=rnd(i+11)>.8?'#e6d8ff':'#ffffff';v.fillRect(px,py,rnd(i+13)>.92?1.3:.7,rnd(i+13)>.92?1.3:.7)}
+    v.globalAlpha=1;v.globalCompositeOperation='destination-out';for(let k=0;k<14;k++){const t=.15+k*.055,o=Math.sin(k*1.7)*larg*.18,cx=ax+(bx-ax)*t+nx*o,cy=ay+(by-ay)*t+ny*o,rr=larg*(.18+.12*rnd(k+20));const g=v.createRadialGradient(cx,cy,0,cx,cy,rr);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');v.fillStyle=g;v.beginPath();v.ellipse(cx,cy,rr*1.8,rr*.6,Math.atan2(uy,ux),0,6.283);v.fill()}
+    v.globalCompositeOperation='source-over';
+    if(!opt.bas){/* Andromède, galaxie couchée */const gx=w*.74,gy=h*.5,gr=Math.min(w,h)*.11;v.save();v.translate(gx,gy);v.rotate(-.55);v.scale(1,.32);
+      const g=v.createRadialGradient(0,0,0,0,0,gr);g.addColorStop(0,'rgba(255,245,230,.9)');g.addColorStop(.08,'rgba(255,230,210,.55)');g.addColorStop(.35,'rgba(200,190,255,.22)');g.addColorStop(1,'rgba(150,150,255,0)');v.fillStyle=g;v.beginPath();v.arc(0,0,gr,0,6.283);v.fill();
+      for(let i=0;i<900;i++){const a=rnd(i+30)*6.283*3,rr=gr*(.12+rnd(i+31)*.85),sp=a+rr/gr*4;v.globalAlpha=.25*(1-rr/gr);v.fillStyle='#fff';v.fillRect(Math.cos(sp)*rr,Math.sin(sp)*rr*1,1,1)}
+      v.restore();v.globalAlpha=1;const g2=v.createRadialGradient(gx+gr*.5,gy-gr*.5,0,gx+gr*.5,gy-gr*.5,gr*.12);g2.addColorStop(0,'rgba(255,240,230,.6)');g2.addColorStop(1,'rgba(255,240,230,0)');v.fillStyle=g2;v.fillRect(gx,gy-gr,gr,gr);
+      /* les Pléiades, petit essaim bleu dans un voile */const px=w*.86,py=h*.18,pr=Math.min(w,h)*.035;const gn=v.createRadialGradient(px,py,0,px,py,pr*2.4);gn.addColorStop(0,'rgba(140,170,255,.22)');gn.addColorStop(1,'rgba(140,170,255,0)');v.fillStyle=gn;v.fillRect(px-pr*3,py-pr*3,pr*6,pr*6);
+      [[0,0],[.9,-.3],[1.5,.4],[.4,.9],[-.6,.5],[-.3,-.8],[1.9,-.6]].forEach(([a,b])=>{etoiles.push({x:px+a*pr,y:py+b*pr,r:1.5,col:'#cfe0ff',ph:rnd(a+b)*6,sp:1.4,big:true})});
+      /* une nébuleuse rose, très pâle */const nx2=w*.58,ny2=h*.16,nr=Math.min(w,h)*.12;const gm=v.createRadialGradient(nx2,ny2,0,nx2,ny2,nr);gm.addColorStop(0,'rgba(255,150,200,.12)');gm.addColorStop(.5,'rgba(170,120,255,.07)');gm.addColorStop(1,'rgba(170,120,255,0)');v.fillStyle=gm;v.beginPath();v.ellipse(nx2,ny2,nr*1.4,nr*.8,.4,0,6.283);v.fill()}
+  }
+  addEventListener('resize',taille);taille();
+  function frame(ms){const t=ms/1000;const actif=opt.bas?!sec.hidden:hd.classList.contains('poemes');if(!actif||!w){requestAnimationFrame(frame);if(!w)taille();return}
+    x.clearRect(0,0,w,h);x.globalAlpha=1;if(voie)x.drawImage(voie,0,0,w,h);
+    for(const e of etoiles){const a=calme?.8:.55+.45*Math.sin(t*e.sp+e.ph);x.globalAlpha=a;x.fillStyle=e.col;x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fill();
+      if(e.big){x.globalAlpha=a*.5;x.strokeStyle=e.col;x.lineWidth=.6;const s=e.r*5*(.7+.3*a);x.beginPath();x.moveTo(e.x-s,e.y);x.lineTo(e.x+s,e.y);x.moveTo(e.x,e.y-s);x.lineTo(e.x,e.y+s);x.stroke();const g=x.createRadialGradient(e.x,e.y,0,e.x,e.y,e.r*4);g.addColorStop(0,e.col);g.addColorStop(1,'rgba(0,0,0,0)');x.globalAlpha=a*.35;x.fillStyle=g;x.fillRect(e.x-e.r*4,e.y-e.r*4,e.r*8,e.r*8)}}
+    /* le halo de la lune-E */
+    if(!opt.bas&&E){const r=E.getBoundingClientRect(),q=cv.getBoundingClientRect(),mx=r.left-q.left+r.width*.5,my=r.top-q.top+r.height*.45,R=r.height*1.4;const g=x.createRadialGradient(mx,my,R*.1,mx,my,R);g.addColorStop(0,'rgba(210,210,255,.28)');g.addColorStop(1,'rgba(160,160,255,0)');x.globalAlpha=1;x.fillStyle=g;x.beginPath();x.arc(mx,my,R,0,6.283);x.fill();
+      x.globalAlpha=.12+.04*Math.sin(t*.7);x.strokeStyle='#d8d6ff';x.lineWidth=2;x.beginPath();x.arc(mx,my,R*1.25,0,6.283);x.stroke()}
+    /* étoiles filantes */
+    if(!calme&&t>tFil){tFil=t+3+rnd(t)*6;const sx=w*(.2+.7*rnd(t+1)),sy=h*(.05+.3*rnd(t+2)),ang=2.4+rnd(t+3)*.5;filantes.push({x:sx,y:sy,vx:Math.cos(ang)*w*.6,vy:Math.sin(ang)*w*.6,v:0})}
+    for(const f of filantes){f.v+=1/60;const px=f.x+f.vx*f.v,py=f.y+f.vy*f.v,len=.12;const g=x.createLinearGradient(px,py,px-f.vx*len,py-f.vy*len);g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(1,'rgba(200,200,255,0)');x.globalAlpha=Math.max(0,1-f.v*1.4);x.strokeStyle=g;x.lineWidth=1.6;x.beginPath();x.moveTo(px,py);x.lineTo(px-f.vx*len,py-f.vy*len);x.stroke()}
+    filantes=filantes.filter(f=>f.v<.75);
+    /* la colline et ses sapins, au bas du ciel */
+    if(!opt.bas){x.globalAlpha=1;x.fillStyle='#07081c';x.beginPath();x.moveTo(0,h);for(let X=0;X<=w;X+=8){const Y=h-26-18*Math.sin(X/w*5.2+1)-10*Math.sin(X/w*13);x.lineTo(X,Y)}x.lineTo(w,h);x.closePath();x.fill();
+      for(let i=0;i<Math.round(w/60);i++){const X=rnd(i+40)*w,base=h-26-18*Math.sin(X/w*5.2+1)-10*Math.sin(X/w*13)+2,H=10+rnd(i+41)*22;x.beginPath();x.moveTo(X,base-H);x.lineTo(X+H*.32,base);x.lineTo(X-H*.32,base);x.closePath();x.fill()}
+      const fx=w*.3,fy=h-30-18*Math.sin(.3*5.2+1)-10*Math.sin(.3*13);x.fillStyle='#ffd99a';x.globalAlpha=.75+.25*Math.sin(t*1.3);x.fillRect(fx,fy-6,3,3)}
+    requestAnimationFrame(frame)}
+  requestAnimationFrame(frame);return taille}
+const t1=monde(c1,{}),t2=c2?monde(c2,{bas:1}):null;
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{t1();t2&&t2()},60)));
+})();</script>
 </body>
 </html>
