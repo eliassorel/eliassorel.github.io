@@ -1,0 +1,261 @@
+<!doctype html><html><head><meta charset=utf8><meta name="robots" content="noindex"><link rel="icon" href="/img/icone.svg"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<!-- finitions -->
+<script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icone-180.png">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Les quatre solides · Elias Sorel">
+<meta property="og:description" content="Elias Sorel : prépublications sur le vivant, la matière et le cosmos.">
+<meta property="og:url" content="https://eliassorel.github.io/les-quatre-solides/">
+<meta property="og:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://eliassorel.github.io/img/apercus/accueil.jpg">
+<!-- /finitions -->
+</head><body>
+<title>Les quatre solides · Elias Sorel</title>
+<style>
+:root{
+  color-scheme:dark;
+  --nuit:#0a0f1c; --nuit2:#111a2e; --ivoire:#ebe6da; --muet:#9aa3b5; --filet:rgba(210,169,78,.22); --or:#d2a94e;
+  --feu:#e0714a; --air:#e8cf8f; --eau:#6fa8d6; --terre:#c98a5a; --ether:#a78be0;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--nuit);color:var(--ivoire);font-family:Georgia,"Times New Roman",serif;display:flex;flex-direction:column;
+  background-image:radial-gradient(700px 500px at 50% 45%, rgba(111,168,214,.08), transparent 70%)}
+header{padding:14px 16px 4px;text-align:center}
+h1{font-weight:500;font-size:clamp(22px,4vw,30px);margin:0}
+.sous{margin:2px 0 0;color:var(--muet);font-size:13.5px}
+.scene{flex:1;min-height:300px;position:relative;touch-action:none;cursor:grab}
+.scene:active{cursor:grabbing}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.barre{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:10px 16px 16px}
+button{font:inherit;font-size:14.5px;background:var(--nuit2);color:var(--ivoire);border:1px solid var(--filet);border-radius:999px;padding:7px 14px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+button[aria-pressed="false"]{opacity:.4}
+button:focus-visible{outline:2px solid var(--or);outline-offset:2px}
+button .pt{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.vit{display:inline-flex;flex-wrap:wrap;justify-content:center;max-width:100%;align-items:center;gap:4px;background:var(--nuit2);border:1px solid var(--filet);border-radius:18px;padding:3px 6px}
+.vit .lab{font-size:14px;color:var(--muet);padding:0 6px}
+.vit button{border:none;background:transparent;padding:5px 8px;min-width:30px;justify-content:center}
+.vit button[aria-pressed="true"]{background:var(--or);color:var(--nuit);opacity:1}
+.vit button[aria-pressed="false"]{opacity:.75}
+.plat{margin:0;padding:0 16px 4px;text-align:center;color:var(--muet);font-size:13.5px;line-height:1.5}
+.plat b{font-weight:500;color:var(--ivoire);font-variant-numeric:tabular-nums}
+.aide{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:var(--muet);font-size:12.5px;pointer-events:none}
+</style>
+
+<header style="padding-top:64px">
+  <h1>Les 4 solides</h1>
+  <p class="sous">🔥 tétraèdre · 🌪️ octaèdre · 💧 icosaèdre · 🌍 cube, superposés tels quels</p>
+</header>
+<div class="scene" id="scene" tabindex="0" aria-label="Les 4 solides superposés. Glisse pour tourner, flèches du clavier aussi.">
+  <canvas id="cv"></canvas>
+  <p class="aide" id="aide">Glisse pour tourner dans tous les sens · molette ou pincement pour zoomer</p>
+</div>
+<p class="plat" id="platLeg" hidden>Chaque solide posé sur une face, penché jusqu'à son angle de bascule (le centre juste au-dessus de l'arête, sur le fil à plomb) :<br>💧 <b>20,9°</b> · 🌌 <b>31,7°</b> · 🌪️ <b>35,3°</b> · 🌍 <b>45°</b> · 🔥 <b>54,7°</b></p>
+<div class="barre">
+  <button data-s="tetra" aria-pressed="true" style="--c:var(--feu)"><span class="pt"></span>🔥 Feu</button>
+  <button data-s="octa" aria-pressed="true" style="--c:var(--air)"><span class="pt"></span>🌪️ Air</button>
+  <button data-s="ico" aria-pressed="true" style="--c:var(--eau)"><span class="pt"></span>💧 Eau</button>
+  <button data-s="cube" aria-pressed="true" style="--c:var(--terre)"><span class="pt"></span>🌍 Terre</button>
+  <button data-s="dod" aria-pressed="false" style="--c:var(--ether)"><span class="pt"></span>🌌 Éther</button>
+  <div class="vit" role="group" aria-label="Vitesse de rotation"><span class="lab">↻ Vitesse</span><button data-v="0" aria-pressed="false" aria-label="Arrêt">0</button><button data-v="1" aria-pressed="true">1</button><button data-v="2" aria-pressed="false">2</button><button data-v="3" aria-pressed="false">3</button><button data-v="4" aria-pressed="false">4</button><button data-v="5" aria-pressed="false">5</button><button data-v="6" aria-pressed="false">6</button><button data-v="7" aria-pressed="false">7</button><button data-v="8" aria-pressed="false">8</button><button data-v="9" aria-pressed="false">9</button><button data-v="10" aria-pressed="false">10</button></div>
+  <button id="lum" aria-pressed="true">💡 Lumière</button>
+  <button id="ray" aria-pressed="true">✨ Rayons</button>
+  <button id="frm" aria-pressed="false">👻 Formes invisibles</button>
+  <button id="plat" aria-pressed="false">🏛️ Platon</button>
+  <button id="reset">Revenir au départ</button>
+</div>
+
+<script>
+(()=>{
+const phi=(1+Math.sqrt(5))/2;
+const css=getComputedStyle(document.documentElement);
+const col=n=>css.getPropertyValue(n).trim();
+function cart(a,b){const r=[];for(const x of a)for(const y of b)r.push([x,y]);return r}
+const cubeV=[];for(const x of[-1,1])for(const y of[-1,1])for(const z of[-1,1])cubeV.push([x,y,z]);
+const tetraV=[[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]];
+const octaV=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+const dodV=[];for(const x of[-1,1])for(const y of[-1,1])for(const z of[-1,1])dodV.push([x,y,z]);for(const a of[-1,1])for(const b of[-1,1]){dodV.push([0,a/phi,b*phi],[a/phi,b*phi,0],[b*phi,0,a/phi])}
+const icoV=[];for(const a of[-1,1])for(const b of[-phi,phi]){icoV.push([0,a,b],[a,b,0],[b,0,a])}
+function edges(V){let d=Infinity;for(let i=0;i<V.length;i++)for(let j=i+1;j<V.length;j++){d=Math.min(d,dist(V[i],V[j]))}
+  const E=[];for(let i=0;i<V.length;i++)for(let j=i+1;j<V.length;j++)if(Math.abs(dist(V[i],V[j])-d)<1e-6)E.push([i,j]);return E}
+function dist(a,b){return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])}
+// même orientation de départ que les cartes de la page
+function rotXY(p,ax,ay){let[x,y,z]=p;[x,z]=[x*Math.cos(ay)+z*Math.sin(ay),-x*Math.sin(ay)+z*Math.cos(ay)];[y,z]=[y*Math.cos(ax)-z*Math.sin(ax),y*Math.sin(ax)+z*Math.cos(ax)];return[x,y,z]}
+function prep(V,ax,ay){const R=V.map(p=>rotXY(p,ax,ay));const m=Math.max(...R.map(p=>Math.hypot(p[0],p[1])));return R.map(p=>p.map(c=>c/m))}
+const S={
+  tetra:{V:prep(tetraV,.4,.6),E:edges(tetraV),c:col('--feu'),on:true},
+  octa:{V:prep(octaV,.3,.4),E:edges(octaV),c:col('--air'),on:true},
+  ico:{V:prep(icoV,.35,.5),E:edges(icoV),c:col('--eau'),on:true},
+  cube:{V:prep(cubeV,.5,.62),E:edges(cubeV),c:col('--terre'),on:true},
+  dod:{V:prep(dodV,.4,.3),E:edges(dodV),c:col('--ether'),on:false},
+};
+
+// faces : plans d'appui du solide convexe
+function faces(V){const F=[],seen=new Set();const n=V.length;
+  for(let i=0;i<n;i++)for(let j=i+1;j<n;j++)for(let k=j+1;k<n;k++){
+    const a=V[i],b=V[j],c=V[k];const u=[b[0]-a[0],b[1]-a[1],b[2]-a[2]],v=[c[0]-a[0],c[1]-a[1],c[2]-a[2]];
+    let N=[u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0]];const L=Math.hypot(...N);if(L<1e-9)continue;N=N.map(x=>x/L);
+    let d=N[0]*a[0]+N[1]*a[1]+N[2]*a[2];if(d<0){N=N.map(x=>-x);d=-d}
+    let ok=true;const on=[];for(let m=0;m<n;m++){const s=N[0]*V[m][0]+N[1]*V[m][1]+N[2]*V[m][2]-d;if(s>1e-6){ok=false;break}if(Math.abs(s)<1e-6)on.push(m)}
+    if(!ok)continue;const key=on.join(',');if(seen.has(key))continue;seen.add(key);
+    const C=[0,0,0];on.forEach(m=>{C[0]+=V[m][0];C[1]+=V[m][1];C[2]+=V[m][2]});C.forEach((x,q)=>C[q]=x/on.length);
+    const e1=[V[on[0]][0]-C[0],V[on[0]][1]-C[1],V[on[0]][2]-C[2]];const e2=[N[1]*e1[2]-N[2]*e1[1],N[2]*e1[0]-N[0]*e1[2],N[0]*e1[1]-N[1]*e1[0]];
+    on.sort((p,q)=>{const ang=m=>{const w=[V[m][0]-C[0],V[m][1]-C[1],V[m][2]-C[2]];return Math.atan2(w[0]*e2[0]+w[1]*e2[1]+w[2]*e2[2],w[0]*e1[0]+w[1]*e1[1]+w[2]*e1[2])};return ang(p)-ang(q)});
+    F.push(on)}
+  return F}
+function rgb(h){h=h.replace('#','');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]}
+let lumiere=true;let formes=true;
+// rayons : la lumière de la lampe rebondit sur les faces comme sur des miroirs
+let rayons=true;
+const RAYS=(()=>{const r=[];for(let i=-3;i<=3;i++)for(let j=-1;j<=1;j++){r.push([i*0.2,j*0.28])}return r})();
+function hitFirst(o,d,polys,skip){let best=null;
+  for(const P of polys){if(P===skip)continue;const den=P.n[0]*d[0]+P.n[1]*d[1]+P.n[2]*d[2];if(Math.abs(den)<1e-6)continue;
+    const tt=(P.d-(P.n[0]*o[0]+P.n[1]*o[1]+P.n[2]*o[2]))/den;if(tt<1e-4||(best&&tt>=best.t))continue;
+    const p=[o[0]+d[0]*tt,o[1]+d[1]*tt,o[2]+d[2]*tt];
+    let inside=true;const V=P.pts;for(let q=0;q<V.length;q++){const A=V[q],B=V[(q+1)%V.length];
+      const e=[B[0]-A[0],B[1]-A[1],B[2]-A[2]],w=[p[0]-A[0],p[1]-A[1],p[2]-A[2]];
+      const c=[e[1]*w[2]-e[2]*w[1],e[2]*w[0]-e[0]*w[2],e[0]*w[1]-e[1]*w[0]];
+      if(c[0]*P.n[0]+c[1]*P.n[1]+c[2]*P.n[2]<-1e-9){inside=false;break}}
+    if(inside)best={t:tt,p,P}}
+  return best}
+function traceRays(lamp,polys){
+  const out=[];const MAX=520;
+  const stack=[];
+  for(const[tx,tz]of RAYS){let d=[tx-lamp[0],0.15-lamp[1],tz-lamp[2]];const L=Math.hypot(...d);d=d.map(x=>x/L);
+    stack.push({o:lamp.slice(),d,col:[255,244,214],a:.8,depth:0,skip:null})}
+  while(stack.length&&out.length<MAX){
+    const r=stack.shift();
+    if(r.a<0.06||r.depth>7){continue}
+    const h=hitFirst(r.o,r.d,polys,r.skip);
+    if(!h){out.push({a:r.o,b:[r.o[0]+r.d[0]*2.2,r.o[1]+r.d[1]*2.2,r.o[2]+r.d[2]*2.2],col:r.col,al:r.a,end:true});continue}
+    out.push({a:r.o,b:h.p,col:r.col,al:r.a,hit:true});
+    const n=h.P.n,dn=r.d[0]*n[0]+r.d[1]*n[1]+r.d[2]*n[2];
+    const tint=r.col.map((c,q)=>c*.5+h.P.rgb[q]*.5);
+    // une part traverse la face (elle entre dans l'objet), une part rebondit
+    stack.push({o:h.p,d:r.d,col:tint,a:r.a*.62,depth:r.depth+1,skip:h.P});
+    const rd=[r.d[0]-2*dn*n[0],r.d[1]-2*dn*n[1],r.d[2]-2*dn*n[2]];
+    stack.push({o:h.p,d:rd,col:tint,a:r.a*.34,depth:r.depth+1,skip:h.P});
+  }
+  return out}
+
+for(const k in S){S[k].F=faces(S[k].V);S[k].rgb=rgb(S[k].c)}
+// Platon : face en bas, une arête d'appui, puis bascule jusqu'à l'angle où le centre passe au-dessus de l'arête
+const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]],dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],crs=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],nrm=a=>{const l=Math.hypot(...a);return a.map(x=>x/l)};
+for(const k in S){const s=S[k],F0=s.F[0],V=s.V;const C=[0,0,0];F0.forEach(m=>{C[0]+=V[m][0];C[1]+=V[m][1];C[2]+=V[m][2]});C.forEach((x,q)=>C[q]=x/F0.length);
+  const n=nrm(C),e=nrm(sub(V[F0[1]],V[F0[0]])),w=crs(n,e);s.R=[...w,...n,...e];
+  const mid=V[F0[0]].map((x,q)=>(x+V[F0[1]][q])/2);s.phi=Math.atan2(dot(w,mid),dot(n,mid))}
+const Rz=t=>[Math.cos(t),-Math.sin(t),0,Math.sin(t),Math.cos(t),0,0,0,1];
+const Rx=t=>[1,0,0,0,Math.cos(t),-Math.sin(t),0,Math.sin(t),Math.cos(t)];
+const Ry=t=>[Math.cos(t),0,Math.sin(t),0,1,0,-Math.sin(t),0,Math.cos(t)];
+let platon=false,pt=0,yaw=0,vue=-0.32;
+// matrice de rotation globale (pilotée par le doigt)
+let M=[1,0,0,0,1,0,0,0,1];
+const mul=(a,b)=>{const r=new Array(9);for(let i=0;i<3;i++)for(let j=0;j<3;j++)r[i*3+j]=a[i*3]*b[j]+a[i*3+1]*b[3+j]+a[i*3+2]*b[6+j];return r};
+function rotAxis(x,y,z,t){const c=Math.cos(t),s=Math.sin(t),C=1-c;return[c+x*x*C,x*y*C-z*s,x*z*C+y*s,y*x*C+z*s,c+y*y*C,y*z*C-x*s,z*x*C-y*s,z*y*C+x*s,c+z*z*C]}
+function turn(dx,dy){if(platon){yaw-=dx;vue=Math.max(-1.3,Math.min(0.5,vue+dy));M=mul(Rx(vue),Ry(yaw));return}const a=Math.hypot(dx,dy);if(a<1e-9)return;M=mul(rotAxis(dy/a,-dx/a,0,a),M);
+  // réorthonormaliser de temps en temps
+}
+const ap=v=>[M[0]*v[0]+M[1]*v[1]+M[2]*v[2],M[3]*v[0]+M[4]*v[1]+M[5]*v[2],M[6]*v[0]+M[7]*v[1]+M[8]*v[2]];
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),scene=document.getElementById('scene');
+let W=0,H=0,dpr=1,zoom=1;
+function size(){dpr=Math.min(2,window.devicePixelRatio||1);W=scene.clientWidth;H=scene.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+new ResizeObserver(size).observe(scene);size();
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  const R=Math.min(W,H)*0.40*zoom,cx=W/2,cy=H/2,f=4.2;
+  const pr=p=>{const k=f/(f+p[2]);return[cx+p[0]*R*k,cy+p[1]*R*k]};
+  // la lampe, au-dessus
+  if(lumiere){const g=ctx.createRadialGradient(cx,cy-R*1.12,0,cx,cy-R*1.12,R*1.1);
+    g.addColorStop(0,'rgba(255,244,214,.28)');g.addColorStop(1,'rgba(255,244,214,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    ctx.beginPath();ctx.arc(cx,cy-R*1.12,4,0,7);ctx.fillStyle='rgba(255,246,220,.9)';ctx.fill()}
+  if(platon){const a=ap([0,-1.25,0]),b=ap([0,1.25,0]),[x1,y1]=pr(a),[x2,y2]=pr(b);
+    ctx.save();ctx.strokeStyle=col('--or');ctx.globalAlpha=.55;ctx.setLineDash([2,5]);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    ctx.setLineDash([]);ctx.beginPath();ctx.arc(x2,y2,3.5,0,7);ctx.fillStyle=col('--or');ctx.fill();ctx.restore()}
+  const items=[];const polys=[];
+  const Ld=(()=>{const v=[0,-1,-0.45],l=Math.hypot(...v);return v.map(x=>x/l)})();
+  const Hd=(()=>{const v=[Ld[0],Ld[1],Ld[2]-1],l=Math.hypot(...v);return v.map(x=>x/l)})();
+  for(const k in S){const s=S[k];if(!s.on)continue;const Q=platon?mul(Rz(s.phi*pt*pt*(3-2*pt)),s.R):null;const P=platon?s.V.map(v=>ap([Q[0]*v[0]+Q[1]*v[1]+Q[2]*v[2],Q[3]*v[0]+Q[4]*v[1]+Q[5]*v[2],Q[6]*v[0]+Q[7]*v[1]+Q[8]*v[2]])):s.V.map(ap);
+    if(lumiere&&formes)for(const fc of s.F){const C=[0,0,0];fc.forEach(m=>{C[0]+=P[m][0];C[1]+=P[m][1];C[2]+=P[m][2]});C.forEach((x,q)=>C[q]=x/fc.length);
+      const l=Math.hypot(...C)||1;const n=C.map(x=>x/l);
+      items.push({t:'f',pts:fc.map(m=>P[m]),z:C[2]+0.05,n,rgb:s.rgb});}
+    if(rayons)for(const fc of s.F){const pts=fc.map(m=>P[m]);const C=[0,0,0];pts.forEach(p=>{C[0]+=p[0];C[1]+=p[1];C[2]+=p[2]});C.forEach((x,q)=>C[q]=x/pts.length);const l=Math.hypot(...C)||1;const n=C.map(x=>x/l);polys.push({pts,n,d:n[0]*C[0]+n[1]*C[1]+n[2]*C[2],rgb:s.rgb})}
+    if(formes)for(const[i,j]of s.E){const a=P[i],b=P[j];items.push({t:'e',a,b,z:(a[2]+b[2])/2,c:s.c})}}
+  items.sort((p,q)=>q.z-p.z);
+  for(const g of items){
+    if(g.t==='f'){
+      const diff=Math.max(0,-(g.n[0]*Ld[0]+g.n[1]*Ld[1]+g.n[2]*Ld[2])*-1);
+      const nd=g.n[0]*Ld[0]+g.n[1]*Ld[1]+g.n[2]*Ld[2];const d=Math.max(0,nd);
+      const sp=Math.pow(Math.max(0,g.n[0]*Hd[0]+g.n[1]*Hd[1]+g.n[2]*Hd[2]),36);
+      const facing=g.n[2]<0;const lit=.28+.72*d;
+      const r=Math.min(255,g.rgb[0]*lit+255*sp),gg=Math.min(255,g.rgb[1]*lit+250*sp),b=Math.min(255,g.rgb[2]*lit+235*sp);
+      const a=(facing?0.10:0.05)+0.20*d+0.55*sp;
+      ctx.beginPath();g.pts.forEach((p,q)=>{const[x,y]=pr(p);q?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.closePath();
+      ctx.setLineDash([]);ctx.globalAlpha=1;ctx.fillStyle=`rgba(${r|0},${gg|0},${b|0},${a.toFixed(3)})`;ctx.fill();
+      continue}
+    const[x1,y1]=pr(g.a),[x2,y2]=pr(g.b);
+    const back=g.z>0.12;
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+    ctx.strokeStyle=g.c;ctx.lineCap='round';
+    if(back){ctx.setLineDash([4,5]);ctx.globalAlpha=.4;ctx.lineWidth=1}
+    else{ctx.setLineDash([]);ctx.globalAlpha=.95-0.25*Math.max(0,g.z);ctx.lineWidth=1.8}
+    ctx.stroke();
+  }
+  ctx.globalAlpha=1;ctx.setLineDash([]);
+  if(rayons&&polys.length){const lamp=[0,-1.12,-0.35];const segs=traceRays(lamp,polys);
+    ctx.save();ctx.globalCompositeOperation='lighter';ctx.lineCap='round';
+    for(const s of segs){const[x1,y1]=pr(s.a),[x2,y2]=pr(s.b);
+      const c=`rgba(${s.col[0]|0},${s.col[1]|0},${s.col[2]|0},`;
+      if(s.end){const g=ctx.createLinearGradient(x1,y1,x2,y2);g.addColorStop(0,c+(s.al*.8)+')');g.addColorStop(1,c+'0)');ctx.strokeStyle=g}
+      else ctx.strokeStyle=c+(Math.min(1,s.al*1.1))+')';
+      ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+      if(s.hit){ctx.beginPath();ctx.arc(x2,y2,2.2,0,7);ctx.fillStyle=c+(s.al*.9)+')';ctx.fill()}}
+    ctx.restore()}
+}
+// interaction
+let drag=null,vx=0,vy=0,auto=true,last=performance.now();
+const pts=new Map();let pinch0=null,zoom0=1;
+scene.addEventListener('pointerdown',e=>{scene.setPointerCapture(e.pointerId);pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size===1){drag={x:e.clientX,y:e.clientY,t:performance.now()};vx=vy=0}
+  if(pts.size===2){const[a,b]=[...pts.values()];pinch0=Math.hypot(a[0]-b[0],a[1]-b[1]);zoom0=zoom;drag=null}
+  hideHelp()});
+scene.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size===2&&pinch0){const[a,b]=[...pts.values()];zoom=Math.max(.4,Math.min(3,zoom0*Math.hypot(a[0]-b[0],a[1]-b[1])/pinch0));return}
+  if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y,now=performance.now(),dt=Math.max(1,now-drag.t);
+  const k=0.0085;turn(dx*k,dy*k);vx=dx*k/dt*16;vy=dy*k/dt*16;drag={x:e.clientX,y:e.clientY,t:now}});
+const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch0=null;if(pts.size===0)drag=null};
+scene.addEventListener('pointerup',up);scene.addEventListener('pointercancel',up);
+scene.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.4,Math.min(3,zoom*Math.exp(-e.deltaY*0.0015)))},{passive:false});
+scene.addEventListener('keydown',e=>{const s=.12;const m={ArrowLeft:[-s,0],ArrowRight:[s,0],ArrowUp:[0,-s],ArrowDown:[0,s]}[e.key];if(m){e.preventDefault();turn(m[0],m[1]);hideHelp()}});
+function hideHelp(){document.getElementById('aide').hidden=true}
+document.querySelectorAll('button[data-s]').forEach(b=>b.addEventListener('click',()=>{const s=S[b.dataset.s];s.on=!s.on;b.setAttribute('aria-pressed',s.on)}));
+let speed=1;const SP=[0,1,2,3.5,5.5,8,11,15,21,29,40];const vbs=document.querySelectorAll('.vit button');
+function setSpeed(v){speed=v;auto=v>0;vbs.forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.v===v)))}
+vbs.forEach(b=>b.addEventListener('click',()=>setSpeed(+b.dataset.v)));
+const rayB=document.getElementById('ray');rayB.addEventListener('click',()=>{rayons=!rayons;rayB.setAttribute('aria-pressed',rayons)});
+const frmB=document.getElementById('frm');frmB.addEventListener('click',()=>{formes=!formes;frmB.setAttribute('aria-pressed',String(!formes));if(!formes&&!rayons){rayons=true;rayB.setAttribute('aria-pressed','true')}});
+const lumB=document.getElementById('lum');lumB.addEventListener('click',()=>{lumiere=!lumiere;lumB.setAttribute('aria-pressed',lumiere)});
+const platB=document.getElementById('plat'),platLeg=document.getElementById('platLeg');
+function setPlaton(on){platon=on;platB.setAttribute('aria-pressed',String(on));platLeg.hidden=!on;vx=vy=0;
+  if(on){pt=0;yaw=0;vue=-0.12;M=mul(Rx(vue),Ry(yaw))}else{M=[1,0,0,0,1,0,0,0,1]}}
+platB.addEventListener('click',()=>setPlaton(!platon));
+document.getElementById('reset').addEventListener('click',()=>{setPlaton(false);M=[1,0,0,0,1,0,0,0,1];zoom=1;vx=vy=0});
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce){setSpeed(0)}
+function loop(now){const dt=Math.min(50,now-last)/16;last=now;
+  if(platon&&pt<1)pt=Math.min(1,pt+dt*0.012);
+  if(!drag){if(Math.abs(vx)+Math.abs(vy)>1e-4){turn(vx*dt,vy*dt);vx*=Math.pow(.94,dt);vy*=Math.pow(.94,dt)}
+    else if(auto)turn(.0035*SP[speed]*dt,platon?0:.0012*SP[speed]*dt)}
+  draw();requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+})();
+</script>
+
+<a class="retour-jeux" href="/#jeux" style="position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:14px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:rgba(10,14,20,.82);color:#f4e3b8;border:1px solid #d4a82f;font:600 14px/1 system-ui,-apple-system,sans-serif;letter-spacing:.04em;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,.35)">← Retour aux casse-tête</a>
+<script>if(navigator.webdriver||/bot|crawl|spider|archive|heritrix|brozzler|headless/i.test(navigator.userAgent)){window.goatcounter={no_onload:true}}</script>
+<script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
