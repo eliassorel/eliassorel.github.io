@@ -194,7 +194,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.poemes .titre h1 span:last-child .l:last-child{position:relative}
 .ciel.poemes .titre h1 span:last-child .l:last-child::after{content:"";position:absolute;left:.4em;top:-.37em;width:.36em;height:.43em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M20 30 L28 8 L38 24 Q50 20 62 24 L72 8 L80 30 Q92 52 86 80 Q80 108 50 112 Q20 108 14 80 Q8 52 20 30 Z' fill='%230b0b24'/%3E%3Cpath d='M30 70 Q50 60 70 70 Q66 98 50 104 Q34 98 30 70 Z' fill='%2316163a'/%3E%3Cpath d='M18 54 Q2 74 8 100 Q12 110 24 112 Q30 92 32 72 Q28 58 18 54 Z' fill='%2315153e'/%3E%3Cpath d='M82 54 Q98 74 92 100 Q88 110 76 112 Q70 92 68 72 Q72 58 82 54 Z' fill='%2315153e'/%3E%3Cg fill='none' stroke='%232d2c66' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M14 76 Q20 84 22 96'/%3E%3Cpath d='M12 88 Q17 96 18 106'/%3E%3Cpath d='M86 76 Q80 84 78 96'/%3E%3Cpath d='M88 88 Q83 96 82 106'/%3E%3C/g%3E%3Cg fill='%230b0b24'%3E%3Cpath d='M38 110 l-4 8 h6z'/%3E%3Cpath d='M62 110 l4 8 h-6z'/%3E%3C/g%3E%3Cpath d='M46 52 L50 60 L54 52 Z' fill='%23e9cf98'/%3E%3Cg fill='%23ffd36b'%3E%3Cellipse cx='37' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3Cellipse cx='63' cy='44' rx='8' ry='8'%3E%3Canimate attributeName='ry' values='8%3B8%3B0.6%3B8%3B8' keyTimes='0%3B.92%3B.95%3B.98%3B1' dur='7s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C/g%3E%3Cg fill='%230b0b24'%3E%3Ccircle cx='38' cy='45' r='3.6'/%3E%3Ccircle cx='64' cy='45' r='3.6'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;filter:drop-shadow(0 0 .05em rgba(200,200,255,.35));transform-origin:50% 100%;animation:chouette 11s ease-in-out infinite;opacity:0;animation-delay:2.8s}
 @keyframes chouette{0%{opacity:0;transform:translateY(-.3em)}4%{opacity:1;transform:none}40%,46%{transform:rotate(0)}48%,56%{transform:rotate(-7deg)}58%,100%{opacity:1;transform:rotate(0)}}
-#v-poemes .poulpe{position:absolute;top:0;right:8%;width:260px;height:180px;pointer-events:none;z-index:1}
+#v-poemes .poulpe{position:absolute;top:0;right:7%;width:340px;height:250px;pointer-events:none;z-index:1}
 #v-poemes .poulpe canvas{width:100%;height:100%;display:block}
 @media (prefers-reduced-motion:reduce){#v-poemes .poulpe{display:none}}
 
@@ -223,6 +223,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.poemes .titre h1 .l.lune-e::before{transform-origin:62% 4%}
 .poussiere{position:absolute;pointer-events:none;color:#fff8e6;font-style:normal;font-size:clamp(10px,1.2vw,16px);text-shadow:0 0 8px #d9d6ff;animation:tombe 1.8s ease-in forwards}
 @keyframes tombe{0%{opacity:0;transform:translate(0,0) scale(.4)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1) rotate(160deg)}}
+
+.ciel.poemes .titre h1 .l.lune-e::after{content:"";position:absolute;left:.69em;top:-.14em;width:.39em;height:.52em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cdefs%3E%3CradialGradient id='n' cx='.35' cy='.3' r='.7'%3E%3Cstop offset='0' stop-color='%23fff4d2'/%3E%3Cstop offset='.5' stop-color='%23d8b46a'/%3E%3Cstop offset='1' stop-color='%237d5a22'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cellipse cx='60' cy='34' rx='8' ry='3' fill='%23000' opacity='.35'/%3E%3Cg fill='none' stroke='%235f7d3e' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M46 26 C 40 18 50 10 60 14 C 74 18 78 32 70 40 C 62 48 46 44 42 54 C 38 66 50 76 44 92 C 40 104 30 112 28 128'/%3E%3Cpath d='M44 92 C 54 98 60 108 58 122'/%3E%3C/g%3E%3Ccircle cx='60' cy='28' r='13' fill='url%28%23n%29' stroke='%236b4c1c' stroke-width='1.5'/%3E%3Ccircle cx='55' cy='23' r='3.5' fill='%23fffbe8' opacity='.8'/%3E%3Cg fill='%237fa65a' stroke='%234e6e33' stroke-width='.8'%3E%3Cpath d='M70 40 c 8 -6 18 -2 16 6 c 6 2 4 12 -4 10 c -2 6 -12 6 -12 -2 z'/%3E%3Cpath d='M42 54 c -8 -4 -16 2 -12 8 c -6 4 -2 12 6 8 c 2 6 12 4 10 -4 z'/%3E%3Cpath d='M48 78 c 8 -4 16 2 12 8 c 6 4 2 12 -6 8 c -2 6 -12 4 -10 -4 z' fill='%2394b86a'/%3E%3Cpath d='M28 108 c -8 -4 -16 2 -12 8 c -6 4 -2 12 6 8 c 2 6 12 4 10 -4 z'/%3E%3Cpath d='M58 116 c 6 -4 14 0 12 6 c 4 4 0 10 -6 8 c -2 4 -10 2 -8 -4 z' fill='%23a6c87c'/%3E%3Cpath d='M26 128 c -6 -2 -10 4 -6 8 c -2 6 6 8 8 2 c 4 2 8 -4 2 -8 z' fill='%2394b86a'/%3E%3C/g%3E%3C/svg%3E") no-repeat center top/contain;filter:drop-shadow(0 .02em .03em rgba(0,0,0,.45));pointer-events:none}
 @keyframes bourgeon{0%{opacity:0;transform:scale(0) rotate(-20deg)}12%{opacity:1;transform:scale(1) rotate(0)}50%{transform:rotate(5deg)}100%{opacity:1;transform:rotate(0)}}
 .ciel.poemes .titre h1 span:last-child .l:last-child::before{content:"";position:absolute;left:.24em;top:-.1em;width:.66em;height:.29em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 70'%3E%3Cpath d='M6 66 C 30 56 52 46 80 38 C 104 31 126 24 150 10' stroke='%23c9a35a' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M6 66 C 30 56 52 46 80 38' stroke='%23e7c987' stroke-width='2' fill='none' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M112 28 C 120 38 128 44 138 46' stroke='%23c9a35a' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M138 46 C 146 38 156 40 158 46 C 150 52 142 52 138 46 Z' fill='%23bfdc8a'/%3E%3Cpath d='M150 10 C 146 0 154 -4 157 2 C 158 6 154 9 150 10 Z' fill='%23cfe39a'/%3E%3Ccircle cx='96' cy='33' r='3.4' fill='%23e9d38a'/%3E%3C/svg%3E") no-repeat left bottom/contain;opacity:0;animation:bourgeon 1.4s ease-out 2s forwards;transform-origin:0 80%}
 /* titre musique : partition sur vieux parchemin */
@@ -1208,7 +1210,7 @@ const hd=document.querySelector('header.ciel'),c1=document.getElementById('nuit'
 if(!c1)return;const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const E=document.querySelector('.titre h1 span:first-child .l');if(E)E.classList.add('lune-e');
 function rnd(a){let x=Math.sin(a*12.9898)*43758.5453;return x-Math.floor(x)}
-function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],voie=null,filantes=[],tFil=0;
+function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],voie=null,filantes=[],tFil=0,gal=null,G=null,galA=1,eclats=[],flash=0;
   function taille(){d=Math.min(devicePixelRatio||1,2);w=cv.clientWidth;h=cv.clientHeight;if(!w||!h)return;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0);
     const n=Math.round(w*h/(opt.bas?2600:1900));etoiles=[];for(let i=0;i<n;i++){const r=rnd(i+1),g=rnd(i+7.3),b=rnd(i+3.1);const big=b>.985;etoiles.push({x:r*w,y:g*h*(opt.bas?1:.86),r:big?1.6+b*1.2:.35+b*b*1.1,col:b>.97?['#bcd3ff','#ffe6b8','#ffc2c2','#d9c8ff'][i%4]:'#ffffff',ph:rnd(i+9)*6.28,sp:.6+rnd(i+5)*2.2,big})}
     /* la voie lactée, peinte une fois hors champ */
@@ -1218,17 +1220,24 @@ function monde(cv,opt){const x=cv.getContext('2d');let w=0,h=0,d=1,etoiles=[],vo
     const nd=Math.round(L*(opt.bas?6:11));for(let i=0;i<nd;i++){const t=rnd(i*3.7+1),o=(rnd(i*1.3+2)+rnd(i*2.9+4)+rnd(i*5.1+6)-1.5)*larg*.9,px=ax+(bx-ax)*t+nx*o,py=ay+(by-ay)*t+ny*o;v.globalAlpha=.25+rnd(i+8)*.55;v.fillStyle=rnd(i+11)>.8?'#e6d8ff':'#ffffff';v.fillRect(px,py,rnd(i+13)>.92?1.3:.7,rnd(i+13)>.92?1.3:.7)}
     v.globalAlpha=1;v.globalCompositeOperation='destination-out';for(let k=0;k<14;k++){const t=.15+k*.055,o=Math.sin(k*1.7)*larg*.18,cx=ax+(bx-ax)*t+nx*o,cy=ay+(by-ay)*t+ny*o,rr=larg*(.18+.12*rnd(k+20));const g=v.createRadialGradient(cx,cy,0,cx,cy,rr);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');v.fillStyle=g;v.beginPath();v.ellipse(cx,cy,rr*1.8,rr*.6,Math.atan2(uy,ux),0,6.283);v.fill()}
     v.globalCompositeOperation='source-over';
-    if(!opt.bas){/* Andromède, galaxie couchée */const gx=w*.74,gy=h*.5,gr=Math.min(w,h)*.11;v.save();v.translate(gx,gy);v.rotate(-.55);v.scale(1,.32);
-      const g=v.createRadialGradient(0,0,0,0,0,gr);g.addColorStop(0,'rgba(255,245,230,.9)');g.addColorStop(.08,'rgba(255,230,210,.55)');g.addColorStop(.35,'rgba(200,190,255,.22)');g.addColorStop(1,'rgba(150,150,255,0)');v.fillStyle=g;v.beginPath();v.arc(0,0,gr,0,6.283);v.fill();
-      for(let i=0;i<900;i++){const a=rnd(i+30)*6.283*3,rr=gr*(.12+rnd(i+31)*.85),sp=a+rr/gr*4;v.globalAlpha=.25*(1-rr/gr);v.fillStyle='#fff';v.fillRect(Math.cos(sp)*rr,Math.sin(sp)*rr*1,1,1)}
-      v.restore();v.globalAlpha=1;const g2=v.createRadialGradient(gx+gr*.5,gy-gr*.5,0,gx+gr*.5,gy-gr*.5,gr*.12);g2.addColorStop(0,'rgba(255,240,230,.6)');g2.addColorStop(1,'rgba(255,240,230,0)');v.fillStyle=g2;v.fillRect(gx,gy-gr,gr,gr);
+    if(!opt.bas){/* Andromède, galaxie couchée, sur sa propre toile pour pouvoir exploser */const gx=w*.74,gy=h*.5,gr=Math.min(w,h)*.11;G={x:gx,y:gy,r:gr};gal=document.createElement('canvas');gal.width=w*d;gal.height=h*d;const gv=gal.getContext('2d');gv.setTransform(d,0,0,d,0,0);gv.save();gv.translate(gx,gy);gv.rotate(-.55);gv.scale(1,.32);
+      const g=gv.createRadialGradient(0,0,0,0,0,gr);g.addColorStop(0,'rgba(255,245,230,.9)');g.addColorStop(.08,'rgba(255,230,210,.55)');g.addColorStop(.35,'rgba(200,190,255,.22)');g.addColorStop(1,'rgba(150,150,255,0)');gv.fillStyle=g;gv.beginPath();gv.arc(0,0,gr,0,6.283);gv.fill();
+      for(let i=0;i<900;i++){const a=rnd(i+30)*6.283*3,rr=gr*(.12+rnd(i+31)*.85),sp=a+rr/gr*4;gv.globalAlpha=.25*(1-rr/gr);gv.fillStyle='#fff';gv.fillRect(Math.cos(sp)*rr,Math.sin(sp)*rr*1,1,1)}
+      gv.restore();gv.globalAlpha=1;const g2=gv.createRadialGradient(gx+gr*.5,gy-gr*.5,0,gx+gr*.5,gy-gr*.5,gr*.12);g2.addColorStop(0,'rgba(255,240,230,.6)');g2.addColorStop(1,'rgba(255,240,230,0)');gv.fillStyle=g2;gv.fillRect(gx,gy-gr,gr,gr);
       /* les Pléiades, petit essaim bleu dans un voile */const px=w*.86,py=h*.18,pr=Math.min(w,h)*.035;const gn=v.createRadialGradient(px,py,0,px,py,pr*2.4);gn.addColorStop(0,'rgba(140,170,255,.22)');gn.addColorStop(1,'rgba(140,170,255,0)');v.fillStyle=gn;v.fillRect(px-pr*3,py-pr*3,pr*6,pr*6);
       [[0,0],[.9,-.3],[1.5,.4],[.4,.9],[-.6,.5],[-.3,-.8],[1.9,-.6]].forEach(([a,b])=>{etoiles.push({x:px+a*pr,y:py+b*pr,r:1.5,col:'#cfe0ff',ph:rnd(a+b)*6,sp:1.4,big:true})});
       /* une nébuleuse rose, très pâle */const nx2=w*.58,ny2=h*.16,nr=Math.min(w,h)*.12;const gm=v.createRadialGradient(nx2,ny2,0,nx2,ny2,nr);gm.addColorStop(0,'rgba(255,150,200,.12)');gm.addColorStop(.5,'rgba(170,120,255,.07)');gm.addColorStop(1,'rgba(170,120,255,0)');v.fillStyle=gm;v.beginPath();v.ellipse(nx2,ny2,nr*1.4,nr*.8,.4,0,6.283);v.fill()}
   }
+  if(!opt.bas)hd.addEventListener('click',e=>{if(!hd.classList.contains('poemes')||!G||galA<.9)return;const r=cv.getBoundingClientRect(),X=e.clientX-r.left,Y=e.clientY-r.top;if(Math.hypot(X-G.x,(Y-G.y)*1.6)>G.r*1.1)return;
+    galA=-1.4;flash=1;const cols=['#ffffff','#e6dcff','#cfe0ff','#ffe6b8','#ffc2dd'];for(let k=0;k<220;k++){const a=Math.random()*6.283,v=1+Math.random()*7;eclats.push({x:G.x,y:G.y,vx:Math.cos(a)*v,vy:Math.sin(a)*v*.7-1.5,g:.035+Math.random()*.04,v:1,dv:.004+Math.random()*.006,c:cols[k%5],s:.6+Math.random()*1.4})}});
   addEventListener('resize',taille);taille();
   function frame(ms){const t=ms/1000;const actif=opt.bas?!sec.hidden:hd.classList.contains('poemes');if(!actif||!w){requestAnimationFrame(frame);if(!w)taille();return}
     x.clearRect(0,0,w,h);x.globalAlpha=1;if(voie)x.drawImage(voie,0,0,w,h);
+    if(gal){galA=Math.min(1,galA+.004);x.globalAlpha=Math.max(0,galA);x.drawImage(gal,0,0,w,h);x.globalAlpha=1}
+    if(flash>0&&G){flash-=.02;const R=G.r*(1+(1-flash)*5);const g=x.createRadialGradient(G.x,G.y,0,G.x,G.y,R);g.addColorStop(0,'rgba(255,255,255,'+flash+')');g.addColorStop(.3,'rgba(220,210,255,'+flash*.6+')');g.addColorStop(1,'rgba(160,150,255,0)');x.fillStyle=g;x.beginPath();x.arc(G.x,G.y,R,0,6.283);x.fill();
+      x.globalAlpha=Math.max(0,flash);x.strokeStyle='#e9e4ff';x.lineWidth=2;x.beginPath();x.ellipse(G.x,G.y,R*.9,R*.35,-.55,0,6.283);x.stroke();x.globalAlpha=1}
+    for(const p of eclats){p.vy+=p.g;p.vx*=.992;p.x+=p.vx;p.y+=p.vy;p.v-=p.dv;if(p.v<=0)continue;x.globalAlpha=p.v;x.strokeStyle=p.c;x.lineWidth=p.s;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(p.x-p.vx*3,p.y-p.vy*3);x.stroke();x.fillStyle='#fff';x.fillRect(p.x-.6,p.y-.6,1.2,1.2)}
+    eclats=eclats.filter(p=>p.v>0&&p.y<h+20);x.globalAlpha=1;
     for(const e of etoiles){const a=calme?.8:.55+.45*Math.sin(t*e.sp+e.ph);x.globalAlpha=a;x.fillStyle=e.col;x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fill();
       if(e.big){x.globalAlpha=a*.5;x.strokeStyle=e.col;x.lineWidth=.6;const s=e.r*5*(.7+.3*a);x.beginPath();x.moveTo(e.x-s,e.y);x.lineTo(e.x+s,e.y);x.moveTo(e.x,e.y-s);x.lineTo(e.x,e.y+s);x.stroke();const g=x.createRadialGradient(e.x,e.y,0,e.x,e.y,e.r*4);g.addColorStop(0,e.col);g.addColorStop(1,'rgba(0,0,0,0)');x.globalAlpha=a*.35;x.fillStyle=g;x.fillRect(e.x-e.r*4,e.y-e.r*4,e.r*8,e.r*8)}}
     /* le halo de la lune-E */
@@ -1262,25 +1271,26 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
 const cv=document.getElementById('poulpe');if(!cv)return;const x=cv.getContext('2d'),sec=document.getElementById('v-poemes');
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 let w=0,h=0;function taille(){const d=Math.min(devicePixelRatio||1,2);w=cv.clientWidth;h=cv.clientHeight;if(!w)return;cv.width=w*d;cv.height=h*d;x.setTransform(d,0,0,d,0,0)}
-const bras=[{bx:.24,L:118,ph:0,sens:1,del:0},{bx:.5,L:146,ph:1.7,sens:-1,del:.35},{bx:.76,L:100,ph:3.1,sens:1,del:.7}];
-const CYCLE=40,DEBUT=9;let t0=performance.now();
+const bras=[{bx:.2,L:170,ph:0,sens:1,del:0,ep:12},{bx:.5,L:215,ph:1.7,sens:-1,del:.35,ep:14},{bx:.8,L:150,ph:3.1,sens:1,del:.7,ep:11}];
+let CYCLE=20,DEBUT=4;let t0=performance.now();
 function sortie(u){/* 0..1 : sort, reste, replonge */if(u<0||u>1)return 0;if(u<.25)return Math.sin(u/.25*Math.PI/2);if(u<.75)return 1;return Math.cos((u-.75)/.25*Math.PI/2)}
 function frame(ms){requestAnimationFrame(frame);if(sec.hidden)return;if(!w){taille();if(!w)return}
-  const t=(ms-t0)/1000,c=((t-DEBUT)%CYCLE+CYCLE)%CYCLE;x.clearRect(0,0,w,h);if(t<DEBUT||c>7.5)return;
+  const t=(ms-t0)/1000,c=((t-DEBUT)%CYCLE+CYCLE)%CYCLE;x.clearRect(0,0,w,h);if(t<DEBUT||c>9.5)return;
   const surf=h-6;
-  for(const b of bras){const u=(c-b.del)/5.2,e=sortie(u);if(e<=0)continue;const N=26,L=b.L*e,seg=L/N;let px=w*b.bx,py=surf+4,ang=-Math.PI/2;const G=[],D=[],P=[];
+  for(const b of bras){const u=(c-b.del)/7.5,e=sortie(u);if(e<=0)continue;const N=26,L=b.L*e,seg=L/N;let px=w*b.bx,py=surf+4,ang=-Math.PI/2;const G=[],D=[],P=[];
     for(let i=0;i<=N;i++){const f=i/N;const onde=Math.sin(t*2.6+b.ph-f*4.2)*(.05+.22*f)*b.sens;const enroule=f>.6?Math.pow((f-.6)/.4,2)*2.4*b.sens*(.6+.4*Math.sin(t*1.7+b.ph)):0;
       if(i>0){ang+=onde*.35+enroule*.18+ (i===1?b.sens*.08:0);px+=Math.cos(ang)*seg;py+=Math.sin(ang)*seg}
-      const r=(1-f*.9)*9+.6,nx=-Math.sin(ang),ny=Math.cos(ang);G.push([px+nx*r,py+ny*r]);D.push([px-nx*r,py-ny*r]);P.push([px,py,r,nx,ny])}
+      const r=(1-f*.9)*b.ep+.7,nx=-Math.sin(ang),ny=Math.cos(ang);G.push([px+nx*r,py+ny*r]);D.push([px-nx*r,py-ny*r]);P.push([px,py,r,nx,ny])}
     x.save();x.beginPath();x.rect(0,0,w,surf);x.clip();
-    const g=x.createLinearGradient(0,surf,0,surf-b.L);g.addColorStop(0,'#120f38');g.addColorStop(1,'#2a2266');
-    x.fillStyle=g;x.shadowColor='rgba(170,150,255,.45)';x.shadowBlur=10;x.beginPath();x.moveTo(G[0][0],G[0][1]);for(const q of G)x.lineTo(q[0],q[1]);for(let i=D.length-1;i>=0;i--)x.lineTo(D[i][0],D[i][1]);x.closePath();x.fill();x.shadowBlur=0;
-    x.fillStyle='rgba(150,135,230,.75)';for(let i=2;i<P.length-3;i+=2){const [qx,qy,r,nx,ny]=P[i];x.beginPath();x.arc(qx-nx*r*.55*b.sens,qy-ny*r*.55*b.sens,Math.max(.8,r*.32),0,6.283);x.fill()}
+    const g=x.createLinearGradient(0,surf,0,surf-b.L);g.addColorStop(0,'#1c1650');g.addColorStop(1,'#43389a');
+    x.fillStyle=g;x.shadowColor='rgba(190,170,255,.7)';x.shadowBlur=16;x.beginPath();x.moveTo(G[0][0],G[0][1]);for(const q of G)x.lineTo(q[0],q[1]);for(let i=D.length-1;i>=0;i--)x.lineTo(D[i][0],D[i][1]);x.closePath();x.fill();x.shadowBlur=0;
+    x.fillStyle='rgba(185,170,255,.85)';for(let i=2;i<P.length-3;i+=2){const [qx,qy,r,nx,ny]=P[i];x.beginPath();x.arc(qx-nx*r*.55*b.sens,qy-ny*r*.55*b.sens,Math.max(.8,r*.32),0,6.283);x.fill()}
     x.restore();
     /* le rond dans l'eau, au pied du bras */
     const rr=6+u*40;x.globalAlpha=Math.max(0,.55-u*.5);x.strokeStyle='#cfcaff';x.lineWidth=1;x.beginPath();x.ellipse(w*b.bx,surf,rr,rr*.18,0,0,6.283);x.stroke();x.globalAlpha=1}
 }
 addEventListener('resize',taille);requestAnimationFrame(frame);
+sec.addEventListener('click',e=>{if(e.target.closest('.poeme,button,a'))return;const r=sec.getBoundingClientRect();if(e.clientY-r.top>320)return;const t=(performance.now()-t0)/1000,c=((t-DEBUT)%CYCLE+CYCLE)%CYCLE;if(t>=DEBUT&&c<9.5)return;t0=performance.now()-DEBUT*1000})
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>{taille();t0=performance.now()},60)));
 })();</script>
 <script>(function(){const L=document.querySelector('.titre h1 span:last-child .l:last-child'),hd=document.querySelector('header.ciel');if(!L)return;
