@@ -87,18 +87,22 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.poemes{background:radial-gradient(75% 75% at 70% 20%,#2c2140 0%,transparent 62%),radial-gradient(60% 60% at 15% 95%,#3a2418 0%,transparent 70%),#0b0812}
 .ciel.jeux .titre p small,.ciel.poemes .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 
-/* néon de chambre sur l'onglet casse-tête */
-.ciel.jeux .titre h1 span{color:#fdf4ff;transition:color .6s,text-shadow .6s}
-.ciel.jeux .titre h1 span:first-child{text-shadow:0 0 2px #fff,0 0 8px #f0a8ff,0 0 18px #d36bff,0 0 38px #b44dff,0 0 70px #9b3dff;animation:neonA 7s infinite}
-.ciel.jeux .titre h1 span:last-child{color:#f2fbff;text-shadow:0 0 2px #fff,0 0 8px #9fe0ff,0 0 18px #4fb8ff,0 0 38px #2f8fff,0 0 70px #2a6bff;animation:neonB 9s infinite}
-@keyframes neonA{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.35}}
-@keyframes neonB{0%,70%,72%,74%,100%{opacity:1}71%,73%{opacity:.4}}
-@media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span{animation:none!important}}
+/* néon de chambre sur l'onglet casse-tête : un vrai tube, une écriture continue */
+@font-face{font-family:Neonderthaw;src:url(/fonts/neonderthaw.woff2) format('woff2');font-display:swap}
+.ciel.jeux .titre h1{letter-spacing:0}
+.ciel.jeux .titre h1 span{font-size:0;line-height:1}
+.ciel.jeux .titre h1 span::before{font-family:Neonderthaw,var(--serif);font-size:clamp(84px,15vw,200px);line-height:.95;display:inline-block}
+.ciel.jeux .titre h1 span:first-child::before{content:"Elias";color:#fff4ff;text-shadow:0 0 2px #fff,0 0 6px #f4b6ff,0 0 14px #e070ff,0 0 30px #c04dff,0 0 60px #9b3dff,0 0 100px #7a2dff;animation:neonA 7s infinite}
+.ciel.jeux .titre h1 span:last-child{padding-left:.6em}
+.ciel.jeux .titre h1 span:last-child::before{content:"Sorel";color:#f2fbff;text-shadow:0 0 2px #fff,0 0 6px #b8e8ff,0 0 14px #5cc0ff,0 0 30px #2f8fff,0 0 60px #2a6bff,0 0 100px #2a4bff;animation:neonB 9s infinite}
+@keyframes neonA{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.3}}
+@keyframes neonB{0%,70%,72%,74%,100%{opacity:1}71%,73%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span::before{animation:none!important}}
 /* chambre des casse-tête */
 #chambre{position:absolute;right:2%;bottom:0;height:92%;width:min(52%,760px);opacity:0;transition:opacity .9s;pointer-events:none}
 .ciel.jeux #chambre{opacity:1}
 .ciel.jeux #etoiles{opacity:.25}
-.ciel.jeux{background:radial-gradient(55% 60% at 80% 75%,#2a1d48 0%,transparent 70%),radial-gradient(60% 60% at 70% 15%,#1d2c4a 0%,transparent 70%),var(--nuit-profonde)}
+.ciel.jeux{background:radial-gradient(28% 16% at 18% 0%,rgba(91,108,255,.30),transparent 70%),radial-gradient(30% 18% at 45% 0%,rgba(180,77,255,.26),transparent 70%),radial-gradient(28% 16% at 72% 0%,rgba(63,160,255,.28),transparent 70%),radial-gradient(26% 15% at 95% 0%,rgba(211,107,255,.26),transparent 70%),radial-gradient(55% 60% at 80% 75%,#2a1d48 0%,transparent 70%),radial-gradient(60% 60% at 70% 15%,#1d2c4a 0%,transparent 70%),var(--nuit-profonde)}
 @media (max-width:760px){#chambre{width:100%;opacity:0}.ciel.jeux #chambre{opacity:.35}}
 #chambre .lum{animation:lueur 4s ease-in-out infinite}#chambre .lum:nth-child(2n){animation-delay:-2s}
 @keyframes lueur{50%{opacity:.45}}
@@ -115,6 +119,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #chambre .plasma-halo{animation:halo 1.3s ease-in-out infinite alternate}@keyframes halo{to{opacity:.6}}
 .ciel.jeux .inner,.ciel.jeux .inner *{pointer-events:none}.ciel.jeux .inner a,.ciel.jeux .inner button,.ciel.jeux .inner svg.mono{pointer-events:auto}
 #poster .recto,#poster .verso{transition:opacity .5s}#poster.vu .recto{opacity:0}#poster.vu .verso{opacity:1!important}#poster:hover .recto rect{stroke:#d4a82f}
+#chambre .np{animation:neonA 11s infinite}#chambre .nq{animation:neonB 13s infinite}
+#chambre .hx{stroke:#5b6cff;animation:hexa 6s linear infinite}
+#chambre .h1{animation-delay:-1.2s}#chambre .h2{animation-delay:-2.4s}#chambre .h3{animation-delay:-3.6s}#chambre .h4{animation-delay:-4.8s}
+@keyframes hexa{0%{stroke:#5b6cff}33%{stroke:#b44dff}66%{stroke:#3fd0ff}100%{stroke:#5b6cff}}
 #chambre .flamme{animation:flamme .35s ease-in-out infinite alternate;transform-origin:120px 296px}
 @keyframes flamme{to{transform:scaleY(1.4)}}
 @media (prefers-reduced-motion:reduce){#chambre *{animation:none!important}}
@@ -354,6 +362,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 
 
 
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -382,6 +391,12 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <radialGradient id="lune" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f4e3b8" stop-opacity=".35"/><stop offset="1" stop-color="#f4e3b8" stop-opacity="0"/></radialGradient>
 <linearGradient id="lave" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7a59"/><stop offset="1" stop-color="#d4506a"/></linearGradient>
 </defs>
+<!-- plafond de nuages lumineux -->
+<filter id="flou" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="16"/></filter>
+<filter id="tube" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<g class="neon np" filter="url(#tube)" fill="none" stroke-linecap="round"><circle cx="555" cy="100" r="20" stroke="#f4c6ff" stroke-width="2.4"/><path d="M523 108 C505 116 515 124 555 116 C595 108 606 96 587 92" stroke="#7fd0ff" stroke-width="2.4"/></g>
+<g class="neon nq" filter="url(#tube)" fill="none" stroke="#ff9be8" stroke-width="3" stroke-linecap="round"><path d="M436 168 C436 150 462 148 462 166 C462 180 448 182 448 196"/><circle cx="448" cy="210" r="1.6" fill="#ff9be8"/></g>
+<g class="hexa"><polygon class="hx h0" points="679.0,380.0 673.5,389.5 662.5,389.5 657.0,380.0 662.5,370.5 673.5,370.5" fill="none" stroke-width="2.2"/><polygon class="hx h1" points="679.0,404.0 673.5,413.5 662.5,413.5 657.0,404.0 662.5,394.5 673.5,394.5" fill="none" stroke-width="2.2"/><polygon class="hx h2" points="698.0,392.0 692.5,401.5 681.5,401.5 676.0,392.0 681.5,382.5 692.5,382.5" fill="none" stroke-width="2.2"/><polygon class="hx h3" points="698.0,416.0 692.5,425.5 681.5,425.5 676.0,416.0 681.5,406.5 692.5,406.5" fill="none" stroke-width="2.2"/><polygon class="hx h4" points="679.0,428.0 673.5,437.5 662.5,437.5 657.0,428.0 662.5,418.5 673.5,418.5" fill="none" stroke-width="2.2"/></g>
 <g class="ciel-chambre"><polygon class="lum" points="120.0,31.0 122.4,36.7 128.6,37.2 123.9,41.3 125.3,47.3 120.0,44.0 114.7,47.3 116.1,41.3 111.4,37.2 117.6,36.7" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="250.0,64.0 251.6,67.8 255.7,68.1 252.6,70.8 253.5,74.9 250.0,72.7 246.5,74.9 247.4,70.8 244.3,68.1 248.4,67.8" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="420.0,22.0 422.1,27.1 427.6,27.5 423.4,31.1 424.7,36.5 420.0,33.6 415.3,36.5 416.6,31.1 412.4,27.5 417.9,27.1" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="560.0,78.0 561.9,82.5 566.7,82.8 563.0,86.0 564.1,90.7 560.0,88.2 555.9,90.7 557.0,86.0 553.3,82.8 558.1,82.5" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="660.0,30.0 662.6,36.4 669.5,36.9 664.3,41.4 665.9,48.1 660.0,44.5 654.1,48.1 655.7,41.4 650.5,36.9 657.4,36.4" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="330.0,115.0 331.3,118.2 334.8,118.5 332.1,120.7 332.9,124.0 330.0,122.2 327.1,124.0 327.9,120.7 325.2,118.5 328.7,118.2" fill="#c9e7a0" opacity="1"/><polygon class="lum" points="600.0,145.0 601.3,148.2 604.8,148.5 602.1,150.7 602.9,154.0 600.0,152.2 597.1,154.0 597.9,150.7 595.2,148.5 598.7,148.2" fill="#c9e7a0" opacity="1"/></g>
 <!-- fenêtre et lune -->
 <g fill="none" stroke="#e8dcc0" stroke-opacity=".55" stroke-width="2"><rect x="470" y="150" width="170" height="190" rx="4"/><line x1="555" y1="150" x2="555" y2="340"/><line x1="470" y1="245" x2="640" y2="245"/></g>
