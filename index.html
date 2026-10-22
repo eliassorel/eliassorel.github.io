@@ -68,7 +68,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel{transition:background .8s}
 .ciel #musicien{opacity:0;transition:opacity .8s}
 .ciel #etoiles{transition:opacity .8s}
-.ciel.musique{background:radial-gradient(70% 80% at 78% 30%,#3a1420 0%,transparent 65%),radial-gradient(60% 60% at 8% 95%,#2b1a0c 0%,transparent 70%),#0d0608}
+.ciel.musique{background:radial-gradient(45% 55% at 80% 38%,rgba(214,150,62,.30) 0%,transparent 70%),radial-gradient(30% 30% at 22% 18%,rgba(240,190,110,.10) 0%,transparent 70%),radial-gradient(60% 60% at 8% 95%,#3a2412 0%,transparent 70%),linear-gradient(180deg,#1b100a 0%,#120a07 60%,#0c0705 100%)}
 .ciel.musique #etoiles{opacity:0}
 .ciel.musique #musicien{opacity:1}
 .ciel:not(.musique) .seul-musique{display:none!important}
@@ -116,6 +116,38 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @keyframes plume{0%{transform:translateY(calc(var(--m,0) - .12em)) rotate(-4deg);color:#7a3a14}100%{transform:translateY(var(--m,0))}}
 .note-vol{position:absolute;pointer-events:none;font-size:clamp(18px,2.6vw,34px);color:#e9cf98;text-shadow:0 0 8px rgba(233,207,152,.6);animation:envol 3s ease-out forwards;font-style:normal}
 @keyframes envol{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-1.8em) rotate(var(--r)) scale(1.2)}}
+
+/* page musique : la partition */
+#v-musique{position:relative;overflow:hidden;color:#3a2210;padding-block:150px 160px;background:
+ radial-gradient(120% 80% at 50% 50%,transparent 55%,rgba(120,78,30,.35) 100%),
+ radial-gradient(40% 30% at 15% 20%,rgba(255,250,235,.55),transparent 70%),
+ radial-gradient(35% 25% at 85% 75%,rgba(160,110,50,.18),transparent 70%),
+ repeating-linear-gradient(180deg,transparent 0 46px,rgba(90,55,20,.07) 46px 47px,transparent 47px 56px,rgba(90,55,20,.07) 56px 57px,transparent 57px 66px,rgba(90,55,20,.07) 66px 67px,transparent 67px 76px,rgba(90,55,20,.07) 76px 77px,transparent 77px 86px,rgba(90,55,20,.07) 86px 87px,transparent 87px 150px),
+ linear-gradient(180deg,#efe0bd,#e8d5ab 50%,#e2cc9c);
+;box-shadow:inset 0 14px 30px -10px rgba(90,55,20,.45),inset 0 -14px 30px -10px rgba(90,55,20,.45)}
+#v-musique::before{content:"\1D11E";position:absolute;right:4%;top:50%;transform:translateY(-50%) rotate(-8deg);font-family:"Noto Music";font-size:clamp(260px,40vw,560px);line-height:1;color:rgba(90,55,20,.07);pointer-events:none}
+#v-musique .inner{position:relative}
+#v-musique h2{font-family:"IM Fell",var(--serif);font-size:clamp(46px,7vw,84px);color:#3a2210;margin:0 0 6px;display:flex;align-items:flex-end;gap:.18em;line-height:1}
+#v-musique h2::before{content:"\1D11E";font-family:"Noto Music";font-size:1.25em;line-height:.8;color:#7a3a14}
+#v-musique h2::after{content:"Opus I";font-family:"IM Fell",var(--serif);font-style:italic;font-size:.32em;color:#7a3a14;margin:0 0 .5em .4em;letter-spacing:.06em}
+#v-musique .portee-deco{height:58px;margin:10px 0 56px;background:repeating-linear-gradient(180deg,rgba(58,34,16,.55) 0 1.5px,transparent 1.5px 12px) 0 6px/100% 50px no-repeat;position:relative;overflow:hidden}
+#v-musique .portee-deco i{position:absolute;font-family:"Noto Music";font-style:normal;color:#3a2210;font-size:40px;line-height:1;opacity:0;animation:noteportee 1s ease-out forwards}
+@keyframes noteportee{from{opacity:0;transform:translateY(-14px)}to{opacity:.85;transform:none}}
+#v-musique .portee-deco::after{content:"";position:absolute;right:0;top:6px;height:50px;width:10px;border-left:2px solid #3a2210;border-right:5px solid #3a2210}
+#v-musique .ecran{border-radius:4px;background:#1a0f08;padding:0;box-shadow:0 0 0 3px #b8893a,0 0 0 7px #3a2210,0 0 0 9px #c9a050,0 26px 60px rgba(60,35,10,.45)}
+#v-musique .morceau h3{font-family:"IM Fell",var(--serif);font-style:italic;font-weight:400;font-size:clamp(34px,4vw,46px);color:#3a2210;line-height:1.05}
+#v-musique .morceau .qui{color:#7a3a14;font-family:"IM Fell",var(--serif);text-transform:none;letter-spacing:.04em;font-size:18px!important;font-style:italic}
+#v-musique .chiffres-morceau{gap:0;border-top:1.5px solid #3a2210;border-bottom:1.5px solid #3a2210;padding:10px 0}
+#v-musique .chiffres-morceau li{background:none;border:0;border-right:1px solid rgba(58,34,16,.35);border-radius:0;padding:4px 18px 4px 0;margin-right:18px;min-width:0}
+#v-musique .chiffres-morceau li:last-child{border-right:0}
+#v-musique .chiffres-morceau b{font-family:"IM Fell",var(--serif);font-size:30px;color:#3a2210}
+#v-musique .chiffres-morceau span{font-family:"IM Fell",var(--serif);font-style:italic;font-size:15px;color:#7a3a14;letter-spacing:.02em}
+#v-musique .morceau p{color:#3a2210;font-family:var(--serif);font-size:18px;line-height:1.65}
+#v-musique .noire{font-family:"Noto Music";font-style:normal;font-size:.9em;margin-right:.1em}
+#v-musique .morceau .fiche > p:not(.qui):not(.lien)::first-letter{font-family:"IM Fell",var(--serif);float:left;font-size:3.4em;line-height:.85;padding:.04em .08em 0 0;color:#8a2e14}
+#v-musique .morceau .lien a{display:inline-flex;align-items:center;gap:12px;color:#3a2210;font-family:"IM Fell",var(--serif);font-weight:400;font-size:20px;font-style:italic}
+#v-musique .morceau .lien a::before{content:"♪";display:grid;place-items:center;width:38px;height:38px;border-radius:50%;font-style:normal;color:#f3d9b0;font-size:18px;background:radial-gradient(circle at 35% 30%,#c0392b,#7b1a10 70%);box-shadow:0 2px 0 #5a120a,inset 0 0 0 3px rgba(255,200,170,.18),0 6px 14px rgba(90,20,10,.35);transform:rotate(-12deg);transition:transform .3s}
+#v-musique .morceau .lien a:hover::before{transform:rotate(8deg) scale(1.08)}
 /* titre fils : cailloux et fil lumineux */
 .ciel.fils .titre h1 .l{position:relative;opacity:0;color:#fbf1ff;text-shadow:0 0 14px rgba(200,180,255,.8);animation:caillou .8s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:calc(var(--i)*.14s + .2s);transition:transform .3s}
 .ciel.fils .titre h1 span:last-child .l{color:#ffe2c8;text-shadow:0 0 14px rgba(255,190,150,.8)}
@@ -629,12 +661,13 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <section id="v-musique" class="travaux band musique" hidden>
   <div class="inner large">
     <h2>Musique</h2>
+    <div class="portee-deco" aria-hidden="true"></div>
     <article class="morceau" id="still">
       <div class="ecran"><iframe src="https://www.youtube-nocookie.com/embed/FZmWkqj-i9U?rel=0" title="Still Whistling · Elias Sorel" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
       <div class="fiche">
         <h3>Still Whistling</h3>
         <p class="qui">Elias Sorel · instrumental</p>
-        <ul class="chiffres-morceau"><li><b>3:19</b><span>durée</span></li><li><b>134</b><span>BPM</span></li><li><b>4K</b><span>clip</span></li></ul>
+        <ul class="chiffres-morceau"><li><b>3′19″</b><span>durée</span></li><li><b><i class="noire">♩</i> = 134</b><span>tempo, BPM</span></li><li><b>4K</b><span>clip</span></li></ul>
         <p>Un orgue d'église sur un beat drill. Un sifflement qui danse une gigue pendant qu'une voix tient ses longues notes, une contrebasse qui chante en dessous, et le « tac tac BOOM » qui pousse le tout.</p>
         <p class="lien"><a href="https://youtu.be/FZmWkqj-i9U">Voir sur YouTube →</a></p>
       </div>
@@ -981,5 +1014,6 @@ var tabF=document.getElementById('t-fils');if(tabF)tabF.addEventListener('click'
 window.addEventListener('resize',function(){if(hd.classList.contains('fils'))trace()});
 if(document.fonts)document.fonts.ready.then(trace);trace();
 })();</script>
+<script>(function(){var d=document.querySelector('#v-musique .portee-deco');if(!d)return;var g=['\u{1D15F}','\u{1D160}','\u{1D15E}','\u{1D161}','\u{1D15F}','\u{1D160}','\u{1D15F}','\u{1D15E}','\u{1D160}','\u{1D161}','\u{1D15F}','\u{1D160}'],y=[2,-6,6,-12,-2,4,-10,0,-4,8,-8,-2];g.forEach(function(c,k){var i=document.createElement('i');i.textContent=c;i.style.left=(4+k*7.6)+'%';i.style.top=(y[k]+6)+'px';i.style.animationDelay=(.3+k*.12)+'s';d.appendChild(i)})})();</script>
 </body>
 </html>
