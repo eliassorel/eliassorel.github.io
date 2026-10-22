@@ -104,7 +104,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @font-face{font-family:"IM Fell";src:url(/fonts/im-fell.woff2) format('woff2');font-display:swap}
 @font-face{font-family:"Noto Music";src:url(/fonts/noto-music.woff2) format('woff2');font-display:swap}
 /* titre musique : partition sur vieux parchemin */
-.ciel.musique .titre h1{gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
+.ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
 .ciel.musique .titre h1 span:last-child{padding-left:0;margin-left:.9em}
 .ciel.musique .titre h1 span:last-child::after{content:"";position:absolute;right:0;top:.16em;height:.64em;width:.12em;border-left:2px solid #3a2210;border-right:.05em solid #3a2210}
@@ -834,11 +834,12 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* L'orgue : des tuyaux d'or qui s'allument au rythme de Still Whistling (134 BPM, tac tac BOOM), une rosace, une portée où passe le sifflement, et la corde de contrebasse en bas. Survoler un tuyau le fait sonner. */
 (function(){
   const c=document.getElementById('musicien'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w=0,h=0,d=1,tuyaux=[],notes=[],anneaux=[],mxp=-1,myp=-1,t0=performance.now();
+  let w=0,h=0,d=1,buffet=null,tuyaux=[],notes=[],anneaux=[],mxp=-1,myp=-1,t0=performance.now();
   const BEAT=60/134;
   function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);
-    const mob=w<760,N=mob?13:23,x0=mob?w*.04:w*.62,x1=mob?w*.96:w*.97,base=mob?h*.98:h*.92,pas=(x1-x0)/N;tuyaux=[];
-    for(let i=0;i<N;i++){const u=Math.abs(i-(N-1)/2)/((N-1)/2),haut=(mob?h*.42:h*.72)*(1-.62*Math.pow(u,1.3))*(.92+.08*Math.cos(i*1.7));tuyaux.push({x:x0+pas*(i+.5),l:pas*.62,h:haut,base,eclat:0,i})}}
+    const mob=w<760,N=mob?13:19,x0=mob?w*.1:w*.64,x1=mob?w*.9:w*.93,pas=(x1-x0)/N,H=mob?Math.min(h*.26,230):Math.min(h*.40,430),base=mob?h-Math.min(h*.2,170):h-Math.min(h*.3,330);tuyaux=[];
+    buffet={L:x0-pas*1.1,R:x1+pas*1.1,imp:base,H,pas,mob};
+    for(let i=0;i<N;i++){const u=Math.abs(i-(N-1)/2)/((N-1)/2),haut=H*(1-.55*Math.pow(u,1.3))*(.93+.07*Math.cos(i*1.7));tuyaux.push({x:x0+pas*(i+.5),l:pas*.62,h:haut,base,eclat:0,i})}}
   addEventListener('resize',taille);taille();
   band.addEventListener('pointermove',e=>{const r=band.getBoundingClientRect();mxp=e.clientX-r.left;myp=e.clientY-r.top},{passive:true});
   band.addEventListener('pointerleave',()=>{mxp=-1});
@@ -882,6 +883,8 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
       x.globalAlpha=1;x.font='20px Georgia,serif';x.fillStyle='#f0c75a';
       for(const n of notes){if(!calme)n.u+=n.v/60;const X=n.u*w,Y=y0+14+n.y*ec*.5+Math.sin(X*.006+t*.6)*10;x.globalAlpha=Math.min(1,n.u*8)*Math.max(0,1-(n.u-.8)*5)*.85;x.fillText(n.y>0?'♪':'♫',X,Y)}
       notes=notes.filter(n=>n.u<1)}
+    /* le buffet : le fond de bois derrière les tuyaux */
+    {const B=buffet,top=B.imp-B.H-B.pas*1.4;x.globalAlpha=.92;const gb=x.createLinearGradient(0,top,0,B.imp);gb.addColorStop(0,'#1c0e06');gb.addColorStop(1,'#2e180b');x.fillStyle=gb;x.beginPath();x.moveTo(B.L,B.imp);x.lineTo(B.L,top+B.H*.35);x.quadraticCurveTo((B.L+B.R)/2,top-B.H*.25,B.R,top+B.H*.35);x.lineTo(B.R,B.imp);x.closePath();x.fill()}
     /* les tuyaux */
     for(const p of tuyaux){if(mxp>=0&&Math.abs(mxp-p.x)<p.l*.8&&myp>p.base-p.h&&p.eclat<.5){joue(p,.7);sonne(p)}p.eclat*=.95;
       const X=p.x-p.l/2,Y=p.base-p.h,e=p.eclat+boom*.15;
@@ -889,8 +892,27 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(e>.05){x.globalAlpha=e*.6;const gl=x.createRadialGradient(p.x,Y+p.h*.3,0,p.x,Y+p.h*.3,p.h*.7);gl.addColorStop(0,'rgba(255,214,120,.5)');gl.addColorStop(1,'rgba(255,214,120,0)');x.fillStyle=gl;x.fillRect(p.x-p.h*.7,Y-p.h*.4,p.h*1.4,p.h*1.4)}
       x.globalAlpha=.55+.45*e;x.fillStyle=g;x.beginPath();x.roundRect(X,Y,p.l,p.h,[p.l/2,p.l/2,2,2]);x.fill();
       /* la bouche du tuyau */
-      const by=p.base-p.h*.18;x.globalAlpha=.9;x.fillStyle='#1a0c06';x.beginPath();x.moveTo(X+p.l*.2,by);x.lineTo(X+p.l*.8,by);x.lineTo(p.x,by-p.l*.55);x.closePath();x.fill();
-      x.fillStyle='#120804';x.fillRect(X-1,p.base,p.l+2,h-p.base)}
+      const by=p.base-p.h*.18;x.globalAlpha=.9;x.fillStyle='#1a0c06';x.beginPath();x.moveTo(X+p.l*.2,by);x.lineTo(X+p.l*.8,by);x.lineTo(p.x,by-p.l*.55);x.closePath();x.fill();}
+    /* le buffet : tourelles, couronne, console et clavier */
+    {const B=buffet,L=B.L,R=B.R,P=B.pas,top=B.imp-B.H-P*1.4,bois=(y0,y1)=>{const g=x.createLinearGradient(0,y0,0,y1);g.addColorStop(0,'#6a3c1c');g.addColorStop(.5,'#4a2812');g.addColorStop(1,'#2c160a');return g};x.globalAlpha=1;
+      /* la couronne en arc, bordée d'or */
+      x.lineWidth=P*.55;x.strokeStyle='#4a2812';x.beginPath();x.moveTo(L+P*.45,top+B.H*.35);x.quadraticCurveTo((L+R)/2,top-B.H*.25,R-P*.45,top+B.H*.35);x.stroke();
+      x.lineWidth=1.5;x.strokeStyle='#c9a050';x.beginPath();x.moveTo(L+P*.2,top+B.H*.35-P*.25);x.quadraticCurveTo((L+R)/2,top-B.H*.25-P*.3,R-P*.2,top+B.H*.35-P*.25);x.stroke();
+      /* les deux tourelles, avec leurs flèches */
+      for(const cx of [L,R-P*.9]){x.fillStyle=bois(top,B.imp);x.fillRect(cx,top+B.H*.3,P*.9,B.imp-(top+B.H*.3));x.strokeStyle='rgba(201,160,80,.7)';x.lineWidth=1;x.strokeRect(cx+P*.15,top+B.H*.45,P*.6,B.imp-(top+B.H*.45)-P*.3);
+        x.fillStyle='#5a3218';x.beginPath();x.moveTo(cx-P*.1,top+B.H*.3);x.lineTo(cx+P*.45,top+B.H*.3-P*1.6);x.lineTo(cx+P,top+B.H*.3);x.closePath();x.fill();x.fillStyle='#d4a82f';x.beginPath();x.arc(cx+P*.45,top+B.H*.3-P*1.7,P*.14,0,6.283);x.fill()}
+      /* la fleur de couronne au sommet */
+      {const cx=(L+R)/2,cy=top+B.H*.05-P*.2;x.fillStyle='#d4a82f';x.beginPath();x.moveTo(cx,cy-P*.9);x.lineTo(cx+P*.32,cy);x.lineTo(cx,cy+P*.25);x.lineTo(cx-P*.32,cy);x.closePath();x.fill()}
+      /* l'imposte : la poutre où les tuyaux posent les pieds */
+      x.fillStyle=bois(B.imp-P*.3,B.imp+P*.3);x.fillRect(L-P*.2,B.imp-P*.15,R-L+P*.4,P*.5);x.fillStyle='#c9a050';x.fillRect(L-P*.2,B.imp-P*.15,R-L+P*.4,2);
+      /* le corps : panneaux sculptés */
+      const c0=B.imp+P*.35;x.fillStyle=bois(c0,h);x.fillRect(L,c0,R-L,h-c0);
+      x.strokeStyle='rgba(201,160,80,.45)';x.lineWidth=1;const np=B.mob?3:4,lw=(R-L-P*.6)/np;for(let k=0;k<np;k++){const px=L+P*.3+k*lw;x.strokeRect(px+4,c0+P*.3,lw-8,Math.max(10,(h-c0)*.28))}
+      /* la console : pupitre, partition, deux claviers */
+      const kw=Math.min((R-L)*.62,B.mob?260:340),kx=(L+R)/2-kw/2,ky=c0+Math.max(18,(h-c0)*.42),kh=B.mob?9:12;
+      x.fillStyle='#e9d9b0';x.save();x.translate((L+R)/2,ky-kh*1.2);x.rotate(-.02);x.fillRect(-kw*.22,-kh*3.2,kw*.44,kh*2.8);x.strokeStyle='rgba(58,34,16,.55)';x.lineWidth=.8;for(let r=0;r<2;r++)for(let k=0;k<5;k++){const yy=-kh*2.9+r*kh*1.4+k*kh*.22;x.beginPath();x.moveTo(-kw*.2,yy);x.lineTo(kw*.2,yy);x.stroke()}x.restore();
+      for(let m=0;m<2;m++){const yy=ky+m*(kh+4);x.fillStyle='#1a0d06';x.fillRect(kx-4,yy-2,kw+8,kh+4);const nk=B.mob?22:30,kk=kw/nk;for(let k=0;k<nk;k++){x.fillStyle=(k%7===2||k%7===6)?'#efe4c8':'#f6eedb';x.fillRect(kx+k*kk+.5,yy,kk-1,kh)}for(let k=0;k<nk;k++){if([0,1,3,4,5].includes(k%7)){x.fillStyle='#1a0d06';x.fillRect(kx+(k+1)*kk-kk*.28,yy,kk*.56,kh*.6)}}}
+    }
     /* le son qui monte */
     for(const r of anneaux){r.t+=1/60;const R=r.r+r.t*(r.boom?260:60);x.globalAlpha=Math.max(0,(r.boom?.35:.5)-r.t*(r.boom?.3:.6));x.strokeStyle=r.boom?'#ff9a6a':'#ffe3a0';x.lineWidth=r.boom?2:1.2;x.beginPath();x.ellipse(r.x,r.y,R,R*(r.boom?.35:.6),0,Math.PI,6.283);x.stroke()}
     anneaux=anneaux.filter(r=>r.t<(r.boom?1.3:.9));
