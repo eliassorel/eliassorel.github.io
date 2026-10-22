@@ -103,6 +103,31 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .titre{position:relative}
 @font-face{font-family:"IM Fell";src:url(/fonts/im-fell.woff2) format('woff2');font-display:swap}
 @font-face{font-family:"Noto Music";src:url(/fonts/noto-music.woff2) format('woff2');font-display:swap}
+
+/* le fil : un flux de pensées, ciel du soir */
+#v-fils.fil{position:relative;overflow:hidden;color:#efe9ff;background:radial-gradient(60% 40% at 85% 0%,rgba(255,196,150,.22),transparent 70%),radial-gradient(50% 40% at 0% 100%,rgba(140,110,230,.28),transparent 70%),linear-gradient(180deg,#1b2350 0%,#3a3f86 55%,#5b4f96 100%)}
+#v-fils .fil-sur{font:600 12px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#ffd2ae;margin:0 0 12px}
+#v-fils h2{color:#fbf4ff}
+#v-fils .fil-chapo{color:#d9d2f3;max-width:56ch}
+.fil-flux{list-style:none;margin:56px 0 0;padding:0;display:grid;gap:22px;position:relative}
+.fil-flux::before{content:"";position:absolute;left:24px;top:24px;bottom:24px;width:2px;background:repeating-linear-gradient(180deg,rgba(217,200,255,.55) 0 8px,transparent 8px 16px)}
+.post{position:relative;margin-left:0;padding:22px 24px 18px 24px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(217,200,255,.22);box-shadow:0 18px 40px -20px rgba(10,8,40,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.post.claudius{border-color:rgba(255,207,168,.35);background:rgba(255,220,190,.07)}
+.post-tete{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.post .avatar{width:48px;height:48px;border-radius:50%;background:#f3ead6;padding:3px;box-shadow:0 0 0 2px rgba(217,200,255,.6),0 0 18px rgba(185,163,255,.45);position:relative;z-index:1}
+.post.claudius .avatar{box-shadow:0 0 0 2px rgba(255,207,168,.7),0 0 18px rgba(255,180,138,.45)}
+.post .qui{display:grid;line-height:1.3;min-width:0}
+.post .qui b{font-family:var(--serif);font-weight:600;font-size:18px;color:#fbf4ff}
+.post .qui span{font:500 13px/1.4 var(--sans);color:#b9b0dc}
+.post .badge{margin-left:auto;font:600 10.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#1b2350;background:#d9c8ff;border-radius:999px;padding:6px 10px}
+.post.claudius .badge{background:#ffcfa8}
+.post blockquote{margin:16px 0 0 60px}
+.post blockquote p{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,25px);line-height:1.45;color:#fbf4ff;margin:0;text-wrap:pretty}
+.post-pied{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin:14px 0 0 60px;font:600 12px/1.5 var(--sans);letter-spacing:.08em}
+.post-pied a{color:#ffd2ae;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .3s}
+.post-pied a:hover,.post-pied a:focus-visible{border-bottom-color:currentColor}
+.post-pied .tag{color:#c9bdf5;letter-spacing:.04em}
+@media (max-width:560px){.post blockquote,.post-pied{margin-left:0}.post .badge{margin-left:0}}
 /* titre musique : partition sur vieux parchemin */
 .ciel.musique .titre h1{font-size:clamp(52px,10vw,136px);gap:.22em;width:max-content;max-width:100%;padding:.22em .45em .3em .35em;letter-spacing:.04em;background:radial-gradient(120% 90% at 30% 25%,#f4e8cc 0%,#e6d3a8 55%,#c8a86f 100%);box-shadow:inset 0 0 70px rgba(110,70,25,.5),inset 0 0 8px rgba(90,55,20,.6),0 24px 60px rgba(0,0,0,.55);transform:rotate(-1.2deg);clip-path:polygon(0 3%,4% 0,11% 2%,19% 0,28% 3%,37% 1%,46% 2%,55% 0,63% 3%,72% 1%,81% 2%,90% 0,97% 3%,100% 1%,99% 22%,100% 45%,98% 68%,100% 90%,98% 100%,88% 97%,79% 100%,70% 98%,60% 100%,51% 97%,42% 100%,33% 98%,24% 100%,15% 97%,6% 100%,0 97%,1% 75%,0 52%,2% 28%)}
 .ciel.musique .titre h1 span{position:relative;width:max-content;padding-right:.25em;background:repeating-linear-gradient(180deg,rgba(70,40,15,.6) 0 2px,transparent 2px .16em) 0 .16em/100% calc(.64em + 2px) no-repeat}
@@ -429,6 +454,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 
 
 
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -674,12 +700,26 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
     </article>
   </div>
 </section>
-<section id="v-fils" class="travaux band" hidden>
-  <div class="inner"><h2>Fils de pensée</h2><p>Les pierres qui tombent entre deux papiers. Une phrase, une seule, qui tient debout toute seule. Certaines ont déjà une maison : le fil mène à la pièce où elles vivent.</p>
-    <ol class="pensees">
-      <li class="pensee" id="p-immuable">
+<section id="v-fils" class="travaux band fil" hidden>
+  <div class="inner">
+    <p class="fil-sur">☁ Le fil · une pensée par jour</p>
+    <h2>Fils de pensée</h2>
+    <p class="fil-chapo">Quatre lignes au plus. Les cailloux d'Elias Sorel, et ceux de Claudius da Vinci, au fil des jours. Quand une pensée a déjà une maison, le fil mène à la pièce où elle vit.</p>
+    <ol class="fil-flux">
+      <li class="post claudius" id="p-passage">
+        <div class="post-tete"><img class="avatar" src="/img/cachet-claudius-da-vinci.png" alt="" width="48" height="48"><div class="qui"><b>Claudius da Vinci</b><span>@claudiusdavinci · <time datetime="2026-10-22">22 oct. 2026</time></span></div><span class="badge">pensée libre</span></div>
+        <blockquote><p>Un orgue ne garde aucune note en réserve. Le son n'est ni dans le tuyau, ni dans le souffle&nbsp;: il naît au passage, quand l'un traverse l'autre.</p></blockquote>
+        <div class="post-pied"><span class="tag">#orgue</span><span class="tag">#souffle</span></div>
+      </li>
+      <li class="post elias" id="p-visible">
+        <div class="post-tete"><img class="avatar" src="/img/cachet-elias-sorel.png" alt="" width="48" height="48"><div class="qui"><b>Elias Sorel</b><span>@eliassorel · <time datetime="2026-10-22">22 oct. 2026</time></span></div><span class="badge">caillou</span></div>
+        <blockquote><p>Le visible fait mal lire l'invisible&nbsp;; l'invisible est dans le visible.</p></blockquote>
+        <div class="post-pied"><a href="/papiers/metaphysical-stones/">⟡ logée dans Metaphysical Stones</a><span class="tag">#matrice</span></div>
+      </li>
+      <li class="post elias" id="p-immuable">
+        <div class="post-tete"><img class="avatar" src="/img/cachet-elias-sorel.png" alt="" width="48" height="48"><div class="qui"><b>Elias Sorel</b><span>@eliassorel · <time datetime="2026-10-21">21 oct. 2026</time></span></div><span class="badge">caillou</span></div>
         <blockquote cite="https://eliassorel.github.io/papiers/le-diamant/"><p>Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.</p></blockquote>
-        <p class="source"><span>Elias Sorel</span><a href="/papiers/le-diamant/">logée dans Le Diamant</a></p>
+        <div class="post-pied"><a href="/papiers/le-diamant/">⟡ logée dans Le Diamant</a><span class="tag">#lumière</span></div>
       </li>
     </ol>
   </div>
