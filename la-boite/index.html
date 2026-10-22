@@ -44,6 +44,12 @@ button.discret{background:transparent;color:var(--muet);box-shadow:none;border:1
 background:radial-gradient(circle at 40% 35%,#2b2b2b,#0c0c0c);box-shadow:inset 0 0 0 4px var(--laiton),inset 0 0 0 7px #2a1a0a,0 3px 8px rgba(0,0,0,.6);font-variant-numeric:tabular-nums}
 .cadran .num{font:500 .62rem "IBM Plex Mono",monospace;color:var(--laiton);letter-spacing:2px}
 .cadran button{padding:6px 12px;min-height:36px}
+.heurtoir{display:grid;gap:18px;justify-items:center;padding:8px 0}
+.lampes{display:flex;gap:14px}.lampes i{width:16px;height:16px;border-radius:50%;background:#3a2410;box-shadow:inset 0 0 0 2px #7a5420;transition:background .12s,box-shadow .12s}
+.lampes i.on{background:#ffcf5a;box-shadow:0 0 14px #ffb020,inset 0 0 0 2px #fff0b0}
+.lampes i.ok{background:#9fd36a;box-shadow:0 0 10px #8fd35a}
+.toc{width:132px;height:132px;border-radius:50%!important;font:700 1.3rem "IBM Plex Mono",monospace!important;letter-spacing:6px;box-shadow:0 8px 0 #6b4512,0 14px 30px rgba(0,0,0,.45)!important;transition:transform .06s,box-shadow .06s}
+.toc:active,.toc.frappe{transform:translateY(6px);box-shadow:0 2px 0 #6b4512,0 6px 14px rgba(0,0,0,.45)!important}
 .etat{font:500 .72rem "IBM Plex Mono",monospace;color:var(--muet);text-align:center;min-height:1.2em;margin:0}
 .secret{display:grid;gap:10px;justify-items:center;text-align:center;padding:26px 18px;border-radius:12px;background:radial-gradient(circle at 50% 30%,#1c2433,#0b1018);box-shadow:inset 0 0 0 1px rgba(240,210,122,.35)}
 .secret q{font-size:1.6rem;font-style:italic;quotes:"« " " »";text-wrap:balance;color:var(--laiton2)}
@@ -53,6 +59,7 @@ background:radial-gradient(circle at 40% 35%,#2b2b2b,#0c0c0c);box-shadow:inset 0
 .ok{animation:lueur 1.2s ease}
 @keyframes lueur{0%{filter:brightness(1)}40%{filter:brightness(1.6)}100%{filter:brightness(1)}}
 </style>
+
 
 
 
@@ -97,15 +104,14 @@ background:radial-gradient(circle at 40% 35%,#2b2b2b,#0c0c0c);box-shadow:inset 0
 <div class="boite"><span class="vis v1"></span><span class="vis v2"></span><span class="vis v3"></span><span class="vis v4"></span>
 
 <section class="etage" id="e1">
-<span class="plaque">I · les deux roues</span>
-<svg id="roues" viewBox="0 0 420 260" aria-label="Deux roues dentées emboîtées portant des pions de couleur"></svg>
-<div class="ctrl">
-<button type="button" data-r="A" data-d="1" aria-label="roue gauche, sens inverse">⟲ gauche</button>
-<button type="button" data-r="A" data-d="-1" aria-label="roue gauche, sens horaire">gauche ⟳</button>
-<button type="button" data-r="B" data-d="1" aria-label="roue droite, sens inverse">⟲ droite</button>
-<button type="button" data-r="B" data-d="-1" aria-label="roue droite, sens horaire">droite ⟳</button>
+<span class="plaque">I · le rythme</span>
+<div style="display:none"><svg id="roues" viewBox="0 0 420 260"></svg><div class="ctrl"><button type="button" data-r="A" data-d="1">a</button></div></div>
+<div class="heurtoir">
+<div class="lampes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<button type="button" id="toc" class="toc" aria-label="Frapper sur le couvercle">TOC</button>
+<div class="ctrl"><button type="button" id="ecoute">♪ écouter la boîte</button><button type="button" id="efface">↺ recommencer</button></div>
 </div>
-<p class="aide">Les pions ne changent de roue qu'aux deux points où les roues se touchent. Mets les couleurs chaudes à gauche, les froides à droite, et l'or sur les deux points de passage.</p>
+<p class="aide">La boîte frappe une cadence. Frappe-la à ton tour, au même rythme. Elle ne compte pas tes coups, elle écoute les silences entre eux.</p>
 <p class="etat" id="s1"></p>
 </section>
 
@@ -141,7 +147,7 @@ background:radial-gradient(circle at 40% 35%,#2b2b2b,#0c0c0c);box-shadow:inset 0
 </section>
 </div>
 
-<div class="ctrl"><button type="button" class="discret" id="reset">tout remélanger</button></div>
+<div class="ctrl"><button type="button" class="discret" id="reset">tout refermer</button></div>
 <p class="pied"><a href="/" style="color:inherit">eliassorel.github.io</a></p>
 </div>
 
@@ -195,7 +201,7 @@ function draw(){svg.replaceChildren();
   mk("circle",{cx:s.x-3.5,cy:s.y-3.5,r:3.2,fill:"rgba(255,255,255,.5)"},c)}
  mk("circle",{cx:CA.x,cy:CA.y,r:R+22,fill:"transparent",class:"zone","data-r":"A",style:"cursor:pointer"},svg);
  mk("circle",{cx:CB.x,cy:CB.y,r:R+22,fill:"transparent",class:"zone","data-r":"B",style:"cursor:pointer"},svg);
- document.getElementById("s1").textContent=compte()}
+ }
 function compte(){let ok=0;slots.forEach((_,i)=>{if(st[i].k===want[i])ok++});return ok+" pions sur "+slots.length+" à leur place"}
 function jouer(ring,d){if(anim||fait.e1)return;anim=true;
  const c=ring==="A"?CA:CB,r=ring==="A"?ringA:ringB;
@@ -263,9 +269,12 @@ function ouvrir(){const e3=document.getElementById("e3");e3.hidden=false;drawL()
 async function revele(){const code=fait.e2;const k=await sha("coulee:"+code);if(!k)return;const b=ENC.match(/../g).map(h=>parseInt(h,16));
  const out=new Uint8Array(b.map((x,i)=>x^k[i%32]));const [q,s]=new TextDecoder().decode(out).split("|");
  document.getElementById("sq").textContent=q;document.getElementById("ss").textContent=s;const e4=document.getElementById("e4");e4.hidden=false;e4.scrollIntoView({behavior:"smooth",block:"center"})}
-document.getElementById("reset").addEventListener("click",()=>{st=melange();for(const k in fait)delete fait[k];store.set("fait",fait);store.set("roues",st);bille=[0,0];store.set("bille",bille);
+document.getElementById("reset").addEventListener("click",()=>{document.getElementById("s1").textContent="";document.querySelectorAll(".lampes i").forEach(x=>x.className="");st=melange();for(const k in fait)delete fait[k];store.set("fait",fait);store.set("roues",st);bille=[0,0];store.set("bille",bille);
  ["e2","e3","e4"].forEach(id=>document.getElementById(id).hidden=true);document.getElementById("s2").textContent="";document.getElementById("s3").textContent="";draw();window.scrollTo({top:0,behavior:"smooth"})});
 
+document.addEventListener("rythme-ok",()=>{if(fait.e1)return;fait.e1=1;store.set("fait",fait);document.getElementById("s1").textContent="un tiroir glisse.";
+ setTimeout(()=>{const e2=document.getElementById("e2");e2.hidden=false;e2.scrollIntoView({behavior:"smooth",block:"start"})},900)});
+if(fait.e1)document.getElementById("s1").textContent="la cadence est juste.";
 draw();
 if(fait.e1)document.getElementById("e2").hidden=false;
 if(fait.e2){document.getElementById("e3").hidden=false;drawL()}
@@ -273,6 +282,30 @@ if(fait.e3)revele();
 })();
 </script>
 
+<script>
+(function(){
+/* E·li·as  So·rel : trois coups, un silence, deux coups */
+const MOTIF=[0,1,2,4,5];const PAS=330;
+const L=[...document.querySelectorAll('.lampes i')];const btn=document.getElementById('toc'),s1=document.getElementById('s1');
+let ac=null;function son(f,d){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.35,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+let coups=[],enCours=false,fini=false;
+function eteint(){L.forEach(x=>x.className='')}
+function ecoute(){if(enCours)return;enCours=true;coups=[];eteint();s1.textContent='écoute…';
+ MOTIF.forEach((t,k)=>setTimeout(()=>{L[k].classList.add('on');son(180,.18);setTimeout(()=>L[k].classList.remove('on'),180)},t*PAS+300));
+ setTimeout(()=>{enCours=false;s1.textContent='à toi.'},MOTIF[MOTIF.length-1]*PAS+700)}
+function juge(){const t=coups,d=[];for(let i=1;i<t.length;i++)d.push(t[i]-t[i-1]);
+ const court=(d[0]+d[1]+d[3])/3;const ok=d.every((x,i)=>i===2?(x/court>1.55&&x/court<3.2):(x/court>.6&&x/court<1.45))&&court>120&&court<900;
+ if(ok){fini=true;L.forEach(x=>x.className='ok');son(520,.5);setTimeout(()=>son(780,.6),180);document.dispatchEvent(new Event('rythme-ok'))}
+ else{s1.textContent='la boîte ne reconnaît pas ce rythme. écoute encore.';setTimeout(()=>{eteint();coups=[]},900)}}
+btn.addEventListener('pointerdown',e=>{e.preventDefault();if(enCours)return;btn.classList.add('frappe');setTimeout(()=>btn.classList.remove('frappe'),90);son(140,.15);
+ if(fini)return;const now=performance.now();if(coups.length&&now-coups[coups.length-1]>2500){coups=[];eteint()}
+ coups.push(now);const k=coups.length-1;if(L[k])L[k].classList.add('on');if(coups.length===5)setTimeout(juge,250)});
+document.getElementById('ecoute').addEventListener('click',ecoute);
+document.getElementById('efface').addEventListener('click',()=>{coups=[];eteint();s1.textContent=''});
+document.getElementById('reset').addEventListener('click',()=>{fini=false;coups=[];eteint()});
+try{if(JSON.parse(localStorage.getItem('boite:fait')||'{}').e1){fini=true;L.forEach(x=>x.className='ok')}}catch(e){}
+})();
+</script>
 <script>if(navigator.webdriver||/bot|crawl|spider|archive|heritrix|brozzler|headless/i.test(navigator.userAgent)){window.goatcounter={no_onload:true}}</script>
 <script data-goatcounter="https://eliassorel.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>body{padding-top:58px!important}</style><a class="retour-jeux" href="/#jeux" style="position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:14px;z-index:9999;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:rgba(10,14,20,.82);color:#f4e3b8;border:1px solid #d4a82f;font:600 14px/1 system-ui,-apple-system,sans-serif;letter-spacing:.04em;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 6px 20px rgba(0,0,0,.35)">← Retour aux casse-tête</a>
