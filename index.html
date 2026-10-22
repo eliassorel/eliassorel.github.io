@@ -344,6 +344,34 @@ header.ciel:not(.jeux) #chambre *{pointer-events:none!important}
 @keyframes tourbillon{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(22deg)}}
 #chambre.disco .hx{animation-duration:.35s}
 #bouchon{transition:opacity .6s}
+
+/* les tampons, posés à l'arrache sur les poèmes */
+#v-poemes .poeme .tampon{position:absolute;pointer-events:none;z-index:1;-webkit-mask:var(--img) center/contain no-repeat;mask:var(--img) center/contain no-repeat;mix-blend-mode:screen}
+#v-poemes .poeme .tampon.elias{--img:url(/img/cachet-elias-sorel.png);width:124px;height:124px;right:14px;bottom:10px;background:var(--acc,#cfd8ff);opacity:.62;transform:rotate(-14deg)}
+#v-poemes .poeme .tampon.claudius{--img:url(/img/cachet-claudius-da-vinci.png);width:76px;height:76px;right:118px;bottom:26px;background:#e0896a;opacity:.55;transform:rotate(11deg)}
+#po-accord .tampon.elias{transform:rotate(9deg)!important;bottom:22px!important}
+#po-doigts .tampon.elias{transform:rotate(-6deg)!important}
+@media (max-width:600px){#v-poemes .poeme .tampon.elias{width:76px;height:76px}#v-poemes .poeme .tampon.claudius{width:56px;height:56px;right:76px}}
+/* casse-tête : l'établi de Claudius da Vinci */
+.jeux-salle{position:relative;overflow:hidden}
+.jeux-salle::before{content:"";position:absolute;right:-120px;top:40px;width:620px;height:620px;pointer-events:none;opacity:.08;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20200%20200%27%20fill%3D%27none%27%20stroke%3D%27%23e8dcc0%27%20stroke-width%3D%27.6%27%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%27100%27%20r%3D%2788%27%2F%3E%3Crect%20x%3D%2730%27%20y%3D%2730%27%20width%3D%27140%27%20height%3D%27140%27%2F%3E%3Cline%20x1%3D%27100%27%20y1%3D%274%27%20x2%3D%27100%27%20y2%3D%27196%27%20stroke-dasharray%3D%272%203%27%2F%3E%3Cline%20x1%3D%274%27%20y1%3D%27100%27%20x2%3D%27196%27%20y2%3D%27100%27%20stroke-dasharray%3D%272%203%27%2F%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%27100%27%20r%3D%2714%27%2F%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%27100%27%20r%3D%275%27%2F%3E%3Cpath%20d%3D%27M30%2030%20L170%20170%20M170%2030%20L30%20170%27%20stroke-dasharray%3D%271%204%27%2F%3E%3Cg%20transform%3D%27translate%28160%20160%29%27%3E%3Ccircle%20r%3D%2718%27%2F%3E%3Ccircle%20r%3D%276%27%2F%3E%3Cpath%20d%3D%27M0%20-24v6M0%2018v6M-24%200h6M18%200h6M-17%20-17l4%204M13%2013l4%204M17%20-17l-4%204M-13%2013l-4%204%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center/contain no-repeat;animation:plan 120s linear infinite}
+@keyframes plan{to{transform:rotate(360deg)}}
+.jeux-salle::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#5b6cff,#fff,#b44dff,#3fd0ff,#5b6cff);background-size:200% 100%;box-shadow:0 0 18px #7a5cff,0 0 40px #3fd0ff;animation:tube 6s linear infinite;opacity:.8}
+@keyframes tube{to{background-position:200% 0}}
+.jeux-salle h2{position:relative;display:inline-block;font-family:Neonderthaw,var(--serif)!important;font-size:clamp(64px,9vw,112px)!important;line-height:1;color:#f2f6ff!important;text-shadow:0 0 2px #fff,0 0 8px #b8c8ff,0 0 18px #7a8cff,0 0 36px #5b6cff,0 0 70px #b44dff;animation:neonB 9s infinite;margin:0 0 18px!important}
+.jeux-salle .cachet-cl{position:absolute;right:-96px;top:-10px;width:88px;height:88px;-webkit-mask:url(/img/cachet-claudius-da-vinci.png) center/contain no-repeat;mask:url(/img/cachet-claudius-da-vinci.png) center/contain no-repeat;background:#e0896a;opacity:.75;transform:rotate(-12deg);cursor:pointer;transition:transform .15s}
+.jeux-salle .cachet-cl:active{transform:rotate(-12deg) scale(.85)}
+.jeux-salle .empreinte{position:absolute;width:70px;height:70px;margin:-35px 0 0 -35px;-webkit-mask:url(/img/cachet-claudius-da-vinci.png) center/contain no-repeat;mask:url(/img/cachet-claudius-da-vinci.png) center/contain no-repeat;pointer-events:none;animation:empreinte 9s ease-out forwards}
+@keyframes empreinte{0%{transform:scale(1.6) rotate(var(--r));opacity:0}8%{transform:scale(1) rotate(var(--r));opacity:.55}70%{opacity:.4}100%{opacity:0;transform:scale(1) rotate(var(--r))}}
+.enigme{transition:transform .25s,border-color .25s,box-shadow .25s}
+.enigme:not(.scellee):hover{border-color:#a9b4ff!important;box-shadow:0 0 0 1px rgba(169,180,255,.4),0 0 24px -4px #5b6cff,0 0 50px -10px #b44dff,0 14px 40px -12px rgba(0,0,0,.5)!important}
+.enigme .obj svg{animation:flotte 5s ease-in-out infinite}
+.enigme:nth-child(2) .obj svg{animation-delay:-1.2s}.enigme:nth-child(3) .obj svg{animation-delay:-2.5s}.enigme:nth-child(4) .obj svg{animation-delay:-3.7s}
+@keyframes flotte{50%{transform:translateY(-6px) rotate(2deg)}}
+.enigme.scellee.secoue .entrer{animation:cadenas .5s}
+@keyframes cadenas{20%{transform:rotate(-10deg)}40%{transform:rotate(9deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(4deg)}}
+@media (max-width:760px){.jeux-salle .cachet-cl{right:-70px;width:62px;height:62px}.jeux-salle::before{width:380px;height:380px}}
+@media (prefers-reduced-motion:reduce){.jeux-salle::before,.jeux-salle::after,.enigme .obj svg{animation:none}}
 /* casse-tête */
 main:has(#v-jeux:not([hidden]))+footer{margin-top:0}
 .jeux-salle{padding-block:120px;background:radial-gradient(50% 45% at 85% 5%,rgba(139,92,200,.22) 0%,transparent 70%),radial-gradient(55% 55% at 8% 95%,rgba(42,90,184,.22) 0%,transparent 70%),radial-gradient(1px 1px at 20% 30%,rgba(232,220,192,.5),transparent 60%),radial-gradient(1px 1px at 70% 60%,rgba(232,220,192,.4),transparent 60%),radial-gradient(1px 1px at 45% 85%,rgba(232,220,192,.35),transparent 60%),var(--nuit-profonde);color:var(--creme)}
@@ -887,7 +915,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   </div>
 </section>
 <section id="v-jeux" class="jeux-salle band" hidden>
-  <div class="inner large"><p class="sur">⚙ L'atelier des objets</p><h2>Casse-tête</h2><p class="chapo">Des objets à ouvrir. Chacun cache une pierre, et parfois la clé du suivant.</p>
+  <div class="inner large"><p class="sur">⚙ L'atelier des objets</p><h2>Casse-tête<span class="cachet-cl" role="img" aria-label="Tampon de Claudius da Vinci" title="Tamponne !"></span></h2><p class="chapo">Des objets à ouvrir. Chacun cache une pierre, et parfois la clé du suivant.</p>
     <ul class="enigmes"><li class="enigme"><span class="num">01</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2" stroke-linejoin="round"><path d="M22 46 L60 28 L98 46 L60 64 Z"/><path d="M22 46 V84 L60 102 V64"/><path d="M98 46 V84 L60 102"/><circle cx="60" cy="46" r="9"/><g stroke-width="1.6"><line x1="69.0" y1="46.0" x2="74.0" y2="46.0"/><line x1="66.4" y1="49.2" x2="69.9" y2="50.9"/><line x1="60.0" y1="50.5" x2="60.0" y2="53.0"/><line x1="53.6" y1="49.2" x2="50.1" y2="51.0"/><line x1="51.0" y1="46.0" x2="46.0" y2="46.0"/><line x1="53.6" y1="42.8" x2="50.1" y2="41.1"/><line x1="60.0" y1="41.5" x2="60.0" y2="39.0"/><line x1="66.3" y1="42.8" x2="69.9" y2="41.0"/></g><circle cx="41" cy="78" r="2.4" fill="#d4a82f"/><circle cx="79" cy="78" r="2.4" fill="#d4a82f"/></g></svg></div><h3>La boîte</h3><p>Une boîte fermée. Trouve comment elle s’ouvre.</p><a class="entrer" href="/la-boite/">Ouvrir →</a></li><li class="enigme"><span class="num">02</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2"><path d="M69.0 60.0 L62.9 66.8 L63.8 75.9 L54.9 77.8 L50.3 85.7 L42.0 82.0 L33.7 85.7 L29.1 77.8 L20.2 75.9 L21.1 66.8 L15.0 60.0 L21.1 53.2 L20.2 44.1 L29.1 42.2 L33.7 34.3 L42.0 38.0 L50.3 34.3 L54.9 42.2 L63.8 44.1 L62.9 53.2 Z"/><path d="M107.0 60.0 L100.9 66.8 L101.8 75.9 L92.9 77.8 L88.3 85.7 L80.0 82.0 L71.7 85.7 L67.1 77.8 L58.2 75.9 L59.1 66.8 L53.0 60.0 L59.1 53.2 L58.2 44.1 L67.1 42.2 L71.7 34.3 L80.0 38.0 L88.3 34.3 L92.9 42.2 L101.8 44.1 L100.9 53.2 Z"/></g><circle cx="61" cy="47" r="4" fill="#d4a82f"/><circle cx="61" cy="73" r="4" fill="#d4a82f"/><circle cx="26" cy="60" r="4" fill="#e07a5f"/><circle cx="96" cy="60" r="4" fill="#7fa6d9"/></svg></div><h3>Les deux roues</h3><p>Le casse-tête de Claudius da Vinci. Des pions de couleur, deux roues qui ne se touchent qu’en deux points.</p><a class="entrer" href="/les-deux-roues/">Tourner →</a></li><li class="enigme"><span class="num">03</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M10 60 C25 35 40 35 60 60 S95 85 110 60" stroke="#d4a82f"/><path d="M10 60 C25 85 40 85 60 60 S95 35 110 60" stroke="#7fa6d9"/></g><polygon points="60,44 63,57 76,60 63,63 60,76 57,63 44,60 57,57" fill="#f4e3b8"/></svg></div><h3>L’étincelle</h3><p>Deux ondes qui se croisent. Touche le ciel, et lis bien la dernière phrase.</p><a class="entrer" href="/etincelle/">Approcher →</a></li><li class="enigme"><span class="num">04</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke-width="1.8" stroke-linejoin="round"><polygon points="60,18 98,82 22,82" stroke="#e0714a"/><polygon points="60,14 96,60 60,106 24,60" stroke="#e8cf8f"/><rect x="34" y="34" width="52" height="52" stroke="#c98a5a" transform="rotate(12 60 60)"/><polygon points="60,22 93,41 93,79 60,98 27,79 27,41" stroke="#6fa8d9"/></g></svg></div><h3>Les quatre solides</h3><p>Le feu, l’air, l’eau et la terre, emboîtés. Fais-les tourner, allume la lampe, et suis la lumière.</p><a class="entrer" href="/les-quatre-solides/">Manipuler →</a></li><li class="enigme scellee"><span class="num">05</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2" stroke-linejoin="round"><path d="M20 52 Q20 30 60 30 Q100 30 100 52"/><rect x="20" y="52" width="80" height="44" rx="3"/><line x1="20" y1="64" x2="100" y2="64" stroke-width="1.4"/><rect x="51" y="58" width="18" height="20" rx="3"/><circle cx="60" cy="66" r="3" fill="#d4a82f"/><line x1="60" y1="69" x2="60" y2="74"/></g></svg></div><h3>Le coffre</h3><p>Un coffre à six faces. Sa clé est dans la boîte.</p><span class="entrer">🔒 Scellé</span></li><li class="enigme scellee"><span class="num">06</span><div class="obj"><svg viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a82f" stroke-width="2.2"><rect x="10" y="48" width="100" height="26" rx="6"/><rect x="44" y="53" width="32" height="16" rx="8" stroke-width="1.5"/><line x1="56" y1="53" x2="56" y2="69" stroke-width="1"/><line x1="64" y1="53" x2="64" y2="69" stroke-width="1"/><rect x="18" y="53" width="16" height="16" rx="8" stroke-width="1.5"/><rect x="86" y="53" width="16" height="16" rx="8" stroke-width="1.5"/></g><ellipse cx="60" cy="61" rx="4.5" ry="4" fill="#9fd3c7"/></svg></div><h3>Le niveau</h3><p>Trois fioles et une bulle. Deux chemins y mènent, aucun d’ici.</p><span class="entrer">🔒 Scellé</span></li></ul>
     <p class="pied">Quatre objets attendent à la vue de tous. Les deux derniers se méritent.</p>
   </div>
@@ -1112,6 +1140,23 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
         x.fillStyle='#4a2a15';const nb=Math.round((tr-tl)/12);for(let k=0;k<nb;k++){const bx=tl+(tr-tl)/nb*(k+.5);x.beginPath();x.ellipse(bx,ty+th2/2,2.2,th2*.36,0,0,6.283);x.fill()}
         x.fillStyle='#120804';x.fillRect(tl,ty+th2,tr-tl,h-(ty+th2));x.strokeStyle='rgba(201,160,80,.35)';x.lineWidth=1.5;x.beginPath();x.arc(B.L+B.W/2,h+B.W*.05,B.W*.28,Math.PI,0);x.stroke()}
     }
+    /* la souris et le chat courent sur la balustrade ; une fois sur trois, c'est la souris qui chasse */
+    if(buffet&&!calme){const B=buffet,ty=B.T+B.H*.06,tl=B.L-B.W*.05,tr=Math.min(w+20,B.R+B.W*.05),s=Math.max(6,B.H*.026),cyc=22,k=Math.floor(t/cyc),p=t%cyc-4,inv=k%3===2,len=tr-tl+s*14;
+      if(p>0&&p<6.5){x.save();x.beginPath();x.rect(tl,0,tr-tl,h);x.clip();const v=len/4.6,x1=tr+s*3-p*v,x2=tr+s*3-(p-(inv?1.1:.8))*v*(inv?1.02:1);
+        const souris=(X,ph)=>{const c='#c2b5a4';x.fillStyle=c;x.strokeStyle=c;x.lineCap='round';x.lineWidth=s*.13;
+          for(const [lx,o] of [[-.55,0],[-.25,Math.PI],[.35,Math.PI],[.65,0]]){const sw=Math.sin(ph+o)*s*.35;x.beginPath();x.moveTo(X+lx*s,ty-s*.3);x.lineTo(X+lx*s+sw,ty);x.stroke()}
+          x.beginPath();x.ellipse(X,ty-s*.6,s*1.05,s*.52,0,0,6.283);x.fill();x.beginPath();x.ellipse(X-s*1,ty-s*.68,s*.5,s*.36,-.25,0,6.283);x.fill();
+          x.beginPath();x.moveTo(X+s,ty-s*.55);x.quadraticCurveTo(X+s*2,ty-s*.1+Math.sin(ph*2)*s*.5,X+s*2.6,ty-s*.95);x.stroke();
+          x.beginPath();x.arc(X-s*.72,ty-s*1.1,s*.3,0,6.283);x.fill();x.fillStyle='#eba3ad';x.beginPath();x.arc(X-s*.72,ty-s*1.1,s*.16,0,6.283);x.fill();x.beginPath();x.arc(X-s*1.48,ty-s*.62,s*.09,0,6.283);x.fill();
+          x.fillStyle='#120a05';x.beginPath();x.arc(X-s*1.12,ty-s*.76,s*.08,0,6.283);x.fill()};
+        const chat=(X,ph)=>{const c=s*2.3,col='#575163',b=-Math.abs(Math.sin(ph))*c*.08;x.fillStyle=col;x.strokeStyle=col;x.lineCap='round';x.lineWidth=c*.13;
+          for(const [lx,o] of [[-.6,0],[-.4,Math.PI],[.45,Math.PI],[.65,0]]){const sw=Math.sin(ph+o)*c*.32;x.beginPath();x.moveTo(X+lx*c,ty-c*.5+b);x.lineTo(X+lx*c+sw,ty);x.stroke()}
+          x.beginPath();x.ellipse(X,ty-c*.62+b,c*.85,c*.3,0,0,6.283);x.fill();x.beginPath();x.arc(X-c*.86,ty-c*.84+b,c*.3,0,6.283);x.fill();
+          x.beginPath();x.moveTo(X-c*1.1,ty-c*.98+b);x.lineTo(X-c*1.06,ty-c*1.3+b);x.lineTo(X-c*.9,ty-c*1.08+b);x.moveTo(X-c*.82,ty-c*1.12+b);x.lineTo(X-c*.66,ty-c*1.34+b);x.lineTo(X-c*.6,ty-c*1+b);x.fill();
+          x.beginPath();x.moveTo(X+c*.8,ty-c*.7+b);x.quadraticCurveTo(X+c*1.5,ty-c*.6,X+c*1.4,ty-c*1.4+Math.sin(ph)*c*.15);x.stroke();
+          x.fillStyle='#f2c94c';x.beginPath();x.ellipse(X-c*1,ty-c*.88+b,c*.07,c*.09,0,0,6.283);x.fill();x.fillStyle='#120a05';x.fillRect(X-c*1.01,ty-c*.95+b,c*.025,c*.14)};
+        const ph1=p*v/(s*1.4),ph2=(p-.9)*v/(s*3);x.globalAlpha=1;
+        if(inv){chat(x1,ph2);souris(x2,ph1)}else{souris(x1,ph1);chat(x2,ph2)}x.restore()}}
     /* le son qui monte */
     for(const r of anneaux){r.t+=1/60;const R=r.r+r.t*(r.boom?260:60);x.globalAlpha=Math.max(0,(r.boom?.35:.5)-r.t*(r.boom?.3:.6));x.strokeStyle=r.boom?'#ff9a6a':'#ffe3a0';x.lineWidth=r.boom?2:1.2;x.beginPath();x.ellipse(r.x,r.y,R,R*(r.boom?.35:.6),0,Math.PI,6.283);x.stroke()}
     anneaux=anneaux.filter(r=>r.t<(r.boom?1.3:.9));
@@ -1432,5 +1477,13 @@ let lt=0,folleL=false,folleP=false;
  requestAnimationFrame(tour)})(0);
 })();
 </script>
+<script>(function(){
+document.querySelectorAll('#v-poemes .poeme').forEach((a,k)=>{const e=document.createElement('span');e.className='tampon elias';e.setAttribute('aria-hidden','true');a.appendChild(e);if(k%2===0){const c=document.createElement('span');c.className='tampon claudius';c.setAttribute('aria-hidden','true');a.appendChild(c)}});
+const sec=document.getElementById('v-jeux'),ca=sec&&sec.querySelector('.cachet-cl');if(!sec)return;let arme=false,n=0;
+const cols=['#e0896a','#a9b4ff','#d9a3ff','#7fd0ff'];
+function tamponne(x,y){const r=sec.getBoundingClientRect(),e=document.createElement('span');e.className='empreinte';e.style.left=(x-r.left)+'px';e.style.top=(y-r.top)+'px';e.style.setProperty('--r',(Math.random()*50-25)+'deg');e.style.background=cols[n++%cols.length];sec.appendChild(e);setTimeout(()=>e.remove(),9100);const all=sec.querySelectorAll('.empreinte');if(all.length>14)all[0].remove()}
+if(ca)ca.addEventListener('click',ev=>{ev.stopPropagation();const r=sec.getBoundingClientRect();for(let i=0;i<6;i++)setTimeout(()=>tamponne(r.left+r.width*(.1+Math.random()*.8),Math.max(r.top,0)+innerHeight*(.15+Math.random()*.6)),i*140)});
+sec.addEventListener('click',ev=>{const sc=ev.target.closest('.enigme.scellee');if(sc){sc.classList.remove('secoue');void sc.offsetWidth;sc.classList.add('secoue');return}if(ev.target.closest('a,.enigme'))return;tamponne(ev.clientX,ev.clientY)});
+})();</script>
 </body>
 </html>
