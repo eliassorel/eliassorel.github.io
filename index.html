@@ -98,22 +98,30 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @keyframes neonA{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.3}}
 @keyframes neonB{0%,70%,72%,74%,100%{opacity:1}71%,73%{opacity:.35}}
 @media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span::before{animation:none!important}}
-/* titre musique : onde sonore */
+/* titre musique : egaliseur fou */
 .titre h1 .l{display:inline-block;font-style:normal}
-.ciel.musique .titre h1 .l{animation:vague 2.6s ease-in-out infinite;animation-delay:calc(var(--i)*-.2s);transition:color .3s,text-shadow .3s}
-.ciel.musique .titre h1 span:first-child .l{color:#f6e3e8;text-shadow:0 0 18px rgba(226,80,120,.55)}
-.ciel.musique .titre h1 span:last-child .l{color:#e6b84a;text-shadow:0 0 22px rgba(230,150,60,.5)}
-.ciel.musique .titre h1 .l:hover{color:#fff;text-shadow:0 0 8px #fff,0 0 26px #ff7aa8}
-@keyframes vague{0%,100%{transform:translateY(.05em) scaleY(.94)}50%{transform:translateY(-.1em) scaleY(1.06)}}
-/* titre fils : cailloux du petit poucet relies par un fil */
-.ciel.fils .titre h1 span{position:relative;width:max-content}
-.ciel.fils .titre h1 .l{opacity:0;color:#fbf1ff;text-shadow:0 0 16px rgba(190,170,255,.6);animation:caillou .7s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:calc(var(--i)*.13s + .2s)}
-.ciel.fils .titre h1 span:last-child .l{color:#ffd9b8;text-shadow:0 0 16px rgba(255,190,150,.6)}
-.ciel.fils .titre h1 span::after{content:"";position:absolute;left:0;bottom:-.02em;height:3px;width:100%;border-radius:2px;background:repeating-linear-gradient(90deg,#d9c8ff 0 10px,transparent 10px 18px);box-shadow:0 0 10px #b9a3ff;transform:scaleX(0);transform-origin:left;animation:fil 1.6s ease-out forwards;animation-delay:1.5s}
-.ciel.fils .titre h1 span:last-child::after{background:repeating-linear-gradient(90deg,#ffcfa8 0 10px,transparent 10px 18px);box-shadow:0 0 10px #ffb48a;animation-delay:2.1s}
-@keyframes caillou{0%{opacity:0;transform:translateY(-.35em) scale(.6)}100%{opacity:1;transform:none}}
-@keyframes fil{to{transform:scaleX(1)}}
-@media (prefers-reduced-motion:reduce){.titre h1 .l,.ciel.fils .titre h1 span::after{animation:none!important;opacity:1!important;transform:none!important}}
+.titre{position:relative}
+.ciel.musique .titre h1 .l{cursor:pointer;transform-origin:50% 100%;background:linear-gradient(180deg,#ff8fc0 0%,#fff 18%,#e6b84a 40%,#b14dff 65%,#ff8fc0 100%);background-size:100% 400%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 10px rgba(255,90,160,.55)) drop-shadow(0 0 28px rgba(180,77,255,.35));animation:eq var(--d,1s) ease-in-out infinite alternate,teinte 6s linear infinite;animation-delay:calc(var(--i)*-.17s),calc(var(--i)*-.4s)}
+.ciel.musique .titre h1 .l.frappe{animation:frappe .45s ease-out,teinte 6s linear infinite}
+@keyframes eq{0%{transform:scaleY(.82) translateY(.02em)}35%{transform:scaleY(1.12)}70%{transform:scaleY(.92)}100%{transform:scaleY(1.2) translateY(-.04em)}}
+@keyframes teinte{to{background-position:0 400%}}
+@keyframes frappe{0%{transform:scale(1.35,.7);filter:drop-shadow(0 0 30px #fff) drop-shadow(0 0 60px #ff8fc0)}100%{transform:none}}
+.note-vol{position:absolute;pointer-events:none;font-size:clamp(18px,2.6vw,34px);color:#ffd27a;text-shadow:0 0 10px #ff8fc0;animation:envol 2.6s ease-out forwards;font-style:normal}
+@keyframes envol{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.6)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-1.8em) rotate(var(--r)) scale(1.2)}}
+/* titre fils : cailloux et fil lumineux */
+.ciel.fils .titre h1 .l{position:relative;opacity:0;color:#fbf1ff;text-shadow:0 0 14px rgba(200,180,255,.8);animation:caillou .8s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:calc(var(--i)*.14s + .2s);transition:transform .3s}
+.ciel.fils .titre h1 span:last-child .l{color:#ffe2c8;text-shadow:0 0 14px rgba(255,190,150,.8)}
+.ciel.fils .titre h1 .l::before{content:"";position:absolute;left:50%;top:calc(100% + .02em);width:.26em;height:.17em;transform:translate(-50%,-50%) rotate(calc(var(--i)*23deg));border-radius:48% 52% 45% 55%/55% 45% 58% 42%;background:radial-gradient(70% 60% at 35% 30%,#fff,#e4d8ff 45%,#9d8ad8);box-shadow:0 0 12px rgba(217,200,255,.9),0 0 26px rgba(185,163,255,.6);animation:souffle 4s ease-in-out infinite;animation-delay:calc(var(--i)*-.5s)}
+.ciel.fils .titre h1 .l:hover{transform:translateY(-.08em) rotate(-4deg)}
+.ciel.fils .titre h1 .l:hover::before{box-shadow:0 0 20px #fff,0 0 50px #d9c8ff,0 0 90px #b9a3ff}
+@keyframes caillou{0%{opacity:0;transform:translateY(-.6em) scale(.5) rotate(-20deg)}100%{opacity:1;transform:none}}
+@keyframes souffle{50%{box-shadow:0 0 18px #fff,0 0 40px rgba(217,200,255,.9)}}
+.fil-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;display:none}
+.ciel.fils .fil-svg{display:block}
+.fil-svg path{fill:none;stroke:#efe6ff;stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px #c9b5ff);stroke-dasharray:var(--L);stroke-dashoffset:var(--L);animation:tisse 3s ease-in-out 1.6s forwards}
+@keyframes tisse{to{stroke-dashoffset:0}}
+.fil-svg circle{fill:#fff;filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 14px #ffcfa8)}
+@media (prefers-reduced-motion:reduce){.titre h1 .l,.titre h1 .l::before,.fil-svg path{animation:none!important;opacity:1!important;stroke-dashoffset:0!important}.note-vol{display:none}}
 /* chambre des casse-tête */
 #chambre{position:absolute;right:2%;bottom:0;height:92%;width:min(52%,760px);opacity:0;transition:opacity .9s;pointer-events:none}
 .ciel.jeux #chambre{opacity:1}
@@ -943,6 +951,27 @@ let last=0;function boucle(ms){const t=ms/1000,dt=Math.min(.05,t-last);last=t;if
 trace(0);if(!calme)requestAnimationFrame(boucle);})();
 </script>
 <script>(function(){const p=document.getElementById('poster');if(!p)return;const t=()=>p.classList.toggle('vu');p.addEventListener('click',t);p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});})();</script>
-<script>(function(){var n=0;document.querySelectorAll('.titre h1 span').forEach(function(sp){var t=sp.textContent;sp.textContent='';for(var c of t){var i=document.createElement('i');i.className='l';i.style.setProperty('--i',n++);i.textContent=c;sp.appendChild(i)}})})();</script>
+<script>(function(){
+var n=0,h1=document.querySelector('.titre h1'),ti=document.querySelector('.titre'),hd=document.querySelector('header.ciel');
+h1.querySelectorAll('span').forEach(function(sp){var t=sp.textContent;sp.textContent='';for(var c of t){var i=document.createElement('i');i.className='l';i.style.setProperty('--i',n);i.style.setProperty('--d',(.55+((n*37)%9)/10)+'s');n++;i.textContent=c;sp.appendChild(i)}});
+var L=[].slice.call(h1.querySelectorAll('.l'));
+/* musique : notes qui s'envolent + lettres qui jouent */
+var gammes=[261.6,293.7,329.6,392,440,523.3,587.3,659.3,784,880],ac;
+function joue(k){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;o.type='triangle';o.frequency.value=gammes[k%gammes.length];g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+1.2);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+1.3)}catch(e){}}
+function note(el){var r=el.getBoundingClientRect(),q=ti.getBoundingClientRect(),s=document.createElement('i');s.className='note-vol';s.textContent=['♪','♫','♬','♩'][Math.floor(Math.random()*4)];s.style.left=(r.left-q.left+r.width*.4)+'px';s.style.top=(r.top-q.top)+'px';s.style.setProperty('--dx',(Math.random()*80-40)+'px');s.style.setProperty('--r',(Math.random()*60-30)+'deg');ti.appendChild(s);setTimeout(function(){s.remove()},2700)}
+L.forEach(function(el,k){el.addEventListener('click',function(){if(!hd.classList.contains('musique'))return;joue(k);note(el);note(el);el.classList.remove('frappe');void el.offsetWidth;el.classList.add('frappe');setTimeout(function(){el.classList.remove('frappe')},460)})});
+var red=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!red)setInterval(function(){if(hd.classList.contains('musique')&&!document.hidden)note(L[Math.floor(Math.random()*L.length)])},700);
+/* fils : un fil qui tisse de caillou en caillou */
+var NS='http://www.w3.org/2000/svg',svg=document.createElementNS(NS,'svg');svg.setAttribute('class','fil-svg');svg.setAttribute('aria-hidden','true');ti.appendChild(svg);
+function trace(){var q=ti.getBoundingClientRect();if(!q.width)return;var pts=L.map(function(el,k){var r=el.getBoundingClientRect(),fs=parseFloat(getComputedStyle(el).fontSize);return[r.left-q.left+r.width/2,r.bottom-q.top+fs*.02]});
+var d='M'+pts[0][0]+' '+pts[0][1];for(var k=1;k<pts.length;k++){var a=pts[k-1],b=pts[k],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2+(k%2?-1:1)*Math.max(14,Math.abs(a[0]-b[0])*.35);d+=' Q'+mx+' '+my+' '+b[0]+' '+b[1]}
+svg.innerHTML='<defs><linearGradient id="filgrad" x1="0" x2="1"><stop offset="0" stop-color="#d9c8ff"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#ffcfa8"/></linearGradient></defs><path id="filpath" d="'+d+'"/>'+[0,1,2].map(function(j){return '<circle r="3.2"><animateMotion dur="'+(7+j*2)+'s" begin="'+(4.6+j*1.3)+'s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;.5;1" calcMode="linear"><mpath href="#filpath"/></animateMotion><animate attributeName="opacity" values="0;1" dur=".5s" begin="'+(4.6+j*1.3)+'s" fill="freeze"/></circle>'}).join('');
+svg.querySelectorAll('circle').forEach(function(c){c.setAttribute('opacity','0')});
+var p=svg.querySelector('path');p.style.setProperty('--L',p.getTotalLength())}
+var tabF=document.getElementById('t-fils');if(tabF)tabF.addEventListener('click',function(){setTimeout(function(){var c=svg.cloneNode(false);svg.replaceWith(c);svg=c;trace()},30)});
+window.addEventListener('resize',function(){if(hd.classList.contains('fils'))trace()});
+if(document.fonts)document.fonts.ready.then(trace);trace();
+})();</script>
 </body>
 </html>
