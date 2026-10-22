@@ -87,6 +87,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .ciel.poemes{background:radial-gradient(75% 75% at 70% 20%,#2c2140 0%,transparent 62%),radial-gradient(60% 60% at 15% 95%,#3a2418 0%,transparent 70%),#0b0812}
 .ciel.jeux .titre p small,.ciel.poemes .titre p small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-top:10px;font-style:normal}
 
+/* néon de chambre sur l'onglet casse-tête */
+.ciel.jeux .titre h1 span{color:#fdf4ff;transition:color .6s,text-shadow .6s}
+.ciel.jeux .titre h1 span:first-child{text-shadow:0 0 2px #fff,0 0 8px #f0a8ff,0 0 18px #d36bff,0 0 38px #b44dff,0 0 70px #9b3dff;animation:neonA 7s infinite}
+.ciel.jeux .titre h1 span:last-child{color:#f2fbff;text-shadow:0 0 2px #fff,0 0 8px #9fe0ff,0 0 18px #4fb8ff,0 0 38px #2f8fff,0 0 70px #2a6bff;animation:neonB 9s infinite}
+@keyframes neonA{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.35}}
+@keyframes neonB{0%,70%,72%,74%,100%{opacity:1}71%,73%{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.ciel.jeux .titre h1 span{animation:none!important}}
 /* chambre des casse-tête */
 #chambre{position:absolute;right:2%;bottom:0;height:92%;width:min(52%,760px);opacity:0;transition:opacity .9s;pointer-events:none}
 .ciel.jeux #chambre{opacity:1}
@@ -325,6 +332,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 .carte .meta a{position:relative;z-index:2}
 .lire.zen{opacity:.6;font-size:11px}
 </style>
+
 
 
 
