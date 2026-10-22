@@ -216,6 +216,13 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 @keyframes sautille{50%{transform:translateY(-.05em)}}
 .ciel.poemes .titre h1 span:last-child .l:last-child.posee:not(.bat)::after{opacity:1;animation:chouette2 11s ease-in-out infinite}
 @keyframes chouette2{0%,40%,46%{transform:rotate(0)}48%,56%{transform:rotate(-7deg)}58%,100%{transform:rotate(0)}}
+
+.ciel.poemes .titre h1 .l.lune-e{cursor:pointer}
+.ciel.poemes .titre h1 .l.lune-e.bascule::before{animation:balance 2s cubic-bezier(.3,.6,.4,1)}
+@keyframes balance{0%{transform:rotate(0)}15%{transform:rotate(-16deg)}35%{transform:rotate(11deg)}55%{transform:rotate(-6deg)}75%{transform:rotate(3deg)}100%{transform:rotate(0)}}
+.ciel.poemes .titre h1 .l.lune-e::before{transform-origin:62% 4%}
+.poussiere{position:absolute;pointer-events:none;color:#fff8e6;font-style:normal;font-size:clamp(10px,1.2vw,16px);text-shadow:0 0 8px #d9d6ff;animation:tombe 1.8s ease-in forwards}
+@keyframes tombe{0%{opacity:0;transform:translate(0,0) scale(.4)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1) rotate(160deg)}}
 @keyframes bourgeon{0%{opacity:0;transform:scale(0) rotate(-20deg)}12%{opacity:1;transform:scale(1) rotate(0)}50%{transform:rotate(5deg)}100%{opacity:1;transform:rotate(0)}}
 .ciel.poemes .titre h1 span:last-child .l:last-child::before{content:"";position:absolute;left:.24em;top:-.1em;width:.66em;height:.29em;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 70'%3E%3Cpath d='M6 66 C 30 56 52 46 80 38 C 104 31 126 24 150 10' stroke='%23c9a35a' stroke-width='7' fill='none' stroke-linecap='round'/%3E%3Cpath d='M6 66 C 30 56 52 46 80 38' stroke='%23e7c987' stroke-width='2' fill='none' stroke-linecap='round' opacity='.6'/%3E%3Cpath d='M112 28 C 120 38 128 44 138 46' stroke='%23c9a35a' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M138 46 C 146 38 156 40 158 46 C 150 52 142 52 138 46 Z' fill='%23bfdc8a'/%3E%3Cpath d='M150 10 C 146 0 154 -4 157 2 C 158 6 154 9 150 10 Z' fill='%23cfe39a'/%3E%3Ccircle cx='96' cy='33' r='3.4' fill='%23e9d38a'/%3E%3C/svg%3E") no-repeat left bottom/contain;opacity:0;animation:bourgeon 1.4s ease-out 2s forwards;transform-origin:0 80%}
 /* titre musique : partition sur vieux parchemin */
@@ -1278,5 +1285,9 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
 })();</script>
 <script>(function(){const L=document.querySelector('.titre h1 span:last-child .l:last-child'),hd=document.querySelector('header.ciel');if(!L)return;
 L.addEventListener('click',e=>{if(!hd.classList.contains('poemes')||L.classList.contains('bat'))return;L.classList.add('bat','posee');setTimeout(()=>L.classList.remove('bat'),1300)})})();</script>
+<script>(function(){const E=document.querySelector('.titre h1 span:first-child .l'),ti=document.querySelector('.titre'),hd=document.querySelector('header.ciel');if(!E)return;
+E.addEventListener('click',()=>{if(!hd.classList.contains('poemes')||E.classList.contains('bascule'))return;E.classList.add('bascule');setTimeout(()=>E.classList.remove('bascule'),2000);
+  const r=E.getBoundingClientRect(),q=ti.getBoundingClientRect(),fs=parseFloat(getComputedStyle(E).fontSize);
+  for(let k=0;k<9;k++){const p=document.createElement('i');p.className='poussiere';p.textContent=k%3?'·':'✦';p.style.left=(r.left-q.left+fs*(.05+Math.random()*.6))+'px';p.style.top=(r.top-q.top+fs*(.3+Math.random()*1.2))+'px';p.style.setProperty('--dx',(Math.random()*120-40)+'px');p.style.setProperty('--dy',(80+Math.random()*160)+'px');p.style.animationDelay=(Math.random()*.4)+'s';ti.appendChild(p);setTimeout(()=>p.remove(),2600)}})})();</script>
 </body>
 </html>
