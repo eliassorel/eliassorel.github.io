@@ -91,7 +91,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #chambre{position:absolute;right:2%;bottom:0;height:92%;width:min(52%,760px);opacity:0;transition:opacity .9s;pointer-events:none}
 .ciel.jeux #chambre{opacity:1}
 .ciel.jeux #etoiles{opacity:.25}
-.ciel.jeux{background:radial-gradient(55% 60% at 82% 78%,#3a1d1a 0%,transparent 70%),radial-gradient(60% 60% at 70% 20%,#1b2338 0%,transparent 70%),#0d1018}
+.ciel.jeux{background:radial-gradient(55% 60% at 80% 75%,#2a1d48 0%,transparent 70%),radial-gradient(60% 60% at 70% 15%,#1d2c4a 0%,transparent 70%),var(--nuit-profonde)}
 @media (max-width:760px){#chambre{width:100%;opacity:0}.ciel.jeux #chambre{opacity:.35}}
 #chambre .lum{animation:lueur 4s ease-in-out infinite}#chambre .lum:nth-child(2n){animation-delay:-2s}
 @keyframes lueur{50%{opacity:.45}}
@@ -106,18 +106,20 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #chambre .lv{animation:lave 9s ease-in-out infinite}#chambre .l2{animation-delay:-4.5s}
 @keyframes lave{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
 #chambre .plasma-halo{animation:halo 1.3s ease-in-out infinite alternate}@keyframes halo{to{opacity:.6}}
+.ciel.jeux .inner,.ciel.jeux .inner *{pointer-events:none}.ciel.jeux .inner a,.ciel.jeux .inner button,.ciel.jeux .inner svg.mono{pointer-events:auto}
+#poster .recto,#poster .verso{transition:opacity .5s}#poster.vu .recto{opacity:0}#poster.vu .verso{opacity:1!important}#poster:hover .recto rect{stroke:#d4a82f}
 #chambre .flamme{animation:flamme .35s ease-in-out infinite alternate;transform-origin:120px 296px}
 @keyframes flamme{to{transform:scaleY(1.4)}}
 @media (prefers-reduced-motion:reduce){#chambre *{animation:none!important}}
 /* casse-tête */
 main:has(#v-jeux:not([hidden]))+footer{margin-top:0}
-.jeux-salle{padding-block:120px;background:radial-gradient(60% 50% at 80% 10%,#2a2410 0%,transparent 70%),radial-gradient(60% 60% at 10% 100%,#10202a 0%,transparent 70%),var(--nuit-profonde);color:var(--creme)}
+.jeux-salle{padding-block:120px;background:radial-gradient(50% 45% at 85% 5%,rgba(139,92,200,.22) 0%,transparent 70%),radial-gradient(55% 55% at 8% 95%,rgba(42,90,184,.22) 0%,transparent 70%),radial-gradient(1px 1px at 20% 30%,rgba(232,220,192,.5),transparent 60%),radial-gradient(1px 1px at 70% 60%,rgba(232,220,192,.4),transparent 60%),radial-gradient(1px 1px at 45% 85%,rgba(232,220,192,.35),transparent 60%),var(--nuit-profonde);color:var(--creme)}
 .jeux-salle .sur{font-family:var(--sans);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--or-vif);margin:0 0 10px}
 .jeux-salle h2{font-family:var(--serif);font-weight:400;font-size:clamp(36px,5vw,60px);color:var(--creme-2);margin:0 0 14px}
 .jeux-salle .chapo{font-size:19px;max-width:56ch;margin:0;opacity:.85}
 .jeux-salle .pied{margin:40px 0 0;font-family:var(--serif);font-style:italic;opacity:.6;text-align:center}
 .enigmes{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
-.enigme{position:relative;background:linear-gradient(180deg,rgba(212,168,47,.07),rgba(212,168,47,.015));border:1px solid rgba(212,168,47,.45);border-radius:16px;padding:26px 22px 22px;display:grid;gap:10px;align-content:start;min-width:0;transition:transform .3s,box-shadow .3s,border-color .3s}
+.enigme{position:relative;background:linear-gradient(180deg,rgba(120,110,200,.10),rgba(29,44,74,.25));border:1px solid rgba(212,168,47,.4);border-radius:16px;padding:26px 22px 22px;display:grid;gap:10px;align-content:start;min-width:0;transition:transform .3s,box-shadow .3s,border-color .3s}
 .enigme:not(.scellee):hover{transform:translateY(-4px);border-color:var(--or-vif);box-shadow:0 14px 40px -12px rgba(212,168,47,.45)}
 .enigme .num{position:absolute;top:14px;right:16px;font-family:var(--serif);font-size:13px;color:var(--or-vif);opacity:.7;letter-spacing:.1em}
 .enigme .obj{width:96px;height:96px;margin:4px 0 6px}
@@ -342,6 +344,8 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 
 
 
+
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -396,6 +400,18 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <g fill="none" stroke="#e8dcc0" stroke-opacity=".75" stroke-width="2.2" stroke-linecap="round"><path d="M140 470 h46"/><path d="M163 470 v-10"/><path d="M150 460 h26"/><path d="M168 460 q-22 -20 -6 -52"/><rect x="152" y="392" width="12" height="38" rx="3" transform="rotate(-20 158 411)"/><line x1="150" y1="438" x2="180" y2="438"/></g>
 <!-- erlenmeyer qui bulle -->
 <g><path d="M222 400 v24 l-20 42 h52 l-20 -42 v-24" fill="#1d3a2e" fill-opacity=".5" stroke="#e8dcc0" stroke-opacity=".75" stroke-width="2"/><path d="M207 455 l7 -14 h28 l7 14 z" fill="#c9e7a0" opacity=".55"/><circle class="bulle b1" cx="228" cy="448" r="3" fill="#c9e7a0"/><circle class="bulle b2" cx="236" cy="452" r="2.2" fill="#c9e7a0"/><circle class="bulle b3" cx="222" cy="452" r="2" fill="#c9e7a0"/></g>
+<g id="poster" role="button" tabindex="0" aria-label="Le poster de la chambre" style="pointer-events:auto;cursor:pointer" transform="translate(-12 -48)">
+<g class="recto"><rect x="330" y="300" width="86" height="96" rx="2" fill="#16213a" stroke="#e8dcc0" stroke-opacity=".55" stroke-width="1.6"/>
+<circle cx="336" cy="306" r="1.6" fill="#d4a82f"/><circle cx="410" cy="306" r="1.6" fill="#d4a82f"/>
+<text x="373" y="318" text-anchor="middle" style="font:600 7px var(--sans);letter-spacing:2px;fill:#d4a82f">PLATON</text>
+<g fill="none" stroke-width="1.2" stroke-linejoin="round"><polygon points="348,338 356,326 364,338" stroke="#e0714a"/><polygon points="382,324 390,332 382,340 374,332" stroke="#e8cf8f"/><rect x="342" y="350" width="14" height="14" stroke="#c98a5a"/><polygon points="390,348 398,353 398,363 390,368 382,363 382,353" stroke="#6fa8d9"/><polygon points="373,368 380,373 377,381 369,381 366,373" stroke="#a78be0"/></g>
+<text x="373" y="390" text-anchor="middle" style="font:500 5.5px var(--sans);letter-spacing:1.5px;fill:#e8dcc0;opacity:.7">5 SOLIDES</text></g>
+<g class="verso" opacity="0"><rect x="330" y="300" width="86" height="96" rx="2" fill="#2a1d48" stroke="#d4a82f" stroke-width="1.6"/>
+<text x="373" y="336" text-anchor="middle" style="font:italic 9px var(--serif);fill:#f4e3b8">Un nom,</text>
+<text x="373" y="350" text-anchor="middle" style="font:italic 9px var(--serif);fill:#f4e3b8">c'est aussi</text>
+<text x="373" y="364" text-anchor="middle" style="font:italic 9px var(--serif);fill:#f4e3b8">un rythme.</text>
+<text x="373" y="384" text-anchor="middle" style="font:600 5.5px var(--sans);letter-spacing:1.5px;fill:#d4a82f">· · ·  · ·</text></g>
+</g>
 <!-- pendule de Newton -->
 <g stroke="#e8dcc0" stroke-opacity=".7" stroke-width="2" fill="none"><path d="M270 470 v-62 h80 v62"/></g>
 <g class="nw-g"><line x1="282" y1="408" x2="282" y2="452" stroke="#e8dcc0" stroke-opacity=".5"/><circle cx="282" cy="458" r="6" fill="#d4a82f"/></g>
@@ -876,5 +892,6 @@ function trace(t){let o='';for(const f of F){o+=`<path d="${arc(f,t)}" stroke-wi
 let last=0;function boucle(ms){const t=ms/1000,dt=Math.min(.05,t-last);last=t;if(h.classList.contains('jeux')){for(const f of F){f.v+=(Math.random()-.5)*.3*dt;f.v=Math.max(-.35,Math.min(.35,f.v));f.a+=f.v*dt}trace(t)}requestAnimationFrame(boucle)}
 trace(0);if(!calme)requestAnimationFrame(boucle);})();
 </script>
+<script>(function(){const p=document.getElementById('poster');if(!p)return;const t=()=>p.classList.toggle('vu');p.addEventListener('click',t);p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});})();</script>
 </body>
 </html>
