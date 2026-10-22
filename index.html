@@ -364,6 +364,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 
 
 
+
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -446,6 +447,16 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
 <!-- cube à facettes et fusée de papier -->
 <g fill="none" stroke="#d4a82f" stroke-width="1.8" transform="translate(-330 0)"><path d="M420 520 l22 -11 l22 11 l-22 11 z"/><path d="M420 520 v26 l22 11 v-26"/><path d="M464 520 v26 l-22 11"/><path d="M427 516 l22 11 M435 512 l22 11 M413 528 l0 0"/></g>
 <g class="fusee" transform="rotate(35 120 300)"><path d="M120 250 q12 18 12 44 h-24 q0 -26 12 -44 z" fill="none" stroke="#e8dcc0" stroke-opacity=".8" stroke-width="2"/><circle cx="120" cy="278" r="5" fill="none" stroke="#d4a82f" stroke-width="1.8"/><path d="M108 294 l-8 12 h8 M132 294 l8 12 h-8" fill="none" stroke="#e8dcc0" stroke-opacity=".8" stroke-width="2"/><path class="flamme" d="M114 296 q6 18 12 0" fill="#ff9a5a"/></g>
+<!-- le pouf des siestes, avec son livre et sa couverture étoilée -->
+<radialGradient id="poufG" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#7a5cc8"/><stop offset=".6" stop-color="#4a3590"/><stop offset="1" stop-color="#2a1d58"/></radialGradient>
+<g class="pouf">
+<ellipse cx="372" cy="606" rx="96" ry="10" fill="#000" opacity=".35"/>
+<path d="M282 600 C270 560 300 528 340 524 C360 510 400 512 418 528 C456 534 470 570 460 600 C430 612 312 612 282 600 Z" fill="url(#poufG)" stroke="#e8dcc0" stroke-opacity=".35" stroke-width="1.6"/>
+<path d="M318 560 C340 548 380 546 410 556" fill="none" stroke="#e8dcc0" stroke-opacity=".18" stroke-width="2"/>
+<path d="M300 592 C330 570 360 566 392 578 C410 586 430 584 448 576 L456 600 C420 610 330 610 300 600 Z" fill="#1d2c4a" stroke="#e8dcc0" stroke-opacity=".3" stroke-width="1.2"/>
+<g fill="#d4a82f"><circle cx="330" cy="592" r="1.4"/><circle cx="372" cy="596" r="1.2"/><circle cx="410" cy="590" r="1.4"/><circle cx="436" cy="596" r="1.1"/><circle cx="352" cy="584" r="1"/></g>
+<g transform="rotate(-8 372 540)"><path d="M346 544 Q358 534 372 540 Q386 534 398 544 L398 552 Q386 544 372 550 Q358 544 346 552 Z" fill="#f4e3b8" stroke="#d4a82f" stroke-width="1.2"/><line x1="372" y1="540" x2="372" y2="550" stroke="#d4a82f" stroke-width="1"/></g>
+</g>
 <!-- parquet -->
 <line x1="0" y1="560" x2="700" y2="560" stroke="#e8dcc0" stroke-opacity=".25" stroke-width="2"/>
 </svg>
