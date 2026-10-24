@@ -1183,7 +1183,7 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
 (function(){
   const c=document.getElementById('nuages'),x=c.getContext('2d'),band=c.parentElement,calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w=0,h=0,d=1,iles=[],mer=null,fils=[],mxn=.5,myn=.5,merX=0,vol=null,prochainVol=0,avion=null,prochainAvion=3;
-  const cerfs=[{x:.62,y:.26,s:46,f:.5,p:0,r:-.15,c1:'#ffb3a7',c2:'#e0607e',g:'✦',ax:.5},{x:.87,y:.44,s:38,f:.62,p:2,r:.12,c1:'#bfd4ff',c2:'#6f7fd6',g:'☾',ax:.78},{x:.74,y:.15,s:30,f:.7,p:4,r:.05,c1:'#fff0c2',c2:'#e3a94a',g:'∞',ax:.64}];
+  const cerfs=[{x:.76,y:.2,s:46,f:.5,p:0,r:-.15,c1:'#ffb3a7',c2:'#e0607e',g:'✦',ax:.5},{x:.91,y:.5,s:38,f:.62,p:2,r:.12,c1:'#bfd4ff',c2:'#6f7fd6',g:'☾',ax:.78},{x:.89,y:.12,s:30,f:.7,p:4,r:.05,c1:'#fff0c2',c2:'#e3a94a',g:'∞',ax:.64}];
   /* un cumulus : des boules qui s'empilent, le haut éclairé, la base plate et plus sombre */
   function cumulus(L,H,lum){const s=document.createElement('canvas');s.width=Math.ceil(L);s.height=Math.ceil(H*1.3);const g=s.getContext('2d'),base=H;
     const boules=[];const n=Math.round(L/(H*.5));for(let k=0;k<n;k++){const u=(k+.5)/n,r=H*(.22+.5*Math.sin(Math.PI*u))*(0.6+Math.random()*.8);boules.push([L*u+(Math.random()-.5)*H*.2,base-r*.75-Math.random()*H*.15,r])}
@@ -1243,17 +1243,36 @@ const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
       x.restore();x.globalCompositeOperation='source-over';
       /* le disque du soleil, que la mer de nuages viendra mordre */
       {const gd=x.createRadialGradient(SX,SY,R*.2,SX,SY,R);gd.addColorStop(0,'rgba(255,250,232,1)');gd.addColorStop(.7,'rgba(255,224,170,.95)');gd.addColorStop(1,'rgba(255,200,150,0)');x.globalAlpha=.9;x.fillStyle=gd;x.beginPath();x.arc(SX,SY,R,0,6.283);x.fill()}
-      /* la toile d'araignée, dans l'angle, perlée de rosée */
-      if(!mob){const cx=w-(mob?18:40),cy=mob?96:110,Rt=mob?70:120,br=calme?0:Math.sin(t*.6)*.02,n=9;
-        x.save();x.translate(cx,cy);x.rotate(br);x.strokeStyle='rgba(255,246,230,.55)';x.lineWidth=.7;x.globalAlpha=.8;
-        const ang=k=>Math.PI*.5+k/(n-1)*Math.PI*.55;
-        for(let k=0;k<n;k++){const a=ang(k);x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(a)*Rt,Math.sin(a)*Rt);x.stroke()}
-        for(let r=Rt*.14;r<Rt;r+=Rt*.11){x.beginPath();for(let k=0;k<n;k++){const a=ang(k),rr=r*(1+.04*Math.sin(k*3+r));const X=Math.cos(a)*rr,Y=Math.sin(a)*rr;k?x.quadraticCurveTo(Math.cos(a-.12)*rr*.96,Math.sin(a-.12)*rr*.96,X,Y):x.moveTo(X,Y)}x.stroke()}
-        for(let k=0;k<n;k++)for(let j=2;j<9;j+=2){const a=ang(k),rr=Rt*.14+j*Rt*.11;const X=Math.cos(a)*rr,Y=Math.sin(a)*rr,sc=.5+.5*Math.sin(t*1.8+k*1.7+j);
-          const gp=x.createRadialGradient(X,Y,0,X,Y,3.5);gp.addColorStop(0,'rgba(255,255,255,'+(.5+.5*sc)+')');gp.addColorStop(1,'rgba(255,240,220,0)');x.globalAlpha=1;x.fillStyle=gp;x.fillRect(X-4,Y-4,8,8)}
-        x.restore()}
+      /* la toile d'araignée, tendue entre ELIAS et SOREL, et son araignée */
+      {const sp=band.querySelectorAll('.titre h1 span');if(sp.length>1){const rb=band.getBoundingClientRect(),A0=sp[0].getBoundingClientRect(),B0=sp[1].getBoundingClientRect(),la=sp[0].lastElementChild||sp[0],lb=sp[1].lastElementChild||sp[1],ra=la.getBoundingClientRect(),rbb=lb.getBoundingClientRect(),A={right:ra.right,top:A0.top,height:A0.height,width:ra.right-A0.left},B={right:rbb.right,top:B0.top,height:B0.height,width:rbb.right-B0.left};
+        const L=A.right-rb.left,T=A.top-rb.top+A.height*.18,Rr=B.right-rb.left,Bt=B.top-rb.top+B.height*.22;
+        const cx=(L+Rr)/2+8,cy=(T+Bt)/2,Rt=Math.max(26,Math.min(Rr-L,Bt-T)*.48),n=11,br=calme?0:Math.sin(t*.6)*.015;
+        /* les amarres : au S d'ELIAS, au toit de SOREL, et vers le ciel */
+        x.globalAlpha=.55;x.strokeStyle='rgba(255,246,230,.7)';x.lineWidth=.8;
+        for(const [X,Y] of [[L-6,T+A.height*.25],[Rr-B.width*.12,Bt],[cx+Rt*.3,cy-Rt*2.2],[L+ (Rr-L)*.15,Bt+2]]){x.beginPath();x.moveTo(cx,cy);x.lineTo(X,Y);x.stroke()}
+        x.save();x.translate(cx,cy);x.rotate(br);x.globalAlpha=.75;x.strokeStyle='rgba(255,246,230,.6)';x.lineWidth=.7;
+        const ang=k=>k/n*6.283+.2;
+        for(let k=0;k<n;k++){const a=ang(k),rr=Rt*(1+.12*Math.sin(k*2.7));x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(a)*rr,Math.sin(a)*rr);x.stroke()}
+        for(let r=Rt*.16;r<Rt;r+=Rt*.105){x.beginPath();for(let k=0;k<=n;k++){const a=ang(k%n),rr=r*(1+.12*Math.sin((k%n)*2.7));const X=Math.cos(a)*rr,Y=Math.sin(a)*rr;if(!k)x.moveTo(X,Y);else{const am=ang(k-.5),rm=rr*.93;x.quadraticCurveTo(Math.cos(am)*rm,Math.sin(am)*rm,X,Y)}}x.stroke()}
+        for(let k=0;k<n;k++)for(let j=1;j<8;j+=2){const a=ang(k),rr=(Rt*.16+j*Rt*.105)*(1+.12*Math.sin(k*2.7));if(rr>Rt)continue;const X=Math.cos(a)*rr,Y=Math.sin(a)*rr,sc=.5+.5*Math.sin(t*1.8+k*1.7+j);
+          const gp=x.createRadialGradient(X,Y,0,X,Y,3.2);gp.addColorStop(0,'rgba(255,255,255,'+(.45+.55*sc)+')');gp.addColorStop(1,'rgba(255,240,220,0)');x.globalAlpha=1;x.fillStyle=gp;x.fillRect(X-4,Y-4,8,8)}
+        x.restore();
+        /* l'araignée : elle se promène au cœur de la toile, puis descend au bout de son fil et remonte */
+        {const cyc=calme?0:(t%11)/11,desc=cyc<.55?0:(cyc<.75?(cyc-.55)/.2:(cyc<.85?1:1-(cyc-.85)/.15)),ease=desc*desc*(3-2*desc);
+          const sx=cx+(calme?0:Math.sin(t*.7)*Rt*.12*(1-ease)),sy=cy+(calme?0:Math.cos(t*.9)*Rt*.08*(1-ease))+ease*Rt*1.6,S=Math.max(6,Rt*.15);
+          if(ease>0){x.globalAlpha=.7;x.strokeStyle='rgba(255,250,240,.85)';x.lineWidth=.7;x.beginPath();x.moveTo(cx,cy);x.lineTo(sx,sy);x.stroke()}
+          x.save();x.translate(sx,sy);x.globalAlpha=1;x.strokeStyle='#2c2445';x.lineWidth=Math.max(1,S*.18);x.lineCap='round';
+          const wig=calme?0:Math.sin(t*(ease>0&&ease<1?9:3))*.25;
+          for(const sd of [-1,1])for(let k=0;k<4;k++){const a0=(-.9+k*.55)+sd*wig*(k%2?1:-1);x.beginPath();x.moveTo(sd*S*.3,S*(.1+k*.12-.2));
+            x.quadraticCurveTo(sd*S*1.1,S*(a0*.8-.6),sd*S*1.7,S*(a0+.4));x.stroke()}
+          x.fillStyle='#2c2445';x.beginPath();x.ellipse(0,S*.55,S*.62,S*.75,0,0,6.283);x.fill();
+          x.fillStyle='#3b3160';x.beginPath();x.ellipse(0,-S*.15,S*.42,S*.4,0,0,6.283);x.fill();
+          x.fillStyle='rgba(255,210,150,.9)';x.beginPath();x.ellipse(0,S*.6,S*.18,S*.3,0,0,6.283);x.fill();
+          x.fillStyle='#fff';x.beginPath();x.arc(-S*.15,-S*.2,S*.13,0,6.283);x.arc(S*.15,-S*.2,S*.13,0,6.283);x.fill();
+          x.fillStyle='#1a1430';x.beginPath();x.arc(-S*.13,-S*.17,S*.06,0,6.283);x.arc(S*.17,-S*.17,S*.06,0,6.283);x.fill();
+          x.restore()}}}
       /* les cerfs-volants : chacun tenu par un fil qui plonge dans les nuages */
-      for(const k of cerfs){const bx=k.x*w+(calme?0:Math.sin(t*k.f+k.p)*18),by=k.y*h+(calme?0:Math.cos(t*k.f*1.3+k.p)*10),S=k.s*(mob?.7:1),rot=(calme?0:Math.sin(t*k.f*1.7+k.p)*.18)+k.r;
+      for(const k of cerfs){if(mob&&k.s===46)continue;const bx=k.x*w+(calme?0:Math.sin(t*k.f+k.p)*18),by=(k.y+(mob?.16:0))*h+(calme?0:Math.cos(t*k.f*1.3+k.p)*10),S=k.s*(mob?.7:1),rot=(calme?0:Math.sin(t*k.f*1.7+k.p)*.18)+k.r;
         /* le fil */
         x.globalAlpha=.55;x.strokeStyle='rgba(255,236,190,.9)';x.lineWidth=.8;x.beginPath();x.moveTo(bx,by+S*.9);x.quadraticCurveTo(bx-w*.08,by+h*.25,k.ax*w,h*.98);x.stroke();
         /* la queue à nœuds */
