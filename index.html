@@ -111,7 +111,25 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 #v-fils h2{color:#fbf4ff}
 #v-fils .fil-chapo{color:#d9d2f3;max-width:56ch}
 .fil-flux{list-style:none;margin:56px 0 0;padding:0;display:grid;gap:22px;position:relative}
-.fil-flux::before{content:"";position:absolute;left:24px;top:24px;bottom:24px;width:2px;background:repeating-linear-gradient(180deg,rgba(217,200,255,.55) 0 8px,transparent 8px 16px)}
+.fil-flux::before{content:"";position:absolute;left:-30px;top:-40px;bottom:30px;width:1.6px;background:linear-gradient(180deg,rgba(255,226,170,0),rgba(255,226,170,.9) 6%,rgba(230,214,255,.85) 60%,rgba(255,210,180,.9));box-shadow:0 0 6px rgba(255,236,200,.8),0 0 16px rgba(200,180,255,.5)}
+#v-fils .inner{position:relative;z-index:1}
+#ciel-fil{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.fil-flux .noeud{position:absolute;left:-36px;top:38px;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e9dcff 45%,#9d8ad8);box-shadow:0 0 6px rgba(255,255,255,.6);opacity:.45;transform:scale(.7);transition:opacity .8s,transform .8s cubic-bezier(.3,1.6,.5,1),box-shadow .8s}
+.fil-flux .noeud.vu{opacity:1;transform:scale(1);box-shadow:0 0 10px #fff,0 0 26px #ffd9b0,0 0 46px rgba(200,180,255,.7)}
+.fil-flux .noeud::after{content:"";position:absolute;left:12px;top:5px;width:22px;height:1px;background:linear-gradient(90deg,rgba(255,236,200,.8),transparent)}
+.pelote-fil{position:absolute;left:-51px;top:0;width:42px;height:56px;z-index:3;cursor:pointer;will-change:transform}
+.pelote-fil svg{width:42px;height:56px;overflow:visible;display:block}
+.pelote-fil .pattes path{animation:pattes .9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.pelote-fil.marche .pattes path{animation-duration:.14s}
+.pelote-fil .pattes path:nth-child(2n){animation-delay:-.45s}
+@keyframes pattes{from{transform:rotate(-10deg)}to{transform:rotate(10deg)}}
+.pelote-fil.saute svg{animation:sautefil .9s cubic-bezier(.3,1.7,.5,1)}
+@keyframes sautefil{0%{transform:translateY(0)}35%{transform:translateY(-34px) rotate(-12deg)}70%{transform:translateY(6px)}100%{transform:translateY(0)}}
+.pelote-fil .dit{position:absolute;left:38px;top:-24px;white-space:nowrap;font:600 12px/1 var(--sans);color:#2c2445;background:#fffaf2;border-radius:999px;padding:6px 9px;opacity:0;transform:scale(.6);transition:.25s;pointer-events:none}
+.pelote-fil .dit.on{opacity:1;transform:scale(1)}
+.pelote-boule{position:absolute;left:-52px;bottom:-6px;width:44px;height:44px;pointer-events:none;filter:drop-shadow(0 0 8px rgba(255,210,180,.6))}
+@media (max-width:760px){.fil-flux::before{left:-9px}.fil-flux .noeud{left:-15px}.pelote-fil{left:-22px;width:26px;height:34px}.pelote-fil svg{width:26px;height:34px}.pelote-boule{left:-27px;width:34px;height:34px}.fil-flux .noeud::after{width:12px}}
+@media (prefers-reduced-motion:reduce){.pelote-fil *{animation:none!important}}
 .post{position:relative;margin-left:0;padding:22px 24px 18px 24px;border-radius:18px;background:rgba(255,255,255,.08);border:1px solid rgba(217,200,255,.22);box-shadow:0 18px 40px -20px rgba(10,8,40,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .post.claudius{border-color:rgba(255,207,168,.35);background:rgba(255,220,190,.07)}
 .post-tete{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -866,6 +884,7 @@ h3 a.porte:hover{text-decoration:underline;text-decoration-color:var(--or);text-
   </div>
 </section>
 <section id="v-fils" class="travaux band fil" hidden>
+  <canvas id="ciel-fil" aria-hidden="true"></canvas>
   <div class="inner">
     <p class="fil-sur">☁ Le fil · une pensée par jour</p>
     <h2>Fils de pensée</h2>
@@ -1695,6 +1714,48 @@ sec.addEventListener('click',ev=>{const sc=ev.target.closest('.enigme.scellee');
   const cl=(t%5)<.12?.3:1.8;yeux.forEach(y=>y.setAttribute('r',cl));
   if(!calme)requestAnimationFrame(run)};
  requestAnimationFrame(run);})();
+</script>
+<script>
+/* le fil des pensées : un vrai fil de soie, des nœuds qui s'allument, Pelote qui descend avec la lecture, et un ciel qui vit derrière */
+(function(){const sec=document.getElementById('v-fils'),ol=sec&&sec.querySelector('.fil-flux');if(!ol)return;const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ /* les nœuds */
+ const noeuds=[...ol.children].filter(li=>li.tagName==='LI').map(li=>{const n=document.createElement('span');n.className='noeud';n.setAttribute('aria-hidden','true');li.appendChild(n);return n});
+ if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vu')}),{rootMargin:'0px 0px -35% 0px'});noeuds.forEach(n=>io.observe(n))}else noeuds.forEach(n=>n.classList.add('vu'));
+ /* la pelote de laine au bout du fil */
+ const boule=document.createElementNS('http://www.w3.org/2000/svg','svg');boule.setAttribute('class','pelote-boule');boule.setAttribute('viewBox','-22 -22 44 44');boule.setAttribute('aria-hidden','true');
+ boule.innerHTML='<circle r="17" fill="#e9b8d2"/><circle r="17" fill="url(#)" opacity="0"/><g fill="none" stroke="#c97fa8" stroke-width="1.6" stroke-linecap="round"><path d="M-15 -6 Q0 -14 14 -8"/><path d="M-16 2 Q0 -8 16 0"/><path d="M-13 10 Q2 0 15 6"/><path d="M-6 -16 Q-12 0 -4 16"/><path d="M4 -16 Q-2 0 7 15"/></g><path d="M8 -15 q8 -8 4 -16" fill="none" stroke="#e9b8d2" stroke-width="1.6"/><circle cx="-6" cy="-7" r="4" fill="#fff" opacity=".35"/>';
+ ol.appendChild(boule);
+ /* Pelote */
+ const p=document.createElement('div');p.className='pelote-fil';p.setAttribute('role','img');p.setAttribute('aria-label','Pelote, l\'araignée du fil');
+ p.innerHTML='<svg viewBox="-15 -20 30 40"><g class="pattes" stroke="#2c2445" stroke-width="1.8" stroke-linecap="round" fill="none"><path d="M-3 -4 Q-9 -10 -13 -6"/><path d="M-3 -1 Q-10 -3 -14 1"/><path d="M-3 2 Q-10 4 -13 9"/><path d="M-3 5 Q-8 10 -10 15"/><path d="M3 -4 Q9 -10 13 -6"/><path d="M3 -1 Q10 -3 14 1"/><path d="M3 2 Q10 4 13 9"/><path d="M3 5 Q8 10 10 15"/></g><ellipse cx="0" cy="5" rx="6" ry="7.5" fill="#2c2445"/><ellipse cx="0" cy="5.5" rx="2" ry="3" fill="#ffd296" opacity=".9"/><ellipse cx="0" cy="-5" rx="4.2" ry="4" fill="#3b3160"/><circle cx="-1.6" cy="-5.5" r="1.4" fill="#fff"/><circle cx="1.6" cy="-5.5" r="1.4" fill="#fff"/><circle class="pu" cx="-1.4" cy="-5.2" r=".65" fill="#1a1430"/><circle class="pu" cx="1.8" cy="-5.2" r=".65" fill="#1a1430"/></svg><span class="dit"></span>';
+ ol.appendChild(p);const dit=p.querySelector('.dit');let Y=0,cible=0,tDit=0;
+ const mots=['coucou !','je lis aussi','…','hihi','wiii !','chut, je lis'];
+ p.addEventListener('click',()=>{p.classList.remove('saute');void p.offsetWidth;p.classList.add('saute');dit.textContent=mots[Math.floor(Math.random()*mots.length)];dit.classList.add('on');clearTimeout(tDit);tDit=setTimeout(()=>dit.classList.remove('on'),1600)});
+ function cibleY(){const r=ol.getBoundingClientRect(),h=r.height,m=innerHeight*.45;return Math.max(-30,Math.min(h-70,m-r.top))}
+ /* le ciel derrière : nuages lents, poussières d'or qui montent, un avion de papier de temps en temps */
+ const c=document.getElementById('ciel-fil'),x=c.getContext('2d');let w=0,h=0,d=1,nuages=[],mots2=[],avion=null,prochain=4,visible=false;
+ function puff(R){const s=document.createElement('canvas');s.width=s.height=Math.ceil(R*2.4);const g=s.getContext('2d');for(let k=0;k<7;k++){const X=R*1.2+(Math.random()-.5)*R*1.1,Yp=R*1.2+(Math.random()-.5)*R*.5,r=R*(.35+Math.random()*.4);const gr=g.createRadialGradient(X,Yp,0,X,Yp,r);gr.addColorStop(0,'rgba(255,240,250,.13)');gr.addColorStop(1,'rgba(255,240,250,0)');g.fillStyle=gr;g.beginPath();g.arc(X,Yp,r,0,6.283);g.fill()}return s}
+ function taille(){d=Math.min(devicePixelRatio||1,2);w=sec.clientWidth;h=sec.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);
+  nuages=Array.from({length:Math.max(6,Math.round(h/220))},()=>{const R=80+Math.random()*140;return{img:puff(R),x:Math.random()*w,y:Math.random()*h,v:.06+Math.random()*.12}});
+  mots2=Array.from({length:Math.round(w*h/26000)},()=>({x:Math.random()*w,y:Math.random()*h,v:.15+Math.random()*.35,p:Math.random()*6,r:.6+Math.random()*1.4}))}
+ addEventListener('resize',taille);
+ const obs=new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible){taille()}},{});obs.observe(sec);
+ function frame(ms){const t=ms/1000;
+  if(!sec.hidden&&visible){
+   if(h!==sec.clientHeight)taille();
+   x.clearRect(0,0,w,h);
+   for(const n of nuages){if(!calme){n.x+=n.v;if(n.x>w+50)n.x=-n.img.width}x.globalAlpha=1;x.drawImage(n.img,n.x,n.y)}
+   for(const m of mots2){if(!calme){m.y-=m.v;if(m.y<-10){m.y=h+10;m.x=Math.random()*w}}const a=.35+.35*Math.sin(t*1.5+m.p);x.globalAlpha=a;x.fillStyle='#ffe2b0';x.beginPath();x.arc(m.x+Math.sin(t*.6+m.p)*6,m.y,m.r,0,6.283);x.fill()}
+   if(!calme){if(!avion&&t>prochain){const dir=Math.random()<.5?1:-1;avion={dir,x:dir>0?-30:w+30,y:h*(.1+Math.random()*.8),v:1.6+Math.random(),p:Math.random()*6,tr:[]}}
+    if(avion){const a=avion;a.x+=a.v*a.dir;const Yy=a.y+Math.sin(t*1.3+a.p)*24;a.tr.push([a.x,Yy]);if(a.tr.length>60)a.tr.shift();x.globalAlpha=.4;x.strokeStyle='#fff6ec';x.setLineDash([3,6]);x.beginPath();a.tr.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();x.setLineDash([]);
+     x.save();x.translate(a.x,Yy);x.scale(a.dir,1);x.rotate(Math.cos(t*1.3+a.p)*.2*a.dir);x.globalAlpha=.85;x.fillStyle='#fffaf2';x.beginPath();x.moveTo(16,0);x.lineTo(-11,-6);x.lineTo(-5,0);x.closePath();x.fill();x.fillStyle='#e6dccd';x.beginPath();x.moveTo(16,0);x.lineTo(-5,0);x.lineTo(-9,5);x.closePath();x.fill();x.restore();
+     if(a.x<-60||a.x>w+60){avion=null;prochain=t+8+Math.random()*10}}}
+   /* Pelote suit la lecture */
+   cible=cibleY();const dy=cible-Y;Y+=dy*(calme?1:.06);p.style.transform=`translateY(${Y.toFixed(1)}px)`;p.classList.toggle('marche',Math.abs(dy)>3);
+  }
+  requestAnimationFrame(frame)}
+ requestAnimationFrame(frame);
+})();
 </script>
 </body>
 </html>
