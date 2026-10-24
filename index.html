@@ -1002,12 +1002,21 @@ document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()
   document.querySelector('header.ciel').classList.toggle('musique',b.dataset.v==='musique');
   ['fils','jeux','poemes'].forEach(v=>document.querySelector('header.ciel').classList.toggle(v,b.dataset.v===v));
   ['musique','fils','jeux','poemes'].forEach(v=>{document.getElementById('v-'+v).hidden=(v!==b.dataset.v)});
+  /* l'onglet ouvert reste dans l'adresse : F5 recharge la même pièce */
+  try{const v=b.dataset.v;history.replaceState(null,'',v==='science'?location.pathname+location.search:'#'+v)}catch(e){}
 }));
 document.querySelectorAll('.sous-onglets button').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.sous-onglets button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
   ['chants','dedans'].forEach(v=>{document.getElementById('p-'+v).hidden=(v!==b.dataset.p)});
+  try{sessionStorage.setItem('es-sous',b.dataset.p)}catch(e){}
 }));
-{const h=location.hash.slice(1);const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
+{const h=location.hash.slice(1).replace(/^v-/,'');const b=document.querySelector('nav button[data-v="'+h+'"]');if(b)b.click();}
+/* au rechargement : même sous-onglet, même hauteur de lecture */
+{let recharge=false;try{const n=performance.getEntriesByType('navigation')[0];recharge=n&&n.type==='reload'}catch(e){}
+ try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
+ addEventListener('pagehide',()=>{try{sessionStorage.setItem('es-y',String(scrollY));sessionStorage.setItem('es-page',location.pathname+location.hash)}catch(e){}});
+ if(recharge){try{const p=sessionStorage.getItem('es-sous');if(p){const sb=document.querySelector('.sous-onglets button[data-p="'+p+'"]');if(sb)sb.click()}
+   const y=+sessionStorage.getItem('es-y')||0;if(sessionStorage.getItem('es-page')===location.pathname+location.hash&&y>0){const va=()=>scrollTo(0,y);requestAnimationFrame(va);setTimeout(va,250);setTimeout(va,800)}}catch(e){}}}
 {const h=location.hash.slice(1);if(/^p-/.test(h)&&document.getElementById(h)){document.getElementById('t-fils').click();setTimeout(()=>document.getElementById(h).scrollIntoView({behavior:'smooth',block:'center'}),400)}}
 document.getElementById('vers-still').addEventListener('click',e=>{e.preventDefault();document.getElementById('still').scrollIntoView({behavior:'smooth',block:'center'})});
 const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
