@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eliassorel.github.io/sitemap.xml
+Sitemap: https://eliassorel.com/sitemap.xml
