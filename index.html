@@ -155,6 +155,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--or-vif);outline-off
 .post-pied .coeur .eclat{position:absolute;width:6px;height:6px;border-radius:50%;background:#ff9ab8;pointer-events:none;animation:eclatc .6s ease-out forwards}
 @keyframes eclatc{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
 .post-pied .coeur{position:relative}
+.post.aime .noeud{opacity:1;transform:scale(1.05);background:radial-gradient(circle at 35% 30%,#fff,#ffc2d4 40%,#ff7aa2);box-shadow:0 0 10px #ffd0de,0 0 24px #ff7aa2,0 0 46px rgba(255,122,162,.6)}
+.post.aime .noeud::after{background:linear-gradient(90deg,rgba(255,150,185,.9),transparent)}
 .post-pied .tag{color:#c9bdf5;letter-spacing:.04em}
 @media (max-width:560px){.post blockquote,.post-pied{margin-left:0}.post .badge{margin-left:0}}
 
@@ -1796,10 +1798,10 @@ sec.addEventListener('click',ev=>{const sc=ev.target.closest('.enigme.scellee');
 (function(){const posts=document.querySelectorAll('#v-fils .post');const lire=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ecrire=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
  posts.forEach(li=>{const pied=li.querySelector('.post-pied');if(!pied||!li.id)return;const b=document.createElement('button');b.type='button';b.className='coeur';b.setAttribute('aria-label','J\'aime cette pensée');
   b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.1C1.4 8.1 3.4 4.5 7 4.5c2.1 0 3.6 1.2 5 3 1.4-1.8 2.9-3 5-3 3.6 0 5.6 3.6 4.3 6.9C19.5 15.9 12 20.5 12 20.5z"/></svg>';
-  const cle='es-aime-'+li.id;if(lire(cle)){b.classList.add('aime');b.setAttribute('aria-pressed','true')}else b.setAttribute('aria-pressed','false');
+  const cle='es-aime-'+li.id;if(lire(cle)){b.classList.add('aime');li.classList.add('aime');b.setAttribute('aria-pressed','true')}else b.setAttribute('aria-pressed','false');
   b.addEventListener('click',()=>{b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
    if(b.classList.contains('aime'))return;/* un seul j'aime par personne et par pensée */
-   b.classList.add('aime');b.setAttribute('aria-pressed','true');ecrire(cle,'1');
+   b.classList.add('aime');li.classList.add('aime');b.setAttribute('aria-pressed','true');ecrire(cle,'1');
    for(let k=0;k<8;k++){const e=document.createElement('i');e.className='eclat';const a=k/8*6.283;e.style.setProperty('--dx',Math.cos(a)*22+'px');e.style.setProperty('--dy',Math.sin(a)*22+'px');b.appendChild(e);setTimeout(()=>e.remove(),650)}
    try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:'aime/'+li.id,title:(li.querySelector('blockquote')||li).textContent.trim().slice(0,70),event:true})}catch(e){}});
   pied.appendChild(b)})})();
