@@ -2,7 +2,7 @@
    Les adresses partent dans un formulaire Google privé (jamais affiché ni partagé). */
 (function () {
   var FORM = '1bNLAvKbIzuFaqGj_FpbkoOCEqBGiJXRmlZ9qGTyP6lQ';
-  var ENTRY = ''; // ex. 'entry.123456789' : tant que c'est vide, le bloc ne s'affiche pas
+  var ENTRY = 'emailAddress'; // champ « adresse mail » natif du formulaire (réglage : saisie par le répondant)
   if (!ENTRY) return;
 
   var pied = document.querySelector('footer .inner') || document.querySelector('footer');
