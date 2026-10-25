@@ -1,7 +1,7 @@
 /* 📮 Abonnement : un seul mail quand un nouveau travail sort.
    Les adresses partent dans un formulaire Google privé (jamais affiché ni partagé). */
 (function () {
-  var FORM = '1bNLAvKbIzuFaqGj_FpbkoOCEqBGiJXRmlZ9qGTyP6lQ';
+  var FORM = 'e/1FAIpQLSeYgrBJh836YqriXFbHjNNIfi4IKkZhyNpYtv-yt9nXU_n-BA';
   var ENTRY = 'emailAddress'; // champ « adresse mail » natif du formulaire (réglage : saisie par le répondant)
   if (!ENTRY) return;
 
