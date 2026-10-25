@@ -1,0 +1,24 @@
+# Elias Sorel
+
+> Independent researcher publishing open preprints (French, with English abstracts) on the living world, matter and the cosmos. Every work has a DOI on Zenodo and an HTML page with its English abstract on this site. Licence: CC BY 4.0.
+
+Author: Elias Sorel · ORCID 0009-0003-7980-9944 · https://eliassorel.com/
+
+Method: each paper starts from published, cited work and proposes a reading; claims are labelled (established, debated, hypothesis, reading, calculation).
+
+## Works
+
+- [Le Diamant : ce qui vibre, se souvient, éclaire (The Diamond: what vibrates, remembers, illuminates)](https://eliassorel.com/papiers/le-diamant/): Le Diamant (The Diamond) follows one question across three levels: are rest, conservation and perception what they appear to be? I · Vibration (thesis): nothing is at rest. DOI: https://doi.org/10.5281/zenodo.22730664
+- [L'Icosaèdre : ce qui s'étage, se lit, résonne (The Icosahedron: what layers, what reads, what resonates)](https://eliassorel.com/papiers/l-icosaedre/): This text starts from a question: from which scale do we look at the living world? It holds in one sentence, "life is a recommencement at different scales", and measures it in three parts. DOI: https://doi.org/10.5281/zenodo.23250209
+- [Metaphysical Stones](https://eliassorel.com/papiers/metaphysical-stones/): Metaphysical Stones is a collection of fifty-four aphorisms ("stones") that state, to the bone, a single view of reality: the world is better described as movement and relation than as fixed, isolated objects. DOI: https://doi.org/10.5281/zenodo.22865099
+- [Le Big Bang : l'éclat qui aveugle (The Big Bang: the blinding glare)](https://eliassorel.com/papiers/le-big-bang/): Observational limits and the inference of a cosmological origin. DOI: https://doi.org/10.5281/zenodo.22938295
+- [Le poulpe : le corps distribué (The octopus: the distributed body)](https://eliassorel.com/papiers/le-poulpe/): Anatomy and physiology of a body without a centre. DOI: https://doi.org/10.5281/zenodo.22676077
+- [La mitochondrie, la complexité comme dette plutôt que comme conquête (The mitochondrion: complexity as debt rather than conquest)](https://eliassorel.com/papiers/la-mitochondrie/): The mitochondrial origin of eukaryotic life. DOI: https://doi.org/10.5281/zenodo.22918398
+- [Le tardigrade : la survie par le retrait (The tardigrade: survival by withdrawal)](https://eliassorel.com/papiers/le-tardigrade/): Cryptobiosis and morphological stasis, read as a displacement of selective pressure. DOI: https://doi.org/10.5281/zenodo.22920277
+- [Le blob : l'accord sans chef (The blob: agreement without a leader)](https://eliassorel.com/papiers/le-blob/): Physarum polycephalum: information processing with no one inside. DOI: https://doi.org/10.5281/zenodo.22870114
+
+## Other pages
+
+- [Constellation](https://eliassorel.com/constellation/): map of how the works connect.
+- [Lexicon](https://eliassorel.com/lexique/): the corpus vocabulary (French).
+- [Version log](https://eliassorel.com/journal/): what changed, version by version.
