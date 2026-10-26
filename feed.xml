@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+<title>Elias Sorel · new works</title>
+<link>https://eliassorel.com/</link>
+<atom:link href="https://eliassorel.com/feed.xml" rel="self" type="application/rss+xml"/>
+<description>Open preprints by Elias Sorel (French, with English abstracts) on the living world, matter and the cosmos. Each work has a DOI on Zenodo.</description>
+<language>en</language>
+<lastBuildDate>Mon, 26 Oct 2026 13:27:16 +0000</lastBuildDate>
+<item>
+<title>The Diamond: what vibrates, remembers, illuminates (Vibration · Memory · Light)</title>
+<link>https://eliassorel.com/papiers/le-diamant/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22730664</guid>
+<pubDate>Mon, 19 Oct 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Le Diamant (The Diamond) follows one question across three levels: are rest, conservation and perception what they appear to be? I · Vibration (thesis): nothing is at rest. DOI: https://doi.org/10.5281/zenodo.22730664</description>
+</item>
+<item>
+<title>The Icosahedron: what layers, is read, resonates (Scale · Perception · Resonance)</title>
+<link>https://eliassorel.com/papiers/l-icosaedre/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.23250209</guid>
+<pubDate>Fri, 09 Oct 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>This text starts from a question: from which scale do we look at the living world? It holds in one sentence, &quot;life is a recommencement at different scales&quot;, and measures it in three parts. DOI: https://doi.org/10.5281/zenodo.23250209</description>
+</item>
+<item>
+<title>The octopus: the distributed body</title>
+<link>https://eliassorel.com/papiers/le-poulpe/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22676077</guid>
+<pubDate>Fri, 02 Oct 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Anatomy and physiology of a body without a centre. DOI: https://doi.org/10.5281/zenodo.22676077</description>
+</item>
+<item>
+<title>The mitochondrion: complexity as debt rather than conquest</title>
+<link>https://eliassorel.com/papiers/la-mitochondrie/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22918398</guid>
+<pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>The mitochondrial origin of eukaryotic life. DOI: https://doi.org/10.5281/zenodo.22918398</description>
+</item>
+<item>
+<title>The Big Bang: the blinding glare</title>
+<link>https://eliassorel.com/papiers/le-big-bang/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22938295</guid>
+<pubDate>Thu, 24 Sep 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Observational limits and the inference of a cosmological origin. DOI: https://doi.org/10.5281/zenodo.22938295</description>
+</item>
+<item>
+<title>The tardigrade: survival by withdrawal</title>
+<link>https://eliassorel.com/papiers/le-tardigrade/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22920277</guid>
+<pubDate>Wed, 23 Sep 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Cryptobiosis and morphological stasis, read as a displacement of selective pressure. DOI: https://doi.org/10.5281/zenodo.22920277</description>
+</item>
+<item>
+<title>The blob: agreement without a leader</title>
+<link>https://eliassorel.com/papiers/le-blob/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22870114</guid>
+<pubDate>Mon, 21 Sep 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Physarum polycephalum: information processing with no one inside. DOI: https://doi.org/10.5281/zenodo.22870114</description>
+</item>
+<item>
+<title>Metaphysical Stones</title>
+<link>https://eliassorel.com/papiers/metaphysical-stones/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.22865099</guid>
+<pubDate>Mon, 21 Sep 2026 12:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>Metaphysical Stones is a collection of fifty-four aphorisms (&quot;stones&quot;) that state, to the bone, a single view of reality: the world is better described as movement and relation than as fixed, isolated objects. DOI: https://doi.org/10.5281/zenodo.22865099</description>
+</item>
+</channel>
+</rss>
