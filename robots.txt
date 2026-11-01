@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /chimere/
 
 Sitemap: https://eliassorel.com/sitemap.xml
