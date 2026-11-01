@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://eliassorel.com/</loc><lastmod>2026-10-22</lastmod><priority>1.0</priority></url>
+  <url><loc>https://eliassorel.com/</loc><lastmod>2026-11-01</lastmod><priority>1.0</priority></url>
   <url><loc>https://eliassorel.com/constellation/</loc><lastmod>2026-10-22</lastmod><priority>0.6</priority></url>
   <url><loc>https://eliassorel.com/journal/</loc><lastmod>2026-10-22</lastmod><priority>0.6</priority></url>
   <url><loc>https://eliassorel.com/lexique/</loc><lastmod>2026-10-22</lastmod><priority>0.6</priority></url>
+  <url><loc>https://eliassorel.com/papiers/l-equation-du-soi/</loc><lastmod>2026-11-01</lastmod><priority>1.0</priority></url>
+  <url><loc>https://eliassorel.com/papiers/l-equation-du-soi/L-Equation-du-soi-Elias-Sorel-v1.3.pdf</loc><lastmod>2026-11-01</lastmod><priority>0.9</priority></url>
   <url><loc>https://eliassorel.com/papiers/l-icosaedre/</loc><lastmod>2026-10-22</lastmod><priority>0.9</priority></url>
   <url><loc>https://eliassorel.com/papiers/la-mitochondrie/</loc><lastmod>2026-10-22</lastmod><priority>0.9</priority></url>
   <url><loc>https://eliassorel.com/papiers/le-big-bang/</loc><lastmod>2026-10-22</lastmod><priority>0.9</priority></url>
