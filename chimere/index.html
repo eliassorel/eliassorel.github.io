@@ -301,7 +301,7 @@ button.envoi[disabled]{opacity:.45;cursor:default}
   // texte sûr : seul le **gras** devient du gras, rien d'autre n'est interprété
   // la maison : toujours « Elias Sorel », jamais de tiret long
   function propre(t){
-    return t.replace(/(^|[^\p{L}])(?<!Elias\s)Sorel\b/gu,'$1Elias Sorel')
+    return t.replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g,'$1').replace(/(^|[^\p{L}])(?<!Elias\s)Sorel\b/gu,'$1Elias Sorel')
             .replace(/\s+[\u2013\u2014]\s+/g,', ').replace(/[–—]/g,'-').replace(/\b([dD])e Elias Sorel/g,"$1'Elias Sorel");
   }
   function remplir(el,texte){
@@ -328,15 +328,16 @@ button.envoi[disabled]{opacity:.45;cursor:default}
       remplir(att,d.reponse||'Chimère se tait un instant. Réessayez dans un moment.');
       if(Array.isArray(d.sources)&&d.sources.length){
         const s=document.createElement('div');s.className='sources';s.appendChild(document.createTextNode('Sources :'));
-        const vus=new Set(),rep=String(d.reponse||'').toLowerCase();
-        // seulement les papiers qu'elle cite vraiment dans sa réponse
-        const cites=d.sources.filter(o=>rep.includes(String(o.titre).toLowerCase()));
-        (cites.length?cites:d.sources).forEach(o=>{const cle=o.titre+'|'+o.page;if(vus.has(cle))return;vus.add(cle);
+        const nz=t=>String(t).toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ');
+        const vus=new Set(),rep=nz(d.reponse||'');
+        // seulement les papiers qu'elle cite vraiment, entre crochets ou avec une page
+        const cites=d.sources.filter(o=>{const t=nz(o.titre);return rep.includes('['+t)||rep.includes(t+', p')});
+        cites.forEach(o=>{const cle=o.titre+'|'+o.page;if(vus.has(cle))return;vus.add(cle);
           const a=document.createElement('a');
           const lien=String(o.pdf||o.piece||'');
           if(/^https:\/\/(www\.)?eliassorel\.com\//.test(lien)){a.href=lien;a.target='_blank';a.rel='noopener'}
           a.textContent=o.titre+', p. '+o.page;s.appendChild(a)});
-        att.appendChild(s);
+        if(cites.length)att.appendChild(s);
       }
       if(d.limite){reste.textContent='Plus de questions pour aujourd’hui';envoi.disabled=true;q.disabled=true;return}
       if(typeof d.restantes==='number')reste.textContent=d.restantes+(d.restantes>1?' questions restantes aujourd’hui':' question restante aujourd’hui');
