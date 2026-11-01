@@ -6,7 +6,15 @@
 <atom:link href="https://eliassorel.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Open preprints by Elias Sorel (French, with English abstracts) on the living world, matter and the cosmos. Each work has a DOI on Zenodo.</description>
 <language>en</language>
-<lastBuildDate>Mon, 26 Oct 2026 13:27:16 +0000</lastBuildDate>
+<lastBuildDate>Sun, 01 Nov 2026 13:50:00 +0000</lastBuildDate>
+<item>
+<title>The Equation of the Self: a journey through the individual (Free Will · Imbalance · Self)</title>
+<link>https://eliassorel.com/papiers/l-equation-du-soi/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.23858442</guid>
+<pubDate>Sun, 01 Nov 2026 13:41:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>L'Équation du soi (The Equation of the Self) poses the self as an equation to be tested in chemistry, physics and mathematics, not as a definition: a bath of 29 molecules, an I recognised only through a you, a we measured as phase agreement. 35 equation boxes, 11 proposed tests, 218 references. DOI: https://doi.org/10.5281/zenodo.23858442</description>
+</item>
 <item>
 <title>The Diamond: what vibrates, remembers, illuminates (Vibration · Memory · Light)</title>
 <link>https://eliassorel.com/papiers/le-diamant/</link>
