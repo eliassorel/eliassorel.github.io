@@ -302,7 +302,7 @@ button.envoi[disabled]{opacity:.45;cursor:default}
   // la maison : toujours « Elias Sorel », jamais de tiret long
   function propre(t){
     return t.replace(/(^|[^\p{L}])(?<!Elias\s)Sorel\b/gu,'$1Elias Sorel')
-            .replace(/\s+[–—]\s+/g,', ').replace(/[–—]/g,'-');
+            .replace(/\s+[\u2013\u2014]\s+/g,', ').replace(/[–—]/g,'-').replace(/\b([dD])e Elias Sorel/g,"$1'Elias Sorel");
   }
   function remplir(el,texte){
     propre(texte).split(/\n{2,}/).forEach(par=>{
