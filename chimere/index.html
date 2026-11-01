@@ -299,11 +299,17 @@ button.envoi[disabled]{opacity:.45;cursor:default}
   const fil=document.getElementById('fil'),form=document.getElementById('form'),q=document.getElementById('q'),
         envoi=document.getElementById('envoi'),reste=document.getElementById('reste'),svg=document.getElementById('bete');
   // texte sûr : seul le **gras** devient du gras, rien d'autre n'est interprété
+  // la maison : toujours « Elias Sorel », jamais de tiret long
+  function propre(t){
+    return t.replace(/(^|[^\p{L}])(?<!Elias\s)Sorel\b/gu,'$1Elias Sorel')
+            .replace(/\s+[–—]\s+/g,', ').replace(/[–—]/g,'-');
+  }
   function remplir(el,texte){
-    texte.split(/\n{2,}/).forEach(par=>{
+    propre(texte).split(/\n{2,}/).forEach(par=>{
       const p=document.createElement('p');
-      par.split(/(\*\*[^*]+\*\*)/).forEach(m=>{
+      par.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/).forEach(m=>{
         if(/^\*\*[^*]+\*\*$/.test(m)){const b=document.createElement('b');b.textContent=m.slice(2,-2);p.appendChild(b)}
+        else if(/^\*[^*\n]+\*$/.test(m)){const i=document.createElement('i');i.textContent=m.slice(1,-1);p.appendChild(i)}
         else m.split('\n').forEach((l,i)=>{if(i)p.appendChild(document.createElement('br'));p.appendChild(document.createTextNode(l))});
       });
       el.appendChild(p);
@@ -322,8 +328,10 @@ button.envoi[disabled]{opacity:.45;cursor:default}
       remplir(att,d.reponse||'Chimère se tait un instant. Réessayez dans un moment.');
       if(Array.isArray(d.sources)&&d.sources.length){
         const s=document.createElement('div');s.className='sources';s.appendChild(document.createTextNode('Sources :'));
-        const vus=new Set();
-        d.sources.forEach(o=>{const cle=o.titre+'|'+o.page;if(vus.has(cle))return;vus.add(cle);
+        const vus=new Set(),rep=String(d.reponse||'').toLowerCase();
+        // seulement les papiers qu'elle cite vraiment dans sa réponse
+        const cites=d.sources.filter(o=>rep.includes(String(o.titre).toLowerCase()));
+        (cites.length?cites:d.sources).forEach(o=>{const cle=o.titre+'|'+o.page;if(vus.has(cle))return;vus.add(cle);
           const a=document.createElement('a');
           const lien=String(o.pdf||o.piece||'');
           if(/^https:\/\/(www\.)?eliassorel\.com\//.test(lien)){a.href=lien;a.target='_blank';a.rel='noopener'}
