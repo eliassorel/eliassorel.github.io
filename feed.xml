@@ -6,7 +6,15 @@
 <atom:link href="https://eliassorel.com/feed.xml" rel="self" type="application/rss+xml"/>
 <description>Open preprints by Elias Sorel (French, with English abstracts) on the living world, matter and the cosmos. Each work has a DOI on Zenodo.</description>
 <language>en</language>
-<lastBuildDate>Sun, 01 Nov 2026 13:50:00 +0000</lastBuildDate>
+<lastBuildDate>Mon, 02 Nov 2026 19:30:00 +0000</lastBuildDate>
+<item>
+<title>The mantis shrimp: the eye that seeks attunement (Fist · Eye · Attunement)</title>
+<link>https://eliassorel.com/papiers/la-crevette-mante/</link>
+<guid isPermaLink="false">https://doi.org/10.5281/zenodo.23891659</guid>
+<pubDate>Mon, 02 Nov 2026 18:00:00 +0000</pubDate>
+<dc:creator>Elias Sorel</dc:creator>
+<description>The mantis shrimp is known for its strike: a club launched at up to 23 m/s, hitting twice, the second time through a collapsing cavitation bubble. This text starts from that fist and moves to the eye: up to 16 photoreceptor classes, a living quarter-wave retarder, and yet poor colour discrimination. Proposed reading: an eye that rolls on itself acts as a rotating analyser, and mantis shrimp vision may be a search for attunement rather than a fine image. 78 references, 9 testable questions. DOI: https://doi.org/10.5281/zenodo.23891659</description>
+</item>
 <item>
 <title>The Equation of the Self: a journey through the individual (Free Will · Imbalance · Self)</title>
 <link>https://eliassorel.com/papiers/l-equation-du-soi/</link>

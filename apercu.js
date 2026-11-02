@@ -10,6 +10,7 @@
     'metaphysical-stones': ['Metaphysical Stones', 'l\'entre-deux', 'Les pierres', '#d8b25a'],
     'le-big-bang': ['Le Big Bang', 'l\'éclat qui aveugle', 'Cosmologie', '#8fb0e0'],
     'le-poulpe': ['Le poulpe', 'le corps distribué', 'Le bestiaire', '#c8963e'],
+    'la-crevette-mante': ['La crevette-mante', 'l\'œil qui cherche l\'accord', 'Le bestiaire', '#63dce8'],
     'la-mitochondrie': ['La mitochondrie', 'la complexité comme dette', 'Le bestiaire', '#c0503a'],
     'le-blob': ['Le blob', 'l\'accord sans chef', 'Le bestiaire', '#e0bf2a'],
     'le-tardigrade': ['Le tardigrade', 'la survie par le retrait', 'Le bestiaire', '#9fb3c0']
