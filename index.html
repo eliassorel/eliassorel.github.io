@@ -1947,5 +1947,52 @@ sec.addEventListener('click',ev=>{const sc=ev.target.closest('.enigme.scellee');
 </script>
 <script src="/abonnement.js" defer></script>
 <script src="/apercu.js" defer></script>
+<!-- feux d'artifice de la thèse : publiée sur PhilArchive le 04/11/2026 -->
+<style>
+#hors-serie .ecrin .feux{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#hors-serie .ecrin{cursor:crosshair}
+</style>
+<script>
+(function(){
+  const ec=document.querySelector('#hors-serie .ecrin');if(!ec)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const cv=document.createElement('canvas');cv.className='feux';cv.setAttribute('aria-hidden','true');ec.prepend(cv);
+  const x=cv.getContext('2d');let W=0,H=0,dpr=Math.min(2,devicePixelRatio||1);
+  const COUL=['#a9c4ee','#f0b6cf','#9fdcbb','#ffd966'];
+  const fusees=[],eclats=[];let vu=false,anim=0,prochain=0,premiere=true;
+  function taille(){const r=ec.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  taille();addEventListener('resize',taille);
+  const al=(a,b)=>a+Math.random()*(b-a);
+  function lancer(cx,cy){const tx=cx??al(W*.15,W*.85),ty=cy??al(H*.12,H*.5);
+    fusees.push({x:tx+al(-30,30),y:H+6,tx,ty,v:al(7,10),c:COUL[(Math.random()*COUL.length)|0],tr:[]})}
+  function eclater(f){const n=(al(55,85))|0,forme=Math.random();
+    const c2=COUL[(Math.random()*COUL.length)|0];
+    for(let i=0;i<n;i++){let a=i/n*Math.PI*2,sp=al(1.2,4.2);
+      if(forme<.25){sp=3.2+Math.sin(a*3)*1.1}            // fleur à trois pétales (je · tu · nous)
+      eclats.push({x:f.x,y:f.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,v:1,d:al(.010,.018),c:Math.random()<.5?f.c:c2,s:al(1,2.2),sc:Math.random()<.25})}
+    eclats.push({x:f.x,y:f.y,vx:0,vy:0,v:1,d:.06,c:'#fff',s:18,flash:1})}
+  function tour(t){anim=requestAnimationFrame(tour);
+    if(vu&&t>prochain){lancer();prochain=t+al(2600,5200)}
+    x.globalCompositeOperation='destination-out';x.fillStyle='rgba(0,0,0,.22)';x.fillRect(0,0,W,H);
+    x.globalCompositeOperation='lighter';
+    for(let i=fusees.length-1;i>=0;i--){const f=fusees[i];const dx=f.tx-f.x,dy=f.ty-f.y,dist=Math.hypot(dx,dy);
+      f.x+=dx/dist*f.v;f.y+=dy/dist*f.v;x.fillStyle=f.c;x.globalAlpha=.9;x.beginPath();x.arc(f.x,f.y,1.6,0,7);x.fill();
+      x.globalAlpha=.35;x.fillRect(f.x-.5,f.y,1,10);
+      if(dist<f.v*1.5){eclater(f);fusees.splice(i,1)}}
+    for(let i=eclats.length-1;i>=0;i--){const e=eclats[i];
+      if(e.flash){x.globalAlpha=e.v*.5;const g=x.createRadialGradient(e.x,e.y,0,e.x,e.y,e.s*3);g.addColorStop(0,'#fff');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.beginPath();x.arc(e.x,e.y,e.s*3,0,7);x.fill()}
+      else{e.vx*=.985;e.vy=e.vy*.985+.045;e.x+=e.vx;e.y+=e.vy;
+        x.globalAlpha=Math.max(0,e.v)*(e.sc?(.4+.6*Math.random()):1);x.fillStyle=e.c;x.beginPath();x.arc(e.x,e.y,e.s,0,7);x.fill()}
+      e.v-=e.d;if(e.v<=0)eclats.splice(i,1)}
+    x.globalAlpha=1;
+    if(!vu&&!fusees.length&&!eclats.length){cancelAnimationFrame(anim);anim=0;x.clearRect(0,0,W,H)}}
+  function demarrer(){if(!anim)anim=requestAnimationFrame(tour)}
+  new IntersectionObserver(es=>{for(const e of es){vu=e.isIntersecting;if(vu){demarrer();
+    if(premiere){premiere=false;for(let k=0;k<7;k++)setTimeout(()=>lancer(),k*380)}}}},{threshold:.35}).observe(ec);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)vu=false});
+  ec.addEventListener('pointerdown',ev=>{const r=ec.getBoundingClientRect();demarrer();lancer(ev.clientX-r.left,ev.clientY-r.top)});
+  let dernier=0;ec.addEventListener('pointerenter',()=>{const t=performance.now();if(t-dernier>1500){dernier=t;demarrer();lancer();setTimeout(()=>lancer(),250)}});
+})();
+</script>
 </body>
 </html>
