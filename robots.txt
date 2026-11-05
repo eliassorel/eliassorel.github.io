@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /chimere/
+Disallow: /chimere/atelier/
+Disallow: /chimere/corpus.json
 
 Sitemap: https://eliassorel.com/sitemap.xml

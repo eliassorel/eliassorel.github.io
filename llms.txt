@@ -21,6 +21,7 @@ Method: each paper starts from published, cited work and proposes a reading; cla
 
 ## Other pages
 
+- [Chimère](https://eliassorel.com/chimere/): the site's AI; it reads the ten works above and answers with cited sources and DOIs (in preparation).
 - [Constellation](https://eliassorel.com/constellation/): map of how the works connect.
 - [Lexicon](https://eliassorel.com/lexique/): the corpus vocabulary (French).
 - [Version log](https://eliassorel.com/journal/): what changed, version by version.
