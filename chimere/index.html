@@ -87,9 +87,13 @@ button.envoi[disabled]{opacity:.45;cursor:default}
 .oeuvres .doi{display:block;color:var(--lilas);font-size:.72rem;letter-spacing:.06em;margin-top:2px}
 .retour{text-align:center;margin:0}.retour a{color:var(--or2);text-decoration:none;border-bottom:1px solid rgba(232,196,106,.5)}
 
+#ciel{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;display:block}
+main{position:relative;z-index:1}
+
 </style>
 </head>
 <body>
+<canvas id="ciel" aria-hidden="true"></canvas>
 <main>
   <header>
     <div class="etiq">Elias Sorel</div>
@@ -327,6 +331,32 @@ button.envoi[disabled]{opacity:.45;cursor:default}
     svg.classList.add('folle');clearTimeout(minuteur);
     minuteur=setTimeout(()=>{svg.classList.remove('folle');tents.forEach((t,i)=>t.style.animationDelay=(-i*.7)+'s')},2600);
   });
+})();
+// le ciel : un champ d'étoiles qui scintillent, quelques grandes avec leur croix de lumière, et parfois une filante
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d');
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TEINTES=['#fffaf0','#f4ecd8','#e8dcc0','#dfe6ff','#cdd8ff','#fff0b8','#e9dcff','#ffd9ec'];
+  let w,h,d,E=[],F=null,prochaine=0;
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    const n=Math.round(w*h/900);
+    E=Array.from({length:n},()=>{const g=Math.random();return{x:Math.random()*w,y:Math.random()*h,
+      r:g<.82?Math.random()*.7+.25:(g<.97?Math.random()*.9+.9:Math.random()*1.2+1.7),
+      t:TEINTES[Math.random()<.7?Math.floor(Math.random()*3):Math.floor(Math.random()*TEINTES.length)],
+      p:Math.random()*6.283,v:Math.random()*1.2+.3,croix:g>=.97}})}
+  function filante(t){const a=(Math.random()*.5+.15)*Math.PI;F={x:Math.random()*w*.8+w*.1,y:Math.random()*h*.4,dx:Math.cos(a),dy:Math.sin(a),n:0,L:Math.random()*120+90,deb:t}}
+  function dessin(ms){const t=ms/1000;x.clearRect(0,0,w,h);
+    for(const e of E){const a=calme?.7:.25+.75*Math.pow(.5+.5*Math.sin(e.p+t*e.v),2);
+      x.globalAlpha=a;x.fillStyle=e.t;x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fill();
+      if(e.r>1.6){x.globalAlpha=a*.18;x.beginPath();x.arc(e.x,e.y,e.r*3.2,0,6.283);x.fill()}
+      if(e.croix){const L=e.r*(5+3*a);x.globalAlpha=a*.55;x.strokeStyle=e.t;x.lineWidth=.6;x.beginPath();x.moveTo(e.x-L,e.y);x.lineTo(e.x+L,e.y);x.moveTo(e.x,e.y-L);x.lineTo(e.x,e.y+L);x.stroke()}}
+    if(!calme){if(!F&&t>prochaine){filante(t);prochaine=t+6+Math.random()*10}
+      if(F){const u=(t-F.deb)/1.1;if(u>1){F=null}else{const hx=F.x+F.dx*u*w*.35,hy=F.y+F.dy*u*w*.35;
+        const gr=x.createLinearGradient(hx,hy,hx-F.dx*F.L,hy-F.dy*F.L);gr.addColorStop(0,'rgba(255,248,220,.95)');gr.addColorStop(1,'rgba(255,248,220,0)');
+        x.globalAlpha=Math.sin(u*Math.PI);x.strokeStyle=gr;x.lineWidth=1.4;x.beginPath();x.moveTo(hx,hy);x.lineTo(hx-F.dx*F.L,hy-F.dy*F.L);x.stroke()}}}
+    x.globalAlpha=1;if(!calme)requestAnimationFrame(dessin)}
+  taille();addEventListener('resize',()=>{taille();if(calme)dessin(0)});
+  calme?dessin(0):requestAnimationFrame(dessin);
 })();
 </script>
 </body>
