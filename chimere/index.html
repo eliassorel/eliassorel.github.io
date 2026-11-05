@@ -344,7 +344,7 @@ main{position:relative;z-index:1}
   function nebuleuse(rayon,couleurs){const o=document.createElement('canvas');const S=Math.ceil(rayon*2);o.width=o.height=S;const g=o.getContext('2d');
     g.globalCompositeOperation='lighter';
     for(let i=0;i<26;i++){const r=rayon*rnd(.18,.55),a=rnd(0,6.283),dd=rayon*rnd(0,.55),X=rayon+Math.cos(a)*dd,Y=rayon+Math.sin(a)*dd*.75;
-      const col=couleurs[i%couleurs.length];const gr=g.createRadialGradient(X,Y,0,X,Y,r);gr.addColorStop(0,col.replace('A',(rnd(.06,.15)).toFixed(2)));gr.addColorStop(1,col.replace('A','0'));
+      const col=couleurs[i%couleurs.length];const gr=g.createRadialGradient(X,Y,0,X,Y,r);gr.addColorStop(0,col.replace('A',(rnd(.024,.06)).toFixed(3)));gr.addColorStop(1,col.replace('A','0'));
       g.fillStyle=gr;g.beginPath();g.arc(X,Y,r,0,6.283);g.fill()}
     return o}
   // une galaxie spirale : des points sur deux bras en spirale logarithmique, plus un bulbe
@@ -378,7 +378,7 @@ main{position:relative;z-index:1}
       x.globalAlpha=calme?.9:.75+.25*Math.sin(t*.12+n.ph);x.drawImage(n.img,X,Y)}
     // galaxies
     for(const G of gal){const ox=G.cx*w-cx*14,oy=G.cy*h-cy*14,ang=calme?0:t*G.v,cr=Math.cos(G.rot),sr=Math.sin(G.rot);
-      x.save();x.translate(ox,oy);x.rotate(G.rot);x.scale(1,G.tilt);const halo=x.createRadialGradient(0,0,0,0,0,G.R*.3);halo.addColorStop(0,'rgba(255,240,200,.32)');halo.addColorStop(.4,'rgba(255,225,190,.10)');halo.addColorStop(1,'rgba(255,240,200,0)');
+      x.save();x.translate(ox,oy);x.rotate(G.rot);x.scale(1,G.tilt);const halo=x.createRadialGradient(0,0,0,0,0,G.R*.3);halo.addColorStop(0,'rgba(255,240,200,.2)');halo.addColorStop(.4,'rgba(255,225,190,.06)');halo.addColorStop(1,'rgba(255,240,200,0)');
       x.globalAlpha=1;x.fillStyle=halo;x.beginPath();x.arc(0,0,G.R*.3,0,6.283);x.fill();x.restore();
       for(const q of G.P){const th=q.t+ang/(.25+q.r);const X0=Math.cos(th)*q.r*G.R,Y0=Math.sin(th)*q.r*G.R*G.tilt;
         const X=ox+X0*cr-Y0*sr,Y=oy+X0*sr+Y0*cr;x.globalAlpha=q.a;x.fillStyle=q.col;x.fillRect(X,Y,q.s*1.2,q.s*1.2)}}
