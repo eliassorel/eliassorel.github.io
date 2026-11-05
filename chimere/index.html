@@ -4,7 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Chimère V0</title>
+<title>Chimère · Elias Sorel</title>
+<meta name="description" content="Chimère, the AI of Elias Sorel&#x27;s website: it reads the ten open works of the corpus on the living world, matter and the cosmos, and answers questions with cited sources and DOIs. In preparation.">
+<meta name="author" content="Elias Sorel">
+<link rel="canonical" href="https://eliassorel.com/chimere/">
+<link rel="icon" href="/img/icone.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Elias Sorel">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chimère · the AI that reads Elias Sorel">
+<meta property="og:description" content="Chimère, the AI of Elias Sorel&#x27;s website: it reads the ten open works of the corpus on the living world, matter and the cosmos, and answers questions with cited sources and DOIs. In preparation.">
+<meta property="og:url" content="https://eliassorel.com/chimere/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://eliassorel.com/chimere/", "url": "https://eliassorel.com/chimere/", "name": "Chimère · Elias Sorel", "description": "Chimère, the AI of Elias Sorel's website: it reads the ten open works of the corpus on the living world, matter and the cosmos, and answers questions with cited sources and DOIs. In preparation.", "inLanguage": "fr", "isPartOf": {"@type": "WebSite", "name": "Elias Sorel", "url": "https://eliassorel.com/"}, "author": {"@id": "https://eliassorel.com/#elias-sorel"}, "mainEntity": {"@id": "https://eliassorel.com/chimere/#chimere"}}, {"@type": "SoftwareApplication", "@id": "https://eliassorel.com/chimere/#chimere", "name": "Chimère", "alternateName": "Chimère, the AI of Elias Sorel", "applicationCategory": "ReferenceApplication", "operatingSystem": "Web", "description": "Chimère, the AI of Elias Sorel's website: it reads the ten open works of the corpus on the living world, matter and the cosmos, and answers questions with cited sources and DOIs. In preparation.", "creator": {"@type": "Person", "@id": "https://eliassorel.com/#elias-sorel", "name": "Elias Sorel", "sameAs": ["https://orcid.org/0009-0003-7980-9944", "https://eliassorel.com/"]}, "isAccessibleForFree": true, "inLanguage": ["fr", "en"], "keywords": "question answering; retrieval-augmented generation; cited sources; open science; living world; matter; cosmos; Elias Sorel", "mentions": [{"@type": "ScholarlyArticle", "name": "L'Équation du soi", "alternateName": "The Equation of the Self", "url": "https://eliassorel.com/papiers/l-equation-du-soi/", "sameAs": "https://doi.org/10.5281/zenodo.23858442"}, {"@type": "ScholarlyArticle", "name": "Le Diamant", "alternateName": "The Diamond", "url": "https://eliassorel.com/papiers/le-diamant/", "sameAs": "https://doi.org/10.5281/zenodo.22730664"}, {"@type": "ScholarlyArticle", "name": "L'Icosaèdre", "alternateName": "The Icosahedron", "url": "https://eliassorel.com/papiers/l-icosaedre/", "sameAs": "https://doi.org/10.5281/zenodo.23250209"}, {"@type": "ScholarlyArticle", "name": "Le Big Bang", "alternateName": "The Big Bang: the blinding glare", "url": "https://eliassorel.com/papiers/le-big-bang/", "sameAs": "https://doi.org/10.5281/zenodo.22938295"}, {"@type": "ScholarlyArticle", "name": "Metaphysical Stones", "alternateName": "Metaphysical Stones", "url": "https://eliassorel.com/papiers/metaphysical-stones/", "sameAs": "https://doi.org/10.5281/zenodo.22865098"}, {"@type": "ScholarlyArticle", "name": "Le poulpe", "alternateName": "The octopus: the distributed body", "url": "https://eliassorel.com/papiers/le-poulpe/", "sameAs": "https://doi.org/10.5281/zenodo.22676077"}, {"@type": "ScholarlyArticle", "name": "La crevette-mante", "alternateName": "The mantis shrimp: the eye that seeks attunement", "url": "https://eliassorel.com/papiers/la-crevette-mante/", "sameAs": "https://doi.org/10.5281/zenodo.23891659"}, {"@type": "ScholarlyArticle", "name": "La mitochondrie", "alternateName": "The mitochondrion: complexity as debt", "url": "https://eliassorel.com/papiers/la-mitochondrie/", "sameAs": "https://doi.org/10.5281/zenodo.22918398"}, {"@type": "ScholarlyArticle", "name": "Le tardigrade", "alternateName": "The tardigrade: survival by withdrawal", "url": "https://eliassorel.com/papiers/le-tardigrade/", "sameAs": "https://doi.org/10.5281/zenodo.22920277"}, {"@type": "ScholarlyArticle", "name": "Le blob", "alternateName": "The blob: agreement without a leader", "url": "https://eliassorel.com/papiers/le-blob/", "sameAs": "https://doi.org/10.5281/zenodo.22870113"}]}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;600&display=swap">
 <style>
@@ -63,16 +73,30 @@ button.envoi:focus-visible{outline:2px solid var(--or2);outline-offset:3px}
 button.envoi[disabled]{opacity:.45;cursor:default}
 .astuce{color:var(--doux);font-size:.9rem;text-align:center;margin:0}
 @media (prefers-reduced-motion:reduce){.tent,.axe,.etoile,.anneau,.anneau2,.coeur,.scan,.paup{animation:none}}
+.statut{align-self:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or2);border:1px solid rgba(232,196,106,.45);border-radius:999px;padding:6px 14px;background:rgba(232,196,106,.08)}
+.bloc{background:linear-gradient(160deg,rgba(91,69,176,.18),rgba(21,18,58,.6));border:1px solid rgba(169,150,255,.25);border-radius:18px;padding:18px 20px}
+.bloc h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.6rem;margin:0 0 12px;color:var(--or2);font-weight:700;text-wrap:balance}
+.trois{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.trois li{display:flex;gap:12px;align-items:flex-start;line-height:1.55}
+.trois .ic{font-size:1.3rem;line-height:1.2}
+.oeuvres{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px}
+.oeuvres a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--texte);padding:10px 12px;border-radius:12px;border:1px solid rgba(169,150,255,.18);background:rgba(11,10,31,.45)}
+.oeuvres a:hover,.oeuvres a:focus-visible{border-color:rgba(232,196,106,.6);outline:none}
+.oeuvres b{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.15rem;color:var(--or2)}
+.oeuvres small{display:block;color:var(--doux);font-size:.85rem}
+.oeuvres .doi{display:block;color:var(--lilas);font-size:.72rem;letter-spacing:.06em;margin-top:2px}
+.retour{text-align:center;margin:0}.retour a{color:var(--or2);text-decoration:none;border-bottom:1px solid rgba(232,196,106,.5)}
+
 </style>
 </head>
 <body>
 <main>
   <header>
     <div class="etiq">Elias Sorel</div>
-    <h1>Chimère V0</h1>
-    <p class="sous">posez-lui une question sur les travaux d'Elias Sorel</p>
+    <h1>Chimère</h1>
+    <p class="sous">l'IA qui lit les travaux d'Elias Sorel</p>
   </header>
-
+  <span class="statut">✦ En préparation · ouverture prochaine</span>
   <div class="scene">
   <svg viewBox="-62 -62 524 524" id="bete" role="img" aria-label="Chimère : une chouette à bras de poulpe, au centre de son blason">
     <defs>
@@ -162,20 +186,31 @@ button.envoi[disabled]{opacity:.45;cursor:default}
   </div>
   <p class="astuce">👆 Touchez son bidou.</p>
 
-  <section class="fil" id="fil" aria-live="polite">
-    <div class="bulle elle"><p>Bonjour. Je suis <b>Chimère</b>, et je connais les papiers d'Elias Sorel : le blob, le poulpe, le tardigrade, le diamant, l'icosaèdre, le Big Bang, les pierres, l'Équation du soi. Que voulez-vous savoir ?</p></div>
+  <section class="bloc" aria-labelledby="h-quoi">
+    <h2 id="h-quoi">Ce qu'elle fait</h2>
+    <ul class="trois">
+      <li><span class="ic">📚</span><span>Elle lit les 10 travaux d'Elias Sorel, du blob au Big Bang.</span></li>
+      <li><span class="ic">🔎</span><span>Elle répond à vos questions en s'appuyant seulement sur ces textes.</span></li>
+      <li><span class="ic">🔗</span><span>Elle cite ses sources : chaque réponse renvoie à la pièce et au DOI d'où elle vient.</span></li>
+    </ul>
   </section>
-
-  <form id="form">
-    <label for="q" class="etiq" style="text-align:left">Votre question</label>
-    <textarea id="q" maxlength="500" placeholder="Par exemple : le blob a-t-il une mémoire ?" required></textarea>
-    <div class="ligne">
-      <span class="reste" id="reste">5 questions par jour</span>
-      <button class="envoi" id="envoi" type="submit">Demander</button>
-    </div>
-  </form>
+  <section class="bloc" aria-labelledby="h-textes">
+    <h2 id="h-textes">Les textes qu'elle lit</h2>
+    <ul class="oeuvres">
+      <li><a href="/papiers/l-equation-du-soi/"><span>🧠</span><span><b>L&#x27;Équation du soi</b><small>voyage à travers l&#x27;individu</small><span class="doi">DOI 10.5281/zenodo.23858442</span></span></a></li>
+      <li><a href="/papiers/le-diamant/"><span>💎</span><span><b>Le Diamant</b><small>ce qui vibre, se souvient, éclaire</small><span class="doi">DOI 10.5281/zenodo.22730664</span></span></a></li>
+      <li><a href="/papiers/l-icosaedre/"><span>🔷</span><span><b>L&#x27;Icosaèdre</b><small>ce qui s&#x27;étage, se lit, résonne</small><span class="doi">DOI 10.5281/zenodo.23250209</span></span></a></li>
+      <li><a href="/papiers/le-big-bang/"><span>💥</span><span><b>Le Big Bang</b><small>l&#x27;éclat qui aveugle</small><span class="doi">DOI 10.5281/zenodo.22938295</span></span></a></li>
+      <li><a href="/papiers/metaphysical-stones/"><span>🪨</span><span><b>Metaphysical Stones</b><small>84 pierres en 14 constellations</small><span class="doi">DOI 10.5281/zenodo.22865098</span></span></a></li>
+      <li><a href="/papiers/le-poulpe/"><span>🐙</span><span><b>Le poulpe</b><small>le corps distribué</small><span class="doi">DOI 10.5281/zenodo.22676077</span></span></a></li>
+      <li><a href="/papiers/la-crevette-mante/"><span>🦐</span><span><b>La crevette-mante</b><small>l&#x27;œil qui cherche l&#x27;accord</small><span class="doi">DOI 10.5281/zenodo.23891659</span></span></a></li>
+      <li><a href="/papiers/la-mitochondrie/"><span>🧬</span><span><b>La mitochondrie</b><small>la complexité comme dette</small><span class="doi">DOI 10.5281/zenodo.22918398</span></span></a></li>
+      <li><a href="/papiers/le-tardigrade/"><span>🐻</span><span><b>Le tardigrade</b><small>la survie par le retrait</small><span class="doi">DOI 10.5281/zenodo.22920277</span></span></a></li>
+      <li><a href="/papiers/le-blob/"><span>🟡</span><span><b>Le blob</b><small>l&#x27;accord sans chef</small><span class="doi">DOI 10.5281/zenodo.22870113</span></span></a></li>
+    </ul>
+  </section>
+  <p class="retour"><a href="/">← Retour chez Elias Sorel</a></p>
 </main>
-
 <script>
 // les pupilles suivent le pointeur
 (function(){
@@ -292,61 +327,6 @@ button.envoi[disabled]{opacity:.45;cursor:default}
     svg.classList.add('folle');clearTimeout(minuteur);
     minuteur=setTimeout(()=>{svg.classList.remove('folle');tents.forEach((t,i)=>t.style.animationDelay=(-i*.7)+'s')},2600);
   });
-})();
-// la conversation
-(function(){
-  const URL_GARDIEN='https://chimere-gardien.eliassorel-auteur.workers.dev/';
-  const fil=document.getElementById('fil'),form=document.getElementById('form'),q=document.getElementById('q'),
-        envoi=document.getElementById('envoi'),reste=document.getElementById('reste'),svg=document.getElementById('bete');
-  // texte sûr : seul le **gras** devient du gras, rien d'autre n'est interprété
-  // la maison : toujours « Elias Sorel », jamais de tiret long
-  function propre(t){
-    return t.replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g,'$1').replace(/(^|[^\p{L}])(?<!Elias\s)Sorel\b/gu,'$1Elias Sorel')
-            .replace(/\s+[\u2013\u2014]\s+/g,', ').replace(/(\d)\s*[\u2013\u2014]\s*(\d)/g,'$1-$2').replace(/\s*[\u2013\u2014]\s*/g,', ').replace(/\b([dD])e Elias Sorel/g,"$1'Elias Sorel").replace(/\b([qQ])ue Elias Sorel/g,"$1u'Elias Sorel");
-  }
-  function remplir(el,texte){
-    propre(texte).split(/\n{2,}/).forEach(par=>{
-      const p=document.createElement('p');
-      par.split(/(\*\*[^*]+\*\*|\*[^*\n]+\*)/).forEach(m=>{
-        if(/^\*\*[^*]+\*\*$/.test(m)){const b=document.createElement('b');b.textContent=m.slice(2,-2);p.appendChild(b)}
-        else if(/^\*[^*\n]+\*$/.test(m)){const i=document.createElement('i');i.textContent=m.slice(1,-1);p.appendChild(i)}
-        else m.split('\n').forEach((l,i)=>{if(i)p.appendChild(document.createElement('br'));p.appendChild(document.createTextNode(l))});
-      });
-      el.appendChild(p);
-    });
-  }
-  function bulle(qui){const d=document.createElement('div');d.className='bulle '+qui;fil.appendChild(d);return d}
-  form.addEventListener('submit',async e=>{
-    e.preventDefault();
-    const question=q.value.trim();if(question.length<3)return;
-    remplir(bulle('moi'),question);q.value='';envoi.disabled=true;
-    const att=bulle('elle');att.innerHTML='<span class="points" aria-label="Chimère réfléchit"><span></span><span></span><span></span></span>';
-    svg.classList.add('pense');window.chimereVitesse=6;
-    try{
-      const r=await fetch(URL_GARDIEN,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question})});
-      const d=await r.json();att.textContent='';
-      remplir(att,d.reponse||'Chimère se tait un instant. Réessayez dans un moment.');
-      if(Array.isArray(d.sources)&&d.sources.length){
-        const s=document.createElement('div');s.className='sources';s.appendChild(document.createTextNode('Sources :'));
-        const nz=t=>String(t).toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ');
-        const vus=new Set(),rep=nz(d.reponse||'');
-        // seulement les papiers qu'elle cite vraiment, entre crochets ou avec une page
-        const cites=d.sources.filter(o=>{const t=nz(o.titre);return rep.includes('['+t)||rep.includes(t+', p')});
-        cites.forEach(o=>{const cle=o.titre+'|'+o.page;if(vus.has(cle))return;vus.add(cle);
-          const a=document.createElement('a');
-          const lien=String(o.pdf||o.piece||'');
-          if(/^https:\/\/(www\.)?eliassorel\.com\//.test(lien)){a.href=lien;a.target='_blank';a.rel='noopener'}
-          a.textContent=o.titre+', p. '+o.page;s.appendChild(a)});
-        if(cites.length)att.appendChild(s);
-      }
-      if(d.limite){reste.textContent='Plus de questions pour aujourd’hui';envoi.disabled=true;q.disabled=true;return}
-      if(typeof d.restantes==='number')reste.textContent=d.restantes+(d.restantes>1?' questions restantes aujourd’hui':' question restante aujourd’hui');
-      envoi.disabled=d.restantes===0;
-    }catch(err){
-      att.textContent='';remplir(att,'Chimère n’arrive pas à vous entendre. Vérifiez votre connexion et réessayez.');envoi.disabled=false;
-    }finally{svg.classList.remove('pense');window.chimereVitesse=1;att.scrollIntoView({behavior:'smooth',block:'nearest'})}
-  });
-  q.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
 })();
 </script>
 </body>
