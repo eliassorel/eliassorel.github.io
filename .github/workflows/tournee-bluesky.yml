@@ -1,0 +1,31 @@
+# La tournée du soir : 2 pierres sur Bluesky, chacune avec la carte de son papier.
+# Vers 20 h 15 (heure de Paris en hiver). Lancement à la main possible (onglet Actions).
+name: Tournée Bluesky
+on:
+  schedule:
+    - cron: '13 19 * * *'
+  workflow_dispatch:
+    inputs:
+      nombre:
+        description: 'Combien de pierres'
+        default: '2'
+permissions:
+  contents: write
+concurrency: tournee-bluesky
+jobs:
+  tournee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Poster
+        env:
+          BLUESKY_HANDLE: eliassorel.bsky.social
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          NOMBRE: ${{ github.event.inputs.nombre || '2' }}
+        run: python3 .github/reseaux/bluesky.py
+      - name: Garder la trace
+        run: |
+          git config user.name "Elias Sorel"
+          git config user.email "eliassorel.auteur@gmail.com"
+          git add .github/reseaux/etat_bluesky.json
+          git diff --cached --quiet || (git commit -m "Tournée Bluesky" && git push)

@@ -1,0 +1,572 @@
+{
+ "note": "File des pierres pour Bluesky. Le robot prend les suivantes non postées, dans l'ordre. On peut ajouter des lignes à la main (même format).",
+ "pierres": [
+  {
+   "n": "0",
+   "emoji": "💎",
+   "pierre": "Ce qui est immuable, ce n'est pas le photon, c'est le chiffre de sa vitesse.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "1",
+   "emoji": "👁️",
+   "pierre": "On voit clair sur tout, sauf dans le miroir.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "7",
+   "emoji": "💠",
+   "pierre": "Le un est toujours une multitude regardée de loin. Il n'y a pas de fond simple : c'est du multiple à tous les étages, et l'unité n'est que l'étage où le regard s'arrête.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "BB1",
+   "emoji": "🌌",
+   "pierre": "On raconte le Big Bang comme le commencement de tout. Et si c'était seulement le bord de ce que nous pouvons voir ?",
+   "oeuvre": "Le Big Bang",
+   "lien": "https://eliassorel.com/papiers/le-big-bang/"
+  },
+  {
+   "n": "5",
+   "emoji": "👁️",
+   "pierre": "Le plein et le vide sont une seule étoffe, à densités différentes.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "3",
+   "emoji": "👁️",
+   "pierre": "Le tout n'est pas dans le visible, il est dans l'entre-deux qui les relie.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "4",
+   "emoji": "👁️",
+   "pierre": "Ce qui fait une dimension, ce n'est pas le point. C'est l'espace entre deux points.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "8",
+   "emoji": "💠",
+   "pierre": "L'unité est l'étage où le regard s'arrête.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "11",
+   "emoji": "💠",
+   "pierre": "Le 1 n'est pas dans la substance, il est dans la loi. Une loi commune à deux mondes qui ne se touchent jamais, ce n'est plus une ressemblance : c'est une structure du réel.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "9",
+   "emoji": "💠",
+   "pierre": "Le \"je\" est l'unité qu'un multiple se raconte sur lui-même, faute de pouvoir se voir à l'échelle de ses parts.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "16",
+   "emoji": "🔍",
+   "pierre": "Décrypter, c'est forger le gabarit qui permettra de lire. Et même pour forger, il faut un gabarit plus petit.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "10",
+   "emoji": "💠",
+   "pierre": "Il n'y a pas de 1. Il y a une unité.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "20",
+   "emoji": "🔍",
+   "pierre": "Si une seule pièce manque, la trace existe, mais elle reste muette.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "12",
+   "emoji": "📐",
+   "pierre": "Le monde est en pente, la lecture en degrés, et chaque étage creuse le lit du suivant.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "19",
+   "emoji": "🔍",
+   "pierre": "On ne peut pas être à la fois ce qu'on mesure et l'instrument qui mesure.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "21",
+   "emoji": "〰️",
+   "pierre": "La vibration n'a pas de naissance. Elle est le fond.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "13",
+   "emoji": "📐",
+   "pierre": "Ce n'est pas une loi qui choisit ton échelle, c'est ta taille qui choisit ta loi.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "43",
+   "emoji": "🤝",
+   "pierre": "La vie ne commence pas par un individu, elle commence par une relation.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "15",
+   "emoji": "📐",
+   "pierre": "Il n'y a pas de sommet, seulement des positions différentes sur une gamme sans fin.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "22",
+   "emoji": "〰️",
+   "pierre": "La vibration ne se repose pas, elle se projette.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "14",
+   "emoji": "📐",
+   "pierre": "Chacun a son propre gradient.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "57",
+   "emoji": "🥁",
+   "pierre": "On naît avec l'oreille, on apprend la beauté. Le solfège n'écrit que la partition.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "23",
+   "emoji": "〰️",
+   "pierre": "Ce qui bat sur le même rythme se relie.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "17",
+   "emoji": "🔍",
+   "pierre": "Le vivant est si vaste qu'il ne peut pas rentrer dans un système préétabli. Il faut décrypter le vivant et le lire comme il vient.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "73",
+   "emoji": "✨",
+   "pierre": "On ne demande pas à une résonance de durer ; on lui demande d'avoir eu lieu.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "18",
+   "emoji": "🔍",
+   "pierre": "Un décrypteur sera toujours vérolé : il lit et décrypte de son échelle, pas de celle du tout.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "46",
+   "emoji": "🤝",
+   "pierre": "Vivre n'a jamais eu besoin d'un poste de commande, juste d'un réseau qui s'accorde.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "24",
+   "emoji": "〰️",
+   "pierre": "La vibration a fait se lier ce qui pouvait l'être, même cadence, même fréquence, dans le bouillon.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "84",
+   "emoji": "💡",
+   "pierre": "La cavité ne produit pas d'énergie, elle ordonne le chaos en cohérence, par répétition.",
+   "oeuvre": "L'Icosaèdre",
+   "lien": "https://eliassorel.com/papiers/l-icosaedre/"
+  },
+  {
+   "n": "50",
+   "emoji": "💧",
+   "pierre": "Nous ne sommes pas la mesure du vivant, juste un rameau qui se prend pour l'arbre.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "27",
+   "emoji": "🎻",
+   "pierre": "Une seule chose suffit pour vibrer, il en faut deux pour résonner.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "25",
+   "emoji": "🎻",
+   "pierre": "Une corde tendue ne rend aucun son. Il en faut deux, distinctes, chacune sa note. Un miroir ne résonne pas. Deux cordes, si.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "59",
+   "emoji": "🧠",
+   "pierre": "Le souvenir, ce n'est pas les étoiles, c'est le trait qui les relie.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "29",
+   "emoji": "🧭",
+   "pierre": "On progresse dans le déséquilibre, on se repose dans le résultat.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "60",
+   "emoji": "🧠",
+   "pierre": "La mémoire n'est pas un musée. C'est un atelier.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "35",
+   "emoji": "🧭",
+   "pierre": "Un tic récompensé se propage jusqu'à devenir la signature de celui qui le porte.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "28",
+   "emoji": "🎻",
+   "pierre": "L'échange ne partage pas des pensées ; il ouvre un champ de possibles que chacun, seul, aurait laissé fermé.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "62",
+   "emoji": "🧠",
+   "pierre": "La mémoire n'est pas un lieu, c'est un réseau.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "37",
+   "emoji": "🌿",
+   "pierre": "L'environnement trace la projection, mais pas la trace elle-même.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "63",
+   "emoji": "🧠",
+   "pierre": "La mémoire, ce n'est pas ce qui est stocké, c'est ce qui sait se rejouer.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "38",
+   "emoji": "🌿",
+   "pierre": "La rivière ne décide de rien, elle suit son lit qui a été façonné par elle.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "30",
+   "emoji": "🧭",
+   "pierre": "La solution parfaite est la fin du chemin.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "64",
+   "emoji": "🧠",
+   "pierre": "Tu peux oublier le mot et garder le geste.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "39",
+   "emoji": "🌿",
+   "pierre": "Le cycle se tient lui-même.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "65",
+   "emoji": "🧠",
+   "pierre": "Le souvenir déformable est le brouillon du futur.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "41",
+   "emoji": "🌿",
+   "pierre": "Il n'y a pas d'état stable, seulement un accord qui se réajuste en permanence.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "31",
+   "emoji": "🧭",
+   "pierre": "Perfectionner une chose, ce n'est pas la dépasser : le cheval le plus rapide ne mène jamais à la voiture.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "70",
+   "emoji": "🧠",
+   "pierre": "Tu portes une ville endormie dont la plupart des fenêtres sont juste éteintes.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "42",
+   "emoji": "🌿",
+   "pierre": "Ce qu'on appelle stable, c'est un mouvement qui se tient, pas une immobilité.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "76",
+   "emoji": "✨",
+   "pierre": "La lumière ne dure pas. Elle a lieu.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "47",
+   "emoji": "🤝",
+   "pierre": "Le changement ne naît pas partout, mais dans les poches où l'accord est possible.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "32",
+   "emoji": "🧭",
+   "pierre": "Trop bien s'adapter, c'est arrêter d'évoluer.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "77",
+   "emoji": "💡",
+   "pierre": "La couleur est un événement, pas une propriété.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "48",
+   "emoji": "💧",
+   "pierre": "De la flaque à la fleur, tout se tient.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "80",
+   "emoji": "💡",
+   "pierre": "Nous levons les yeux sur du passé, et nous l'appelons présent.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "52",
+   "emoji": "🥁",
+   "pierre": "Le soi n'est pas un point d'équilibre, c'est un point d'oscillation.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "33",
+   "emoji": "🧭",
+   "pierre": "Chaque super-pouvoir est aussi une prison.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "81",
+   "emoji": "💡",
+   "pierre": "L'étoile morte : du passé qui voyage encore. Mémoire et vibration en une seule chose, au-dessus de ta tête chaque nuit.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "55",
+   "emoji": "🥁",
+   "pierre": "Tu n'es pas cassé, tu es désaccordé.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "82",
+   "emoji": "💡",
+   "pierre": "La lumière est ce qui naît quand la vibration se souvient.",
+   "oeuvre": "Le Diamant",
+   "lien": "https://eliassorel.com/papiers/le-diamant/"
+  },
+  {
+   "n": "61",
+   "emoji": "🧠",
+   "pierre": "La mémoire ne garde pas tes souvenirs. Elle garde de quoi les refaire.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "34",
+   "emoji": "🧭",
+   "pierre": "Les ratés sont plus importants que les réussites. Une réussite fait plaisir, elle est actée. Mais un raté ouvre de nouveaux champs de possibilités.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "69",
+   "emoji": "🧠",
+   "pierre": "La garder, c'est la déformer. L'aimer, c'est la recouvrir.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "74",
+   "emoji": "✨",
+   "pierre": "Ce qui vibre une fois vibre pour toujours, quelque part, même quand on ne l'entend plus.",
+   "oeuvre": "L'Équation du soi",
+   "lien": "https://eliassorel.com/papiers/l-equation-du-soi/"
+  },
+  {
+   "n": "36",
+   "emoji": "🌿",
+   "pierre": "Le vivant est une projection.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "40",
+   "emoji": "🌿",
+   "pierre": "L'accord, ce n'est pas l'immobilité, c'est l'équilibre qui tient au bord.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "44",
+   "emoji": "🤝",
+   "pierre": "Avant d'être un corps, tu étais déjà un dialogue entre deux cellules.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "45",
+   "emoji": "🤝",
+   "pierre": "L'intelligence n'est pas un, c'est du multiple qui s'accorde.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "49",
+   "emoji": "💧",
+   "pierre": "Nous sommes juste les survivants de cette flaque.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "51",
+   "emoji": "💧",
+   "pierre": "Nous sommes peut-être juste les dinosaures de notre ère.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "53",
+   "emoji": "🥁",
+   "pierre": "La lucidité isole moins par son poids que parce que peu de gens peuvent la partager.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "54",
+   "emoji": "🥁",
+   "pierre": "Le fou, c'est celui dont le tempo a lâché.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "56",
+   "emoji": "🥁",
+   "pierre": "Le fou dit : crois-moi. Le génie dit : regarde toi-même, voici l'instrument.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "58",
+   "emoji": "🥁",
+   "pierre": "Lors de l'extase, la vibration compte autant que le bon tempo.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "66",
+   "emoji": "🧠",
+   "pierre": "Le rappel n'est pas fait pour se souvenir du passé, il est fait pour préparer le futur.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "67",
+   "emoji": "🧠",
+   "pierre": "On oublie pour pouvoir penser.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "68",
+   "emoji": "🧠",
+   "pierre": "Le souvenir qu'on remue sans cesse, on finit par le remuer en poussière.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "72",
+   "emoji": "🧠",
+   "pierre": "Rien n'est perdu. Tout est endormi.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "75",
+   "emoji": "✨",
+   "pierre": "On ne demande pas à une complexité de durer, on lui demande d'avoir eu lieu.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "78",
+   "emoji": "💡",
+   "pierre": "La vision n'est pas un objet, c'est une relation.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  },
+  {
+   "n": "83",
+   "emoji": "💡",
+   "pierre": "L'effondrement qui se souvient rejaillit en lumière.",
+   "oeuvre": "Metaphysical Stones",
+   "lien": "https://eliassorel.com/papiers/metaphysical-stones/"
+  }
+ ]
+}
