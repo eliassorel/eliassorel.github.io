@@ -52,25 +52,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Thème Icosaèdre : trois profondeurs d'une même eau, et l'or qui ne change jamais. */
-:root{
-  --surface:#ffffff; --surface-2:#f2f6f4; --ink:#3f4f4d; --ink-strong:#071C22; --ink-muted:#5d6f6c; --line:#dde7e3;
-  --abysse:#071C22; --eau:#0D3039; --lagune:#1F6A6F; --verre:#9FD8CC; --or:#D8B25A; --or-texte:#8a6a22; --ambre:#F1D89C; --ecume:#E4EEE9; --brume:#8FB0AB;
-  --p1:#2F8A78; --p1-clair:#A8F0CF; --p2:#22777F; --p2-clair:#BDF2EA; --p3:#1D4F80; --p3-clair:#B8D4F5;
-  --titre:Marcellus,"Cormorant Garamond",Georgia,serif; --serif:"Source Serif 4",Georgia,serif; --sans:"Source Sans 3","Helvetica Neue",Arial,sans-serif; --mono:"IBM Plex Mono","DejaVu Sans Mono",monospace;
-  --etabli:#0f6e56; --etabli-bg:#e1f5ee; --debattu:#854f0b; --debattu-bg:#faeeda; --hypo:#6b3f8f; --hypo-bg:#f1e8f7;
-  --lecture:#185fa5; --lecture-bg:#e6f1fb; --calcul:#4a4f54; --calcul-bg:#eceef0;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --surface:#06161b; --surface-2:#0b2229; --ink:#cfdcd8; --ink-strong:#E4EEE9; --ink-muted:#8FB0AB; --line:#163a42; --or-texte:#D8B25A; color-scheme:dark;
-  --p1:#5fc7ae; --p2:#5bbcc4; --p3:#7fb1e8;
-  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
-}}
-:root[data-theme="dark"]{
-  --surface:#06161b; --surface-2:#0b2229; --ink:#cfdcd8; --ink-strong:#E4EEE9; --ink-muted:#8FB0AB; --line:#163a42; --or-texte:#D8B25A; color-scheme:dark;
-  --p1:#5fc7ae; --p2:#5bbcc4; --p3:#7fb1e8;
-  --etabli:#7fd6b5; --etabli-bg:#12302a; --debattu:#f0c27a; --debattu-bg:#33260f; --hypo:#d3a8ef; --hypo-bg:#2a1d38; --lecture:#9cc8f2; --lecture-bg:#13283f; --calcul:#c9ced3; --calcul-bg:#232a33;
-}
+:root{--fond:#08161b;--clair:#eef5f2;--accent:#1a7f8b;--accent-clair:#63dce8;--or:#d8b45e;--or-chiffre:#e0b56a;--ecrin:#0c2026;--ecrin-bord:#1f5e66;--pastille-fond:rgba(8,22,27,.78);--pastille-bord:#1f8f9c;--fond-bandeau:#08161b;--brumes:radial-gradient(30% 25% at 72% 62%,rgba(99,220,232,.28),transparent 70%);--titre:"Cormorant Garamond",Georgia,serif;--serif:"Source Serif 4",Georgia,serif;--sans:"Source Sans 3",Arial,sans-serif;--mono:"IBM Plex Mono",monospace;
+  --surface:#ffffff;--surface-2:#f1f5f4;--ink:#41494b;--ink-strong:#08161b;--ink-muted:#5c676a;--line:#dde5e4;--or-texte:#86661c}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#0a1215;--surface-2:#122026;--ink:#d3d6d0;--ink-strong:#f2eddf;--ink-muted:#97a4a6;--line:#22343a;--or-texte:#d8b45e;--accent:#5fd0dc;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#0a1215;--surface-2:#122026;--ink:#d3d6d0;--ink-strong:#f2eddf;--ink-muted:#97a4a6;--line:#22343a;--or-texte:#d8b45e;--accent:#5fd0dc;color-scheme:dark}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.7}
 .band{padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
@@ -78,79 +64,60 @@ body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--serif
 a{color:inherit}
 a:focus-visible{outline:2px solid var(--or);outline-offset:4px;border-radius:4px}
 [hidden]{display:none!important}
-
-/* ── le bandeau : sous l'eau ── */
-.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--ecume);
-  background:linear-gradient(180deg,#0f4650 0%,#0D3039 28%,#071C22 70%,#04121a 100%)}
-.bandeau::before{content:"";position:absolute;inset:-10% -20% auto;height:70%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.5;
-  background:repeating-linear-gradient(100deg,transparent 0 60px,rgba(168,240,207,.08) 60px 90px,transparent 90px 160px),repeating-linear-gradient(80deg,transparent 0 90px,rgba(189,242,234,.06) 90px 120px,transparent 120px 210px);
-  -webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent)}
-.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;
-  background:radial-gradient(30% 25% at 25% 20%,rgba(47,138,120,.6),transparent 70%),radial-gradient(28% 30% at 78% 35%,rgba(34,119,127,.55),transparent 70%),radial-gradient(35% 28% at 55% 85%,rgba(29,79,128,.6),transparent 70%),radial-gradient(18% 16% at 82% 18%,rgba(216,178,90,.35),transparent 70%)}
-@media (prefers-reduced-motion:no-preference){
-  .bandeau::before{animation:rais 18s ease-in-out infinite alternate}
-  @keyframes rais{from{transform:translateX(-4%) skewX(-4deg)}to{transform:translateX(4%) skewX(4deg)}}
-  .bandeau::after{animation:courant 36s ease-in-out infinite alternate}
-  @keyframes courant{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}
-}
-.mer{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px}
+.bandeau{position:relative;overflow:hidden;min-height:clamp(620px,88vh,880px);color:var(--clair);background:var(--fond-bandeau)}
+.bandeau::after{content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;mix-blend-mode:screen;opacity:.45;background:var(--brumes)}
+@media (prefers-reduced-motion:no-preference){.bandeau::after{animation:derive 38s ease-in-out infinite alternate}
+@keyframes derive{0%{transform:translate(0,0) scale(1)}50%{transform:translate(3%,-2%) scale(1.07)}100%{transform:translate(-3%,2%) scale(1.02)}}}
+.ciel{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.bandeau .inner{position:relative;z-index:2;padding-block:28px 120px;display:grid;gap:56px;pointer-events:none}
+.bandeau .inner a,.bandeau .inner nav{pointer-events:auto}
 .haut{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--ecume);opacity:.85;display:inline-flex;gap:12px;align-items:center}
-.retour::before{content:"";width:28px;height:1px;background:var(--ecume)}
+.retour{font:600 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--clair);opacity:.85;display:inline-flex;gap:12px;align-items:center}
+.retour::before{content:"";width:28px;height:1px;background:var(--clair)}
 .retour:hover{opacity:1}
-.langue{display:inline-flex;border:1px solid rgba(228,238,233,.3);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
-.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--ecume)}
-.langue span{background:var(--ecume);color:var(--abysse)}
-.langue a:hover{background:rgba(228,238,233,.15)}
+.langue{display:inline-flex;border:1px solid rgba(255,255,255,.28);border-radius:999px;overflow:hidden;font:600 11px/1 var(--sans);letter-spacing:.16em}
+.langue a,.langue span{padding:8px 12px;text-decoration:none;color:var(--clair)}
+.langue span{background:var(--clair);color:var(--fond)}
+.langue a:hover{background:rgba(255,255,255,.14)}
 .titre{display:grid;gap:20px;max-width:660px}
 .mention{font:600 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or)}
-h1{font-family:var(--titre);font-weight:400;font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--ecume);text-wrap:balance}
-.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--or)}
+h1{font-family:var(--titre);font-weight:var(--titre-poids,500);font-size:clamp(56px,9.5vw,118px);line-height:1;margin:0;color:var(--clair);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.sous-titre{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,27px);margin:0;color:var(--accent-clair)}
 .parties{display:flex;flex-wrap:wrap;gap:8px}
-.parties span{font:500 11px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:rgba(13,48,57,.75);border:1px solid rgba(31,106,111,.8)}
-.parties span:nth-child(1){color:var(--p1-clair)} .parties span:nth-child(2){color:var(--p2-clair)} .parties span:nth-child(3){color:var(--p3-clair)}
-.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--ecume)}
-.auteur a{text-decoration:none;border-bottom:1px solid rgba(228,238,233,.35)}
+.parties span{font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:9px 12px;border-radius:6px;background:var(--pastille-fond);border:1px solid var(--pastille-bord);color:var(--clair)}
+.auteur{margin:0;font-family:var(--sans);font-size:16px;color:var(--clair)}
+.auteur a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
 .id{width:1.05em;height:1.05em;vertical-align:-.15em;margin-right:.35em}
-.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ecume);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:40ch}
-.devise .r{color:var(--p3-clair)} .devise .e{color:var(--p1-clair)} .devise .l{color:var(--p2-clair)}
-.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;color:var(--brume);margin-top:6px}
-
-/* écrins */
+.devise{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--clair);margin:0;padding-left:18px;border-left:1px solid var(--or);max-width:44ch}
+.devise small{display:block;font-style:normal;font-family:var(--sans);font-size:13px;opacity:.75;margin-top:6px}
 .chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:-56px;position:relative;z-index:3}
-.ecrin{background:var(--eau);border:1px solid #163f48;border-radius:12px;padding:18px 18px 16px;color:var(--ecume);position:relative;overflow:hidden}
+.ecrin{background:var(--ecrin);border:1px solid var(--ecrin-bord);border-radius:12px;padding:18px 18px 16px;color:var(--clair);position:relative;overflow:hidden}
 .ecrin::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
-.ecrin b{display:block;font-family:var(--titre);font-weight:400;font-size:42px;line-height:1;color:var(--or);font-variant-numeric:tabular-nums}
-.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;color:var(--ambre)}
-
+.ecrin b{display:block;font-family:var(--titre);font-weight:500;font-size:40px;line-height:1;color:var(--or-chiffre);font-variant-numeric:tabular-nums}
+.ecrin b.long{font-size:28px;line-height:1.15;white-space:nowrap}
+.ecrin span{font-family:var(--sans);font-size:13px;line-height:1.3;opacity:.92}
 .actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:36px 8px}
 .btn{font:600 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:999px;padding:14px 22px}
-.btn.plein{background:var(--abysse);color:var(--ecume)}
-.btn.plein:hover{background:var(--lagune)}
+.btn.plein{background:var(--fond);color:var(--clair)}
+.btn.plein:hover{filter:brightness(1.3)}
 .btn.trait{border:1px solid var(--or);color:var(--ink-strong)}
 .btn.trait:hover{background:var(--surface-2)}
 .taille{font-family:var(--sans);font-size:13px;color:var(--ink-muted)}
-
 section{padding-block:40px 0}
 h2{font:600 12px/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--or-texte);margin:0 0 20px;display:flex;align-items:center;gap:16px}
 h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--or),transparent)}
 p{margin:0 0 1em;max-width:68ch}
-.partie{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding-block:18px;border-top:1px solid var(--line)}
-.partie:first-of-type{border-top:0}
-.partie .num{font-family:var(--titre);font-size:16px;line-height:1.4}
-.partie .num b{display:block;font-size:32px;font-weight:400}
-.partie .num em{font-style:normal;font:500 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase}
-.p1 .num{color:var(--p1)} .p2 .num{color:var(--p2)} .p3 .num{color:var(--p3)}
-.partie p{margin:0}
-.equation{margin:8px 0 22px;background:var(--abysse);border-radius:12px;padding:22px 22px 18px;color:var(--ecume);overflow-x:auto;position:relative}
-.equation::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
-.equation code{display:block;font-family:var(--mono);font-size:clamp(14px,1.9vw,18px);color:var(--or);white-space:nowrap}
-.equation small{display:block;margin-top:10px;font-family:var(--mono);font-size:13px;color:var(--verre)}
-.equation .tag{font:600 10px/1 var(--sans);letter-spacing:.12em;color:var(--hypo);background:var(--hypo-bg);padding:5px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
+.chiffres-texte{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.chiffres-texte div{background:var(--surface-2);border-radius:10px;padding:14px 16px;border-left:2px solid var(--or)}
+.chiffres-texte b{display:block;font-family:var(--titre);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink-strong)}
+.chiffres-texte span{font-family:var(--sans);font-size:14px;line-height:1.4;color:var(--ink-muted)}
+.plan{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.plan li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:16px}
+.plan li:first-child{border-top:0}
+.plan li em{font-style:normal;font:600 10px/1.8 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1em}
-.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px}
-.p-etabli{color:var(--etabli);background:var(--etabli-bg)} .p-debattu{color:var(--debattu);background:var(--debattu-bg)} .p-hypo{color:var(--hypo);background:var(--hypo-bg)} .p-lecture{color:var(--lecture);background:var(--lecture-bg)} .p-calcul{color:var(--calcul);background:var(--calcul-bg)}
+.pill{font:600 11px/1 var(--sans);letter-spacing:.08em;padding:8px 11px;border-radius:5px;color:var(--ink-strong);background:var(--surface-2);border:1px solid var(--line)}
+.p-etabli{color:#0f6e56;background:#e1f5ee;border-color:#e1f5ee} .p-debattu{color:#854f0b;background:#faeeda;border-color:#faeeda} .p-hypo{color:#6b3f8f;background:#f1e8f7;border-color:#f1e8f7} .p-lecture{color:#185fa5;background:#e6f1fb;border-color:#e6f1fb} .p-calcul{color:#4a4f54;background:#eceef0;border-color:#eceef0}
 .abstract{font-size:15.5px;color:var(--ink);background:var(--surface-2);border-radius:10px;padding:22px 24px}
 .abstract p:last-child{margin:0}
 .mots{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0}
@@ -159,77 +126,55 @@ p{margin:0 0 1em;max-width:68ch}
 dl.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:8px 24px;font-family:var(--sans);font-size:15px;margin:0}
 dl.meta dt{color:var(--ink-muted)} dl.meta dd{margin:0;overflow-wrap:anywhere}
 dl.meta .doi{font-family:var(--mono);font-size:14px}
-
-footer{margin-top:96px;background:var(--abysse);color:var(--brume)}
-footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px}
+footer{margin-top:96px;background:var(--fond);color:var(--clair)}
+footer .inner{padding-block:40px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--sans);font-size:14px;opacity:.85}
 footer a{text-decoration:none} footer a:hover{color:var(--or)}
-@media (max-width:760px){
-  .bandeau{min-height:0}
-  .mer{opacity:.45}
-  .chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .partie{grid-template-columns:1fr;gap:6px}
-}
+@media (max-width:760px){.ecrin b.long{font-size:22px;white-space:normal}.bandeau{min-height:0}.chiffres{grid-template-columns:repeat(2,minmax(0,1fr))}.plan li{grid-template-columns:1fr;gap:2px}.ciel{opacity:.6}}
+
+
 </style>
 <style>
-/* Thème L'Équation du soi : un grimoire. Parchemin, encre de fer, or ; une couleur par partie. */
-:root{
-  --surface:#faf6ec; --surface-2:#f2ebda; --ink:#3a3630; --ink-strong:#1c1d24; --ink-muted:#6b6352; --line:#e3d9c2;
-  --abysse:#1c1d24; --eau:#24252e; --lagune:#3a3b48; --verre:#d8c9a3; --or:#d8b25a; --or-texte:#8a6a1c; --ambre:#efe0b8; --ecume:#efe7d2; --brume:#b3a98f;
-  --p1:#3f6fb5; --p1-clair:#a9c4ee; --p2:#b5577f; --p2-clair:#f0b6cf; --p3:#3f8f68; --p3-clair:#9fdcbb;
-  --titre:"Cormorant Garamond",Georgia,serif; --modele:#7a4fa8; --modele-bg:#efe6f7;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --surface:#16161b; --surface-2:#1f2027; --ink:#d9d2c0; --ink-strong:#efe7d2; --ink-muted:#b3a98f; --line:#34343e; --or-texte:#d8b25a;
-  --p1:#8fb0e0; --p2:#e6a3c0; --p3:#8fd1ae; --modele:#c9a8ef; --modele-bg:#2a1d38; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --surface:#16161b; --surface-2:#1f2027; --ink:#d9d2c0; --ink-strong:#efe7d2; --ink-muted:#b3a98f; --line:#34343e; --or-texte:#d8b25a;
-  --p1:#8fb0e0; --p2:#e6a3c0; --p3:#8fd1ae; --modele:#c9a8ef; --modele-bg:#2a1d38; color-scheme:dark}
-.bandeau{background:radial-gradient(60% 50% at 78% 40%,rgba(216,178,90,.16),transparent 70%),linear-gradient(180deg,#26272f 0%,#1c1d24 55%,#141419 100%)}
-.bandeau::before{opacity:.35;background:
-  radial-gradient(1.2px 1.2px at 12% 22%,#d8b25a 99%,transparent),radial-gradient(1px 1px at 33% 64%,#efe0b8 99%,transparent),
-  radial-gradient(1.4px 1.4px at 58% 18%,#d8b25a 99%,transparent),radial-gradient(1px 1px at 71% 77%,#efe0b8 99%,transparent),
-  radial-gradient(1.2px 1.2px at 88% 52%,#d8b25a 99%,transparent),radial-gradient(1px 1px at 22% 88%,#efe0b8 99%,transparent),
-  radial-gradient(1px 1px at 47% 42%,#d8b25a 99%,transparent),radial-gradient(1.3px 1.3px at 92% 12%,#efe0b8 99%,transparent);
-  background-size:420px 300px;-webkit-mask-image:none;mask-image:none;inset:0;height:auto}
-.bandeau::after{opacity:.5;background:radial-gradient(26% 30% at 18% 28%,rgba(63,111,181,.35),transparent 70%),radial-gradient(24% 28% at 46% 82%,rgba(181,87,127,.3),transparent 70%),radial-gradient(26% 30% at 70% 30%,rgba(63,143,104,.3),transparent 70%)}
-.bandeau .inner{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center}
-.bandeau .haut{grid-column:1/-1}
-.couv{justify-self:center;width:min(100%,330px);height:auto;transform:rotate(2.5deg);border-radius:4px;box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 1px rgba(216,178,90,.25)}
-@media (prefers-reduced-motion:no-preference){.couv{animation:flotte 9s ease-in-out infinite alternate}@keyframes flotte{from{transform:rotate(2.5deg) translateY(0)}to{transform:rotate(1deg) translateY(-12px)}}}
-h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
-.parties span{background:rgba(28,29,36,.75);border-color:rgba(216,178,90,.35)}
-.ecrin{background:var(--abysse);border-color:#3a3626}
-.p-modele{color:var(--modele);background:var(--modele-bg)}
+/* L'Équation du soi : un grimoire ouvert. Nuit de cuir, encre de fer, or ; une couleur par partie. */
+:root{--fond:#141319;--clair:#f3ead6;--accent:#8a6a1c;--accent-clair:#e8c97a;--or:#d8b25a;--or-chiffre:#e6c06e;--ecrin:#1d1b22;--ecrin-bord:#4a3f2a;--pastille-fond:rgba(20,19,25,.8);--pastille-bord:#6b5a33;--fond-bandeau:#141319;
+  --brumes:radial-gradient(30% 25% at 70% 50%,rgba(216,178,90,.22),transparent 70%);
+  --surface:#faf6ec;--surface-2:#f2ebda;--ink:#3a3630;--ink-strong:#1c1d24;--ink-muted:#6b6352;--line:#e3d9c2;--or-texte:#8a6a1c;
+  --p1:#3f6fb5;--p1-clair:#a9c4ee;--p2:#b5577f;--p2-clair:#f0b6cf;--p3:#3f8f68;--p3-clair:#9fdcbb;--abysse:#1c1d24;--verre:#d8c9a3;--hypo:#6b3f8f;--hypo-bg:#f1e8f7;--modele:#7a4fa8;--modele-bg:#efe6f7}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--surface:#16161b;--surface-2:#1f2027;--ink:#d9d2c0;--ink-strong:#efe7d2;--ink-muted:#b3a98f;--line:#34343e;--or-texte:#d8b25a;--accent:#d8b25a;--p1:#8fb0e0;--p2:#e6a3c0;--p3:#8fd1ae;--hypo:#d3a8ef;--hypo-bg:#2a1d38;--modele:#c9a8ef;--modele-bg:#2a1d38;color-scheme:dark}}
+:root[data-theme="dark"]{--surface:#16161b;--surface-2:#1f2027;--ink:#d9d2c0;--ink-strong:#efe7d2;--ink-muted:#b3a98f;--line:#34343e;--or-texte:#d8b25a;--accent:#d8b25a;--p1:#8fb0e0;--p2:#e6a3c0;--p3:#8fd1ae;--hypo:#d3a8ef;--hypo-bg:#2a1d38;--modele:#c9a8ef;--modele-bg:#2a1d38;color-scheme:dark}
+h1{font-size:clamp(54px,8.8vw,110px);font-weight:500}
+.sous-titre{font-family:var(--titre);font-size:clamp(24px,3vw,32px);font-weight:500}
+.parties span{font-family:var(--mono);font-weight:500}
+.parties span:nth-child(1){border-color:#3f6fb5;color:#a9c4ee}
+.parties span:nth-child(2){border-color:#b5577f;color:#f0b6cf}
+.parties span:nth-child(3){border-color:#3f8f68;color:#9fdcbb}
+.devise{font-family:var(--titre);font-size:23px;line-height:1.35}
+.devise small{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.bandeau::before{content:"";position:absolute;inset:0 0 auto;height:3px;z-index:3;background:linear-gradient(90deg,#3f6fb5,#b5577f,#3f8f68,#d8b25a)}
+.titre{max-width:600px}
+.ecrin span{display:block}
+.btn.plein{background:var(--abysse);color:var(--clair)}
+.chiffres-texte{grid-template-columns:repeat(3,minmax(0,1fr))}
+.chiffres-texte b{font-size:24px}
+.chiffres-texte span{display:block}
+.chiffres-texte .c1{border-left-color:var(--p1)} .chiffres-texte .c2{border-left-color:var(--p2)} .chiffres-texte .c3{border-left-color:var(--p3)}
+@media (max-width:640px){.chiffres-texte{grid-template-columns:1fr}}
+.plan li b{font-weight:600;color:var(--ink-strong)}
+.plan li.p1 em{color:var(--p1)} .plan li.p2 em{color:var(--p2)} .plan li.p3 em{color:var(--p3)}
+.partie{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding-block:18px;border-top:1px solid var(--line)}
+.partie .num{font-family:var(--titre);font-size:16px;line-height:1.4}
+.partie .num b{display:block;font-size:32px;font-weight:400}
+.partie .num em{font-style:normal;font:500 10px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase}
+.p1 .num{color:var(--p1)} .p2 .num{color:var(--p2)} .p3 .num{color:var(--p3)}
+.partie p{margin:0}
+.equation{margin:8px 0 22px;background:var(--abysse);border-radius:12px;padding:22px 22px 18px;color:#efe7d2;overflow-x:auto;position:relative}
+.equation::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.equation code{display:block;font-family:var(--mono);font-size:clamp(14px,1.9vw,18px);color:var(--or);white-space:nowrap}
 .equation .rep{display:block;margin-top:8px;font-family:var(--mono);font-size:13px;color:var(--verre);white-space:normal}
-.btn.plein{background:var(--abysse);color:var(--ecume)}
-@media (max-width:760px){.bandeau .inner{grid-template-columns:1fr}.couv{width:min(70%,260px);order:-1}}
+.equation .tag{font:600 10px/1 var(--sans);letter-spacing:.12em;color:var(--hypo);background:var(--hypo-bg);padding:5px 8px;border-radius:4px;display:inline-block;margin-bottom:12px}
+.p-modele{color:var(--modele);background:var(--modele-bg);border-color:var(--modele-bg)}
+@media (max-width:760px){.partie{grid-template-columns:1fr;gap:6px}.bandeau .inner{padding-bottom:440px}.ciel{opacity:1}}
+.couv-pdf{margin:32px auto 8px;width:min(100%,300px);text-align:center}.couv-pdf a{display:block}.couv-pdf img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 22px 44px rgba(0,0,0,.45),0 0 0 1px rgba(216,178,90,.25)}.couv-pdf figcaption{margin-top:10px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- finitions -->
 <script>try{var t=localStorage.getItem("es-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="/img/icone.svg" type="image/svg+xml">
@@ -238,8 +183,8 @@ h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
 <link rel="alternate" type="application/rss+xml" title="Elias Sorel · new works" href="https://eliassorel.com/feed.xml">
 </head>
 <body>
-
 <header class="bandeau band">
+  <canvas class="ciel" id="ciel" aria-hidden="true"></canvas>
   <div class="inner">
     <div class="haut"><a class="retour" href="/">Elias Sorel · les travaux</a><nav class="langue" aria-label="Langue"><span lang="fr">FR</span><a lang="en" hreflang="en" href="https://eliassorel-com.translate.goog/papiers/l-equation-du-soi/?_x_tr_sl=fr&amp;_x_tr_tl=en&amp;_x_tr_hl=en">EN</a></nav></div>
     <div class="titre">
@@ -247,30 +192,16 @@ h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
       <h1>L'Équation du soi</h1>
       <p class="sous-titre">Voyage à travers l'individu</p>
       <div class="parties"><span>Libre arbitre</span><span>Déséquilibre</span><span>Soi</span></div>
-      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944">ORCID 0009-0003-7980-9944</a></p>
-      <p class="devise">« Le 1 n'est pas dans la substance, il est dans la loi. Une loi commune à deux mondes qui ne se touchent jamais, ce n'est plus une ressemblance : c'est une structure du réel. »<small>Elias Sorel, 2026</small></p>
+      <p class="auteur"><a href="/">Elias Sorel</a> · 2026 · <a href="https://orcid.org/0009-0003-7980-9944"><svg class="id" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><path d="M8.2 7.1h-1.6v10h1.6zM10.4 7.1v10h3.2c3 0 4.6-2.1 4.6-5s-1.6-5-4.6-5zm1.6 1.5h1.5c2 0 3 1.4 3 3.5s-1 3.5-3 3.5H12z M7.4 4.6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill="#fff"/></svg>ORCID 0009-0003-7980-9944</a></p>
+      <p class="devise">« Le 1 n'est pas dans la substance, il est dans la loi. Une loi commune à deux mondes qui ne se touchent jamais, ce n'est plus une ressemblance : c'est une structure du réel. »<small>Elias Sorel, L'Équation du soi, 2026</small></p>
     </div>
-    <img class="couv" src="couverture.jpg" width="560" height="777" alt="Couverture de L'Équation du soi : un grimoire de cuir, le titre doré, un cercle de médaillons autour d'une chouette et d'un poulpe.">
   </div>
 </header>
-
 <main class="band">
 <div class="inner">
-
-  <div class="chiffres">
-    <div class="ecrin"><b>218</b><span>références, dont 215 avec DOI</span></div>
-    <div class="ecrin"><b>35</b><span>encadrés d'équations, lignes 0 à 24</span></div>
-    <div class="ecrin"><b>17</b><span>figures</span></div>
-    <div class="ecrin"><b>11</b><span>tests proposés, T0 à T10</span></div>
-  </div>
-
-  <div class="actions">
-    <a class="btn plein" href="L-Equation-du-soi-Elias-Sorel-v1.3.pdf">Lire le PDF</a>
-    <a class="btn trait" href="https://doi.org/10.5281/zenodo.23858442">Zenodo · DOI</a>
-    <a class="btn trait" href="https://philpapers.org/rec/SORTEO-13">PhilPapers</a>
-    <span class="taille">PDF, 103 pages, 3,4 Mo · en français, résumé en anglais</span>
-  </div>
-
+  <div class="chiffres"><div class="ecrin"><b>29</b><span>molécules, le bain du soi chimique</span></div><div class="ecrin"><b>35</b><span>encadrés d'équations, lignes 0 à 24</span></div><div class="ecrin"><b>218</b><span>références, dont 215 avec DOI</span></div><div class="ecrin"><b>11</b><span>tests proposés, T0 à T10</span></div></div>
+  <div class="actions"><a class="btn plein" href="L-Equation-du-soi-Elias-Sorel-v1.3.pdf">Lire le PDF</a><a class="btn trait" href="https://doi.org/10.5281/zenodo.23858442">Zenodo · DOI</a><a class="btn trait" href="https://philpapers.org/rec/SORTEO-13">PhilPapers</a><span class="taille">PDF, 103 pages, 17 figures, 3,4 Mo · en français, résumé en anglais</span></div>
+  <figure class="couv-pdf"><a href="L-Equation-du-soi-Elias-Sorel-v1.3.pdf"><img src="couverture.jpg" width="560" height="777" loading="lazy" alt="Couverture de L'Équation du soi : un grimoire de cuir, le titre doré, un cercle de médaillons autour d'une chouette et d'un poulpe."></a><figcaption>La couverture du PDF</figcaption></figure>
   <section>
     <h2>Résumé</h2>
     <p>Ce texte pose le soi comme une équation à tester, en chimie, en physique et en mathématiques, et non comme une définition.</p>
@@ -289,7 +220,24 @@ h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
     <div class="pills"><span class="pill p-etabli">ÉTABLI</span><span class="pill p-debattu">DÉBATTU</span><span class="pill p-lecture">LECTURE</span><span class="pill p-modele">MODÈLE</span><span class="pill p-hypo">HYPOTHÈSE</span></div>
     <p>Hors-série, après <a href="/papiers/le-diamant/">Le Diamant</a> et <a href="/papiers/l-icosaedre/">L'Icosaèdre</a> (Elias Sorel, 2026). Nous ne sommes pas la mesure du vivant.</p>
   </section>
-
+  <section><h2>En chiffres</h2><div class="chiffres-texte">
+    <div class="c1"><b>29 molécules</b><span>le bain du soi chimique, chacune dans sa plage mesurée chez l'humain : cortisol, mélatonine, adénosine, acétylcholine…</span></div>
+    <div class="c1"><b>≈ 350 ms</b><span>l'avance du cerveau sur la décision rapportée, pour un geste spontané ; 800 ms avec une préparation, sur 5 sujets (Libet et al., 1983)</span></div>
+    <div class="c1"><b>−61 à −94 mV</b><span>l'état bas des neurones de l'accumbens, −71 à −40 mV l'état haut : 2 états, un interrupteur (rat, in vivo ; Wilson et Kawaguchi, 1996)</span></div>
+    <div class="c1"><b>1 nuit</b><span>sans sommeil suffit à faire baisser les récepteurs D2/D3 du striatum ventral, chez 20 adultes (Volkow et al., 2012)</span></div>
+    <div class="c2"><b>26 °C</b><span>et toutes les tortues de Floride naissent mâles ; bloquer l'enzyme KDM6B donne des femelles chez plus de 80 % des embryons (Ge et al., 2018)</span></div>
+    <div><b>4 pays sur 4</b><span>États-Unis, Hong Kong, Inde, Colombie : la majorité répond que l'univers n'est pas déterminé (Sarkissian et al., 2010)</span></div>
+    <div class="c3"><b>38 personnes</b><span>autour d'une marche sur le feu : le cœur des 9 proches s'accorde à celui des 12 marcheurs, pas celui des 17 spectateurs sans lien (Konvalinka et al., 2011)</span></div>
+    <div class="c3"><b>r = 0,44</b><span>entre l'humeur du groupe et la coopération, r = −0,42 avec le conflit, sur 94 étudiants en 29 groupes (Barsade, 2002)</span></div>
+    <div class="c3"><b>9 poulpes sur 14</b><span>jouent, avec des briques ou un flacon poussé dans le courant, surtout entre le 3e et le 6e jour sur 7 (Kuba et al., 2006)</span></div>
+  </div></section>
+  <section><h2>Le plan</h2><ul class="plan">
+    <li><em>Seuil</em><span><b>Thèse</b> une question · <b>antithèse</b> le récit · <b>synthèse</b> le pari</span></li>
+    <li class="p1"><em>I · Thèse</em><span><b>Libre arbitre</b>, le soi dedans : §0 le lit · I.1 le bain · I.2 la porte · I.3 la plage qui bouge · chute · mur · ce qui se mesure · Chant I</span></li>
+    <li class="p2"><em>II · Antithèse</em><span><b>Déséquilibre</b>, le soi entre : II.1 l'autre est là avant · II.2 le déséquilibre et la brisure · II.3 le je et le tu naissent ensemble · chute · mur · ce qui se mesure · Chant II</span></li>
+    <li class="p3"><em>III · Synthèse</em><span><b>Soi</b>, le nous : III.1 le nous sans je · III.2 le groupe · III.3 le pont des cubes · l'équation, entière · chute · mur · ce qui se mesure · Chant III</span></li>
+    <li><em>Chute</em><span>Conclusion · Et le chant hurla</span></li>
+  </ul></section>
   <section lang="en">
     <h2>Abstract</h2>
     <div class="abstract"><p>L&#x27;Équation du soi (The Equation of the Self) poses the self as an equation to be tested in chemistry, physics and mathematics, not as a definition. Mother formula: SELF = (M ⟷ P) × C(t). Part I, Free Will (the self within): the chemical self C(t) = (S, Δ), read on a bath of 29 molecules with ranges measured in humans (cortisol, melatonin, adenosine, acetylcholine and others); S is the place, Δ the gap between levels; baselines drift slowly or lock through hysteresis (bistability; slowing down before a tipping point, Scheffer); decision is read as a threshold gate (readiness potential: Libet; Schurger; Maoz). Part II, Imbalance (the self between): the physical self P, the break of a threshold and the efference copy δ = a − â (von Holst and Mittelstaedt; Wolpert); an I is recognised only through a you, physical (tu₀) or recognised (tu₁); the trace of the other has a place (hippocampal CA2, Hitti and Siegelbaum) and is rewritten at each recall (ewe and lamb, Perrin). Part III, Self (the we): the mathematical self M = (r, Rec), phase agreement and reciprocity (Huygens; Kuramoto; Mirollo and Strogatz), from the slime mould and the ant colony to human groups (cardiac synchrony, Konvalinka; brain-to-brain synchrony, Dikker; mood contagion, Barsade). Every claim carries its register (ESTABLISHED, DEBATED, READING, MODEL, HYPOTHESIS). 35 equation boxes, 17 figures, 11 proposed tests (T0 to T10), 218 references. Full text in French, English abstract.</p></div>
@@ -319,7 +267,6 @@ h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
       <dt>Licence</dt><dd>CC BY 4.0</dd>
     </dl>
   </section>
-
 </div>
 </main>
 
@@ -339,6 +286,106 @@ h1{font-weight:500;font-size:clamp(52px,8.6vw,104px)}
     <span>Textes sous licence CC BY 4.0</span>
   </div>
 </footer>
+<script>
+/* Le ciel de la pièce : purement décoratif, le texte de la page n'en dépend pas. */
+(function(){
+  const c=document.getElementById('ciel');if(!c)return;const x=c.getContext('2d'),band=c.parentElement;
+  const calme=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w=0,h=0,d=1,mx=.5,my=.5;
+  band.addEventListener('pointermove',ev=>{const b=band.getBoundingClientRect();mx=(ev.clientX-b.left)/w;my=(ev.clientY-b.top)/h},{passive:true});
+  const clics=[];band.addEventListener('pointerdown',ev=>{const b=band.getBoundingClientRect();clics.push([ev.clientX-b.left,ev.clientY-b.top])});
+  function taille(){d=Math.min(devicePixelRatio||1,2);w=band.clientWidth;h=band.clientHeight;c.width=Math.round(w*d);c.height=Math.round(h*d);x.setTransform(d,0,0,d,0,0);if(art.taille)art.taille()}
+  const art=(function(){
+/* Le grimoire ouvert : l'astrolabe de la couverture, qui tourne. Ses anneaux portent la pierre en lettres d'or,
+   5 orbes gravitent ; au cœur, 24 petites horloges cherchent l'accord (Kuramoto) : r monte, le soi se lit ;
+   au clic, une brisure (δ = a − â) les disperse, et elles se raccordent. */
+const NUIT='#141319',OR='#d8b25a',OR2='#efe0b8',CREME='#f3ead6';
+const ORBES=['#5f8fd6','#d0709a','#4fae80','#9a76c9','#d8b25a'];
+const PIERRE="LE 1 N'EST PAS DANS LA SUBSTANCE, IL EST DANS LA LOI · UNE LOI COMMUNE À DEUX MONDES QUI NE SE TOUCHENT JAMAIS · CE N'EST PLUS UNE RESSEMBLANCE : C'EST UNE STRUCTURE DU RÉEL · ";
+let cx=0,cy=0,R=200,mob=false,poussiere=[],etoiles=[],dernier=0,osc=[],brisures=[];
+const N=24;
+function taille(){mob=w<760;
+  if(mob){R=Math.min(w*.46,200);cx=w*.58;cy=h-R*1.32}else{R=Math.max(210,Math.min(h*.40,w*.27,330));cx=w*.73;cy=h*.5}
+  poussiere=Array.from({length:Math.round(w*h/5200)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.3+.3,v:Math.random()*.18+.03,p:Math.random()*6.3,o:.15+Math.random()*.45,c:Math.random()<.7?OR:OR2}));
+  etoiles=Array.from({length:Math.round(w*h/14000)},()=>({x:Math.random()*w,y:Math.random()*h*.9,r:Math.random()*1.1+.4,p:Math.random()*6.3,s:.6+Math.random()*1.8}));
+  if(!osc.length)osc=Array.from({length:N},(_,k)=>({a:k/N*6.283,th:Math.random()*6.283,w:1.35+(Math.random()-.5)*.5}))}
+const pi=Math.PI;
+function anneauTexte(r,rot,taillePx,alpha){x.save();x.translate(cx,cy);x.font=`500 ${taillePx}px "Cormorant Garamond",Georgia,serif`;x.fillStyle=OR;x.globalAlpha=alpha;x.textAlign='center';x.textBaseline='middle';
+  let poids=0;for(const ch of PIERRE)poids+=ch===' '?.7:1;const pas=2*pi/poids;let a=rot;for(const ch of PIERRE){x.save();x.rotate(a);x.translate(0,-r);x.fillText(ch,0,0);x.restore();a+=ch===' '?pas*.7:pas}x.restore()}
+function frame(t){const dt=Math.min(.05,Math.max(0,t-dernier));dernier=t;
+  /* la nuit du grimoire : cuir sombre, une lueur derrière l'astrolabe */
+  const g=x.createLinearGradient(0,0,0,h);g.addColorStop(0,'#1f1c22');g.addColorStop(.6,NUIT);g.addColorStop(1,'#0c0b10');x.globalAlpha=1;x.fillStyle=g;x.fillRect(0,0,w,h);
+  const lu=x.createRadialGradient(cx,cy,0,cx,cy,R*2.1);lu.addColorStop(0,'rgba(120,84,40,.42)');lu.addColorStop(.5,'rgba(70,46,26,.2)');lu.addColorStop(1,'rgba(20,19,25,0)');x.fillStyle=lu;x.fillRect(0,0,w,h);
+  for(const [c,px,py] of [['rgba(63,111,181,.16)',.2,.25],['rgba(181,87,127,.13)',.45,.85],['rgba(63,143,104,.13)',.85,.2]]){const b=x.createRadialGradient(w*px,h*py,0,w*px,h*py,Math.max(w,h)*.35);b.addColorStop(0,c);b.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=b;x.fillRect(0,0,w,h)}
+  /* les étoiles qui battent */
+  for(const e of etoiles){x.globalAlpha=.25+.45*(.5+.5*Math.sin(t*e.s+e.p));x.fillStyle=OR2;x.beginPath();x.arc(e.x,e.y,e.r,0,6.283);x.fill()}
+  /* l'accord des horloges : Kuramoto, le couplage monte et descend lentement */
+  const K=calme?3:2.6*(.5+.5*Math.sin(t*.09-1.2))+.15;let sx=0,sy=0;for(const o of osc){sx+=Math.cos(o.th);sy+=Math.sin(o.th)}
+  const r=Math.hypot(sx,sy)/N,psi=Math.atan2(sy,sx);
+  if(!calme)for(const o of osc)o.th+=dt*(o.w+K*r*Math.sin(psi-o.th));
+  /* l'astrolabe, qui glisse un peu avec le doigt */
+  const px0=calme?0:(mx-.5)*R*.05,py0=calme?0:(my-.5)*R*.04;cx+=px0;cy+=py0;
+  x.save();x.translate(cx,cy);
+  x.globalAlpha=.9;x.fillStyle='rgba(18,16,22,.55)';x.beginPath();x.arc(0,0,R*1.04,0,6.283);x.fill();
+  x.strokeStyle=OR;x.lineWidth=1.6;x.globalAlpha=.75;x.beginPath();x.arc(0,0,R,0,6.283);x.stroke();x.lineWidth=.8;x.globalAlpha=.5;x.beginPath();x.arc(0,0,R*1.035,0,6.283);x.stroke();
+  const rot1=calme?0:t*.012;x.globalAlpha=.6;x.lineWidth=1;for(let k=0;k<120;k++){const a=rot1+k/120*6.283,l=k%10===0?R*.06:k%5===0?R*.04:R*.022;x.beginPath();x.moveTo(Math.cos(a)*R,Math.sin(a)*R);x.lineTo(Math.cos(a)*(R-l),Math.sin(a)*(R-l));x.stroke()}
+  x.globalAlpha=.45;x.beginPath();x.arc(0,0,R*.86,0,6.283);x.stroke();x.beginPath();x.arc(0,0,R*.83,0,6.283);x.stroke();
+  /* 12 médaillons en losange, comme sur la couverture */
+  const rot2=calme?0:-t*.02;for(let k=0;k<12;k++){const a=rot2+k/12*6.283,X=Math.cos(a)*R*.745,Y=Math.sin(a)*R*.745,s=R*.045;x.save();x.translate(X,Y);x.rotate(a+pi/4);x.globalAlpha=.85;x.fillStyle='#2a2320';x.strokeStyle=OR;x.lineWidth=1;x.beginPath();x.rect(-s,-s,2*s,2*s);x.fill();x.stroke();x.globalAlpha=.7;x.fillStyle=ORBES[k%5];x.beginPath();x.arc(0,0,s*.38,0,6.283);x.fill();x.restore()}
+  x.globalAlpha=.4;x.beginPath();x.arc(0,0,R*.66,0,6.283);x.setLineDash([2,5]);x.stroke();x.setLineDash([]);
+  /* les 5 orbes qui gravitent */
+  const rot3=calme?.4:t*.05;for(let k=0;k<5;k++){const a=rot3+k/5*6.283,X=Math.cos(a)*R*.58,Y=Math.sin(a)*R*.58,s=R*.075;
+    const hg=x.createRadialGradient(X,Y,0,X,Y,s*2.6);hg.addColorStop(0,ORBES[k]+'88');hg.addColorStop(1,ORBES[k]+'00');x.globalAlpha=1;x.fillStyle=hg;x.beginPath();x.arc(X,Y,s*2.6,0,6.283);x.fill();
+    const og=x.createRadialGradient(X-s*.35,Y-s*.35,s*.1,X,Y,s);og.addColorStop(0,'#ffffff');og.addColorStop(.35,ORBES[k]);og.addColorStop(1,'#1a1620');x.fillStyle=og;x.beginPath();x.arc(X,Y,s,0,6.283);x.fill();
+    x.strokeStyle='#e9e3d6';x.globalAlpha=.9;x.lineWidth=1.3;x.beginPath();x.arc(X,Y,s*1.12,0,6.283);x.stroke();
+    x.globalAlpha=.85;x.strokeStyle='#ffffff';x.lineWidth=1;x.beginPath();const n=k+3;for(let q=0;q<=n;q++){const b=-pi/2+q/n*6.283+t*.2*(calme?0:1);const px=X+Math.cos(b)*s*.42,py=Y+Math.sin(b)*s*.42;q?x.lineTo(px,py):x.moveTo(px,py)}x.stroke()}
+  /* le cœur : 24 horloges ; leur éclat suit leur phase ; l'aiguille d'or est l'accord commun */
+  const Rk=R*.36;x.globalAlpha=.35;x.strokeStyle=OR;x.beginPath();x.arc(0,0,Rk,0,6.283);x.stroke();
+  for(const o of osc){const X=Math.cos(o.a+rot1*2)*Rk,Y=Math.sin(o.a+rot1*2)*Rk,e=.5+.5*Math.cos(o.th);
+    x.globalAlpha=.08+.25*r*e;x.strokeStyle=OR2;x.beginPath();x.moveTo(0,0);x.lineTo(X,Y);x.stroke();
+    const hg=x.createRadialGradient(X,Y,0,X,Y,R*.05);hg.addColorStop(0,`rgba(255,226,150,${.15+.8*e})`);hg.addColorStop(1,'rgba(255,226,150,0)');x.globalAlpha=1;x.fillStyle=hg;x.beginPath();x.arc(X,Y,R*.05,0,6.283);x.fill();
+    x.fillStyle=e>.6?'#fff3d0':'#8a7448';x.beginPath();x.arc(X,Y,Math.max(1.4,R*.011),0,6.283);x.fill()}
+  x.globalAlpha=.9;x.strokeStyle=OR;x.lineWidth=2;x.beginPath();x.moveTo(0,0);x.lineTo(Math.cos(psi)*Rk*r,Math.sin(psi)*Rk*r);x.stroke();
+  /* le médaillon central et la formule */
+  const mg=x.createRadialGradient(0,0,0,0,0,R*.2);mg.addColorStop(0,`rgba(90,62,34,${.85})`);mg.addColorStop(1,'rgba(30,24,22,.95)');x.fillStyle=mg;x.globalAlpha=1;x.beginPath();x.arc(0,0,R*.2,0,6.283);x.fill();
+  x.strokeStyle=OR;x.lineWidth=1.5;x.globalAlpha=.85;x.stroke();
+  const gl=x.createRadialGradient(0,0,0,0,0,R*.3);gl.addColorStop(0,`rgba(255,220,140,${.1+.35*r})`);gl.addColorStop(1,'rgba(255,220,140,0)');x.fillStyle=gl;x.beginPath();x.arc(0,0,R*.3,0,6.283);x.fill();
+  /* les 2 bêtes du médaillon, comme sur la couverture : la chouette et le poulpe ; leurs yeux suivent le doigt */
+  const gx=Math.max(-1,Math.min(1,(mx*w-cx)/(R*1.4))),gy=Math.max(-1,Math.min(1,(my*h-cy)/(R*1.4))),cl=(calme||Math.sin(t*.9)>-.985)?1:.15,s0=R*.062;
+  function oeil(X,Y,ro){x.globalAlpha=.95;x.fillStyle='#f3ead6';x.beginPath();x.arc(X,Y,ro,0,6.283);x.fill();x.fillStyle='#1c1612';x.beginPath();x.ellipse(X+gx*ro*.38,Y+gy*ro*.38,ro*.48,ro*.48*cl,0,0,6.283);x.fill()}
+  x.save();x.translate(-R*.075,R*.005);x.strokeStyle=OR2;x.lineWidth=Math.max(1,R*.006);x.globalAlpha=.85+.15*r;x.fillStyle='rgba(243,234,214,.12)';
+  x.beginPath();x.moveTo(-s0*.8,-s0*.9);x.lineTo(-s0*.55,-s0*.45);x.quadraticCurveTo(0,-s0*.62,s0*.55,-s0*.45);x.lineTo(s0*.8,-s0*.9);x.quadraticCurveTo(s0*1.05,0,s0*.75,s0*.9);x.quadraticCurveTo(0,s0*1.35,-s0*.75,s0*.9);x.quadraticCurveTo(-s0*1.05,0,-s0*.8,-s0*.9);x.closePath();x.fill();x.stroke();
+  oeil(-s0*.36,-s0*.08,s0*.3);oeil(s0*.36,-s0*.08,s0*.3);x.fillStyle=OR;x.beginPath();x.moveTo(-s0*.09,s0*.2);x.lineTo(s0*.09,s0*.2);x.lineTo(0,s0*.4);x.closePath();x.fill();x.restore();
+  x.save();x.translate(R*.08,R*.0);x.strokeStyle=OR2;x.lineWidth=Math.max(1,R*.006);x.globalAlpha=.85+.15*r;x.fillStyle='rgba(243,234,214,.12)';
+  x.beginPath();x.arc(0,-s0*.15,s0*.7,pi,0);x.lineTo(s0*.7,s0*.35);x.lineTo(-s0*.7,s0*.35);x.closePath();x.fill();x.stroke();
+  for(let k=0;k<4;k++){const bx=-s0*.55+k*s0*.37,ph=t*1.6+k*.9;x.beginPath();x.moveTo(bx,s0*.35);x.quadraticCurveTo(bx+Math.sin(ph)*s0*.25,s0*.75,bx+Math.sin(ph+1)*s0*.2,s0*1.05);x.stroke()}
+  oeil(-s0*.27,-s0*.1,s0*.24);oeil(s0*.27,-s0*.1,s0*.24);x.restore();
+  x.textAlign='center';x.textBaseline='middle';x.globalAlpha=.75+.25*r;x.fillStyle=OR;x.font=`500 ${Math.max(9,Math.round(R*.04))}px "IBM Plex Mono",monospace`;const ft='SOI = (M ⟷ P) × C(t)',fw=x.measureText(ft).width,fh=Math.max(9,Math.round(R*.04));x.save();x.globalAlpha=.85;x.fillStyle='rgba(20,18,24,.9)';x.beginPath();x.roundRect?x.roundRect(-fw/2-8,R*.28-fh*.85,fw+16,fh*1.7,fh*.85):x.rect(-fw/2-8,R*.28-fh*.85,fw+16,fh*1.7);x.fill();x.strokeStyle=OR;x.globalAlpha=.4;x.lineWidth=1;x.stroke();x.restore();x.fillText(ft,0,R*.28);
+  x.restore();
+  anneauTexte(R*.925,calme?0:-t*.01,Math.max(8,Math.round(R*.05)),.75);
+  cx-=px0;cy-=py0;
+  /* la poussière d'or qui monte */
+  for(const p of poussiere){if(!calme){p.y-=p.v;p.x+=Math.sin(t*.3+p.p)*.12;if(p.y<-4){p.y=h+3;p.x=Math.random()*w}}x.globalAlpha=p.o;x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,0,6.283);x.fill()}
+  /* l'ombre côté texte, pour qu'on lise */
+  const v=x.createLinearGradient(0,0,w,0);v.addColorStop(0,'rgba(12,11,16,.78)');v.addColorStop(mob?.8:.45,'rgba(12,11,16,.3)');v.addColorStop(1,'rgba(12,11,16,0)');x.globalAlpha=1;x.fillStyle=v;x.fillRect(0,0,w,h);
+  /* r, écrit à côté, comme une mesure */
+  if(!mob){x.save();x.font='500 11px "IBM Plex Mono",monospace';try{x.letterSpacing='2px'}catch(_){}x.textAlign='left';x.fillStyle=OR;x.globalAlpha=.85;
+  const lx=Math.max(14,cx-R*1.08),ly=Math.max(30,cy-R*.95);x.fillText('ACCORD r = '+r.toFixed(2).replace('.',','),Math.max(14,lx),ly);x.globalAlpha=.55;x.fillText('K = '+K.toFixed(1).replace('.',','),Math.max(14,lx),ly+17);x.restore();}
+  /* la brisure : au clic, δ = a − â, les horloges se dispersent puis se raccordent */
+  while(clics.length){const k=clics.shift();brisures.push({x:k[0],y:k[1],t0:t});for(const o of osc)o.th+=(Math.random()-.5)*5.5}
+  for(const b of brisures){const a=t-b.t0;x.globalAlpha=Math.max(0,.9*(1-a/1.4));x.strokeStyle=OR;x.lineWidth=1.8*(1-a/1.4)+.4;x.beginPath();x.arc(b.x,b.y,6+a*150,0,6.283);x.stroke();
+    x.globalAlpha=Math.max(0,.5*(1-a/1.4));x.strokeStyle=ORBES[1];x.beginPath();x.arc(b.x,b.y,4+a*95,0,6.283);x.stroke();
+    if(a<1.8){x.save();x.globalAlpha=Math.min(1,(1.8-a)/.6)*.9;x.font='500 13px "IBM Plex Mono",monospace';x.fillStyle=OR2;x.textAlign='center';x.fillText('δ = a − â',b.x,b.y-18);x.restore()}}
+  brisures=brisures.filter(b=>t-b.t0<1.9);
+}
+return {taille,frame};
+
+ })();
+  addEventListener('resize',taille);taille();
+  function frame(ms){art.frame(calme?0:ms/1000);if(!calme)requestAnimationFrame(frame)}
+  calme?frame(0):requestAnimationFrame(frame);
+})();
+</script>
 
 
 <script>
