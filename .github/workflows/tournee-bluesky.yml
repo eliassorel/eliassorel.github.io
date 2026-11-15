@@ -26,6 +26,6 @@ jobs:
       - name: Garder la trace
         run: |
           git config user.name "Elias Sorel"
-          git config user.email "eliassorel.auteur@gmail.com"
+          git config user.email "345449602+eliassorel@users.noreply.github.com"
           git add .github/reseaux/etat_bluesky.json
           git diff --cached --quiet || (git commit -m "Tournée Bluesky" && git push)

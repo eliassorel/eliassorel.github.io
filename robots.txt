@@ -3,4 +3,19 @@ Allow: /
 Disallow: /chimere/atelier/
 Disallow: /chimere/corpus.json
 
+# Robots qui aspirent les pages pour entraîner des modèles d'IA : refusés.
+# Les robots de recherche (Google, Google Scholar, Bing) et ceux qui cherchent
+# pour répondre en citant leurs sources restent admis par la règle ci-dessus.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: cohere-training-data-crawler
+User-agent: Diffbot
+Disallow: /
+
 Sitemap: https://eliassorel.com/sitemap.xml
